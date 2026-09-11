@@ -336,6 +336,76 @@ select:disabled {
         linear-gradient(145deg, #3c0000, #120000);
 }
 
+/* FALE CONOSCO */
+
+.fale-conosco {
+    margin-top: 25px;
+    padding: 22px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(145deg, #1c1c1c, #080808);
+
+    border: 1px solid rgba(255,0,0,.35);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.05),
+        0 10px 25px rgba(0,0,0,.7);
+}
+
+.fale-titulo {
+    color: #ff2525;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.fale-texto {
+    color: #999;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 17px;
+}
+
+.whatsapp-btn {
+    display: block;
+    width: 100%;
+
+    padding: 15px;
+
+    border-radius: 14px;
+
+    color: white;
+    text-decoration: none;
+
+    background:
+        linear-gradient(145deg, #ff3030, #bd0000);
+
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: .5px;
+
+    box-shadow:
+        0 6px 0 #610000,
+        0 10px 20px rgba(255,0,0,.2);
+
+    transition: .15s;
+}
+
+.whatsapp-btn:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
+.whatsapp-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 #610000;
+}
+
 /* CRÉDITOS */
 
 .creditos {
@@ -562,6 +632,33 @@ select:disabled {
     </div>
 
 
+    <!-- FALE CONOSCO -->
+
+    <div class="fale-conosco">
+
+        <div class="fale-titulo">
+            FALE CONOSCO
+        </div>
+
+        <div class="fale-texto">
+            Precisa de ajuda ou encontrou algum problema?
+            Fale diretamente com a equipe do GOAT SENSI.
+        </div>
+
+        <a
+            class="whatsapp-btn"
+            href="https://wa.me/5511921149458"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            💬 FALAR NO WHATSAPP
+        </a>
+
+    </div>
+
+
+    <!-- CRÉDITOS -->
+
     <div class="creditos">
 
         GOAT SENSI<br>
@@ -639,8 +736,6 @@ const DADOS = {
 
     Motorola: {
 
-        /* Moto E */
-
         "Moto E5": 0,
         "Moto E6": 1,
         "Moto E7": 1,
@@ -651,8 +746,6 @@ const DADOS = {
         "Moto E40": 3,
         "Moto E50": 4,
         "Moto E13": 2,
-
-        /* Moto G antigos */
 
         "Moto G5": 0,
         "Moto G5 Plus": 1,
@@ -665,8 +758,6 @@ const DADOS = {
         "Moto G8 Power": 3,
         "Moto G9 Play": 3,
         "Moto G9 Power": 4,
-
-        /* Moto G populares */
 
         "Moto G20": 3,
         "Moto G22": 3,
@@ -689,8 +780,6 @@ const DADOS = {
         "Moto G84": 8,
         "Moto G85": 9,
 
-        /* Edge */
-
         "Motorola Edge 20": 6,
         "Motorola Edge 30": 7,
         "Motorola Edge 30 Neo": 7,
@@ -699,8 +788,6 @@ const DADOS = {
         "Motorola Edge 40 Neo": 8,
         "Motorola Edge 50 Fusion": 9,
         "Motorola Edge 50 Pro": 10,
-
-        /* Razr */
 
         "Motorola Razr 40": 8,
         "Motorola Razr 40 Ultra": 9,
@@ -1031,4 +1118,4 @@ Olhadinha: ${document.getElementById("olha").textContent}`;
 </script>
 
 </body>
-</html>
+    </html>
