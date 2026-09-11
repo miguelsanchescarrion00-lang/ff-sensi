@@ -1,0 +1,476 @@
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import webbrowser
+
+HTML = """
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FF SENSI</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #080808;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 520px;
+    margin: auto;
+    padding: 20px;
+}
+
+.logo {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: #ff3030;
+    margin-top: 20px;
+}
+
+.subtitulo {
+    text-align: center;
+    color: #888;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: #151515;
+    border: 1px solid #292929;
+    padding: 20px;
+    border-radius: 18px;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 14px;
+    background: #242424;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 22px;
+    background: #e52525;
+    color: white;
+    border: none;
+    border-radius: 11px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.resultado {
+    display: none;
+}
+
+.titulo-result {
+    color: #ff3030;
+}
+
+.info {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #222;
+    padding: 13px;
+    margin: 7px 0;
+    border-radius: 9px;
+}
+
+.valor {
+    color: #ff3333;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.aviso {
+    color: #777;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 18px;
+}
+
+.creditos {
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+    margin-top: 25px;
+    padding: 18px;
+}
+
+.creditos strong {
+    color: #ff3030;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+🔥 FF SENSI
+</div>
+
+<div class="subtitulo">
+Gerador de sensibilidade
+</div>
+
+<div class="card">
+
+<label>📱 Fabricante</label>
+
+<select id="marca">
+<option value="">Escolha a marca</option>
+<option value="Samsung">Samsung</option>
+<option value="Xiaomi">Xiaomi</option>
+</select>
+
+
+<label>📲 Celular</label>
+
+<select id="modelo">
+<option value="">Escolha primeiro a marca</option>
+</select>
+
+
+<label>🎯 Nível da sensibilidade</label>
+
+<select id="nivel">
+
+<option value="baixa">Baixa</option>
+<option value="media" selected>Média</option>
+<option value="alta">Alta</option>
+
+</select>
+
+
+<label>👆 Quantidade de dedos</label>
+
+<select id="dedos">
+
+<option value="2">2 dedos</option>
+<option value="3">3 dedos</option>
+<option value="4">4 dedos</option>
+
+</select>
+
+
+<button onclick="gerar()">
+GERAR SENSI
+</button>
+
+</div>
+
+
+<div class="card resultado" id="resultado">
+
+<h2 class="titulo-result">
+🎯 CONFIGURAÇÃO
+</h2>
+
+<div class="info" id="info"></div>
+
+
+<div class="linha">
+<span>Geral</span>
+<span class="valor" id="geral"></span>
+</div>
+
+
+<div class="linha">
+<span>Ponto Vermelho</span>
+<span class="valor" id="red"></span>
+</div>
+
+
+<div class="linha">
+<span>Mira 2x</span>
+<span class="valor" id="mira2"></span>
+</div>
+
+
+<div class="linha">
+<span>Mira 4x</span>
+<span class="valor" id="mira4"></span>
+</div>
+
+
+<div class="linha">
+<span>Mira AWM</span>
+<span class="valor" id="awm"></span>
+</div>
+
+
+<div class="linha">
+<span>Olhadinha</span>
+<span class="valor" id="olha"></span>
+</div>
+
+
+<div class="aviso">
+Configuração sugerida para teste manual.
+<br>
+Nenhuma sensibilidade garante 100% de capa.
+</div>
+
+</div>
+
+
+<div class="creditos">
+
+Criadores:<br>
+
+<strong>
+Miguel Sanches Carrion
+</strong>
+
+<br>
+
+&amp;
+
+<br>
+
+<strong>
+Thalles Vinícius Rios Gazda
+</strong>
+
+</div>
+
+</div>
+
+
+<script>
+
+const celulares = {
+
+Samsung: [
+"Galaxy A15",
+"Galaxy A16",
+"Galaxy A17"
+],
+
+Xiaomi: [
+"Redmi Note 13",
+"Redmi Note 14",
+"POCO X6"
+]
+
+};
+
+
+document.getElementById("marca").onchange = function() {
+
+let modelo = document.getElementById("modelo");
+
+modelo.innerHTML = '<option value="">Escolha o celular</option>';
+
+if (!celulares[this.value]) {
+return;
+}
+
+celulares[this.value].forEach(function(nome) {
+
+let opcao = document.createElement("option");
+
+opcao.value = nome;
+opcao.textContent = nome;
+
+modelo.appendChild(opcao);
+
+});
+
+};
+
+
+function limitar(valor) {
+
+return Math.max(
+0,
+Math.min(
+200,
+Math.round(valor)
+)
+);
+
+}
+
+
+function aleatorio() {
+
+return Math.floor(Math.random() * 7) - 3;
+
+}
+
+
+function gerar() {
+
+let marca =
+document.getElementById("marca").value;
+
+let modelo =
+document.getElementById("modelo").value;
+
+let nivel =
+document.getElementById("nivel").value;
+
+let dedos =
+Number(document.getElementById("dedos").value);
+
+
+if (!marca || !modelo) {
+
+alert("Escolha a marca e o celular!");
+
+return;
+
+}
+
+
+let base = {
+
+baixa: 90,
+media: 140,
+alta: 180
+
+}[nivel];
+
+
+let ajusteDedos = {
+
+2: 0,
+3: 5,
+4: 10
+
+}[dedos];
+
+
+let ajusteCelular = {
+
+"Galaxy A15": 0,
+"Galaxy A16": 3,
+"Galaxy A17": 5,
+
+"Redmi Note 13": 2,
+"Redmi Note 14": 5,
+"POCO X6": 8
+
+}[modelo];
+
+
+let geral = limitar(
+base +
+ajusteDedos +
+ajusteCelular +
+aleatorio()
+);
+
+
+document.getElementById("geral").textContent =
+geral;
+
+
+document.getElementById("red").textContent =
+limitar(geral - 2 + aleatorio());
+
+
+document.getElementById("mira2").textContent =
+limitar(geral - 12 + aleatorio());
+
+
+document.getElementById("mira4").textContent =
+limitar(geral - 25 + aleatorio());
+
+
+document.getElementById("awm").textContent =
+limitar(geral - 55 + aleatorio());
+
+
+document.getElementById("olha").textContent =
+limitar(geral + 2 + aleatorio());
+
+
+document.getElementById("info").textContent =
+modelo +
+" • " +
+dedos +
+" dedos • " +
+nivel;
+
+
+document.getElementById("resultado").style.display =
+"block";
+
+}
+
+</script>
+
+</body>
+</html>
+"""
+
+
+class Site(BaseHTTPRequestHandler):
+
+    def do_GET(self):
+
+        self.send_response(200)
+
+        self.send_header(
+            "Content-type",
+            "text/html; charset=utf-8"
+        )
+
+        self.end_headers()
+
+        self.wfile.write(
+            HTML.encode("utf-8")
+        )
+
+
+servidor = HTTPServer(
+    ("127.0.0.1", 8080),
+    Site
+)
+
+print("🔥 FF SENSI iniciado!")
+print("🌐 http://127.0.0.1:8080")
+
+webbrowser.open(
+    "http://127.0.0.1:8080"
+)
+
+servidor.serve_forever()
