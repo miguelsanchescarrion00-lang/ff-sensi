@@ -120,4 +120,823 @@ body::after {
 
     box-shadow:
         0 15px 0 #050505,
-        0 22px 35px rgba
+        0 22px 35px rgba(0,0,0,.8),
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 0 30px rgba(255,0,0,.12);
+
+    transform: perspective(1000px) rotateX(1deg);
+}
+
+.red-line {
+    width: 100%;
+    height: 3px;
+    margin-bottom: 22px;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ff0000,
+            #ff6666,
+            #ff0000,
+            transparent
+        );
+
+    box-shadow: 0 0 15px red;
+}
+
+label {
+    display: block;
+    margin-top: 17px;
+    margin-bottom: 8px;
+
+    color: #eee;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: .5px;
+}
+
+select {
+    width: 100%;
+    padding: 15px;
+
+    border-radius: 14px;
+    border: 1px solid #3d3d3d;
+
+    outline: none;
+
+    background:
+        linear-gradient(145deg, #222, #0d0d0d);
+
+    color: white;
+    font-size: 15px;
+
+    box-shadow:
+        inset 0 2px 5px rgba(0,0,0,.7),
+        0 5px 0 #050505;
+
+    transition: .2s;
+}
+
+select:focus {
+    border-color: red;
+
+    box-shadow:
+        0 0 15px rgba(255,0,0,.25),
+        inset 0 2px 5px rgba(0,0,0,.7);
+}
+
+select:disabled {
+    opacity: .55;
+}
+
+/* BOTÃO */
+
+.btn {
+    width: 100%;
+    margin-top: 24px;
+    padding: 17px;
+
+    border: none;
+    border-radius: 15px;
+
+    color: white;
+    background:
+        linear-gradient(145deg, #ff3030, #bd0000);
+
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 0 #610000,
+        0 12px 25px rgba(255,0,0,.25),
+        inset 0 1px 0 rgba(255,255,255,.25);
+
+    transition: .15s;
+}
+
+.btn:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(5px);
+    box-shadow: 0 2px 0 #610000;
+}
+
+/* AVISO */
+
+.aviso {
+    display: none;
+
+    margin-top: 15px;
+    padding: 12px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    color: #ff7070;
+
+    background: rgba(255,0,0,.08);
+    border: 1px solid rgba(255,0,0,.25);
+}
+
+/* RESULTADO */
+
+.resultado {
+    display: none;
+
+    margin-top: 25px;
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(145deg, #1c1c1c, #080808);
+
+    border: 1px solid rgba(255,0,0,.35);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.05),
+        0 10px 25px rgba(0,0,0,.7);
+
+    animation: aparecer .35s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.result-title {
+    text-align: center;
+    margin-bottom: 15px;
+
+    color: #ff2525;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.sensi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 13px 7px;
+
+    border-bottom: 1px solid #292929;
+}
+
+.valor {
+    min-width: 55px;
+
+    padding: 6px 10px;
+
+    text-align: center;
+
+    border-radius: 9px;
+
+    color: white;
+    font-weight: 900;
+
+    background:
+        linear-gradient(145deg, #ff2525, #a00000);
+
+    box-shadow:
+        0 3px 0 #550000,
+        0 0 10px rgba(255,0,0,.2);
+}
+
+.copy-btn {
+    background:
+        linear-gradient(145deg, #292929, #0c0c0c);
+
+    border: 1px solid red;
+
+    box-shadow:
+        0 5px 0 #050505,
+        0 0 15px rgba(255,0,0,.12);
+}
+
+.copy-btn:hover {
+    background:
+        linear-gradient(145deg, #3c0000, #120000);
+}
+
+/* CRÉDITOS */
+
+.creditos {
+    text-align: center;
+
+    margin-top: 28px;
+
+    color: #666;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+.creditos strong {
+    color: #999;
+}
+
+/* MOBILE */
+
+@media (max-width: 450px) {
+
+    .page {
+        padding: 15px 10px 30px;
+    }
+
+    .card {
+        padding: 20px 17px;
+        border-radius: 20px;
+    }
+
+    .logo {
+        font-size: 38px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="logo-area">
+
+        <div class="logo">
+            GOAT SENSI
+        </div>
+
+        <div class="subtitle">
+            GERADOR DE SENSIBILIDADE • FREE FIRE
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="red-line"></div>
+
+
+        <!-- FABRICANTE -->
+
+        <label for="marca">
+            FABRICANTE
+        </label>
+
+        <select id="marca">
+
+            <option value="">
+                Selecione o fabricante
+            </option>
+
+            <option value="Samsung">
+                Samsung
+            </option>
+
+            <option value="Xiaomi">
+                Xiaomi
+            </option>
+
+        </select>
+
+
+        <!-- MODELO -->
+
+        <label for="modelo">
+            MODELO
+        </label>
+
+        <select id="modelo" disabled>
+
+            <option value="">
+                Primeiro selecione o fabricante
+            </option>
+
+        </select>
+
+
+        <!-- NÍVEL -->
+
+        <label for="nivel">
+            NÍVEL DE SENSIBILIDADE
+        </label>
+
+        <select id="nivel">
+
+            <option value="baixa">
+                Baixa
+            </option>
+
+            <option value="media" selected>
+                Média
+            </option>
+
+            <option value="alta">
+                Alta
+            </option>
+
+        </select>
+
+
+        <!-- DEDOS -->
+
+        <label for="dedos">
+            QUANTIDADE DE DEDOS
+        </label>
+
+        <select id="dedos">
+
+            <option value="2">
+                2 dedos
+            </option>
+
+            <option value="3">
+                3 dedos
+            </option>
+
+            <option value="4">
+                4 dedos
+            </option>
+
+        </select>
+
+
+        <div class="aviso" id="aviso"></div>
+
+
+        <button class="btn" id="gerar">
+            ⚡ GERAR SENSI
+        </button>
+
+
+        <!-- RESULTADO -->
+
+        <div class="resultado" id="resultado">
+
+            <div class="result-title">
+                SENSIBILIDADE GERADA
+            </div>
+
+
+            <div class="sensi">
+                <span>Geral</span>
+                <span class="valor" id="geral">0</span>
+            </div>
+
+
+            <div class="sensi">
+                <span>Ponto Vermelho</span>
+                <span class="valor" id="red">0</span>
+            </div>
+
+
+            <div class="sensi">
+                <span>Mira 2x</span>
+                <span class="valor" id="mira2">0</span>
+            </div>
+
+
+            <div class="sensi">
+                <span>Mira 4x</span>
+                <span class="valor" id="mira4">0</span>
+            </div>
+
+
+            <div class="sensi">
+                <span>Mira AWM</span>
+                <span class="valor" id="awm">0</span>
+            </div>
+
+
+            <div class="sensi">
+                <span>Olhadinha</span>
+                <span class="valor" id="olha">0</span>
+            </div>
+
+
+            <button class="btn copy-btn" id="copiar">
+                📋 COPIAR SENSI
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="creditos">
+
+        GOAT SENSI<br>
+
+        <strong>
+            Miguel Sanches Carrion
+        </strong>
+
+        &amp;
+
+        <strong>
+            Thalles Vinícius Rios Gazda
+        </strong>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   BANCO DE MODELOS
+===================================================== */
+
+const DADOS = {
+
+    Samsung: {
+
+        "Galaxy A05": 0,
+        "Galaxy A05s": 1,
+        "Galaxy A06": 2,
+        "Galaxy A12": 1,
+        "Galaxy A13": 2,
+        "Galaxy A14": 2,
+        "Galaxy A15": 0,
+        "Galaxy A16": 3,
+        "Galaxy A17": 5,
+        "Galaxy A22": 2,
+        "Galaxy A23": 3,
+        "Galaxy A24": 4,
+        "Galaxy A25": 5,
+        "Galaxy A32": 3,
+        "Galaxy A33": 4,
+        "Galaxy A34": 5,
+        "Galaxy A52": 4,
+        "Galaxy A53": 5,
+        "Galaxy A54": 6,
+        "Galaxy A55": 7,
+        "Galaxy A72": 5,
+        "Galaxy S20": 6,
+        "Galaxy S21": 7,
+        "Galaxy S22": 8,
+        "Galaxy S23": 9,
+        "Galaxy S24": 10,
+        "Galaxy S25": 11
+
+    },
+
+    Xiaomi: {
+
+        "Redmi Note 13": 2,
+        "Redmi Note 14": 5,
+        "POCO X6": 8
+
+    }
+
+};
+
+
+/* =====================================================
+   ELEMENTOS
+===================================================== */
+
+const marca =
+    document.getElementById("marca");
+
+const modelo =
+    document.getElementById("modelo");
+
+const nivel =
+    document.getElementById("nivel");
+
+const dedos =
+    document.getElementById("dedos");
+
+const gerar =
+    document.getElementById("gerar");
+
+const copiar =
+    document.getElementById("copiar");
+
+const resultado =
+    document.getElementById("resultado");
+
+const aviso =
+    document.getElementById("aviso");
+
+
+/* =====================================================
+   CARREGAR MODELOS
+===================================================== */
+
+function carregarModelos() {
+
+    modelo.innerHTML = "";
+
+    const fabricante = marca.value;
+
+    if (!fabricante) {
+
+        modelo.disabled = true;
+
+        modelo.innerHTML =
+            '<option value="">Primeiro selecione o fabricante</option>';
+
+        return;
+    }
+
+    modelo.disabled = false;
+
+    modelo.innerHTML =
+        '<option value="">Selecione o modelo</option>';
+
+    const lista =
+        Object.keys(DADOS[fabricante]);
+
+    lista.forEach(function(nome) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = nome;
+
+        option.textContent = nome;
+
+        modelo.appendChild(option);
+
+    });
+}
+
+
+/* =====================================================
+   FABRICANTE
+===================================================== */
+
+marca.addEventListener("change", function() {
+
+    esconderAviso();
+
+    resultado.style.display = "none";
+
+    carregarModelos();
+
+});
+
+
+/* =====================================================
+   AVISOS
+===================================================== */
+
+function mostrarAviso(texto) {
+
+    aviso.textContent = texto;
+
+    aviso.style.display = "block";
+
+}
+
+
+function esconderAviso() {
+
+    aviso.textContent = "";
+
+    aviso.style.display = "none";
+
+}
+
+
+/* =====================================================
+   LIMITADOR
+===================================================== */
+
+function limitar(valor) {
+
+    return Math.max(
+        0,
+        Math.min(
+            200,
+            Math.round(valor)
+        )
+    );
+
+}
+
+
+/* =====================================================
+   ALEATÓRIO
+===================================================== */
+
+function aleatorio() {
+
+    return Math.floor(
+        Math.random() * 7
+    ) - 3;
+
+}
+
+
+/* =====================================================
+   GERAR SENSI
+===================================================== */
+
+gerar.addEventListener("click", function() {
+
+    esconderAviso();
+
+
+    if (!marca.value) {
+
+        mostrarAviso(
+            "Selecione o fabricante."
+        );
+
+        return;
+    }
+
+
+    if (!modelo.value) {
+
+        mostrarAviso(
+            "Selecione o modelo."
+        );
+
+        return;
+    }
+
+
+    const bases = {
+
+        baixa: 90,
+        media: 140,
+        alta: 180
+
+    };
+
+
+    const ajusteDedos = {
+
+        "2": 0,
+        "3": 5,
+        "4": 10
+
+    };
+
+
+    const ajusteModelo =
+        DADOS[marca.value][modelo.value];
+
+
+    const geral =
+        limitar(
+
+            bases[nivel.value]
+
+            +
+
+            ajusteDedos[dedos.value]
+
+            +
+
+            ajusteModelo
+
+            +
+
+            aleatorio()
+
+        );
+
+
+    const red =
+        limitar(
+            geral - 2 + aleatorio()
+        );
+
+
+    const mira2 =
+        limitar(
+            geral - 12 + aleatorio()
+        );
+
+
+    const mira4 =
+        limitar(
+            geral - 25 + aleatorio()
+        );
+
+
+    const awm =
+        limitar(
+            geral - 55 + aleatorio()
+        );
+
+
+    const olha =
+        limitar(
+            geral + 2 + aleatorio()
+        );
+
+
+    document.getElementById("geral").textContent =
+        geral;
+
+    document.getElementById("red").textContent =
+        red;
+
+    document.getElementById("mira2").textContent =
+        mira2;
+
+    document.getElementById("mira4").textContent =
+        mira4;
+
+    document.getElementById("awm").textContent =
+        awm;
+
+    document.getElementById("olha").textContent =
+        olha;
+
+
+    resultado.style.display =
+        "block";
+
+
+    resultado.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+    });
+
+});
+
+
+/* =====================================================
+   COPIAR SENSI
+===================================================== */
+
+copiar.addEventListener("click", async function() {
+
+    const texto =
+`GOAT SENSI
+
+Fabricante: ${marca.value}
+Modelo: ${modelo.value}
+
+Geral: ${document.getElementById("geral").textContent}
+Ponto Vermelho: ${document.getElementById("red").textContent}
+Mira 2x: ${document.getElementById("mira2").textContent}
+Mira 4x: ${document.getElementById("mira4").textContent}
+Mira AWM: ${document.getElementById("awm").textContent}
+Olhadinha: ${document.getElementById("olha").textContent}`;
+
+
+    try {
+
+        await navigator.clipboard.writeText(texto);
+
+        alert("✅ Sensi copiada!");
+
+    }
+
+    catch (erro) {
+
+        const area =
+            document.createElement("textarea");
+
+        area.value = texto;
+
+        area.style.position = "fixed";
+        area.style.left = "-9999px";
+
+        document.body.appendChild(area);
+
+        area.focus();
+        area.select();
+
+        document.execCommand("copy");
+
+        area.remove();
+
+        alert("✅ Sensi copiada!");
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
