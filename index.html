@@ -1,4 +1,4 @@
-    from pathlib import Path
+
 
 html = r'''<!DOCTYPE html>
 <html lang="pt-BR">
@@ -6,122 +6,441 @@ html = r'''<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GOAT SENSI</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial;background:#050505;color:white}
-.container{width:92%;max-width:500px;margin:30px auto;padding:25px;background:#101010;border:1px solid red;border-radius:18px}
-h1{text-align:center;color:#ff2020;font-size:38px}
-.subtitle{text-align:center;color:#aaa}
-label{display:block;margin-top:15px;margin-bottom:7px;font-weight:bold}
-select,button{width:100%;padding:14px;border-radius:10px;font-size:16px}
-select{background:#181818;color:white;border:1px solid #444}
-button{margin-top:20px;border:0;background:#e60000;color:white;font-weight:bold}
-.resultado{display:none;margin-top:25px;padding:18px;background:#151515;border-radius:12px}
-.sensi{display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #292929}
-.valor{color:#ff2020;font-weight:bold}
-.creditos{text-align:center;color:#777;font-size:12px;margin-top:25px}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #050505;
+    color: white;
+}
+
+.container {
+    width: 92%;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 25px;
+    background: #101010;
+    border: 1px solid red;
+    border-radius: 18px;
+    box-shadow: 0 0 25px #f003;
+}
+
+h1 {
+    text-align: center;
+    color: #ff2020;
+    font-size: 38px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    background: #181818;
+    color: white;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    border: 0;
+    border-radius: 10px;
+    background: #e60000;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.resultado {
+    display: none;
+    margin-top: 25px;
+    padding: 18px;
+    background: #151515;
+    border-radius: 12px;
+}
+
+.sensi {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #292929;
+}
+
+.valor {
+    color: #ff2020;
+    font-weight: bold;
+}
+
+.creditos {
+    text-align: center;
+    color: #777;
+    font-size: 12px;
+    margin-top: 25px;
+}
 </style>
 </head>
+
 <body>
 
 <div class="container">
+
 <h1>GOAT SENSI</h1>
-<div class="subtitle">Gerador de sensibilidade para Free Fire</div>
+
+<div class="subtitle">
+Gerador de sensibilidade para Free Fire
+</div>
 
 <label>Fabricante</label>
+
 <select id="marca" onchange="carregarModelos()">
-<option value="">Selecione</option>
-<option>Samsung</option>
-<option>Xiaomi</option>
+    <option value="">Selecione</option>
+    <option value="Samsung">Samsung</option>
+    <option value="Xiaomi">Xiaomi</option>
 </select>
 
 <label>Modelo</label>
+
 <select id="modelo">
-<option>Selecione primeiro a marca</option>
+    <option value="">Selecione a marca primeiro</option>
 </select>
 
 <label>Nível de sensibilidade</label>
+
 <select id="nivel">
-<option value="baixa">Baixa</option>
-<option value="media">Média</option>
-<option value="alta">Alta</option>
+    <option value="baixa">Baixa</option>
+    <option value="media">Média</option>
+    <option value="alta">Alta</option>
 </select>
 
 <label>Quantidade de dedos</label>
+
 <select id="dedos">
-<option value="2">2 dedos</option>
-<option value="3">3 dedos</option>
-<option value="4">4 dedos</option>
+    <option value="2">2 dedos</option>
+    <option value="3">3 dedos</option>
+    <option value="4">4 dedos</option>
 </select>
 
-<button onclick="gerarSensi()">GERAR SENSI</button>
+<button onclick="gerarSensi()">
+    GERAR SENSI
+</button>
 
 <div class="resultado" id="resultado">
-<div class="sensi"><span>Geral</span><span class="valor" id="geral"></span></div>
-<div class="sensi"><span>Ponto Vermelho</span><span class="valor" id="red"></span></div>
-<div class="sensi"><span>Mira 2x</span><span class="valor" id="mira2"></span></div>
-<div class="sensi"><span>Mira 4x</span><span class="valor" id="mira4"></span></div>
-<div class="sensi"><span>Mira AWM</span><span class="valor" id="awm"></span></div>
-<div class="sensi"><span>Olhadinha</span><span class="valor" id="olha"></span></div>
-<button onclick="copiarSensi()">📋 COPIAR SENSI</button>
+
+    <div class="sensi">
+        <span>Geral</span>
+        <span class="valor" id="geral">0</span>
+    </div>
+
+    <div class="sensi">
+        <span>Ponto Vermelho</span>
+        <span class="valor" id="red">0</span>
+    </div>
+
+    <div class="sensi">
+        <span>Mira 2x</span>
+        <span class="valor" id="mira2">0</span>
+    </div>
+
+    <div class="sensi">
+        <span>Mira 4x</span>
+        <span class="valor" id="mira4">0</span>
+    </div>
+
+    <div class="sensi">
+        <span>Mira AWM</span>
+        <span class="valor" id="awm">0</span>
+    </div>
+
+    <div class="sensi">
+        <span>Olhadinha</span>
+        <span class="valor" id="olha">0</span>
+    </div>
+
+    <button onclick="copiarSensi()">
+        📋 COPIAR SENSI
+    </button>
+
 </div>
 
 <div class="creditos">
-GOAT SENSI<br>
-Miguel Sanches Carrion & Thalles Vinícius Rios Gazda
+    GOAT SENSI<br>
+    Miguel Sanches Carrion & Thalles Vinícius Rios Gazda
 </div>
+
 </div>
 
 <script>
-const modelos={
-Samsung:{
-"Galaxy A05":0,"Galaxy A05s":1,"Galaxy A06":2,
-"Galaxy A12":1,"Galaxy A13":2,"Galaxy A14":2,"Galaxy A15":0,
-"Galaxy A16":3,"Galaxy A17":5,"Galaxy A22":2,"Galaxy A23":3,
-"Galaxy A24":4,"Galaxy A25":5,"Galaxy A32":3,"Galaxy A33":4,
-"Galaxy A34":5,"Galaxy A52":4,"Galaxy A53":5,"Galaxy A54":6,
-"Galaxy A55":7,"Galaxy A72":5,"Galaxy S20":6,"Galaxy S21":7,
-"Galaxy S22":8,"Galaxy S23":9,"Galaxy S24":10,"Galaxy S25":11
-},
-Xiaomi:{
-"Redmi Note 13":2,"Redmi Note 14":5,"POCO X6":8
-}
+
+const modelos = {
+
+    Samsung: {
+        "Galaxy A05": 0,
+        "Galaxy A05s": 1,
+        "Galaxy A06": 2,
+        "Galaxy A12": 1,
+        "Galaxy A13": 2,
+        "Galaxy A14": 2,
+        "Galaxy A15": 0,
+        "Galaxy A16": 3,
+        "Galaxy A17": 5,
+        "Galaxy A22": 2,
+        "Galaxy A23": 3,
+        "Galaxy A24": 4,
+        "Galaxy A25": 5,
+        "Galaxy A32": 3,
+        "Galaxy A33": 4,
+        "Galaxy A34": 5,
+        "Galaxy A52": 4,
+        "Galaxy A53": 5,
+        "Galaxy A54": 6,
+        "Galaxy A55": 7,
+        "Galaxy A72": 5,
+        "Galaxy S20": 6,
+        "Galaxy S21": 7,
+        "Galaxy S22": 8,
+        "Galaxy S23": 9,
+        "Galaxy S24": 10,
+        "Galaxy S25": 11
+    },
+
+    Xiaomi: {
+        "Redmi Note 13": 2,
+        "Redmi Note 14": 5,
+        "POCO X6": 8
+    }
+
 };
 
-function carregarModelos(){
-let marca=document.getElementById("marca").value;
-let modelo=document.getElementById("modelo");
-modelo.innerHTML="";
-if(!marca){
-modelo.innerHTML="<option>Selecione primeiro a marca</option>";
-return;
-}
-for(let nome in modelos[marca]){
-let op=document.createElement("option");
-op.value=nome;
-op.textContent=nome;
-modelo.appendChild(op);
-}
+
+function carregarModelos() {
+
+    const marca = document.getElementById("marca");
+    const modelo = document.getElementById("modelo");
+
+    modelo.innerHTML = "";
+
+    if (marca.value === "Samsung") {
+
+        for (const nome in modelos.Samsung) {
+
+            const opcao = document.createElement("option");
+
+            opcao.value = nome;
+            opcao.textContent = nome;
+
+            modelo.appendChild(opcao);
+        }
+
+    }
+
+    else if (marca.value === "Xiaomi") {
+
+        for (const nome in modelos.Xiaomi) {
+
+            const opcao = document.createElement("option");
+
+            opcao.value = nome;
+            opcao.textContent = nome;
+
+            modelo.appendChild(opcao);
+        }
+
+    }
+
+    else {
+
+        modelo.innerHTML =
+            "<option value=''>Selecione a marca primeiro</option>";
+
+    }
+
 }
 
-function limitar(v){
-return Math.max(0,Math.min(200,Math.round(v)));
+
+function limitar(valor) {
+
+    return Math.max(
+        0,
+        Math.min(200, Math.round(valor))
+    );
+
 }
 
-function gerarSensi(){
-let marca=document.getElementById("marca").value;
-let modelo=document.getElementById("modelo").value;
-let nivel=document.getElementById("nivel").value;
-let dedos=document.getElementById("dedos").value;
 
-if(!marca||!modelo){
-alert("Selecione a marca e o modelo!");
-return;
+function gerarSensi() {
+
+    const marca =
+        document.getElementById("marca").value;
+
+    const modelo =
+        document.getElementById("modelo").value;
+
+    const nivel =
+        document.getElementById("nivel").value;
+
+    const dedos =
+        document.getElementById("dedos").value;
+
+
+    if (!marca || !modelo) {
+
+        alert("Selecione a marca e o modelo!");
+
+        return;
+
+    }
+
+
+    const bases = {
+
+        baixa: 90,
+        media: 140,
+        alta: 180
+
+    };
+
+
+    const ajusteDedos = {
+
+        2: 0,
+        3: 5,
+        4: 10
+
+    };
+
+
+    const ajusteModelo =
+        modelos[marca][modelo];
+
+
+    function aleatorio() {
+
+        return Math.floor(
+            Math.random() * 7
+        ) - 3;
+
+    }
+
+
+    const geral = limitar(
+
+        bases[nivel]
+        + ajusteDedos[dedos]
+        + ajusteModelo
+        + aleatorio()
+
+    );
+
+
+    const red =
+        limitar(geral - 2 + aleatorio());
+
+    const mira2 =
+        limitar(geral - 12 + aleatorio());
+
+    const mira4 =
+        limitar(geral - 25 + aleatorio());
+
+    const awm =
+        limitar(geral - 55 + aleatorio());
+
+    const olha =
+        limitar(geral + 2 + aleatorio());
+
+
+    document.getElementById("geral").textContent =
+        geral;
+
+    document.getElementById("red").textContent =
+        red;
+
+    document.getElementById("mira2").textContent =
+        mira2;
+
+    document.getElementById("mira4").textContent =
+        mira4;
+
+    document.getElementById("awm").textContent =
+        awm;
+
+    document.getElementById("olha").textContent =
+        olha;
+
+
+    document.getElementById("resultado").style.display =
+        "block";
+
 }
 
-let bases={baixa:90,media:140,alta:180};
-let ajusteDedos={2:0,3:5,4:10};
-let ajusteModelo=modelos[marca][modelo];
-let aleatorio=()=>Math.floor(Math.random()*7)-3;
 
-let geral=lim
+function copiarSensi() {
+
+    const texto =
+
+`GOAT SENSI
+
+Geral: ${document.getElementById("geral").textContent}
+Ponto Vermelho: ${document.getElementById("red").textContent}
+Mira 2x: ${document.getElementById("mira2").textContent}
+Mira 4x: ${document.getElementById("mira4").textContent}
+Mira AWM: ${document.getElementById("awm").textContent}
+Olhadinha: ${document.getElementById("olha").textContent}`;
+
+
+    const area =
+        document.createElement("textarea");
+
+    area.value = texto;
+
+    document.body.appendChild(area);
+
+    area.select();
+
+    document.execCommand("copy");
+
+    document.body.removeChild(area);
+
+    alert("Sensi copiada!");
+
+}
+
+</script>
+
+</body>
+</html>
+'''
+
+Path("index.html").write_text(
+    html,
+    encoding="utf-8"
+)
+
+print("================================")
+print("       GOAT SENSI")
+print("================================")
+print("")
+print("index.html criado com sucesso!")
+print("")
+print("Agora coloque o arquivo index.html")
+print("no seu repositório do GitHub Pages.")
