@@ -3,261 +3,554 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+
 <title>GOAT SENSI</title>
 
 <style>
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    background: #080808;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
     color: white;
-    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(circle at 50% -10%, #550000 0%, #180000 25%, #070707 60%, #000 100%);
+    overflow-x: hidden;
 }
 
-.container {
-    max-width: 520px;
+body::before {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    top: -200px;
+    left: -180px;
+    background: red;
+    opacity: .08;
+    filter: blur(100px);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    right: -200px;
+    bottom: -200px;
+    background: red;
+    opacity: .07;
+    filter: blur(100px);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.page {
+    width: 100%;
+    max-width: 560px;
     margin: auto;
-    padding: 20px;
+    padding: 25px 15px 40px;
+    position: relative;
+    z-index: 2;
+}
+
+/* LOGO */
+
+.logo-area {
+    text-align: center;
+    margin: 15px 0 30px;
+    perspective: 800px;
 }
 
 .logo {
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    display: inline-block;
+    font-size: 47px;
+    font-weight: 1000;
+    letter-spacing: 3px;
+    color: white;
+
+    text-shadow:
+        0 2px 0 #9b0000,
+        0 4px 0 #650000,
+        0 6px 0 #350000,
+        0 0 12px red,
+        0 0 30px red,
+        0 0 55px rgba(255,0,0,.7);
+
+    transform:
+        rotateX(8deg)
+        rotateY(-3deg);
+
+    animation: flutuar 3s ease-in-out infinite;
 }
 
-.logo h1 {
-    color: #ff3030;
-    font-size: 34px;
-    margin: 0;
-    font-weight: bold;
+@keyframes flutuar {
+    0%,100% {
+        transform: rotateX(8deg) rotateY(-3deg) translateY(0);
+    }
+
+    50% {
+        transform: rotateX(8deg) rotateY(-3deg) translateY(-7px);
+    }
 }
 
-.subtitulo {
-    text-align: center;
-    color: #888;
-    margin-bottom: 25px;
-    font-size: 15px;
+.subtitle {
+    margin-top: 8px;
+    color: #999;
+    font-size: 13px;
+    letter-spacing: 1px;
 }
+
+/* CARD */
 
 .card {
-    background: #151515;
-    border: 1px solid #292929;
-    padding: 20px;
-    border-radius: 18px;
-    margin-bottom: 15px;
+    padding: 25px;
+    border-radius: 24px;
+
+    background:
+        linear-gradient(145deg, #242424, #090909);
+
+    border: 1px solid rgba(255,0,0,.55);
+
+    box-shadow:
+        0 15px 0 #050505,
+        0 22px 35px rgba(0,0,0,.8),
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 0 30px rgba(255,0,0,.12);
+
+    transform: perspective(1000px) rotateX(1deg);
+}
+
+.red-line {
+    width: 100%;
+    height: 3px;
+    margin-bottom: 22px;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ff0000,
+            #ff6666,
+            #ff0000,
+            transparent
+        );
+
+    box-shadow: 0 0 15px red;
 }
 
 label {
     display: block;
-    margin-top: 14px;
-    margin-bottom: 7px;
+    margin-top: 17px;
+    margin-bottom: 8px;
+
+    color: #eee;
+    font-size: 13px;
     font-weight: bold;
+    letter-spacing: .5px;
 }
 
 select {
     width: 100%;
-    padding: 14px;
-    background: #242424;
-    color: white;
-    border: 1px solid #333;
-    border-radius: 10px;
-    font-size: 15px;
-}
-
-button {
-    width: 100%;
     padding: 15px;
-    margin-top: 22px;
-    background: #e52525;
+
+    border-radius: 14px;
+    border: 1px solid #3d3d3d;
+
+    outline: none;
+
+    background:
+        linear-gradient(145deg, #222, #0d0d0d);
+
     color: white;
+    font-size: 15px;
+
+    box-shadow:
+        inset 0 2px 5px rgba(0,0,0,.7),
+        0 5px 0 #050505;
+
+    transition: .2s;
+}
+
+select:focus {
+    border-color: red;
+
+    box-shadow:
+        0 0 15px rgba(255,0,0,.25),
+        inset 0 2px 5px rgba(0,0,0,.7);
+}
+
+select:disabled {
+    opacity: .55;
+}
+
+/* BOTÃO */
+
+.btn {
+    width: 100%;
+    margin-top: 24px;
+    padding: 17px;
+
     border: none;
-    border-radius: 11px;
-    font-size: 17px;
-    font-weight: bold;
+    border-radius: 15px;
+
+    color: white;
+    background:
+        linear-gradient(145deg, #ff3030, #bd0000);
+
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 1px;
+
     cursor: pointer;
+
+    box-shadow:
+        0 7px 0 #610000,
+        0 12px 25px rgba(255,0,0,.25),
+        inset 0 1px 0 rgba(255,255,255,.25);
+
+    transition: .15s;
 }
 
-button:active {
-    transform: scale(0.98);
+.btn:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
 }
 
-.botao-copiar {
-    background: #292929;
-    border: 1px solid #444;
-    margin-top: 12px;
+.btn:active {
+    transform: translateY(5px);
+    box-shadow: 0 2px 0 #610000;
 }
 
-.botao-copiar:hover {
-    background: #333;
+/* AVISO */
+
+.aviso {
+    display: none;
+
+    margin-top: 15px;
+    padding: 12px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    color: #ff7070;
+
+    background: rgba(255,0,0,.08);
+    border: 1px solid rgba(255,0,0,.25);
 }
+
+/* RESULTADO */
 
 .resultado {
     display: none;
+
+    margin-top: 25px;
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(145deg, #1c1c1c, #080808);
+
+    border: 1px solid rgba(255,0,0,.35);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.05),
+        0 10px 25px rgba(0,0,0,.7);
+
+    animation: aparecer .35s ease;
 }
 
-.titulo-result {
-    color: #ff3030;
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
-.info {
-    color: #999;
-    font-size: 14px;
+.result-title {
+    text-align: center;
     margin-bottom: 15px;
+
+    color: #ff2525;
+    font-weight: 900;
+    letter-spacing: 1px;
 }
 
-.linha {
+.sensi {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #222;
-    padding: 13px;
-    margin: 7px 0;
-    border-radius: 9px;
+
+    padding: 13px 7px;
+
+    border-bottom: 1px solid #292929;
 }
 
 .valor {
-    color: #ff3333;
-    font-size: 19px;
-    font-weight: bold;
+    min-width: 55px;
+
+    padding: 6px 10px;
+
+    text-align: center;
+
+    border-radius: 9px;
+
+    color: white;
+    font-weight: 900;
+
+    background:
+        linear-gradient(145deg, #ff2525, #a00000);
+
+    box-shadow:
+        0 3px 0 #550000,
+        0 0 10px rgba(255,0,0,.2);
 }
 
-.aviso {
-    color: #777;
-    font-size: 12px;
-    text-align: center;
-    margin-top: 18px;
+.copy-btn {
+    background:
+        linear-gradient(145deg, #292929, #0c0c0c);
+
+    border: 1px solid red;
+
+    box-shadow:
+        0 5px 0 #050505,
+        0 0 15px rgba(255,0,0,.12);
 }
+
+.copy-btn:hover {
+    background:
+        linear-gradient(145deg, #3c0000, #120000);
+}
+
+/* CRÉDITOS */
 
 .creditos {
     text-align: center;
-    color: #777;
-    font-size: 13px;
-    margin-top: 25px;
-    padding: 18px;
+
+    margin-top: 28px;
+
+    color: #666;
+
+    font-size: 11px;
+
+    line-height: 1.7;
 }
 
 .creditos strong {
-    color: #ff3030;
+    color: #999;
+}
+
+/* MOBILE */
+
+@media (max-width: 450px) {
+
+    .page {
+        padding: 15px 10px 30px;
+    }
+
+    .card {
+        padding: 20px 17px;
+        border-radius: 20px;
+    }
+
+    .logo {
+        font-size: 38px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="page">
 
-    <div class="logo">
-        <h1>GOAT SENSI</h1>
+    <div class="logo-area">
+
+        <div class="logo">
+            GOAT SENSI
+        </div>
+
+        <div class="subtitle">
+            GERADOR DE SENSIBILIDADE • FREE FIRE
+        </div>
+
     </div>
 
-    <div class="subtitulo">
-        Gerador de sensibilidade para Free Fire
-    </div>
 
     <div class="card">
 
-        <label>📱 Fabricante</label>
+        <div class="red-line"></div>
+
+
+        <!-- FABRICANTE -->
+
+        <label for="marca">
+            FABRICANTE
+        </label>
 
         <select id="marca">
-            <option value="">Escolha a marca</option>
-            <option value="Samsung">Samsung</option>
-            <option value="Xiaomi">Xiaomi</option>
+
+            <option value="">
+                Selecione o fabricante
+            </option>
+
+            <option value="Samsung">
+                Samsung
+            </option>
+
+            <option value="Xiaomi">
+                Xiaomi
+            </option>
+
         </select>
 
-        <label>📲 Celular</label>
 
-        <select id="modelo">
-            <option value="">Escolha primeiro a marca</option>
+        <!-- MODELO -->
+
+        <label for="modelo">
+            MODELO
+        </label>
+
+        <select id="modelo" disabled>
+
+            <option value="">
+                Primeiro selecione o fabricante
+            </option>
+
         </select>
 
-        <label>🎯 Nível da sensibilidade</label>
+
+        <!-- NÍVEL -->
+
+        <label for="nivel">
+            NÍVEL DE SENSIBILIDADE
+        </label>
 
         <select id="nivel">
-            <option value="baixa">Baixa</option>
-            <option value="media" selected>Média</option>
-            <option value="alta">Alta</option>
+
+            <option value="baixa">
+                Baixa
+            </option>
+
+            <option value="media" selected>
+                Média
+            </option>
+
+            <option value="alta">
+                Alta
+            </option>
+
         </select>
 
-        <label>👆 Quantidade de dedos</label>
+
+        <!-- DEDOS -->
+
+        <label for="dedos">
+            QUANTIDADE DE DEDOS
+        </label>
 
         <select id="dedos">
-            <option value="2">2 dedos</option>
-            <option value="3">3 dedos</option>
-            <option value="4">4 dedos</option>
+
+            <option value="2">
+                2 dedos
+            </option>
+
+            <option value="3">
+                3 dedos
+            </option>
+
+            <option value="4">
+                4 dedos
+            </option>
+
         </select>
 
-        <button onclick="gerar()">
-            GERAR SENSI
+
+        <div class="aviso" id="aviso"></div>
+
+
+        <button class="btn" id="gerar">
+            ⚡ GERAR SENSI
         </button>
+
+
+        <!-- RESULTADO -->
+
+        <div class="resultado" id="resultado">
+
+            <div class="result-title">
+                SENSIBILIDADE GERADA
+            </div>
+
+
+            <div class="sensi">
+                <span>Geral</span>
+                <span class="valor" id="geral">0</span>
+            </div>
+
+
+            <div class="sensi">
+                <span>Ponto Vermelho</span>
+                <span class="valor" id="red">0</span>
+            </div>
+
+
+            <div class="sensi">
+                <span>Mira 2x</span>
+                <span class="valor" id="mira2">0</span>
+            </div>
+
+
+            <div class="sensi">
+                <span>Mira 4x</span>
+                <span class="valor" id="mira4">0</span>
+            </div>
+
+
+            <div class="sensi">
+                <span>Mira AWM</span>
+                <span class="valor" id="awm">0</span>
+            </div>
+
+
+            <div class="sensi">
+                <span>Olhadinha</span>
+                <span class="valor" id="olha">0</span>
+            </div>
+
+
+            <button class="btn copy-btn" id="copiar">
+                📋 COPIAR SENSI
+            </button>
+
+        </div>
 
     </div>
 
-    <div class="card resultado" id="resultado">
-
-        <h2 class="titulo-result">
-            🎯 CONFIGURAÇÃO
-        </h2>
-
-        <div class="info" id="info"></div>
-
-        <div class="linha">
-            <span>Geral</span>
-            <span class="valor" id="geral"></span>
-        </div>
-
-        <div class="linha">
-            <span>Ponto Vermelho</span>
-            <span class="valor" id="red"></span>
-        </div>
-
-        <div class="linha">
-            <span>Mira 2x</span>
-            <span class="valor" id="mira2"></span>
-        </div>
-
-        <div class="linha">
-            <span>Mira 4x</span>
-            <span class="valor" id="mira4"></span>
-        </div>
-
-        <div class="linha">
-            <span>Mira AWM</span>
-            <span class="valor" id="awm"></span>
-        </div>
-
-        <div class="linha">
-            <span>Olhadinha</span>
-            <span class="valor" id="olha"></span>
-        </div>
-
-        <button onclick="copiarSensi()" class="botao-copiar">
-            📋 COPIAR SENSI
-        </button>
-
-        <div class="aviso">
-            Configuração sugerida para teste manual.
-            <br>
-            Nenhuma sensibilidade garante 100% de capa.
-        </div>
-
-    </div>
 
     <div class="creditos">
 
-        Criadores:<br>
+        GOAT SENSI<br>
 
         <strong>
             Miguel Sanches Carrion
         </strong>
 
-        <br>
-        &
-
-        <br>
+        &amp;
 
         <strong>
             Thalles Vinícius Rios Gazda
@@ -267,129 +560,16 @@ button:active {
 
 </div>
 
+
 <script>
 
-const celulares = {
+/* =====================================================
+   BANCO DE MODELOS
+===================================================== */
 
-    Samsung: [
-        "Galaxy A05",
-        "Galaxy A05s",
-        "Galaxy A06",
-        "Galaxy A12",
-        "Galaxy A13",
-        "Galaxy A14",
-        "Galaxy A15",
-        "Galaxy A16",
-        "Galaxy A17",
-        "Galaxy A22",
-        "Galaxy A23",
-        "Galaxy A24",
-        "Galaxy A25",
-        "Galaxy A32",
-        "Galaxy A33",
-        "Galaxy A34",
-        "Galaxy A52",
-        "Galaxy A53",
-        "Galaxy A54",
-        "Galaxy A55",
-        "Galaxy A72",
-        "Galaxy S20",
-        "Galaxy S21",
-        "Galaxy S22",
-        "Galaxy S23",
-        "Galaxy S24",
-        "Galaxy S25"
-    ],
+const DADOS = {
 
-    Xiaomi: [
-        "Redmi Note 13",
-        "Redmi Note 14",
-        "POCO X6"
-    ]
-
-};
-
-document.getElementById("marca").onchange = function() {
-
-    let modelo = document.getElementById("modelo");
-
-    modelo.innerHTML =
-        '<option value="">Escolha o celular</option>';
-
-    if (!celulares[this.value]) {
-        return;
-    }
-
-    celulares[this.value].forEach(function(nome) {
-
-        let opcao = document.createElement("option");
-
-        opcao.value = nome;
-        opcao.textContent = nome;
-
-        modelo.appendChild(opcao);
-
-    });
-
-};
-
-function limitar(valor) {
-
-    return Math.max(
-        0,
-        Math.min(
-            200,
-            Math.round(valor)
-        )
-    );
-
-}
-
-function aleatorio() {
-
-    return Math.floor(Math.random() * 7) - 3;
-
-}
-
-function gerar() {
-
-    let marca =
-        document.getElementById("marca").value;
-
-    let modelo =
-        document.getElementById("modelo").value;
-
-    let nivel =
-        document.getElementById("nivel").value;
-
-    let dedos =
-        Number(document.getElementById("dedos").value);
-
-    if (!marca || !modelo) {
-
-        alert("Escolha a marca e o celular!");
-
-        return;
-
-    }
-
-    let base = {
-
-        baixa: 90,
-        media: 140,
-        alta: 180
-
-    }[nivel];
-
-    let ajusteDedos = {
-
-        2: 0,
-        3: 5,
-        4: 10
-
-    }[dedos];
-
-    let ajusteCelular = {
+    Samsung: {
 
         "Galaxy A05": 0,
         "Galaxy A05s": 1,
@@ -417,72 +597,344 @@ function gerar() {
         "Galaxy S22": 8,
         "Galaxy S23": 9,
         "Galaxy S24": 10,
-        "Galaxy S25": 11,
+        "Galaxy S25": 11
+
+    },
+
+    Xiaomi: {
 
         "Redmi Note 13": 2,
         "Redmi Note 14": 5,
         "POCO X6": 8
 
-    }[modelo];
+    }
 
-    let geral = limitar(
-        base +
-        ajusteDedos +
-        ajusteCelular +
-        aleatorio()
+};
+
+
+/* =====================================================
+   ELEMENTOS
+===================================================== */
+
+const marca =
+    document.getElementById("marca");
+
+const modelo =
+    document.getElementById("modelo");
+
+const nivel =
+    document.getElementById("nivel");
+
+const dedos =
+    document.getElementById("dedos");
+
+const gerar =
+    document.getElementById("gerar");
+
+const copiar =
+    document.getElementById("copiar");
+
+const resultado =
+    document.getElementById("resultado");
+
+const aviso =
+    document.getElementById("aviso");
+
+
+/* =====================================================
+   CARREGAR MODELOS
+===================================================== */
+
+function carregarModelos() {
+
+    modelo.innerHTML = "";
+
+    const fabricante = marca.value;
+
+    if (!fabricante) {
+
+        modelo.disabled = true;
+
+        modelo.innerHTML =
+            '<option value="">Primeiro selecione o fabricante</option>';
+
+        return;
+    }
+
+    modelo.disabled = false;
+
+    modelo.innerHTML =
+        '<option value="">Selecione o modelo</option>';
+
+    const lista =
+        Object.keys(DADOS[fabricante]);
+
+    lista.forEach(function(nome) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = nome;
+
+        option.textContent = nome;
+
+        modelo.appendChild(option);
+
+    });
+}
+
+
+/* =====================================================
+   FABRICANTE
+===================================================== */
+
+marca.addEventListener("change", function() {
+
+    esconderAviso();
+
+    resultado.style.display = "none";
+
+    carregarModelos();
+
+});
+
+
+/* =====================================================
+   AVISOS
+===================================================== */
+
+function mostrarAviso(texto) {
+
+    aviso.textContent = texto;
+
+    aviso.style.display = "block";
+
+}
+
+
+function esconderAviso() {
+
+    aviso.textContent = "";
+
+    aviso.style.display = "none";
+
+}
+
+
+/* =====================================================
+   LIMITADOR
+===================================================== */
+
+function limitar(valor) {
+
+    return Math.max(
+        0,
+        Math.min(
+            200,
+            Math.round(valor)
+        )
     );
+
+}
+
+
+/* =====================================================
+   ALEATÓRIO
+===================================================== */
+
+function aleatorio() {
+
+    return Math.floor(
+        Math.random() * 7
+    ) - 3;
+
+}
+
+
+/* =====================================================
+   GERAR SENSI
+===================================================== */
+
+gerar.addEventListener("click", function() {
+
+    esconderAviso();
+
+
+    if (!marca.value) {
+
+        mostrarAviso(
+            "Selecione o fabricante."
+        );
+
+        return;
+    }
+
+
+    if (!modelo.value) {
+
+        mostrarAviso(
+            "Selecione o modelo."
+        );
+
+        return;
+    }
+
+
+    const bases = {
+
+        baixa: 90,
+        media: 140,
+        alta: 180
+
+    };
+
+
+    const ajusteDedos = {
+
+        "2": 0,
+        "3": 5,
+        "4": 10
+
+    };
+
+
+    const ajusteModelo =
+        DADOS[marca.value][modelo.value];
+
+
+    const geral =
+        limitar(
+
+            bases[nivel.value]
+
+            +
+
+            ajusteDedos[dedos.value]
+
+            +
+
+            ajusteModelo
+
+            +
+
+            aleatorio()
+
+        );
+
+
+    const red =
+        limitar(
+            geral - 2 + aleatorio()
+        );
+
+
+    const mira2 =
+        limitar(
+            geral - 12 + aleatorio()
+        );
+
+
+    const mira4 =
+        limitar(
+            geral - 25 + aleatorio()
+        );
+
+
+    const awm =
+        limitar(
+            geral - 55 + aleatorio()
+        );
+
+
+    const olha =
+        limitar(
+            geral + 2 + aleatorio()
+        );
+
 
     document.getElementById("geral").textContent =
         geral;
 
     document.getElementById("red").textContent =
-        limitar(geral - 2 + aleatorio());
+        red;
 
     document.getElementById("mira2").textContent =
-        limitar(geral - 12 + aleatorio());
+        mira2;
 
     document.getElementById("mira4").textContent =
-        limitar(geral - 25 + aleatorio());
+        mira4;
 
     document.getElementById("awm").textContent =
-        limitar(geral - 55 + aleatorio());
+        awm;
 
     document.getElementById("olha").textContent =
-        limitar(geral + 2 + aleatorio());
+        olha;
 
-    document.getElementById("info").textContent =
-        modelo +
-        " • " +
-        dedos +
-        " dedos • " +
-        nivel;
 
-    document.getElementById("resultado").style.display =
+    resultado.style.display =
         "block";
 
-}
 
-function copiarSensi() {
+    resultado.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+    });
 
-    let texto =
-        "🎯 GOAT SENSI\n\n" +
-        "📱 " + document.getElementById("info").textContent + "\n\n" +
-        "Geral: " + document.getElementById("geral").textContent + "\n" +
-        "Ponto Vermelho: " + document.getElementById("red").textContent + "\n" +
-        "Mira 2x: " + document.getElementById("mira2").textContent + "\n" +
-        "Mira 4x: " + document.getElementById("mira4").textContent + "\n" +
-        "Mira AWM: " + document.getElementById("awm").textContent + "\n" +
-        "Olhadinha: " + document.getElementById("olha").textContent;
+});
 
-    navigator.clipboard.writeText(texto)
-        .then(function() {
-            alert("✅ Sensi copiada!");
-        })
-        .catch(function() {
-            alert("❌ Não foi possível copiar.");
-        });
 
-}
+/* =====================================================
+   COPIAR SENSI
+===================================================== */
+
+copiar.addEventListener("click", async function() {
+
+    const texto =
+`GOAT SENSI
+
+Fabricante: ${marca.value}
+Modelo: ${modelo.value}
+
+Geral: ${document.getElementById("geral").textContent}
+Ponto Vermelho: ${document.getElementById("red").textContent}
+Mira 2x: ${document.getElementById("mira2").textContent}
+Mira 4x: ${document.getElementById("mira4").textContent}
+Mira AWM: ${document.getElementById("awm").textContent}
+Olhadinha: ${document.getElementById("olha").textContent}`;
+
+
+    try {
+
+        await navigator.clipboard.writeText(texto);
+
+        alert("✅ Sensi copiada!");
+
+    }
+
+    catch (erro) {
+
+        const area =
+            document.createElement("textarea");
+
+        area.value = texto;
+
+        area.style.position = "fixed";
+        area.style.left = "-9999px";
+
+        document.body.appendChild(area);
+
+        area.focus();
+        area.select();
+
+        document.execCommand("copy");
+
+        area.remove();
+
+        alert("✅ Sensi copiada!");
+
+    }
+
+});
 
 </script>
 
