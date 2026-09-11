@@ -396,6 +396,29 @@ select:disabled {
         <div class="red-line"></div>
 
 
+        <!-- FREE FIRE -->
+
+        <label for="freefire">
+            QUAL É O SEU FREE FIRE?
+        </label>
+
+        <select id="freefire">
+
+            <option value="">
+                Selecione seu Free Fire
+            </option>
+
+            <option value="max">
+                Free Fire MAX
+            </option>
+
+            <option value="normal">
+                Free Fire Normal
+            </option>
+
+        </select>
+
+
         <!-- FABRICANTE -->
 
         <label for="marca">
@@ -616,6 +639,9 @@ const DADOS = {
    ELEMENTOS
 ===================================================== */
 
+const freefire =
+    document.getElementById("freefire");
+
 const marca =
     document.getElementById("marca");
 
@@ -760,6 +786,16 @@ gerar.addEventListener("click", function() {
     esconderAviso();
 
 
+    if (!freefire.value) {
+
+        mostrarAviso(
+            "Selecione qual Free Fire você usa."
+        );
+
+        return;
+    }
+
+
     if (!marca.value) {
 
         mostrarAviso(
@@ -798,6 +834,16 @@ gerar.addEventListener("click", function() {
     };
 
 
+    /* AJUSTE DO FREE FIRE */
+
+    const ajusteFreeFire = {
+
+        "normal": 0,
+        "max": 5
+
+    };
+
+
     const ajusteModelo =
         DADOS[marca.value][modelo.value];
 
@@ -814,6 +860,10 @@ gerar.addEventListener("click", function() {
             +
 
             ajusteModelo
+
+            +
+
+            ajusteFreeFire[freefire.value]
 
             +
 
@@ -889,8 +939,16 @@ gerar.addEventListener("click", function() {
 
 copiar.addEventListener("click", async function() {
 
+    const nomeFreeFire =
+        freefire.value === "max"
+            ? "Free Fire MAX"
+            : "Free Fire Normal";
+
+
     const texto =
 `GOAT SENSI
+
+Free Fire: ${nomeFreeFire}
 
 Fabricante: ${marca.value}
 Modelo: ${modelo.value}
@@ -939,4 +997,4 @@ Olhadinha: ${document.getElementById("olha").textContent}`;
 </script>
 
 </body>
-</html>
+    </html>
