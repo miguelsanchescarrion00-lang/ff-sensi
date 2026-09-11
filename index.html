@@ -1,10 +1,10 @@
-
+from pathlib import Path
 
 html = r'''<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GOAT SENSI</title>
 
 <style>
@@ -14,39 +14,41 @@ html = r'''<!DOCTYPE html>
 
 body {
     margin: 0;
+    padding: 20px 0;
+    min-height: 100vh;
     font-family: Arial, sans-serif;
     background: #050505;
-    color: white;
+    color: #ffffff;
 }
 
 .container {
     width: 92%;
     max-width: 500px;
-    margin: 30px auto;
+    margin: auto;
     padding: 25px;
     background: #101010;
-    border: 1px solid red;
+    border: 1px solid #ff0000;
     border-radius: 18px;
-    box-shadow: 0 0 25px #f003;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.25);
 }
 
 h1 {
     text-align: center;
     color: #ff2020;
     font-size: 38px;
-    margin-bottom: 5px;
+    margin: 0;
 }
 
 .subtitle {
     text-align: center;
-    color: #aaa;
-    margin-bottom: 25px;
+    color: #999999;
+    margin: 8px 0 25px;
 }
 
 label {
     display: block;
-    margin-top: 15px;
-    margin-bottom: 7px;
+    margin-top: 16px;
+    margin-bottom: 8px;
     font-weight: bold;
 }
 
@@ -54,22 +56,32 @@ select {
     width: 100%;
     padding: 14px;
     border-radius: 10px;
-    border: 1px solid #444;
+    border: 1px solid #444444;
     background: #181818;
-    color: white;
+    color: #ffffff;
     font-size: 16px;
+    outline: none;
+}
+
+select:focus {
+    border-color: #ff0000;
 }
 
 button {
     width: 100%;
     margin-top: 20px;
     padding: 15px;
-    border: 0;
+    border: none;
     border-radius: 10px;
     background: #e60000;
     color: white;
     font-size: 17px;
     font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff0000;
 }
 
 .resultado {
@@ -77,14 +89,19 @@ button {
     margin-top: 25px;
     padding: 18px;
     background: #151515;
+    border: 1px solid #292929;
     border-radius: 12px;
 }
 
 .sensi {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 12px 5px;
     border-bottom: 1px solid #292929;
+}
+
+.sensi:last-of-type {
+    border-bottom: none;
 }
 
 .valor {
@@ -94,9 +111,17 @@ button {
 
 .creditos {
     text-align: center;
-    color: #777;
+    color: #777777;
     font-size: 12px;
     margin-top: 25px;
+    line-height: 1.6;
+}
+
+.aviso {
+    display: none;
+    margin-top: 10px;
+    color: #ff5555;
+    font-size: 13px;
 }
 </style>
 </head>
@@ -105,342 +130,166 @@ button {
 
 <div class="container">
 
-<h1>GOAT SENSI</h1>
+    <h1>GOAT SENSI</h1>
 
-<div class="subtitle">
-Gerador de sensibilidade para Free Fire
-</div>
-
-<label>Fabricante</label>
-
-<select id="marca" onchange="carregarModelos()">
-    <option value="">Selecione</option>
-    <option value="Samsung">Samsung</option>
-    <option value="Xiaomi">Xiaomi</option>
-</select>
-
-<label>Modelo</label>
-
-<select id="modelo">
-    <option value="">Selecione a marca primeiro</option>
-</select>
-
-<label>Nível de sensibilidade</label>
-
-<select id="nivel">
-    <option value="baixa">Baixa</option>
-    <option value="media">Média</option>
-    <option value="alta">Alta</option>
-</select>
-
-<label>Quantidade de dedos</label>
-
-<select id="dedos">
-    <option value="2">2 dedos</option>
-    <option value="3">3 dedos</option>
-    <option value="4">4 dedos</option>
-</select>
-
-<button onclick="gerarSensi()">
-    GERAR SENSI
-</button>
-
-<div class="resultado" id="resultado">
-
-    <div class="sensi">
-        <span>Geral</span>
-        <span class="valor" id="geral">0</span>
+    <div class="subtitle">
+        Gerador de sensibilidade para Free Fire
     </div>
 
-    <div class="sensi">
-        <span>Ponto Vermelho</span>
-        <span class="valor" id="red">0</span>
+    <label for="marca">Fabricante</label>
+
+    <select id="marca">
+        <option value="">Selecione o fabricante</option>
+        <option value="Samsung">Samsung</option>
+        <option value="Xiaomi">Xiaomi</option>
+    </select>
+
+
+    <!-- SAMSUNG -->
+
+    <div id="areaSamsung" style="display:none;">
+
+        <label for="modeloSamsung">Modelo Samsung</label>
+
+        <select id="modeloSamsung">
+
+            <option value="">Selecione o modelo</option>
+
+            <option value="Galaxy A05" data-ajuste="0">
+                Galaxy A05
+            </option>
+
+            <option value="Galaxy A05s" data-ajuste="1">
+                Galaxy A05s
+            </option>
+
+            <option value="Galaxy A06" data-ajuste="2">
+                Galaxy A06
+            </option>
+
+            <option value="Galaxy A12" data-ajuste="1">
+                Galaxy A12
+            </option>
+
+            <option value="Galaxy A13" data-ajuste="2">
+                Galaxy A13
+            </option>
+
+            <option value="Galaxy A14" data-ajuste="2">
+                Galaxy A14
+            </option>
+
+            <option value="Galaxy A15" data-ajuste="0">
+                Galaxy A15
+            </option>
+
+            <option value="Galaxy A16" data-ajuste="3">
+                Galaxy A16
+            </option>
+
+            <option value="Galaxy A17" data-ajuste="5">
+                Galaxy A17
+            </option>
+
+            <option value="Galaxy A22" data-ajuste="2">
+                Galaxy A22
+            </option>
+
+            <option value="Galaxy A23" data-ajuste="3">
+                Galaxy A23
+            </option>
+
+            <option value="Galaxy A24" data-ajuste="4">
+                Galaxy A24
+            </option>
+
+            <option value="Galaxy A25" data-ajuste="5">
+                Galaxy A25
+            </option>
+
+            <option value="Galaxy A32" data-ajuste="3">
+                Galaxy A32
+            </option>
+
+            <option value="Galaxy A33" data-ajuste="4">
+                Galaxy A33
+            </option>
+
+            <option value="Galaxy A34" data-ajuste="5">
+                Galaxy A34
+            </option>
+
+            <option value="Galaxy A52" data-ajuste="4">
+                Galaxy A52
+            </option>
+
+            <option value="Galaxy A53" data-ajuste="5">
+                Galaxy A53
+            </option>
+
+            <option value="Galaxy A54" data-ajuste="6">
+                Galaxy A54
+            </option>
+
+            <option value="Galaxy A55" data-ajuste="7">
+                Galaxy A55
+            </option>
+
+            <option value="Galaxy A72" data-ajuste="5">
+                Galaxy A72
+            </option>
+
+            <option value="Galaxy S20" data-ajuste="6">
+                Galaxy S20
+            </option>
+
+            <option value="Galaxy S21" data-ajuste="7">
+                Galaxy S21
+            </option>
+
+            <option value="Galaxy S22" data-ajuste="8">
+                Galaxy S22
+            </option>
+
+            <option value="Galaxy S23" data-ajuste="9">
+                Galaxy S23
+            </option>
+
+            <option value="Galaxy S24" data-ajuste="10">
+                Galaxy S24
+            </option>
+
+            <option value="Galaxy S25" data-ajuste="11">
+                Galaxy S25
+            </option>
+
+        </select>
+
     </div>
 
-    <div class="sensi">
-        <span>Mira 2x</span>
-        <span class="valor" id="mira2">0</span>
-    </div>
 
-    <div class="sensi">
-        <span>Mira 4x</span>
-        <span class="valor" id="mira4">0</span>
-    </div>
+    <!-- XIAOMI -->
 
-    <div class="sensi">
-        <span>Mira AWM</span>
-        <span class="valor" id="awm">0</span>
-    </div>
+    <div id="areaXiaomi" style="display:none;">
 
-    <div class="sensi">
-        <span>Olhadinha</span>
-        <span class="valor" id="olha">0</span>
-    </div>
+        <label for="modeloXiaomi">Modelo Xiaomi</label>
 
-    <button onclick="copiarSensi()">
-        📋 COPIAR SENSI
-    </button>
+        <select id="modeloXiaomi">
 
-</div>
+            <option value="">Selecione o modelo</option>
 
-<div class="creditos">
-    GOAT SENSI<br>
-    Miguel Sanches Carrion & Thalles Vinícius Rios Gazda
-</div>
+            <option value="Redmi Note 13" data-ajuste="2">
+                Redmi Note 13
+            </option>
 
-</div>
+            <option value="Redmi Note 14" data-ajuste="5">
+                Redmi Note 14
+            </option>
 
-<script>
+            <option value="POCO X6" data-ajuste="8">
+                POCO X6
+            </option>
 
-const modelos = {
+        </select>
 
-    Samsung: {
-        "Galaxy A05": 0,
-        "Galaxy A05s": 1,
-        "Galaxy A06": 2,
-        "Galaxy A12": 1,
-        "Galaxy A13": 2,
-        "Galaxy A14": 2,
-        "Galaxy A15": 0,
-        "Galaxy A16": 3,
-        "Galaxy A17": 5,
-        "Galaxy A22": 2,
-        "Galaxy A23": 3,
-        "Galaxy A24": 4,
-        "Galaxy A25": 5,
-        "Galaxy A32": 3,
-        "Galaxy A33": 4,
-        "Galaxy A34": 5,
-        "Galaxy A52": 4,
-        "Galaxy A53": 5,
-        "Galaxy A54": 6,
-        "Galaxy A55": 7,
-        "Galaxy A72": 5,
-        "Galaxy S20": 6,
-        "Galaxy S21": 7,
-        "Galaxy S22": 8,
-        "Galaxy S23": 9,
-        "Galaxy S24": 10,
-        "Galaxy S25": 11
-    },
-
-    Xiaomi: {
-        "Redmi Note 13": 2,
-        "Redmi Note 14": 5,
-        "POCO X6": 8
-    }
-
-};
-
-
-function carregarModelos() {
-
-    const marca = document.getElementById("marca");
-    const modelo = document.getElementById("modelo");
-
-    modelo.innerHTML = "";
-
-    if (marca.value === "Samsung") {
-
-        for (const nome in modelos.Samsung) {
-
-            const opcao = document.createElement("option");
-
-            opcao.value = nome;
-            opcao.textContent = nome;
-
-            modelo.appendChild(opcao);
-        }
-
-    }
-
-    else if (marca.value === "Xiaomi") {
-
-        for (const nome in modelos.Xiaomi) {
-
-            const opcao = document.createElement("option");
-
-            opcao.value = nome;
-            opcao.textContent = nome;
-
-            modelo.appendChild(opcao);
-        }
-
-    }
-
-    else {
-
-        modelo.innerHTML =
-            "<option value=''>Selecione a marca primeiro</option>";
-
-    }
-
-}
-
-
-function limitar(valor) {
-
-    return Math.max(
-        0,
-        Math.min(200, Math.round(valor))
-    );
-
-}
-
-
-function gerarSensi() {
-
-    const marca =
-        document.getElementById("marca").value;
-
-    const modelo =
-        document.getElementById("modelo").value;
-
-    const nivel =
-        document.getElementById("nivel").value;
-
-    const dedos =
-        document.getElementById("dedos").value;
-
-
-    if (!marca || !modelo) {
-
-        alert("Selecione a marca e o modelo!");
-
-        return;
-
-    }
-
-
-    const bases = {
-
-        baixa: 90,
-        media: 140,
-        alta: 180
-
-    };
-
-
-    const ajusteDedos = {
-
-        2: 0,
-        3: 5,
-        4: 10
-
-    };
-
-
-    const ajusteModelo =
-        modelos[marca][modelo];
-
-
-    function aleatorio() {
-
-        return Math.floor(
-            Math.random() * 7
-        ) - 3;
-
-    }
-
-
-    const geral = limitar(
-
-        bases[nivel]
-        + ajusteDedos[dedos]
-        + ajusteModelo
-        + aleatorio()
-
-    );
-
-
-    const red =
-        limitar(geral - 2 + aleatorio());
-
-    const mira2 =
-        limitar(geral - 12 + aleatorio());
-
-    const mira4 =
-        limitar(geral - 25 + aleatorio());
-
-    const awm =
-        limitar(geral - 55 + aleatorio());
-
-    const olha =
-        limitar(geral + 2 + aleatorio());
-
-
-    document.getElementById("geral").textContent =
-        geral;
-
-    document.getElementById("red").textContent =
-        red;
-
-    document.getElementById("mira2").textContent =
-        mira2;
-
-    document.getElementById("mira4").textContent =
-        mira4;
-
-    document.getElementById("awm").textContent =
-        awm;
-
-    document.getElementById("olha").textContent =
-        olha;
-
-
-    document.getElementById("resultado").style.display =
-        "block";
-
-}
-
-
-function copiarSensi() {
-
-    const texto =
-
-`GOAT SENSI
-
-Geral: ${document.getElementById("geral").textContent}
-Ponto Vermelho: ${document.getElementById("red").textContent}
-Mira 2x: ${document.getElementById("mira2").textContent}
-Mira 4x: ${document.getElementById("mira4").textContent}
-Mira AWM: ${document.getElementById("awm").textContent}
-Olhadinha: ${document.getElementById("olha").textContent}`;
-
-
-    const area =
-        document.createElement("textarea");
-
-    area.value = texto;
-
-    document.body.appendChild(area);
-
-    area.select();
-
-    document.execCommand("copy");
-
-    document.body.removeChild(area);
-
-    alert("Sensi copiada!");
-
-}
-
-</script>
-
-</body>
-</html>
-'''
-
-Path("index.html").write_text(
-    html,
-    encoding="utf-8"
-)
-
-print("================================")
-print("       GOAT SENSI")
-print("================================")
-print("")
-print("index.html criado com sucesso!")
-print("")
-print("Agora coloque o arquivo index.html")
-print("no seu repositório do GitHub Pages.")
+   
