@@ -1,295 +1,123 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+
 <title>GOAT SENSI</title>
 
 <style>
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 20px 0;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background: #050505;
-    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background:
+        radial-gradient(circle at 50% -10%, #550000 0%, #180000 25%, #070707 60%, #000 100%);
+    overflow-x: hidden;
 }
 
-.container {
-    width: 92%;
-    max-width: 500px;
+body::before {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    top: -200px;
+    left: -180px;
+    background: red;
+    opacity: .08;
+    filter: blur(100px);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    right: -200px;
+    bottom: -200px;
+    background: red;
+    opacity: .07;
+    filter: blur(100px);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.page {
+    width: 100%;
+    max-width: 560px;
     margin: auto;
-    padding: 25px;
-    background: #101010;
-    border: 1px solid #ff0000;
-    border-radius: 18px;
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.25);
+    padding: 25px 15px 40px;
+    position: relative;
+    z-index: 2;
 }
 
-h1 {
+/* LOGO */
+
+.logo-area {
     text-align: center;
-    color: #ff2020;
-    font-size: 38px;
-    margin: 0;
+    margin: 15px 0 30px;
+    perspective: 800px;
+}
+
+.logo {
+    display: inline-block;
+    font-size: 47px;
+    font-weight: 1000;
+    letter-spacing: 3px;
+    color: white;
+
+    text-shadow:
+        0 2px 0 #9b0000,
+        0 4px 0 #650000,
+        0 6px 0 #350000,
+        0 0 12px red,
+        0 0 30px red,
+        0 0 55px rgba(255,0,0,.7);
+
+    transform:
+        rotateX(8deg)
+        rotateY(-3deg);
+
+    animation: flutuar 3s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+    0%,100% {
+        transform: rotateX(8deg) rotateY(-3deg) translateY(0);
+    }
+
+    50% {
+        transform: rotateX(8deg) rotateY(-3deg) translateY(-7px);
+    }
 }
 
 .subtitle {
-    text-align: center;
-    color: #999999;
-    margin: 8px 0 25px;
-}
-
-label {
-    display: block;
-    margin-top: 16px;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-select {
-    width: 100%;
-    padding: 14px;
-    border-radius: 10px;
-    border: 1px solid #444444;
-    background: #181818;
-    color: #ffffff;
-    font-size: 16px;
-    outline: none;
-}
-
-select:focus {
-    border-color: #ff0000;
-}
-
-button {
-    width: 100%;
-    margin-top: 20px;
-    padding: 15px;
-    border: none;
-    border-radius: 10px;
-    background: #e60000;
-    color: white;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #ff0000;
-}
-
-.resultado {
-    display: none;
-    margin-top: 25px;
-    padding: 18px;
-    background: #151515;
-    border: 1px solid #292929;
-    border-radius: 12px;
-}
-
-.sensi {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 5px;
-    border-bottom: 1px solid #292929;
-}
-
-.sensi:last-of-type {
-    border-bottom: none;
-}
-
-.valor {
-    color: #ff2020;
-    font-weight: bold;
-}
-
-.creditos {
-    text-align: center;
-    color: #777777;
-    font-size: 12px;
-    margin-top: 25px;
-    line-height: 1.6;
-}
-
-.aviso {
-    display: none;
-    margin-top: 10px;
-    color: #ff5555;
+    margin-top: 8px;
+    color: #999;
     font-size: 13px;
+    letter-spacing: 1px;
 }
-</style>
-</head>
 
-<body>
+/* CARD */
 
-<div class="container">
+.card {
+    padding: 25px;
+    border-radius: 24px;
 
-    <h1>GOAT SENSI</h1>
+    background:
+        linear-gradient(145deg, #242424, #090909);
 
-    <div class="subtitle">
-        Gerador de sensibilidade para Free Fire
-    </div>
+    border: 1px solid rgba(255,0,0,.55);
 
-    <label for="marca">Fabricante</label>
-
-    <select id="marca">
-        <option value="">Selecione o fabricante</option>
-        <option value="Samsung">Samsung</option>
-        <option value="Xiaomi">Xiaomi</option>
-    </select>
-
-
-    <!-- SAMSUNG -->
-
-    <div id="areaSamsung" style="display:none;">
-
-        <label for="modeloSamsung">Modelo Samsung</label>
-
-        <select id="modeloSamsung">
-
-            <option value="">Selecione o modelo</option>
-
-            <option value="Galaxy A05" data-ajuste="0">
-                Galaxy A05
-            </option>
-
-            <option value="Galaxy A05s" data-ajuste="1">
-                Galaxy A05s
-            </option>
-
-            <option value="Galaxy A06" data-ajuste="2">
-                Galaxy A06
-            </option>
-
-            <option value="Galaxy A12" data-ajuste="1">
-                Galaxy A12
-            </option>
-
-            <option value="Galaxy A13" data-ajuste="2">
-                Galaxy A13
-            </option>
-
-            <option value="Galaxy A14" data-ajuste="2">
-                Galaxy A14
-            </option>
-
-            <option value="Galaxy A15" data-ajuste="0">
-                Galaxy A15
-            </option>
-
-            <option value="Galaxy A16" data-ajuste="3">
-                Galaxy A16
-            </option>
-
-            <option value="Galaxy A17" data-ajuste="5">
-                Galaxy A17
-            </option>
-
-            <option value="Galaxy A22" data-ajuste="2">
-                Galaxy A22
-            </option>
-
-            <option value="Galaxy A23" data-ajuste="3">
-                Galaxy A23
-            </option>
-
-            <option value="Galaxy A24" data-ajuste="4">
-                Galaxy A24
-            </option>
-
-            <option value="Galaxy A25" data-ajuste="5">
-                Galaxy A25
-            </option>
-
-            <option value="Galaxy A32" data-ajuste="3">
-                Galaxy A32
-            </option>
-
-            <option value="Galaxy A33" data-ajuste="4">
-                Galaxy A33
-            </option>
-
-            <option value="Galaxy A34" data-ajuste="5">
-                Galaxy A34
-            </option>
-
-            <option value="Galaxy A52" data-ajuste="4">
-                Galaxy A52
-            </option>
-
-            <option value="Galaxy A53" data-ajuste="5">
-                Galaxy A53
-            </option>
-
-            <option value="Galaxy A54" data-ajuste="6">
-                Galaxy A54
-            </option>
-
-            <option value="Galaxy A55" data-ajuste="7">
-                Galaxy A55
-            </option>
-
-            <option value="Galaxy A72" data-ajuste="5">
-                Galaxy A72
-            </option>
-
-            <option value="Galaxy S20" data-ajuste="6">
-                Galaxy S20
-            </option>
-
-            <option value="Galaxy S21" data-ajuste="7">
-                Galaxy S21
-            </option>
-
-            <option value="Galaxy S22" data-ajuste="8">
-                Galaxy S22
-            </option>
-
-            <option value="Galaxy S23" data-ajuste="9">
-                Galaxy S23
-            </option>
-
-            <option value="Galaxy S24" data-ajuste="10">
-                Galaxy S24
-            </option>
-
-            <option value="Galaxy S25" data-ajuste="11">
-                Galaxy S25
-            </option>
-
-        </select>
-
-    </div>
-
-
-    <!-- XIAOMI -->
-
-    <div id="areaXiaomi" style="display:none;">
-
-        <label for="modeloXiaomi">Modelo Xiaomi</label>
-
-        <select id="modeloXiaomi">
-
-            <option value="">Selecione o modelo</option>
-
-            <option value="Redmi Note 13" data-ajuste="2">
-                Redmi Note 13
-            </option>
-
-            <option value="Redmi Note 14" data-ajuste="5">
-                Redmi Note 14
-            </option>
-
-            <option value="POCO X6" data-ajuste="8">
-                POCO X6
-            </option>
-
-        </select>
-
-   
+    box-shadow:
+        0 15px 0 #050505,
+        0 22px 35px rgba
