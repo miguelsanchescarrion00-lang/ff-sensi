@@ -439,6 +439,10 @@ select:disabled {
                 Xiaomi
             </option>
 
+            <option value="Motorola">
+                Motorola
+            </option>
+
         </select>
 
 
@@ -519,42 +523,35 @@ select:disabled {
                 SENSIBILIDADE GERADA
             </div>
 
-
             <div class="sensi">
                 <span>Geral</span>
                 <span class="valor" id="geral">0</span>
             </div>
-
 
             <div class="sensi">
                 <span>Ponto Vermelho</span>
                 <span class="valor" id="red">0</span>
             </div>
 
-
             <div class="sensi">
                 <span>Mira 2x</span>
                 <span class="valor" id="mira2">0</span>
             </div>
-
 
             <div class="sensi">
                 <span>Mira 4x</span>
                 <span class="valor" id="mira4">0</span>
             </div>
 
-
             <div class="sensi">
                 <span>Mira AWM</span>
                 <span class="valor" id="awm">0</span>
             </div>
 
-
             <div class="sensi">
                 <span>Olhadinha</span>
                 <span class="valor" id="olha">0</span>
             </div>
-
 
             <button class="btn copy-btn" id="copiar">
                 📋 COPIAR SENSI
@@ -626,9 +623,89 @@ const DADOS = {
 
     Xiaomi: {
 
-        "Redmi Note 13": 2,
-        "Redmi Note 14": 5,
+        "Redmi Note 8": 0,
+        "Redmi Note 9": 1,
+        "Redmi Note 10": 2,
+        "Redmi Note 11": 3,
+        "Redmi Note 12": 4,
+        "Redmi Note 13": 5,
+        "Redmi Note 14": 6,
+        "POCO X3": 5,
+        "POCO X4": 6,
+        "POCO X5": 7,
         "POCO X6": 8
+
+    },
+
+    Motorola: {
+
+        /* Moto E */
+
+        "Moto E5": 0,
+        "Moto E6": 1,
+        "Moto E7": 1,
+        "Moto E7 Plus": 2,
+        "Moto E20": 2,
+        "Moto E22": 3,
+        "Moto E32": 3,
+        "Moto E40": 3,
+        "Moto E50": 4,
+        "Moto E13": 2,
+
+        /* Moto G antigos */
+
+        "Moto G5": 0,
+        "Moto G5 Plus": 1,
+        "Moto G6": 1,
+        "Moto G6 Plus": 2,
+        "Moto G7": 2,
+        "Moto G7 Power": 2,
+        "Moto G7 Plus": 3,
+        "Moto G8": 3,
+        "Moto G8 Power": 3,
+        "Moto G9 Play": 3,
+        "Moto G9 Power": 4,
+
+        /* Moto G populares */
+
+        "Moto G20": 3,
+        "Moto G22": 3,
+        "Moto G23": 4,
+        "Moto G24": 4,
+        "Moto G30": 4,
+        "Moto G31": 4,
+        "Moto G32": 5,
+        "Moto G34": 5,
+        "Moto G40 Fusion": 5,
+        "Moto G41": 5,
+        "Moto G42": 5,
+        "Moto G52": 6,
+        "Moto G53": 6,
+        "Moto G54": 7,
+        "Moto G55": 7,
+        "Moto G60": 6,
+        "Moto G62": 6,
+        "Moto G73": 7,
+        "Moto G84": 8,
+        "Moto G85": 9,
+
+        /* Edge */
+
+        "Motorola Edge 20": 6,
+        "Motorola Edge 30": 7,
+        "Motorola Edge 30 Neo": 7,
+        "Motorola Edge 30 Fusion": 8,
+        "Motorola Edge 40": 8,
+        "Motorola Edge 40 Neo": 8,
+        "Motorola Edge 50 Fusion": 9,
+        "Motorola Edge 50 Pro": 10,
+
+        /* Razr */
+
+        "Motorola Razr 40": 8,
+        "Motorola Razr 40 Ultra": 9,
+        "Motorola Razr 50": 10,
+        "Motorola Razr 50 Ultra": 11
 
     }
 
@@ -639,32 +716,15 @@ const DADOS = {
    ELEMENTOS
 ===================================================== */
 
-const freefire =
-    document.getElementById("freefire");
-
-const marca =
-    document.getElementById("marca");
-
-const modelo =
-    document.getElementById("modelo");
-
-const nivel =
-    document.getElementById("nivel");
-
-const dedos =
-    document.getElementById("dedos");
-
-const gerar =
-    document.getElementById("gerar");
-
-const copiar =
-    document.getElementById("copiar");
-
-const resultado =
-    document.getElementById("resultado");
-
-const aviso =
-    document.getElementById("aviso");
+const freefire = document.getElementById("freefire");
+const marca = document.getElementById("marca");
+const modelo = document.getElementById("modelo");
+const nivel = document.getElementById("nivel");
+const dedos = document.getElementById("dedos");
+const gerar = document.getElementById("gerar");
+const copiar = document.getElementById("copiar");
+const resultado = document.getElementById("resultado");
+const aviso = document.getElementById("aviso");
 
 
 /* =====================================================
@@ -692,16 +752,13 @@ function carregarModelos() {
     modelo.innerHTML =
         '<option value="">Selecione o modelo</option>';
 
-    const lista =
-        Object.keys(DADOS[fabricante]);
+    const lista = Object.keys(DADOS[fabricante]);
 
     lista.forEach(function(nome) {
 
-        const option =
-            document.createElement("option");
+        const option = document.createElement("option");
 
         option.value = nome;
-
         option.textContent = nome;
 
         modelo.appendChild(option);
@@ -732,7 +789,6 @@ marca.addEventListener("change", function() {
 function mostrarAviso(texto) {
 
     aviso.textContent = texto;
-
     aviso.style.display = "block";
 
 }
@@ -741,7 +797,6 @@ function mostrarAviso(texto) {
 function esconderAviso() {
 
     aviso.textContent = "";
-
     aviso.style.display = "none";
 
 }
@@ -785,7 +840,6 @@ gerar.addEventListener("click", function() {
 
     esconderAviso();
 
-
     if (!freefire.value) {
 
         mostrarAviso(
@@ -795,7 +849,6 @@ gerar.addEventListener("click", function() {
         return;
     }
 
-
     if (!marca.value) {
 
         mostrarAviso(
@@ -804,7 +857,6 @@ gerar.addEventListener("click", function() {
 
         return;
     }
-
 
     if (!modelo.value) {
 
@@ -834,12 +886,10 @@ gerar.addEventListener("click", function() {
     };
 
 
-    /* AJUSTE DO FREE FIRE */
-
     const ajusteFreeFire = {
 
-        "normal": 0,
-        "max": 5
+        normal: 0,
+        max: 5
 
     };
 
@@ -852,21 +902,13 @@ gerar.addEventListener("click", function() {
         limitar(
 
             bases[nivel.value]
-
             +
-
             ajusteDedos[dedos.value]
-
             +
-
             ajusteModelo
-
             +
-
             ajusteFreeFire[freefire.value]
-
             +
-
             aleatorio()
 
         );
@@ -902,27 +944,20 @@ gerar.addEventListener("click", function() {
         );
 
 
-    document.getElementById("geral").textContent =
-        geral;
+    document.getElementById("geral").textContent = geral;
 
-    document.getElementById("red").textContent =
-        red;
+    document.getElementById("red").textContent = red;
 
-    document.getElementById("mira2").textContent =
-        mira2;
+    document.getElementById("mira2").textContent = mira2;
 
-    document.getElementById("mira4").textContent =
-        mira4;
+    document.getElementById("mira4").textContent = mira4;
 
-    document.getElementById("awm").textContent =
-        awm;
+    document.getElementById("awm").textContent = awm;
 
-    document.getElementById("olha").textContent =
-        olha;
+    document.getElementById("olha").textContent = olha;
 
 
-    resultado.style.display =
-        "block";
+    resultado.style.display = "block";
 
 
     resultado.scrollIntoView({
@@ -971,8 +1006,7 @@ Olhadinha: ${document.getElementById("olha").textContent}`;
 
     catch (erro) {
 
-        const area =
-            document.createElement("textarea");
+        const area = document.createElement("textarea");
 
         area.value = texto;
 
