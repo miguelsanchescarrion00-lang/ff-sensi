@@ -6,15 +6,9 @@
 <title>GOAT SENSI</title>
 
 <style>
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
-html{
-scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
 font-family:Arial,Helvetica,sans-serif;
@@ -70,9 +64,7 @@ font-weight:1000;
 letter-spacing:-3px;
 }
 
-.logo span{
-color:#ff1744;
-}
+.logo span{color:#ff1744}
 
 .server-status{
 margin-top:9px;
@@ -131,9 +123,7 @@ flex-direction:column;
 gap:8px;
 }
 
-.full{
-grid-column:1/-1;
-}
+.full{grid-column:1/-1}
 
 label{
 font-size:11px;
@@ -181,9 +171,7 @@ transform:translateY(-2px);
 box-shadow:0 12px 30px rgba(229,9,50,.25);
 }
 
-.generate:active{
-transform:scale(.98);
-}
+.generate:active{transform:scale(.98)}
 
 .aviso{
 display:none;
@@ -318,9 +306,7 @@ color:#999;
 margin-bottom:8px;
 }
 
-.quality-title strong{
-color:#ff1744;
-}
+.quality-title strong{color:#ff1744}
 
 .quality-bar{
 height:7px;
@@ -430,9 +416,7 @@ line-height:1.6;
 border-left:2px solid #ff1744;
 }
 
-.ai-text b{
-color:#fff;
-}
+.ai-text b{color:#fff}
 
 .actions{
 display:grid;
@@ -511,9 +495,7 @@ font-size:13px;
 line-height:1.5;
 }
 
-.donation strong{
-color:#ff1744;
-}
+.donation strong{color:#ff1744}
 
 .credits{
 text-align:center;
@@ -523,90 +505,50 @@ margin-top:25px;
 line-height:1.6;
 }
 
-.credits b{
-color:#777;
-}
+.credits b{color:#777}
 
 @keyframes fadeDown{
-from{
-opacity:0;
-transform:translateY(-20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+from{opacity:0;transform:translateY(-20px)}
+to{opacity:1;transform:translateY(0)}
 }
 
 @keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
 }
 
 @keyframes resultIn{
-from{
-opacity:0;
-transform:translateY(20px) scale(.98);
-}
-to{
-opacity:1;
-transform:translateY(0) scale(1);
-}
+from{opacity:0;transform:translateY(20px) scale(.98)}
+to{opacity:1;transform:translateY(0) scale(1)}
 }
 
 @keyframes serverPulse{
-0%,100%{
-opacity:1;
-transform:scale(1);
-}
-50%{
-opacity:.4;
-transform:scale(.7);
-}
+0%,100%{opacity:1;transform:scale(1)}
+50%{opacity:.4;transform:scale(.7)}
 }
 
 @keyframes gridMove{
-from{
-background-position:0 0,0 0;
-}
-to{
-background-position:35px 35px,35px 35px;
-}
+from{background-position:0 0,0 0}
+to{background-position:35px 35px,35px 35px}
 }
 
 @media(max-width:650px){
 
-.container{
-padding:25px 0;
-}
+.container{padding:25px 0}
 
-.logo{
-font-size:37px;
-}
+.logo{font-size:37px}
 
-.grid{
-grid-template-columns:1fr;
-}
+.grid{grid-template-columns:1fr}
 
-.full{
-grid-column:auto;
-}
+.full{grid-column:auto}
 
 .sensi-grid,
 .extra-grid,
 .actions{
-grid-template-columns:1fr;
+grid-template-columns:1fr
 }
 
-.card{
-padding:19px;
-}
+.card{padding:19px}
 
 }
 </style>
@@ -697,7 +639,6 @@ Motorola
 Modelo
 </label>
 
-<!-- SEM DISABLED -->
 <select id="modelo">
 
 <option value="">
@@ -779,24 +720,16 @@ GERAR CONFIGURAÇÃO
 </button>
 
 
-<div
-id="aviso"
-class="aviso">
-</div>
+<div id="aviso" class="aviso"></div>
 
 
-<section
-id="resultado"
-class="resultado">
+<section id="resultado" class="resultado">
 
 <div class="result-title">
 CONFIGURAÇÃO GOAT
 </div>
 
-<div
-id="resultDevice"
-class="result-device">
-</div>
+<div id="resultDevice" class="result-device"></div>
 
 
 <div class="sensi-grid">
@@ -864,10 +797,7 @@ CONFIGURAÇÃO OPERACIONAL
 </div>
 
 
-<div
-id="analise"
-class="analysis">
-</div>
+<div id="analise" class="analysis"></div>
 
 
 <div class="quality">
@@ -886,10 +816,7 @@ Qualidade da configuração
 
 <div class="quality-bar">
 
-<div
-id="qualityFill"
-class="quality-fill">
-</div>
+<div id="qualityFill" class="quality-fill"></div>
 
 </div>
 
@@ -925,24 +852,17 @@ Leitura inteligente da configuração
 GOAT SCORE
 </div>
 
-<div
-id="score"
-class="ai-score-number">
+<div id="score" class="ai-score-number">
 0
 </div>
 
 </div>
 
 
-<div
-id="tags"
-class="ai-tags">
-</div>
+<div id="tags" class="ai-tags"></div>
 
 
-<div
-id="aiText"
-class="ai-text">
+<div id="aiText" class="ai-text">
 Aguardando configuração.
 </div>
 
@@ -1030,10 +950,6 @@ Miguel Sanches Carrion & Thalles Vinícius Rios Gazda
 "use strict";
 
 
-/* =========================================
-BANCO DE MODELOS
-========================================= */
-
 var DADOS = {
 
 Samsung: [
@@ -1041,6 +957,7 @@ Samsung: [
 "Galaxy A05",
 "Galaxy A05s",
 "Galaxy A06",
+"Galaxy A07",
 "Galaxy A12",
 "Galaxy A13",
 "Galaxy A14",
@@ -1054,21 +971,166 @@ Samsung: [
 "Galaxy A32",
 "Galaxy A33",
 "Galaxy A34",
+"Galaxy A35",
+"Galaxy A42",
+"Galaxy A51",
 "Galaxy A52",
 "Galaxy A53",
 "Galaxy A54",
 "Galaxy A55",
+"Galaxy A56",
 "Galaxy A72",
+"Galaxy A73",
+
+"Galaxy M12",
+"Galaxy M13",
+"Galaxy M14",
+"Galaxy M15",
+"Galaxy M21",
+"Galaxy M23",
+"Galaxy M32",
+"Galaxy M33",
+"Galaxy M34",
+"Galaxy M35",
+"Galaxy M52",
+"Galaxy M54",
+
 "Galaxy S20",
+"Galaxy S20 FE",
 "Galaxy S21",
+"Galaxy S21 FE",
 "Galaxy S22",
+"Galaxy S22 Plus",
+"Galaxy S22 Ultra",
 "Galaxy S23",
+"Galaxy S23 Plus",
+"Galaxy S23 Ultra",
 "Galaxy S24",
-"Galaxy S25"
+"Galaxy S24 Plus",
+"Galaxy S24 Ultra",
+"Galaxy S24 FE",
+"Galaxy S25",
+"Galaxy S25 Plus",
+"Galaxy S25 Ultra",
+"Galaxy S25 FE",
+"Galaxy S26",
+"Galaxy S26 Plus",
+"Galaxy S26 Ultra",
+
+"Galaxy Note 10",
+"Galaxy Note 10 Plus",
+"Galaxy Note 20",
+"Galaxy Note 20 Ultra",
+
+"Galaxy Z Flip 3",
+"Galaxy Z Flip 4",
+"Galaxy Z Flip 5",
+"Galaxy Z Flip 6",
+"Galaxy Z Flip 7",
+"Galaxy Z Fold 3",
+"Galaxy Z Fold 4",
+"Galaxy Z Fold 5",
+"Galaxy Z Fold 6",
+"Galaxy Z Fold 7"
 
 ],
 
+
+Motorola: [
+
+"Moto E6",
+"Moto E7",
+"Moto E13",
+"Moto E20",
+"Moto E22",
+"Moto E22s",
+"Moto E32",
+"Moto E40",
+
+"Moto G5",
+"Moto G6",
+"Moto G7",
+"Moto G8",
+"Moto G8 Play",
+"Moto G8 Power",
+"Moto G9 Play",
+"Moto G9 Power",
+"Moto G10",
+"Moto G20",
+"Moto G22",
+"Moto G23",
+"Moto G24",
+"Moto G24 Power",
+"Moto G30",
+"Moto G31",
+"Moto G32",
+"Moto G34",
+"Moto G35",
+"Moto G40 Fusion",
+"Moto G41",
+"Moto G42",
+"Moto G50",
+"Moto G51",
+"Moto G52",
+"Moto G53",
+"Moto G54",
+"Moto G55",
+"Moto G56",
+"Moto G60",
+"Moto G62",
+"Moto G71",
+"Moto G72",
+"Moto G73",
+"Moto G75",
+"Moto G82",
+"Moto G84",
+"Moto G85",
+
+"Motorola Edge",
+"Motorola Edge 20",
+"Motorola Edge 20 Lite",
+"Motorola Edge 20 Pro",
+"Motorola Edge 30",
+"Motorola Edge 30 Neo",
+"Motorola Edge 30 Fusion",
+"Motorola Edge 30 Pro",
+"Motorola Edge 40",
+"Motorola Edge 40 Neo",
+"Motorola Edge 40 Pro",
+"Motorola Edge 50 Fusion",
+"Motorola Edge 50 Neo",
+"Motorola Edge 50 Pro",
+"Motorola Edge 50 Ultra",
+"Motorola Edge 60 Fusion",
+"Motorola Edge 60 Neo",
+"Motorola Edge 60 Pro",
+"Motorola Edge 70 Fusion",
+
+"Motorola Razr 40",
+"Motorola Razr 40 Ultra",
+"Motorola Razr 50",
+"Motorola Razr 50 Ultra",
+"Motorola Razr 60",
+"Motorola Razr 60 Ultra",
+
+"Motorola Signature"
+
+],
+
+
 Xiaomi: [
+
+"Redmi 9",
+"Redmi 9A",
+"Redmi 9C",
+"Redmi 10",
+"Redmi 10C",
+"Redmi 12C",
+"Redmi 12",
+"Redmi 13C",
+"Redmi 13",
+"Redmi 14C",
+"Redmi 15C",
 
 "Redmi Note 8",
 "Redmi Note 9",
@@ -1077,51 +1139,43 @@ Xiaomi: [
 "Redmi Note 12",
 "Redmi Note 13",
 "Redmi Note 14",
+"Redmi Note 14 Pro",
+"Redmi Note 14 Pro Plus",
+"Redmi Note 15",
+
 "POCO X3",
-"POCO X4",
+"POCO X3 NFC",
+"POCO X3 Pro",
+"POCO X4 Pro",
 "POCO X5",
+"POCO X5 Pro",
 "POCO X6",
+"POCO X6 Pro",
+"POCO X7",
+"POCO X7 Pro",
+"POCO F3",
+"POCO F4",
 "POCO F5",
-"POCO F6"
+"POCO F6",
+"POCO F7",
 
-],
-
-Motorola: [
-
-"Moto E5",
-"Moto E6",
-"Moto E7",
-"Moto E20",
-"Moto E22",
-"Moto E32",
-"Moto E40",
-"Moto G5",
-"Moto G7",
-"Moto G8",
-"Moto G9 Play",
-"Moto G20",
-"Moto G22",
-"Moto G23",
-"Moto G30",
-"Moto G32",
-"Moto G42",
-"Moto G52",
-"Moto G54",
-"Moto G73",
-"Moto G84",
-"Motorola Edge 20",
-"Motorola Edge 30",
-"Motorola Edge 40",
-"Motorola Edge 50 Fusion"
+"Xiaomi 12",
+"Xiaomi 12 Lite",
+"Xiaomi 12 Pro",
+"Xiaomi 13",
+"Xiaomi 13 Lite",
+"Xiaomi 13 Pro",
+"Xiaomi 14",
+"Xiaomi 14T",
+"Xiaomi 14T Pro",
+"Xiaomi 15",
+"Xiaomi 15T",
+"Xiaomi 15T Pro"
 
 ]
 
 };
 
-
-/* =========================================
-ELEMENTOS
-========================================= */
 
 var jogo=document.getElementById("jogo");
 var fabricante=document.getElementById("fabricante");
@@ -1158,11 +1212,6 @@ var ajustar=document.getElementById("ajustar");
 var resultDevice=document.getElementById("resultDevice");
 
 
-/* =========================================
-FABRICANTE → MODELO
-SEM DESABILITAR O MODELO
-========================================= */
-
 fabricante.addEventListener(
 "change",
 function(){
@@ -1171,16 +1220,12 @@ var nomeFabricante=fabricante.value;
 
 modelo.innerHTML="";
 
-var primeiraOpcao=
-document.createElement("option");
+var primeiraOpcao=document.createElement("option");
 
 primeiraOpcao.value="";
-primeiraOpcao.textContent=
-"Selecione o modelo";
+primeiraOpcao.textContent="Selecione o modelo";
 
-modelo.appendChild(
-primeiraOpcao
-);
+modelo.appendChild(primeiraOpcao);
 
 if(!nomeFabricante){
 return;
@@ -1198,28 +1243,18 @@ i<lista.length;
 i++
 ){
 
-var opcao=
-document.createElement("option");
+var opcao=document.createElement("option");
 
-opcao.value=
-lista[i];
+opcao.value=lista[i];
+opcao.textContent=lista[i];
 
-opcao.textContent=
-lista[i];
-
-modelo.appendChild(
-opcao
-);
+modelo.appendChild(opcao);
 
 }
 
 }
 );
 
-
-/* =========================================
-AVISOS
-========================================= */
 
 function mostrarAviso(texto){
 
@@ -1253,10 +1288,6 @@ Math.min(max,Math.round(valor))
 }
 
 
-/* =========================================
-BOTÃO GERAR
-========================================= */
-
 gerar.addEventListener(
 "click",
 function(){
@@ -1265,9 +1296,7 @@ esconderAviso();
 
 if(!jogo.value){
 
-mostrarAviso(
-"Selecione o jogo."
-);
+mostrarAviso("Selecione o jogo.");
 
 return;
 
@@ -1275,9 +1304,7 @@ return;
 
 if(!fabricante.value){
 
-mostrarAviso(
-"Selecione o fabricante."
-);
+mostrarAviso("Selecione o fabricante.");
 
 return;
 
@@ -1285,9 +1312,7 @@ return;
 
 if(!modelo.value){
 
-mostrarAviso(
-"Selecione o modelo."
-);
+mostrarAviso("Selecione o modelo.");
 
 return;
 
@@ -1295,9 +1320,7 @@ return;
 
 if(!nivel.value){
 
-mostrarAviso(
-"Selecione o estilo."
-);
+mostrarAviso("Selecione o estilo.");
 
 return;
 
@@ -1305,26 +1328,17 @@ return;
 
 if(!dedos.value){
 
-mostrarAviso(
-"Selecione quantos dedos você usa."
-);
+mostrarAviso("Selecione quantos dedos você usa.");
 
 return;
 
 }
-
-
-/* SEM SETTIMEOUT */
 
 gerarConfiguracao();
 
 }
 );
 
-
-/* =========================================
-GERADOR
-========================================= */
 
 function gerarConfiguracao(){
 
@@ -1373,8 +1387,6 @@ base+=3;
 base=limitar(base,125,190);
 
 
-/* SENSI */
-
 var valorGeral=base;
 
 var valorRed=
@@ -1395,21 +1407,15 @@ limitar(valorGeral-1,0,200);
 
 if(dedos.value==="2"){
 
-valorRed=
-limitar(valorRed-1,0,200);
-
-valor2x=
-limitar(valor2x-1,0,200);
+valorRed=limitar(valorRed-1,0,200);
+valor2x=limitar(valor2x-1,0,200);
 
 }
 
 if(dedos.value==="4"){
 
-valorRed=
-limitar(valorRed+1,0,200);
-
-valorOlhadinha=
-limitar(valorOlhadinha+1,0,200);
+valorRed=limitar(valorRed+1,0,200);
+valorOlhadinha=limitar(valorOlhadinha+1,0,200);
 
 }
 
@@ -1421,8 +1427,6 @@ m4x.textContent=valor4x;
 awm.textContent=valorAwm;
 olhadinha.textContent=valorOlhadinha;
 
-
-/* DPI */
 
 var dpiBase=520;
 
@@ -1442,7 +1446,8 @@ dpiBase=540;
 if(
 modelo.value.indexOf("S23")>=0 ||
 modelo.value.indexOf("S24")>=0 ||
-modelo.value.indexOf("S25")>=0
+modelo.value.indexOf("S25")>=0 ||
+modelo.value.indexOf("S26")>=0
 ){
 
 dpiBase+=60;
@@ -1452,7 +1457,8 @@ dpiBase+=60;
 
 if(
 modelo.value.indexOf("A54")>=0 ||
-modelo.value.indexOf("A55")>=0
+modelo.value.indexOf("A55")>=0 ||
+modelo.value.indexOf("A56")>=0
 ){
 
 dpiBase+=20;
@@ -1495,13 +1501,10 @@ dpiBase-=20;
 }
 
 
-dpiBase=
-limitar(dpiBase,400,800);
+dpiBase=limitar(dpiBase,400,800);
 
 dpi.textContent=dpiBase;
 
-
-/* BOTÃO */
 
 var tamanhoBotao=48;
 
@@ -1513,103 +1516,4 @@ else if(nivel.value==="equilibrada"){
 tamanhoBotao=50;
 }
 
-else if(nivel.value==="rapida"){
-tamanhoBotao=47;
-}
-
-if(dedos.value==="2"){
-tamanhoBotao+=3;
-}
-
-else if(dedos.value==="4"){
-tamanhoBotao-=2;
-}
-
-if(
-modelo.value.indexOf("POCO")>=0
-){
-tamanhoBotao-=1;
-}
-
-tamanhoBotao=
-limitar(tamanhoBotao,42,58);
-
-botao.textContent=
-tamanhoBotao+"%";
-
-
-/* ESPECIALIDADE */
-
-var tipoEspecialidade="";
-var nivelOperacional="";
-
-if(
-valorGeral>=170 &&
-valorRed>=160
-){
-
-tipoEspecialidade="CAPA + RUSH";
-nivelOperacional="ALTÍSSIMO";
-
-}
-
-else if(
-valorRed>=145 &&
-valor2x>=120
-){
-
-tipoEspecialidade="PRECISÃO";
-nivelOperacional="ALTO";
-
-}
-
-else if(
-valorGeral<150
-){
-
-tipoEspecialidade="CONTROLE";
-nivelOperacional="ESTÁVEL";
-
-}
-
-else{
-
-tipoEspecialidade="EQUILIBRADA";
-nivelOperacional="ALTO";
-
-}
-
-especialidade.textContent=
-tipoEspecialidade;
-
-operacional.textContent=
-nivelOperacional;
-
-
-/* ANÁLISE */
-
-if(tipoEspecialidade==="CAPA + RUSH"){
-
-analise.textContent=
-"Configuração agressiva e rápida. O Geral elevado favorece movimentação de mira e respostas rápidas.";
-
-}
-
-else if(tipoEspecialidade==="PRECISÃO"){
-
-analise.textContent=
-"Configuração focada em precisão. As miras foram equilibradas para permitir ajustes mais controlados.";
-
-}
-
-else if(tipoEspecialidade==="CONTROLE"){
-
-analise.textContent=
-"Configuração voltada para controle. Os valores foram mantidos mais moderados para facilitar movimentos previsíveis.";
-
-}
-
-else{
-
-analise.textContent=
-"Configuração equilibrada para uso geral, comb
+else if(nivel.value==="rapida")
