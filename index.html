@@ -2,885 +2,110 @@
 (function () {
   "use strict";
 
-  /* =========================================================
-     GOAT SENSI — GERADOR
-     ========================================================= */
-
   const DADOS = {
-    Samsung: [
-      "Galaxy A05",
-      "Galaxy A05s",
-      "Galaxy A06",
-      "Galaxy A12",
-      "Galaxy A13",
-      "Galaxy A14",
-      "Galaxy A15",
-      "Galaxy A16",
-      "Galaxy A17",
-      "Galaxy A22",
-      "Galaxy A23",
-      "Galaxy A24",
-      "Galaxy A25",
-      "Galaxy A32",
-      "Galaxy A33",
-      "Galaxy A34",
-      "Galaxy A52",
-      "Galaxy A53",
-      "Galaxy A54",
-      "Galaxy A55",
-      "Galaxy A72",
-      "Galaxy S20",
-      "Galaxy S21",
-      "Galaxy S22",
-      "Galaxy S23",
-      "Galaxy S24",
-      "Galaxy S25"
-    ],
-
-    Xiaomi: [
-      "Redmi Note 8",
-      "Redmi Note 9",
-      "Redmi Note 10",
-      "Redmi Note 11",
-      "Redmi Note 12",
-      "Redmi Note 13",
-      "Redmi Note 14",
-      "POCO X3",
-      "POCO X4",
-      "POCO X5",
-      "POCO X6"
-    ],
-
-    Motorola: [
-      "Moto E5",
-      "Moto E6",
-      "Moto E7",
-      "Moto E7 Plus",
-      "Moto E20",
-      "Moto E22",
-      "Moto E32",
-      "Moto E40",
-      "Moto E50",
-      "Moto E13",
-      "Moto G5",
-      "Moto G5 Plus",
-      "Moto G6",
-      "Moto G6 Plus",
-      "Moto G7",
-      "Moto G7 Power",
-      "Moto G7 Plus",
-      "Moto G8",
-      "Moto G8 Power",
-      "Moto G9 Play",
-      "Moto G9 Power",
-      "Moto G20",
-      "Moto G22",
-      "Moto G23",
-      "Moto G24",
-      "Moto G30",
-      "Moto G31",
-      "Moto G32",
-      "Moto G34",
-      "Moto G40 Fusion",
-      "Moto G41",
-      "Moto G42",
-      "Moto G52",
-      "Moto G53",
-      "Moto G54",
-      "Moto G55",
-      "Moto G60",
-      "Moto G62",
-      "Moto G73",
-      "Moto G84",
-      "Moto G85",
-      "Motorola Edge 20",
-      "Motorola Edge 30",
-      "Motorola Edge 30 Neo",
-      "Motorola Edge 30 Fusion",
-      "Motorola Edge 40",
-      "Motorola Edge 40 Neo",
-      "Motorola Edge 50 Fusion",
-      "Motorola Edge 50 Pro",
-      "Motorola Razr 40",
-      "Motorola Razr 40 Ultra",
-      "Motorola Razr 50",
-      "Motorola Razr 50 Ultra"
-    ]
+    Samsung: ["Galaxy A05","Galaxy A05s","Galaxy A06","Galaxy A12","Galaxy A13","Galaxy A14","Galaxy A15","Galaxy A16","Galaxy A17","Galaxy A22","Galaxy A23","Galaxy A24","Galaxy A25","Galaxy A32","Galaxy A33","Galaxy A34","Galaxy A52","Galaxy A53","Galaxy A54","Galaxy A55","Galaxy A72","Galaxy S20","Galaxy S21","Galaxy S22","Galaxy S23","Galaxy S24","Galaxy S25"],
+    Xiaomi: ["Redmi Note 8","Redmi Note 9","Redmi Note 10","Redmi Note 11","Redmi Note 12","Redmi Note 13","Redmi Note 14","POCO X3","POCO X4","POCO X5","POCO X6","POCO F5","POCO F6"],
+    Motorola: ["Moto E5","Moto E6","Moto E7","Moto E20","Moto E22","Moto E32","Moto G5","Moto G7","Moto G8","Moto G9 Play","Moto G20","Moto G22","Moto G23","Moto G30","Moto G32","Moto G42","Moto G52","Moto G54","Moto G73","Moto G84","Motorola Edge 20","Motorola Edge 30","Motorola Edge 40","Motorola Edge 50 Fusion"]
   };
 
+  const NIVEIS = { baixa: 90, media: 140, alta: 180 };
+  const DEDOS_AJUSTE = { "2": 0, "3": 5, "4": 10 };
 
-  /* =========================================================
-     INICIALIZAÇÃO
-     ========================================================= */
+  function limitar(v){ return Math.max(0, Math.min(200, Math.round(v))); }
+  function aleatorio(){ return Math.floor(Math.random()*7)-3; }
 
-  function iniciar() {
+  document.addEventListener("DOMContentLoaded", function(){
+    // Pega os selects pela ordem da tela do seu print
+    const selects = document.querySelectorAll("select");
+    if(selects.length < 5) return;
 
-    const freefire = document.getElementById("freefire");
-    const marca = document.getElementById("marca");
-    const modelo = document.getElementById("modelo");
-    const nivel = document.getElementById("nivel");
-    const dedos = document.getElementById("dedos");
+    const jogoSelect = selects[0];
+    const fabricanteSelect = selects[1];
+    const modeloSelect = selects[2];
+    const nivelSelect = selects[3];
+    const dedosSelect = selects[4];
+    const btnGerar = document.querySelector("button");
 
-    const gerar = document.getElementById("gerar");
-    const resultado = document.getElementById("resultado");
-    const aviso = document.getElementById("aviso");
+    // 1. Arruma os selects de NIVEL e DEDOS que estão como "Selecione"
+    nivelSelect.innerHTML = `
+      <option value="">Selecione</option>
+      <option value="baixa">Baixa</option>
+      <option value="media" selected>Média</option>
+      <option value="alta">Alta</option>
+    `;
+    dedosSelect.innerHTML = `
+      <option value="">Selecione</option>
+      <option value="2">2 dedos</option>
+      <option value="3">3 dedos</option>
+      <option value="4">4 dedos</option>
+    `;
 
-    const vGeral = document.getElementById("vGeral");
-    const vRed = document.getElementById("vRed");
-    const v2x = document.getElementById("v2x");
-    const v4x = document.getElementById("v4x");
-    const vAwm = document.getElementById("vAwm");
-    const vLook = document.getElementById("vLook");
-
-    const analise = document.getElementById("analise");
-    const copiar = document.getElementById("copiar");
-    const variar = document.getElementById("variar");
-
-
-    /* =========================================================
-       VERIFICAR CAMPOS
-       ========================================================= */
-
-    if (!marca || !modelo) {
-      console.error(
-        "GOAT SENSI: não encontrei #marca ou #modelo."
-      );
-
-      if (aviso) {
-        aviso.textContent =
-          "Erro no HTML: os campos marca e modelo não foram encontrados.";
-        aviso.style.display = "block";
-      }
-
-      return;
-    }
-
-
-    /* =========================================================
-       MODELOS
-       ========================================================= */
-
-    function carregarModelos() {
-
-      const fabricante = marca.value;
-
-      /* limpa completamente */
-      modelo.innerHTML = "";
-
-      /* nenhum fabricante */
-      if (!fabricante || !DADOS[fabricante]) {
-
-        modelo.disabled = true;
-
-        const opcao = document.createElement("option");
-
-        opcao.value = "";
-        opcao.textContent = "Primeiro selecione o fabricante";
-
-        modelo.appendChild(opcao);
-
+    // 2. Quando escolher FABRICANTE, libera MODELO
+    function carregarModelos(){
+      const fab = fabricanteSelect.value;
+      modeloSelect.innerHTML = "";
+      if(!DADOS[fab]){
+        modeloSelect.innerHTML = '<option value="">Primeiro selecione o fabricante</option>';
+        modeloSelect.disabled = true;
         return;
       }
-
-
-      /* fabricante selecionado */
-      modelo.disabled = false;
-
-      const primeira = document.createElement("option");
-
-      primeira.value = "";
-      primeira.textContent = "Selecione o modelo";
-
-      modelo.appendChild(primeira);
-
-
-      /* adiciona os modelos */
-      DADOS[fabricante].forEach(function (nomeModelo) {
-
-        const option = document.createElement("option");
-
-        option.value = nomeModelo;
-        option.textContent = nomeModelo;
-
-        modelo.appendChild(option);
-
+      modeloSelect.disabled = false;
+      modeloSelect.innerHTML = '<option value="">Selecione o modelo</option>';
+      DADOS[fab].forEach(m => {
+        const opt = document.createElement("option");
+        opt.value = m; opt.textContent = m;
+        modeloSelect.appendChild(opt);
       });
-
-
-      /* garante que o select realmente esteja ativo */
-      modelo.removeAttribute("disabled");
-
-      console.log(
-        "GOAT SENSI: modelos carregados:",
-        fabricante,
-        DADOS[fabricante].length
-      );
     }
 
+    fabricanteSelect.addEventListener("change", carregarModelos);
 
-    /* =========================================================
-       AVISOS
-       ========================================================= */
+    // 3. Botão GERAR
+    btnGerar.addEventListener("click", function(e){
+      e.preventDefault();
+      if(!fabricanteSelect.value){ alert("Selecione o fabricante!"); return; }
+      if(!modeloSelect.value){ alert("Selecione o modelo!"); return; }
+      if(!nivelSelect.value){ alert("Selecione o nível!"); return; }
 
-    function mostrarAviso(texto) {
+      const base = NIVEIS[nivelSelect.value] || 140;
+      const ajusteDedos = DEDOS_AJUSTE[dedosSelect.value] || 0;
+      // peso do celular (quanto mais novo, mais alta)
+      const idxModelo = DADOS[fabricanteSelect.value].indexOf(modeloSelect.value);
+      const ajusteModelo = idxModelo;
 
-      if (!aviso) return;
+      const geral = limitar(base + ajusteDedos + ajusteModelo + aleatorio());
 
-      aviso.textContent = texto;
-      aviso.style.display = "block";
-    }
+      const sensiFinal = {
+        Geral: geral,
+        "Ponto Vermelho": limitar(geral - 2 + aleatorio()),
+        "Mira 2x": limitar(geral - 12 + aleatorio()),
+        "Mira 4x": limitar(geral - 25 + aleatorio()),
+        "Mira AWM": limitar(geral - 35 + aleatorio()),
+        "Olhadinha": limitar(geral - 15 + aleatorio())
+      };
 
-
-    function esconderAviso() {
-
-      if (!aviso) return;
-
-      aviso.textContent = "";
-      aviso.style.display = "none";
-    }
-
-
-    /* =========================================================
-       MUDANÇA DE FABRICANTE
-       ========================================================= */
-
-    marca.addEventListener("change", function () {
-
-      esconderAviso();
-
-      if (resultado) {
-        resultado.style.display = "none";
+      // Mostra o resultado (cria div se não existir)
+      let resDiv = document.getElementById("resultado-goat");
+      if(!resDiv){
+        resDiv = document.createElement("div");
+        resDiv.id = "resultado-goat";
+        resDiv.style.cssText = "margin-top:20px;padding:18px;border-radius:18px;background:#0b0b0b;border:1px solid rgba(255,0,0,.35);color:white;";
+        btnGerar.parentElement.appendChild(resDiv);
       }
+      resDiv.innerHTML = `
+        <div style="text-align:center;color:#ff2525;font-weight:900;margin-bottom:12px;">SENSIBILIDADE GERADA - ${fabricanteSelect.value} ${modeloSelect.value}</div>
+        ${Object.entries(sensiFinal).map(([k,v]) => `<div style="display:flex;justify-content:space-between;padding:10px 5px;border-bottom:1px solid #222;"><span>${k}</span><span style="background:linear-gradient(145deg,#ff2525,#a00000);padding:5px 12px;border-radius:8px;font-weight:900;">${v}</span></div>`).join("")}
+        <button id="copiar-goat" style="width:100%;margin-top:15px;padding:14px;border-radius:12px;border:1px solid red;background:#222;color:white;font-weight:900;cursor:pointer;">📋 COPIAR SENSI</button>
+      `;
+      resDiv.scrollIntoView({behavior:"smooth"});
 
-      carregarModelos();
-
+      document.getElementById("copiar-goat").onclick = async () => {
+        const txt = `GOAT SENSI - ${fabricanteSelect.value} ${modeloSelect.value}\n` + Object.entries(sensiFinal).map(([k,v])=>`${k}: ${v}`).join("\n");
+        try{ await navigator.clipboard.writeText(txt); alert("✅ Copiado!"); }catch{
+          const a=document.createElement("textarea"); a.value=txt; document.body.appendChild(a); a.select(); document.execCommand("copy"); document.body.removeChild(a); alert("✅ Copiado!");
+        }
+      };
     });
-
-
-    /* =========================================================
-       LIMITAR SENSIBILIDADE
-       ========================================================= */
-
-    function limitar(numero) {
-
-      numero = Number(numero);
-
-      if (isNaN(numero)) {
-        numero = 0;
-      }
-
-      return Math.max(
-        0,
-        Math.min(200, Math.round(numero))
-      );
-    }
-
-
-    /* =========================================================
-       GERAR SENSIBILIDADE
-       ========================================================= */
-
-    function gerarSensi() {
-
-      esconderAviso();
-
-
-      /* validações */
-
-      if (!freefire || !nivel || !dedos) {
-
-        mostrarAviso(
-          "Erro: algum campo do gerador não foi encontrado."
-        );
-
-        return;
-      }
-
-
-      if (!freefire.value) {
-
-        mostrarAviso("Selecione o jogo.");
-
-        freefire.focus();
-
-        return;
-      }
-
-
-      if (!marca.value) {
-
-        mostrarAviso("Selecione o fabricante.");
-
-        marca.focus();
-
-        return;
-      }
-
-
-      if (!modelo.value) {
-
-        mostrarAviso("Selecione o modelo do aparelho.");
-
-        modelo.focus();
-
-        return;
-      }
-
-
-      if (!nivel.value) {
-
-        mostrarAviso("Selecione o nível da sensibilidade.");
-
-        nivel.focus();
-
-        return;
-      }
-
-
-      if (!dedos.value) {
-
-        mostrarAviso("Selecione quantos dedos você usa.");
-
-        dedos.focus();
-
-        return;
-      }
-
-
-      /* =====================================================
-         BASE
-         ===================================================== */
-
-      let geral = 145;
-
-
-      if (nivel.value === "baixa") {
-        geral = 120;
-      }
-
-      if (nivel.value === "media") {
-        geral = 145;
-      }
-
-      if (nivel.value === "alta") {
-        geral = 175;
-      }
-
-
-      /* =====================================================
-         DEDOS
-         ===================================================== */
-
-      if (dedos.value === "3") {
-        geral += 4;
-      }
-
-      if (dedos.value === "4") {
-        geral += 8;
-      }
-
-
-      /* =====================================================
-         JOGO
-         ===================================================== */
-
-      if (freefire.value === "max") {
-        geral += 3;
-      }
-
-
-      /* =====================================================
-         FABRICANTE
-         ===================================================== */
-
-      if (marca.value === "Samsung") {
-        geral += 0;
-      }
-
-      if (marca.value === "Xiaomi") {
-        geral += 2;
-      }
-
-      if (marca.value === "Motorola") {
-        geral += 1;
-      }
-
-
-      geral = limitar(geral);
-
-
-      /* =====================================================
-         CÁLCULO
-         ===================================================== */
-
-      const red = limitar(geral - 8);
-      const mira2x = limitar(geral - 20);
-      const mira4x = limitar(geral - 35);
-      const awm = limitar(geral - 55);
-      const olhadinha = limitar(geral + 3);
-
-
-      /* =====================================================
-         RESULTADO
-         ===================================================== */
-
-      if (vGeral) vGeral.textContent = geral;
-      if (vRed) vRed.textContent = red;
-      if (v2x) v2x.textContent = mira2x;
-      if (v4x) v4x.textContent = mira4x;
-      if (vAwm) vAwm.textContent = awm;
-      if (vLook) vLook.textContent = olhadinha;
-
-
-      /* =====================================================
-         ANÁLISE
-         ===================================================== */
-
-      if (analise) {
-
-        let texto;
-
-        if (nivel.value === "baixa") {
-
-          texto =
-            "Perfil focado em controle e estabilidade da mira.";
-
-        } else if (nivel.value === "media") {
-
-          texto =
-            "Perfil equilibrado entre controle e velocidade.";
-
-        } else {
-
-          texto =
-            "Perfil rápido para quem prefere uma resposta mais agressiva.";
-        }
-
-
-        analise.textContent =
-          texto +
-          " Configuração calculada para " +
-          marca.value +
-          " " +
-          modelo.value +
-          " usando " +
-          dedos.value +
-          " dedos.";
-      }
-
-
-      /* =====================================================
-         MOSTRAR RESULTADO
-         ===================================================== */
-
-      if (resultado) {
-
-        resultado.style.display = "block";
-
-        setTimeout(function () {
-
-          resultado.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-
-        }, 50);
-      }
-    }
-
-
-    /* =========================================================
-       BOTÃO GERAR
-       ========================================================= */
-
-    if (gerar) {
-
-      gerar.addEventListener("click", function (event) {
-
-        event.preventDefault();
-
-        gerarSensi();
-
-      });
-
-    } else {
-
-      console.error(
-        "GOAT SENSI: botão #gerar não encontrado."
-      );
-
-    }
-
-
-    /* =========================================================
-       AJUSTE FINO
-       ========================================================= */
-
-    if (variar) {
-
-      variar.addEventListener("click", function () {
-
-        if (!resultado ||
-            resultado.style.display === "none") {
-
-          gerarSensi();
-
-          return;
-        }
-
-
-        if (vGeral)
-          vGeral.textContent =
-            limitar(Number(vGeral.textContent) + 2);
-
-        if (vRed)
-          vRed.textContent =
-            limitar(Number(vRed.textContent) + 1);
-
-        if (v2x)
-          v2x.textContent =
-            limitar(Number(v2x.textContent) + 1);
-
-        if (v4x)
-          v4x.textContent =
-            limitar(Number(v4x.textContent) + 1);
-
-        if (vAwm)
-          vAwm.textContent =
-            limitar(Number(vAwm.textContent) + 1);
-
-        if (vLook)
-          vLook.textContent =
-            limitar(Number(vLook.textContent) + 1);
-
-
-        if (analise) {
-
-          analise.textContent =
-            "Ajuste fino aplicado. Teste essa configuração no campo de treino.";
-        }
-
-      });
-
-    }
-
-
-    /* =========================================================
-       COPIAR
-       ========================================================= */
-
-    if (copiar) {
-
-      copiar.addEventListener("click", async function () {
-
-        if (!vGeral || !vRed || !v2x ||
-            !v4x || !vAwm || !vLook) {
-
-          mostrarAviso(
-            "Gere uma sensibilidade antes de copiar."
-          );
-
-          return;
-        }
-
-
-        const texto =
-`GOAT SENSI
-
-Geral: ${vGeral.textContent}
-Ponto Vermelho: ${vRed.textContent}
-Mira 2x: ${v2x.textContent}
-Mira 4x: ${v4x.textContent}
-Mira AWM: ${vAwm.textContent}
-Olhadinha: ${vLook.textContent}
-
-Jogo: ${
-  freefire.value === "max"
-    ? "Free Fire MAX"
-    : "Free Fire"
-}
-
-Aparelho: ${marca.value} ${modelo.value}
-Dedos: ${dedos.value}`;
-
-
-        try {
-
-          await navigator.clipboard.writeText(texto);
-
-          const textoOriginal =
-            copiar.textContent;
-
-          copiar.textContent =
-            "COPIADO ✓";
-
-          setTimeout(function () {
-
-            copiar.textContent =
-              textoOriginal || "COPIAR CONFIGURAÇÃO";
-
-          }, 1800);
-
-        } catch (erro) {
-
-          mostrarAviso(
-            "Não foi possível copiar automaticamente."
-          );
-
-        }
-
-      });
-
-    }
-
-
-    /* =========================================================
-       BOT
-       ========================================================= */
-
-    const abrirBot =
-      document.getElementById("abrirBot");
-
-    const chatOverlay =
-      document.getElementById("chatOverlay");
-
-    const fecharChat =
-      document.getElementById("fecharChat");
-
-    const chatInput =
-      document.getElementById("chatInput");
-
-    const enviarChat =
-      document.getElementById("enviarChat");
-
-    const chatMensagens =
-      document.getElementById("chatMensagens");
-
-
-    function adicionarMensagem(texto, tipo) {
-
-      if (!chatMensagens) return;
-
-      const div =
-        document.createElement("div");
-
-      div.className = "msg " + tipo;
-
-      div.textContent = texto;
-
-      chatMensagens.appendChild(div);
-
-      chatMensagens.scrollTop =
-        chatMensagens.scrollHeight;
-    }
-
-
-    function responder(pergunta) {
-
-      const p =
-        pergunta.toLowerCase();
-
-
-      if (
-        p.includes("a15") ||
-        p.includes("galaxy a15")
-      ) {
-
-        return "No Galaxy A15, comece pelo perfil Equilibrado e faça pequenos ajustes no campo de treino.";
-      }
-
-
-      if (
-        p.includes("2 dedo") ||
-        p.includes("dois dedo")
-      ) {
-
-        return "Para 2 dedos, comece no perfil Equilibrado e teste a configuração no campo de treino.";
-      }
-
-
-      if (
-        p.includes("capa") ||
-        p.includes("headshot")
-      ) {
-
-        return "A sensibilidade ajuda, mas HUD, FPS e controle do jogador também fazem diferença.";
-      }
-
-
-      if (
-        p.includes("sensi") ||
-        p.includes("sensibilidade")
-      ) {
-
-        return "Escolha jogo, fabricante, modelo, nível e quantidade de dedos. Depois clique em GERAR SENSIBILIDADE.";
-      }
-
-
-      return "Posso ajudar com sensibilidade, aparelhos, dedos e ajustes finos.";
-    }
-
-
-    function enviarMensagem() {
-
-      if (!chatInput) return;
-
-      const texto =
-        chatInput.value.trim();
-
-      if (!texto) return;
-
-      adicionarMensagem(texto, "user");
-
-      chatInput.value = "";
-
-
-      setTimeout(function () {
-
-        adicionarMensagem(
-          responder(texto),
-          "bot"
-        );
-
-      }, 300);
-    }
-
-
-    if (abrirBot && chatOverlay) {
-
-      abrirBot.addEventListener("click", function () {
-
-        chatOverlay.style.display = "flex";
-
-        if (chatInput) {
-
-          setTimeout(function () {
-            chatInput.focus();
-          }, 100);
-
-        }
-
-      });
-
-    }
-
-
-    if (fecharChat && chatOverlay) {
-
-      fecharChat.addEventListener("click", function () {
-
-        chatOverlay.style.display = "none";
-
-      });
-
-    }
-
-
-    if (chatOverlay) {
-
-      chatOverlay.addEventListener("click", function (event) {
-
-        if (event.target === chatOverlay) {
-
-          chatOverlay.style.display = "none";
-
-        }
-
-      });
-
-    }
-
-
-    if (enviarChat) {
-
-      enviarChat.addEventListener(
-        "click",
-        enviarMensagem
-      );
-
-    }
-
-
-    if (chatInput) {
-
-      chatInput.addEventListener(
-        "keydown",
-        function (event) {
-
-          if (event.key === "Enter") {
-            event.preventDefault();
-            enviarMensagem();
-          }
-
-          if (
-            event.key === "Escape" &&
-            chatOverlay
-          ) {
-
-            chatOverlay.style.display = "none";
-
-          }
-
-        }
-      );
-
-    }
-
-
-    /* =========================================================
-       SUGESTÕES
-       ========================================================= */
-
-    document
-      .querySelectorAll(".sugestao")
-      .forEach(function (botao) {
-
-        botao.addEventListener(
-          "click",
-          function () {
-
-            if (!chatInput) return;
-
-            chatInput.value =
-              botao.textContent.trim();
-
-            enviarMensagem();
-
-          }
-        );
-
-      });
-
-
-    /* =========================================================
-       INICIALIZAÇÃO DOS MODELOS
-       ========================================================= */
-
-    carregarModelos();
-
-    console.log(
-      "GOAT SENSI: sistema iniciado corretamente."
-    );
-
-  }
-
-
-  /* =========================================================
-     ESPERAR O HTML
-     ========================================================= */
-
-  if (document.readyState === "loading") {
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      iniciar
-    );
-
-  } else {
-
-    iniciar();
-
-  }
-
+  });
 })();
-        </script>
+          </script>
