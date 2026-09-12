@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>GOAT SENSI</title>
 
 <style>
@@ -154,15 +154,12 @@ color:#fff;
 font-size:15px;
 outline:none;
 transition:.2s;
+cursor:pointer;
 }
 
 select:focus{
 border-color:#ff1744;
 box-shadow:0 0 0 2px rgba(255,23,68,.08);
-}
-
-select:disabled{
-opacity:.45;
 }
 
 .generate{
@@ -186,11 +183,6 @@ box-shadow:0 12px 30px rgba(229,9,50,.25);
 
 .generate:active{
 transform:scale(.98);
-}
-
-.generate:disabled{
-opacity:.65;
-cursor:wait;
 }
 
 .aviso{
@@ -705,10 +697,11 @@ Motorola
 Modelo
 </label>
 
-<select id="modelo" disabled>
+<!-- SEM DISABLED -->
+<select id="modelo">
 
 <option value="">
-Selecione primeiro o fabricante
+Selecione o modelo
 </option>
 
 </select>
@@ -1038,7 +1031,7 @@ Miguel Sanches Carrion & Thalles Vinícius Rios Gazda
 
 
 /* =========================================
-BANCO ORIGINAL DE MODELOS
+BANCO DE MODELOS
 ========================================= */
 
 var DADOS = {
@@ -1130,154 +1123,55 @@ Motorola: [
 ELEMENTOS
 ========================================= */
 
-var jogo =
-document.getElementById("jogo");
+var jogo=document.getElementById("jogo");
+var fabricante=document.getElementById("fabricante");
+var modelo=document.getElementById("modelo");
+var nivel=document.getElementById("nivel");
+var dedos=document.getElementById("dedos");
 
-var fabricante =
-document.getElementById("fabricante");
+var gerar=document.getElementById("gerar");
+var aviso=document.getElementById("aviso");
+var resultado=document.getElementById("resultado");
 
-var modelo =
-document.getElementById("modelo");
+var geral=document.getElementById("geral");
+var red=document.getElementById("red");
+var m2x=document.getElementById("m2x");
+var m4x=document.getElementById("m4x");
+var awm=document.getElementById("awm");
+var olhadinha=document.getElementById("olhadinha");
 
-var nivel =
-document.getElementById("nivel");
+var dpi=document.getElementById("dpi");
+var botao=document.getElementById("botao");
+var especialidade=document.getElementById("especialidade");
+var operacional=document.getElementById("operacional");
 
-var dedos =
-document.getElementById("dedos");
+var analise=document.getElementById("analise");
+var qualidade=document.getElementById("qualidade");
+var qualityFill=document.getElementById("qualityFill");
 
-var gerar =
-document.getElementById("gerar");
+var score=document.getElementById("score");
+var tags=document.getElementById("tags");
+var aiText=document.getElementById("aiText");
 
-var aviso =
-document.getElementById("aviso");
-
-var resultado =
-document.getElementById("resultado");
-
-var geral =
-document.getElementById("geral");
-
-var red =
-document.getElementById("red");
-
-var m2x =
-document.getElementById("m2x");
-
-var m4x =
-document.getElementById("m4x");
-
-var awm =
-document.getElementById("awm");
-
-var olhadinha =
-document.getElementById("olhadinha");
-
-var dpi =
-document.getElementById("dpi");
-
-var botao =
-document.getElementById("botao");
-
-var especialidade =
-document.getElementById("especialidade");
-
-var operacional =
-document.getElementById("operacional");
-
-var analise =
-document.getElementById("analise");
-
-var qualidade =
-document.getElementById("qualidade");
-
-var qualityFill =
-document.getElementById("qualityFill");
-
-var score =
-document.getElementById("score");
-
-var tags =
-document.getElementById("tags");
-
-var aiText =
-document.getElementById("aiText");
-
-var copiar =
-document.getElementById("copiar");
-
-var ajustar =
-document.getElementById("ajustar");
-
-var resultDevice =
-document.getElementById("resultDevice");
-
-
-/* =========================================
-FUNÇÕES
-========================================= */
-
-function limitar(valor,min,max){
-
-valor=Number(valor);
-
-if(isNaN(valor)){
-valor=min;
-}
-
-return Math.max(
-min,
-Math.min(max,Math.round(valor))
-);
-
-}
-
-
-function mostrarAviso(texto){
-
-aviso.textContent=texto;
-aviso.style.display="block";
-
-}
-
-
-function esconderAviso(){
-
-aviso.textContent="";
-aviso.style.display="none";
-
-}
+var copiar=document.getElementById("copiar");
+var ajustar=document.getElementById("ajustar");
+var resultDevice=document.getElementById("resultDevice");
 
 
 /* =========================================
 FABRICANTE → MODELO
-ESTA É A ESTRUTURA ORIGINAL
+SEM DESABILITAR O MODELO
 ========================================= */
 
 fabricante.addEventListener(
 "change",
 function(){
 
-var nomeFabricante =
-fabricante.value;
+var nomeFabricante=fabricante.value;
 
 modelo.innerHTML="";
 
-resultado.style.display="none";
-
-if(!nomeFabricante){
-
-modelo.disabled=true;
-
-modelo.innerHTML=
-'<option value="">Selecione primeiro o fabricante</option>';
-
-return;
-
-}
-
-modelo.disabled=false;
-
-var primeiraOpcao =
+var primeiraOpcao=
 document.createElement("option");
 
 primeiraOpcao.value="";
@@ -1288,15 +1182,14 @@ modelo.appendChild(
 primeiraOpcao
 );
 
-var lista =
-DADOS[nomeFabricante];
+if(!nomeFabricante){
+return;
+}
+
+var lista=DADOS[nomeFabricante];
 
 if(!lista){
-
-modelo.disabled=true;
-
 return;
-
 }
 
 for(
@@ -1305,7 +1198,7 @@ i<lista.length;
 i++
 ){
 
-var opcao =
+var opcao=
 document.createElement("option");
 
 opcao.value=
@@ -1325,8 +1218,43 @@ opcao
 
 
 /* =========================================
-GERADOR
-CORRIGIDO — SEM SETTIMEOUT
+AVISOS
+========================================= */
+
+function mostrarAviso(texto){
+
+aviso.textContent=texto;
+aviso.style.display="block";
+
+}
+
+
+function esconderAviso(){
+
+aviso.textContent="";
+aviso.style.display="none";
+
+}
+
+
+function limitar(valor,min,max){
+
+valor=Number(valor);
+
+if(isNaN(valor)){
+valor=min;
+}
+
+return Math.max(
+min,
+Math.min(max,Math.round(valor))
+);
+
+}
+
+
+/* =========================================
+BOTÃO GERAR
 ========================================= */
 
 gerar.addEventListener(
@@ -1335,19 +1263,15 @@ function(){
 
 esconderAviso();
 
-
 if(!jogo.value){
 
 mostrarAviso(
 "Selecione o jogo."
 );
 
-jogo.focus();
-
 return;
 
 }
-
 
 if(!fabricante.value){
 
@@ -1355,12 +1279,9 @@ mostrarAviso(
 "Selecione o fabricante."
 );
 
-fabricante.focus();
-
 return;
 
 }
-
 
 if(!modelo.value){
 
@@ -1368,12 +1289,9 @@ mostrarAviso(
 "Selecione o modelo."
 );
 
-modelo.focus();
-
 return;
 
 }
-
 
 if(!nivel.value){
 
@@ -1381,12 +1299,9 @@ mostrarAviso(
 "Selecione o estilo."
 );
 
-nivel.focus();
-
 return;
 
 }
-
 
 if(!dedos.value){
 
@@ -1394,17 +1309,12 @@ mostrarAviso(
 "Selecione quantos dedos você usa."
 );
 
-dedos.focus();
-
 return;
 
 }
 
 
-/*
-NÃO DESATIVA O BOTÃO
-E NÃO USA SETTIMEOUT.
-*/
+/* SEM SETTIMEOUT */
 
 gerarConfiguracao();
 
@@ -1413,94 +1323,59 @@ gerarConfiguracao();
 
 
 /* =========================================
-GERADOR PRINCIPAL
+GERADOR
 ========================================= */
 
 function gerarConfiguracao(){
 
 var base=0;
 
-
-/* ESTILO */
-
 if(nivel.value==="controle"){
-
 base=137;
-
 }
 
 else if(nivel.value==="equilibrada"){
-
 base=157;
-
 }
 
 else if(nivel.value==="rapida"){
-
 base=178;
-
 }
 
 
-/* DEDOS */
-
 if(dedos.value==="2"){
-
 base-=3;
-
 }
 
 else if(dedos.value==="3"){
-
 base+=2;
-
 }
 
 else if(dedos.value==="4"){
-
 base+=5;
-
 }
 
-
-/* JOGO */
 
 if(jogo.value==="max"){
-
 base+=3;
-
 }
 
 
-/* FABRICANTE */
-
 if(fabricante.value==="Samsung"){
-
 base+=1;
-
 }
 
 else if(fabricante.value==="Xiaomi"){
-
 base+=3;
-
-}
-
-else if(fabricante.value==="Motorola"){
-
-base+=0;
-
 }
 
 
-base=
-limitar(base,125,190);
+base=limitar(base,125,190);
 
 
-/* SENSIBILIDADE */
+/* SENSI */
 
-var valorGeral=
-base;
+var valorGeral=base;
 
 var valorRed=
 limitar(valorGeral-4,0,200);
@@ -1517,8 +1392,6 @@ limitar(valorGeral-49,0,200);
 var valorOlhadinha=
 limitar(valorGeral-1,0,200);
 
-
-/* AJUSTE POR DEDOS */
 
 if(dedos.value==="2"){
 
@@ -1541,49 +1414,28 @@ limitar(valorOlhadinha+1,0,200);
 }
 
 
-/* MOSTRAR */
-
-geral.textContent=
-valorGeral;
-
-red.textContent=
-valorRed;
-
-m2x.textContent=
-valor2x;
-
-m4x.textContent=
-valor4x;
-
-awm.textContent=
-valorAwm;
-
-olhadinha.textContent=
-valorOlhadinha;
+geral.textContent=valorGeral;
+red.textContent=valorRed;
+m2x.textContent=valor2x;
+m4x.textContent=valor4x;
+awm.textContent=valorAwm;
+olhadinha.textContent=valorOlhadinha;
 
 
-/* =========================================
-DPI
-========================================= */
+/* DPI */
 
 var dpiBase=520;
 
 if(fabricante.value==="Samsung"){
-
 dpiBase=560;
-
 }
 
 else if(fabricante.value==="Xiaomi"){
-
 dpiBase=600;
-
 }
 
 else if(fabricante.value==="Motorola"){
-
 dpiBase=540;
-
 }
 
 
@@ -1627,83 +1479,57 @@ dpiBase+=30;
 
 
 if(dedos.value==="2"){
-
 dpiBase-=10;
-
 }
 
 if(dedos.value==="4"){
-
 dpiBase+=15;
-
 }
 
 if(nivel.value==="rapida"){
-
 dpiBase+=20;
-
 }
 
 if(nivel.value==="controle"){
-
 dpiBase-=20;
-
 }
 
 
 dpiBase=
 limitar(dpiBase,400,800);
 
-dpi.textContent=
-dpiBase;
+dpi.textContent=dpiBase;
 
 
-/* =========================================
-BOTÃO
-========================================= */
+/* BOTÃO */
 
 var tamanhoBotao=48;
 
 if(nivel.value==="controle"){
-
 tamanhoBotao=52;
-
 }
 
 else if(nivel.value==="equilibrada"){
-
 tamanhoBotao=50;
-
 }
 
 else if(nivel.value==="rapida"){
-
 tamanhoBotao=47;
-
 }
 
-
 if(dedos.value==="2"){
-
 tamanhoBotao+=3;
-
 }
 
 else if(dedos.value==="4"){
-
 tamanhoBotao-=2;
-
 }
-
 
 if(
 modelo.value.indexOf("POCO")>=0
 ){
-
 tamanhoBotao-=1;
-
 }
-
 
 tamanhoBotao=
 limitar(tamanhoBotao,42,58);
@@ -1712,21 +1538,78 @@ botao.textContent=
 tamanhoBotao+"%";
 
 
-/* =========================================
-ESPECIALIDADE
-========================================= */
+/* ESPECIALIDADE */
 
 var tipoEspecialidade="";
 var nivelOperacional="";
-
 
 if(
 valorGeral>=170 &&
 valorRed>=160
 ){
 
-tipoEspecialidade=
-"CAPA + RUSH";
+tipoEspecialidade="CAPA + RUSH";
+nivelOperacional="ALTÍSSIMO";
 
-nivelOperacional=
-"ALTÍSSIMO
+}
+
+else if(
+valorRed>=145 &&
+valor2x>=120
+){
+
+tipoEspecialidade="PRECISÃO";
+nivelOperacional="ALTO";
+
+}
+
+else if(
+valorGeral<150
+){
+
+tipoEspecialidade="CONTROLE";
+nivelOperacional="ESTÁVEL";
+
+}
+
+else{
+
+tipoEspecialidade="EQUILIBRADA";
+nivelOperacional="ALTO";
+
+}
+
+especialidade.textContent=
+tipoEspecialidade;
+
+operacional.textContent=
+nivelOperacional;
+
+
+/* ANÁLISE */
+
+if(tipoEspecialidade==="CAPA + RUSH"){
+
+analise.textContent=
+"Configuração agressiva e rápida. O Geral elevado favorece movimentação de mira e respostas rápidas.";
+
+}
+
+else if(tipoEspecialidade==="PRECISÃO"){
+
+analise.textContent=
+"Configuração focada em precisão. As miras foram equilibradas para permitir ajustes mais controlados.";
+
+}
+
+else if(tipoEspecialidade==="CONTROLE"){
+
+analise.textContent=
+"Configuração voltada para controle. Os valores foram mantidos mais moderados para facilitar movimentos previsíveis.";
+
+}
+
+else{
+
+analise.textContent=
+"Configuração equilibrada para uso geral, comb
