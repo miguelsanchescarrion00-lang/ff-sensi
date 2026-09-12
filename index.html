@@ -1,1043 +1,1065 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#090909">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="GOAT SENSI: gere uma configuração de sensibilidade e DPI para Free Fire.">
+  <title>GOAT SENSI — Free Fire Configurator</title>
 
-<title>GOAT SENSI</title>
-
-<style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-    min-height:100vh;
-    background:
-        radial-gradient(circle at 50% -10%,#351010 0%,#100909 30%,#070707 65%);
-    color:#fff;
-}
-
-body:before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    background:linear-gradient(
-        120deg,
-        transparent 0%,
-        rgba(255,30,30,.025) 50%,
-        transparent 100%
-    );
-}
-
-.container{
-    width:92%;
-    max-width:980px;
-    margin:auto;
-    padding:25px 0 50px;
-}
-
-.header{
-    text-align:center;
-    padding:15px 0 20px;
-}
-
-.logoBox{
-    width:86px;
-    height:86px;
-    margin:auto auto 15px;
-    border-radius:24px;
-    background:linear-gradient(145deg,#ff2727,#760000);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 15px 45px rgba(255,0,0,.22);
-    overflow:hidden;
-}
-
-.logoBox img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.logoText{
-    font-size:27px;
-    font-weight:900;
-    color:white;
-}
-
-h1{
-    font-size:42px;
-    letter-spacing:4px;
-    font-weight:900;
-    background:linear-gradient(90deg,#fff,#ff3434,#fff);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-.subtitle{
-    color:#999;
-    margin-top:7px;
-    font-size:14px;
-}
-
-.server{
-    margin:18px auto 0;
-    width:max-content;
-    max-width:100%;
-    display:flex;
-    align-items:center;
-    gap:9px;
-    padding:9px 16px;
-    border-radius:30px;
-    background:rgba(20,20,20,.9);
-    border:1px solid #292929;
-    color:#ddd;
-    font-size:13px;
-}
-
-.online{
-    width:9px;
-    height:9px;
-    border-radius:50%;
-    background:#31e981;
-    box-shadow:0 0 12px #31e981;
-    animation:pulse 1.7s infinite;
-}
-
-@keyframes pulse{
-    0%,100%{opacity:1}
-    50%{opacity:.35}
-}
-
-.card{
-    margin-top:18px;
-    padding:24px;
-    border-radius:22px;
-    background:rgba(15,15,15,.92);
-    border:1px solid #292929;
-    box-shadow:0 15px 50px rgba(0,0,0,.35);
-}
-
-.cardTitle{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:20px;
-}
-
-.cardTitle h2{
-    font-size:20px;
-}
-
-.icon{
-    width:34px;
-    height:34px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:10px;
-    background:#241010;
-    color:#ff3030;
-    font-weight:bold;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:16px;
-}
-
-.field{
-    display:flex;
-    flex-direction:column;
-}
-
-label{
-    color:#bdbdbd;
-    font-size:13px;
-    margin-bottom:8px;
-}
-
-select{
-    width:100%;
-    height:49px;
-    padding:0 13px;
-    border-radius:12px;
-    border:1px solid #303030;
-    background:#181818;
-    color:#fff;
-    outline:none;
-    cursor:pointer;
-    transition:.2s;
-}
-
-select:hover,
-select:focus{
-    border-color:#d92323;
-    background:#1d1d1d;
-}
-
-.button{
-    width:100%;
-    height:54px;
-    margin-top:20px;
-    border:0;
-    border-radius:14px;
-    background:linear-gradient(135deg,#ff2727,#b60000);
-    color:white;
-    font-size:16px;
-    font-weight:900;
-    letter-spacing:.5px;
-    cursor:pointer;
-    box-shadow:0 12px 30px rgba(220,0,0,.18);
-    transition:.2s;
-}
-
-.button:hover{
-    transform:translateY(-2px);
-    box-shadow:0 16px 35px rgba(220,0,0,.28);
-}
-
-.button:active{
-    transform:scale(.98);
-}
-
-.device{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.deviceItem{
-    padding:15px;
-    border-radius:14px;
-    background:#151515;
-    border:1px solid #282828;
-}
-
-.deviceItem span{
-    display:block;
-    color:#858585;
-    font-size:12px;
-    margin-bottom:5px;
-}
-
-.deviceItem strong{
-    color:#eee;
-    font-size:14px;
-    word-break:break-word;
-}
-
-.resultado{
-    display:none;
-    animation:entrada .45s ease;
-}
-
-@keyframes entrada{
-    from{
-        opacity:0;
-        transform:translateY(15px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.sensiGrid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-}
-
-.sensi{
-    padding:18px;
-    border-radius:15px;
-    background:linear-gradient(145deg,#181818,#111);
-    border:1px solid #292929;
-}
-
-.sensi span{
-    display:block;
-    color:#888;
-    font-size:12px;
-    margin-bottom:7px;
-}
-
-.sensi strong{
-    font-size:29px;
-    color:#ff3636;
-}
-
-.highlight{
-    margin-top:14px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.big{
-    padding:20px;
-    border-radius:16px;
-    background:linear-gradient(145deg,#261010,#151515);
-    border:1px solid #3a1717;
-}
-
-.big span{
-    color:#999;
-    font-size:12px;
-}
-
-.big strong{
-    display:block;
-    margin-top:5px;
-    color:#ff3b3b;
-    font-size:30px;
-}
-
-.bot{
-    margin-top:15px;
-    padding:20px;
-    border-radius:17px;
-    background:#131313;
-    border:1px solid #302020;
-}
-
-.botHeader{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:12px;
-}
-
-.botBadge{
-    padding:6px 9px;
-    border-radius:8px;
-    background:#2a0e0e;
-    color:#ff3c3c;
-    font-size:11px;
-    font-weight:bold;
-}
-
-.bot p{
-    color:#c5c5c5;
-    line-height:1.55;
-    font-size:14px;
-}
-
-.footer{
-    text-align:center;
-    color:#666;
-    font-size:12px;
-    line-height:1.7;
-    margin-top:25px;
-}
-
-@media(max-width:650px){
-    .grid,
-    .device{
-        grid-template-columns:1fr;
+  <style>
+    :root{
+      --bg:#0a0b0e;
+      --panel:#12161b;
+      --panel2:#171c21;
+      --line:#2b343d;
+      --text:#edf0f3;
+      --muted:#8b949d;
+      --red:#f03538;
+      --green:#6ac995;
+      --mono:Consolas,"Liberation Mono",monospace;
+      --sans:"Trebuchet MS","Segoe UI",sans-serif
     }
 
-    .sensiGrid{
-        grid-template-columns:repeat(2,1fr);
+    *{
+      box-sizing:border-box
     }
 
-    .highlight{
-        grid-template-columns:1fr;
+    html{
+      background:var(--bg);
+      scroll-behavior:smooth
+    }
+
+    body{
+      margin:0;
+      min-width:320px;
+      background:
+        radial-gradient(circle at 78% 10%,rgba(177,31,35,.12),transparent 29%),
+        var(--bg);
+      color:var(--text);
+      font-family:var(--sans)
+    }
+
+    button,
+    select{
+      font:inherit
+    }
+
+    button,
+    select{
+      outline:0
+    }
+
+    button:focus-visible,
+    select:focus-visible{
+      outline:2px solid var(--red);
+      outline-offset:3px
+    }
+
+    .shell{
+      min-height:100vh;
+      position:relative;
+      overflow:hidden
+    }
+
+    .grid{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity:.3;
+      background-image:
+        linear-gradient(rgba(255,255,255,.026) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.026) 1px,transparent 1px);
+      background-size:45px 45px;
+      mask-image:linear-gradient(#000,transparent 72%)
+    }
+
+    .top,
+    .hero,
+    .workspace,
+    .analyst,
+    .footer{
+      position:relative;
+      width:min(1180px,calc(100% - 52px));
+      margin:auto
+    }
+
+    .top{
+      min-height:78px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      display:flex;
+      align-items:center;
+      justify-content:space-between
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:11px
+    }
+
+    .mark{
+      display:flex;
+      align-items:flex-end;
+      gap:3px;
+      width:28px;
+      height:25px;
+      transform:skew(-12deg)
+    }
+
+    .mark i{
+      display:block;
+      width:7px;
+      background:var(--red);
+      border-radius:1px
+    }
+
+    .mark i:nth-child(1){
+      height:12px;
+      opacity:.55
+    }
+
+    .mark i:nth-child(2){
+      height:20px
+    }
+
+    .mark i:nth-child(3){
+      height:16px;
+      opacity:.8
+    }
+
+    .brand strong{
+      font-size:15px;
+      letter-spacing:.12em
+    }
+
+    .brand strong b{
+      color:var(--red)
+    }
+
+    .caption,
+    .mono,
+    .eyebrow,
+    .step,
+    .status,
+    .version,
+    .field span,
+    .privacy,
+    .signal,
+    .footer,
+    .hint{
+      font-family:var(--mono)
+    }
+
+    .caption{
+      color:#68717a;
+      font-size:7px;
+      letter-spacing:.2em;
+      margin-top:6px
+    }
+
+    .top-meta{
+      display:flex;
+      gap:26px;
+      align-items:center
+    }
+
+    .status{
+      color:#b3bdc5;
+      font-size:10px;
+      letter-spacing:.08em;
+      text-transform:uppercase
+    }
+
+    .dot,
+    .live-dot{
+      display:inline-block;
+      width:6px;
+      height:6px;
+      margin-right:8px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 0 4px rgba(106,201,149,.08)
+    }
+
+    .version{
+      color:#68717a;
+      font-size:9px;
+      letter-spacing:.1em
+    }
+
+    .hero{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      padding:77px 0 63px
+    }
+
+    .eyebrow,
+    .step{
+      color:var(--red);
+      font-size:10px;
+      font-weight:700;
+      letter-spacing:.16em
+    }
+
+    .eyebrow{
+      display:flex;
+      gap:10px;
+      align-items:center
+    }
+
+    .eyebrow:before{
+      content:"";
+      width:30px;
+      height:1px;
+      background:var(--red)
     }
 
     h1{
-        font-size:33px;
+      margin:21px 0 17px;
+      font-size:clamp(43px,6vw,72px);
+      line-height:.96;
+      letter-spacing:-.06em
+    }
+
+    h1 em{
+      color:var(--red);
+      font-style:normal
+    }
+
+    .hero p{
+      max-width:510px;
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.7
+    }
+
+    .local{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      padding:13px 15px;
+      border:1px solid var(--line);
+      background:rgba(20,24,29,.63)
+    }
+
+    .local b,
+    .local small{
+      display:block
+    }
+
+    .local b{
+      font:10px var(--mono);
+      letter-spacing:.09em;
+      text-transform:uppercase
+    }
+
+    .local small{
+      margin-top:5px;
+      color:#737c85;
+      font-size:10px
+    }
+
+    .workspace{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(0,1.07fr);
+      gap:18px
+    }
+
+    .card,
+    .analyst{
+      border:1px solid var(--line);
+      background:rgba(18,22,27,.92);
+      box-shadow:0 14px 38px rgba(0,0,0,.18)
     }
 
     .card{
-        padding:18px;
+      min-height:590px;
+      padding:29px
     }
-}
-</style>
+
+    .heading,
+    .result-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start
+    }
+
+    .heading h2,
+    .result h2{
+      margin:8px 0 0;
+      font-size:22px;
+      letter-spacing:-.025em
+    }
+
+    .detect{
+      display:flex;
+      gap:11px;
+      align-items:center;
+      margin-top:26px;
+      padding:13px 14px;
+      border:1px solid rgba(196,51,54,.27);
+      background:rgba(144,29,33,.08)
+    }
+
+    .detect .copy{
+      flex:1
+    }
+
+    .detect strong,
+    .detect small{
+      display:block
+    }
+
+    .detect strong{
+      font-size:11px
+    }
+
+    .detect small{
+      margin-top:4px;
+      color:#7d868e;
+      font-size:10px;
+      line-height:1.4
+    }
+
+    .ok{
+      color:var(--green)
+    }
+
+    .fields{
+      display:grid;
+      grid-template-columns:1fr 1.35fr;
+      gap:12px;
+      margin-top:24px
+    }
+
+    .field{
+      display:block
+    }
+
+    .field span{
+      display:block;
+      margin-bottom:8px;
+      color:#858e98;
+      font-size:9px;
+      letter-spacing:.12em;
+      text-transform:uppercase
+    }
+
+    .select{
+      position:relative
+    }
+
+    .select select{
+      width:100%;
+      appearance:none;
+      padding:13px 34px 13px 12px;
+      border:1px solid #323b44;
+      border-radius:4px;
+      background:var(--panel2);
+      color:#dce0e3;
+      font-size:12px;
+      cursor:pointer
+    }
+
+    .select:after{
+      content:"⌄";
+      position:absolute;
+      right:11px;
+      top:9px;
+      color:#78838c;
+      pointer-events:none
+    }
+
+    .rule{
+      height:1px;
+      margin:30px 0 27px;
+      background:var(--line)
+    }
+
+    .styles{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+      margin-top:21px
+    }
+
+    .style{
+      min-height:69px;
+      display:flex;
+      align-items:center;
+      gap:11px;
+      padding:11px 12px;
+      border:1px solid var(--line);
+      border-radius:4px;
+      background:#151b20;
+      color:var(--text);
+      text-align:left;
+      cursor:pointer;
+      transition:.2s
+    }
+
+    .style:hover{
+      border-color:#654043;
+      transform:translateY(-1px)
+    }
+
+    .style.active{
+      border-color:var(--red);
+      background:rgba(171,31,35,.1)
+    }
+
+    .radio{
+      width:14px;
+      height:14px;
+      flex:0 0 auto;
+      border:1px solid #65717c;
+      border-radius:50%;
+      display:grid;
+      place-items:center
+    }
+
+    .active .radio{
+      border-color:var(--red)
+    }
+
+    .radio i{
+      width:6px;
+      height:6px;
+      border-radius:50%;
+      background:transparent
+    }
+
+    .active .radio i{
+      background:var(--red)
+    }
+
+    .style b,
+    .style small{
+      display:block
+    }
+
+    .style b{
+      font-size:11px
+    }
+
+    .style small{
+      margin-top:5px;
+      color:#7c858e;
+      font-size:9px
+    }
+
+    .style .check{
+      margin-left:auto;
+      color:var(--red)
+    }
+
+    .actions{
+      display:flex;
+      gap:9px;
+      margin-top:27px
+    }
+
+    .generate{
+      min-height:48px;
+      flex:1;
+      border:1px solid var(--red);
+      border-radius:4px;
+      background:var(--red);
+      color:#fff;
+      font-size:11px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:.2s
+    }
+
+    .generate:hover{
+      background:#d9484b;
+      box-shadow:0 8px 22px rgba(193,43,47,.2);
+      transform:translateY(-1px)
+    }
+
+    .generate:disabled{
+      opacity:.75;
+      cursor:wait
+    }
+
+    .reset{
+      width:48px;
+      border:1px solid #333d46;
+      border-radius:4px;
+      background:#171c21;
+      color:#89939c;
+      cursor:pointer
+    }
+
+    .privacy{
+      display:flex;
+      justify-content:center;
+      gap:5px;
+      margin:13px 0 0;
+      color:#68717a;
+      font-size:9px
+    }
+
+    .results{
+      display:grid;
+      place-items:center;
+      min-height:590px
+    }
+
+    .empty{
+      text-align:center;
+      width:min(340px,100%)
+    }
+
+    .cross{
+      width:71px;
+      height:71px;
+      display:grid;
+      place-items:center;
+      margin:0 auto 24px;
+      border:1px solid #333b43;
+      border-radius:50%;
+      color:#69757e;
+      font-size:30px
+    }
+
+    .empty h2{
+      font-size:26px
+    }
+
+    .empty p{
+      margin:13px 0 23px;
+      color:#7e8891;
+      font-size:12px;
+      line-height:1.65
+    }
+
+    .hint{
+      display:inline-block;
+      padding:9px 12px;
+      border:1px solid #2b343c;
+      color:#929ba3;
+      font-size:9px
+    }
+
+    .result{
+      width:100%;
+      align-self:stretch
+    }
+
+    .ready{
+      padding:6px 8px;
+      border:1px solid rgba(103,201,145,.28);
+      color:var(--green);
+      font:8px var(--mono);
+      letter-spacing:.08em
+    }
+
+    .context{
+      display:flex;
+      gap:22px;
+      margin:24px 0 17px;
+      color:#89939b;
+      font-size:10px
+    }
+
+    .context strong{
+      color:#d7dce0
+    }
+
+    .settings{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px
+    }
+
+    .setting{
+      display:flex;
+      align-items:center;
+      gap:9px;
+      min-height:61px;
+      padding:10px 11px;
+      border:1px solid #2a333b;
+      background:#151a1f;
+      animation:rise .4s both
+    }
+
+    .setting .icon{
+      color:#8b959e
+    }
+
+    .setting .name{
+      flex:1;
+      min-width:0
+    }
+
+    .setting b,
+    .setting small{
+      display:block
+    }
+
+    .setting b{
+      font-size:10px
+    }
+
+    .setting small{
+      margin-top:4px;
+      color:#68727b;
+      font-size:8px
+    }
+
+    .value{
+      font:20px var(--mono);
+      letter-spacing:-.07em
+    }
+
+    .metrics{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+      margin-top:18px
+    }
+
+    .metric{
+      padding:15px 14px;
+      border:1px solid #2a333b;
+      background:#14191e
+    }
+
+    .metric span,
+    .metric small{
+      display:block;
+      color:#7b858e;
+      font:8px var(--mono);
+      letter-spacing:.1em
+    }
+
+    .metric b{
+      display:block;
+      margin:9px 0 3px;
+      font:25px var(--mono);
+      letter-spacing:-.08em
+    }
+
+    .metric small{
+      font:9px var(--sans);
+      letter-spacing:0
+    }
+
+    .metric.red{
+      border-color:rgba(189,46,50,.34)
+    }
+
+    .metric.red b{
+      color:var(--red)
+    }
+
+    .analyst{
+      display:flex;
+      align-items:flex-start;
+      gap:15px;
+      margin-top:18px;
+      padding:20px 23px;
+      background:linear-gradient(
+        100deg,
+        rgba(130,27,31,.1),
+        rgba(18,22,27,.92) 35%
+      )
+    }
+
+    .brain{
+      width:40px;
+      height:40px;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(203,52,55,.4);
+      color:var(--red);
+      flex:0 0 auto
+    }
+
+    .analyst-copy{
+      flex:1
+    }
+
+    .analyst-head{
+      display:flex;
+      justify-content:space-between;
+      gap:10px
+    }
+
+    .live{
+      color:#64717a;
+      font:8px var(--mono);
+      letter-spacing:.1em;
+      text-transform:uppercase
+    }
+
+    .analyst p{
+      margin:10px 0 0;
+      color:#929ba3;
+      font-size:11px;
+      line-height:1.65
+    }
+
+    .analyst p strong{
+      color:#e0e4e7
+    }
+
+    .signal{
+      align-self:center;
+      color:var(--green);
+      font-size:8px;
+      letter-spacing:.08em;
+      white-space:nowrap
+    }
+
+    .footer{
+      min-height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      color:#69747d;
+      font-size:9px
+    }
+
+    .footer .credit{
+      color:#59636d;
+      font:10px var(--sans)
+    }
+
+    .footer .left{
+      display:flex;
+      align-items:center;
+      gap:9px
+    }
+
+    .footer .mini{
+      transform:scale(.65);
+      transform-origin:left center;
+      margin-right:-8px
+    }
+
+    .footer i{
+      color:#59636d;
+      font-style:normal
+    }
+
+    @keyframes rise{
+      from{
+        opacity:0;
+        transform:translateY(10px)
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0)
+      }
+    }
+
+    @media(max-width:820px){
+      .top,
+      .hero,
+      .workspace,
+      .analyst,
+      .footer{
+        width:min(100% - 32px,620px)
+      }
+
+      .hero{
+        display:block;
+        padding:58px 0 42px
+      }
+
+      .local{
+        width:max-content;
+        margin-top:28px
+      }
+
+      .workspace{
+        grid-template-columns:1fr
+      }
+
+      .card,
+      .results{
+        min-height:auto
+      }
+
+      .results{
+        min-height:520px
+      }
+
+      .footer{
+        flex-wrap:wrap;
+        padding:15px 0 23px
+      }
+
+      .credit{
+        width:100%
+      }
+
+      .version{
+        display:none
+      }
+    }
+
+    @media(max-width:510px){
+      .top,
+      .hero,
+      .workspace,
+      .analyst,
+      .footer{
+        width:calc(100% - 28px)
+      }
+
+      .top{
+        min-height:68px
+      }
+
+      .status{
+        font-size:8px
+      }
+
+      .hero{
+        padding-top:47px
+      }
+
+      .hero h1{
+        font-size:48px
+      }
+
+      .card{
+        padding:21px
+      }
+
+      .fields,
+      .styles,
+      .settings,
+      .metrics{
+        grid-template-columns:1fr
+      }
+
+      .context{
+        flex-direction:column;
+        gap:8px
+      }
+
+      .analyst{
+        padding:17px
+      }
+
+      .signal{
+        display:none
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <main class="shell">
+    <div class="grid"></div>
 
-<div class="container">
-
-<header class="header">
-
-    <div class="logoBox">
-        <!-- Para colocar sua logo, use:
-        <img src="logo.png" alt="GOAT SENSI">
-        -->
-
-        <div class="logoText">GS</div>
-    </div>
-
-    <h1>GOAT SENSI</h1>
-
-    <p class="subtitle">
-        Sensibilidade inteligente para Free Fire
-    </p>
-
-    <div class="server">
-        <span class="online"></span>
-        SERVIDOR ONLINE
-        <span>•</span>
-        <span id="serverStatus">ATIVO</span>
-    </div>
-
-</header>
-
-
-<!-- IDENTIFICAÇÃO -->
-
-<div class="card">
-
-    <div class="cardTitle">
-        <div class="icon">ID</div>
-        <h2>Identificação do dispositivo</h2>
-    </div>
-
-    <div class="device">
-
-        <div class="deviceItem">
-            <span>Fabricante detectado</span>
-            <strong id="detectFabricante">Analisando...</strong>
+    <header class="top">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">
+          <i></i>
+          <i></i>
+          <i></i>
         </div>
 
-        <div class="deviceItem">
-            <span>Dispositivo</span>
-            <strong id="detectModelo">Analisando...</strong>
+        <div>
+          <strong>GOAT <b>SENSI</b></strong>
+          <div class="caption">FREE FIRE CONFIGURATOR</div>
+        </div>
+      </div>
+
+      <div class="top-meta">
+        <div class="status">
+          <span class="dot"></span>
+          Servidor online
         </div>
 
-    </div>
-
-</div>
-
-
-<!-- CONFIGURAÇÃO -->
-
-<div class="card">
-
-    <div class="cardTitle">
-        <div class="icon">⚙</div>
-        <h2>Configurar Sensi</h2>
-    </div>
-
-    <div class="grid">
-
-        <div class="field">
-
-            <label for="fabricante">
-                Fabricante
-            </label>
-
-            <select id="fabricante">
-
-                <option value="">
-                    Selecione o fabricante
-                </option>
-
-                <option value="Samsung">
-                    Samsung
-                </option>
-
-                <option value="Motorola">
-                    Motorola
-                </option>
-
-                <option value="Xiaomi">
-                    Xiaomi
-                </option>
-
-            </select>
-
+        <div class="version">
+          v2.4.0 · LOCAL ENGINE
         </div>
+      </div>
+    </header>
 
+    <section class="hero">
+      <div>
+        <div class="eyebrow">AJUSTE DE COMPETIÇÃO</div>
 
-        <div class="field">
+        <h1>
+          Jogue no seu<br>
+          <em>ponto máximo.</em>
+        </h1>
 
-            <label for="modelo">
-                Modelo
-            </label>
-
-            <select id="modelo">
-
-                <option value="">
-                    Selecione o modelo
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <div class="field">
-
-            <label for="estilo">
-                Estilo de jogo
-            </label>
-
-            <select id="estilo">
-
-                <option value="">
-                    Selecione
-                </option>
-
-                <option value="rush">
-                    Rush / Agressivo
-                </option>
-
-                <option value="precisao">
-                    Precisão
-                </option>
-
-                <option value="misto">
-                    Misto
-                </option>
-
-                <option value="capa">
-                    Foco em capa
-                </option>
-
-            </select>
-
-        </div>
-
-    </div>
-
-    <button class="button" id="gerar">
-        GERAR SENSI + DPI
-    </button>
-
-</div>
-
-
-<!-- RESULTADO -->
-
-<div class="card resultado" id="resultado">
-
-    <div class="cardTitle">
-        <div class="icon">GO</div>
-        <h2>Sensi gerada</h2>
-    </div>
-
-
-    <div class="sensiGrid">
-
-        <div class="sensi">
-            <span>Geral</span>
-            <strong id="geral">0</strong>
-        </div>
-
-        <div class="sensi">
-            <span>Ponto Vermelho</span>
-            <strong id="redDot">0</strong>
-        </div>
-
-        <div class="sensi">
-            <span>Mira 2x</span>
-            <strong id="mira2">0</strong>
-        </div>
-
-        <div class="sensi">
-            <span>Mira 4x</span>
-            <strong id="mira4">0</strong>
-        </div>
-
-        <div class="sensi">
-            <span>AWM</span>
-            <strong id="awm">0</strong>
-        </div>
-
-        <div class="sensi">
-            <span>Olhadinha</span>
-            <strong id="olhadinha">0</strong>
-        </div>
-
-    </div>
-
-
-    <div class="highlight">
-
-        <div class="big">
-            <span>DPI RECOMENDADO</span>
-            <strong id="dpi">0</strong>
-        </div>
-
-        <div class="big">
-            <span>BOTÃO DE DISPARO</span>
-            <strong id="botao">0%</strong>
-        </div>
-
-    </div>
-
-
-    <!-- BOT ANALISTA -->
-
-    <div class="bot">
-
-        <div class="botHeader">
-
-            <div class="icon">AI</div>
-
-            <strong>BOT ANALISTA</strong>
-
-            <span class="botBadge">
-                ANÁLISE
-            </span>
-
-        </div>
-
-        <p id="analise">
-            Gere uma configuração para receber a análise.
+        <p>
+          Uma configuração precisa para o seu aparelho, seu estilo e sua próxima partida.
+          Sem chute. Sem preset genérico.
         </p>
+      </div>
 
+      <div class="local">
+        <span style="color:var(--red)">◉</span>
+
+        <div>
+          <b>100% local</b>
+          <small>Seus dados não saem do navegador</small>
+        </div>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <section class="card">
+        <div class="heading">
+          <div>
+            <div class="step">01 / DISPOSITIVO</div>
+            <h2>Onde você joga?</h2>
+          </div>
+
+          <span style="color:#87919a;font-size:21px">▣</span>
+        </div>
+
+        <div class="detect">
+          <span style="color:var(--red);font-size:20px">⌁</span>
+
+          <div class="copy">
+            <strong id="detectTitle">
+              Fabricante não identificado
+            </strong>
+
+            <small id="detectText">
+              Não inventamos o modelo. Selecione sua marca para continuar.
+            </small>
+          </div>
+
+          <span id="detectCheck" class="ok">✓</span>
+        </div>
+
+        <div class="fields">
+          <label class="field">
+            <span>Fabricante</span>
+
+            <div class="select">
+              <select id="manufacturer"></select>
+            </div>
+          </label>
+
+          <label class="field">
+            <span>Modelo real</span>
+
+            <div class="select">
+              <select id="model"></select>
+            </div>
+          </label>
+        </div>
+
+        <div class="rule"></div>
+
+        <div class="heading">
+          <div>
+            <div class="step">02 / PERFIL</div>
+            <h2>Como você joga?</h2>
+          </div>
+
+          <span style="color:var(--red);font-size:20px">ϟ</span>
+        </div>
+
+        <div
+          class="styles"
+          id="styles"
+          role="radiogroup"
+          aria-label="Estilo de jogo"
+        ></div>
+
+        <div class="actions">
+          <button class="generate" id="generate">
+            Gerar minha sensibilidade　→
+          </button>
+
+          <button
+            class="reset"
+            id="reset"
+            aria-label="Limpar configuração"
+          >
+            ↻
+          </button>
+        </div>
+
+        <div class="privacy">
+          ✓ Processamento local · Nenhum dado é armazenado
+        </div>
+      </section>
+
+      <section
+        class="card results"
+        id="results"
+        aria-live="polite"
+      >
+        <div class="empty" id="empty">
+          <div class="cross">◎</div>
+
+          <div
+            class="step"
+            style="color:#87919a"
+          >
+            PRONTO PARA CALCULAR
+          </div>
+
+          <h2>Sua mira começa aqui.</h2>
+
+          <p>
+            Escolha o aparelho e o estilo ao lado. O GOAT SENSI combina os dois
+            para criar um ajuste jogável, não um número aleatório.
+          </p>
+
+          <div class="hint">
+            ⓘ Você pode gerar novamente sempre que mudar seu estilo.
+          </div>
+        </div>
+
+        <div
+          class="result"
+          id="result"
+          hidden
+        ></div>
+      </section>
     </div>
 
-</div>
-
-
-<div class="footer">
-
-    GOAT SENSI<br>
-
-    Desenvolvido por Miguel Sanches Carrion
-    & Thalles Vinícius Rios Gazda
-
-</div>
-
-</div>
-
-
-<script>
-
-var DADOS = {
-
-Samsung: [
-"Galaxy A05","Galaxy A05s","Galaxy A06","Galaxy A07",
-"Galaxy A12","Galaxy A13","Galaxy A14","Galaxy A15",
-"Galaxy A16","Galaxy A17","Galaxy A22","Galaxy A23",
-"Galaxy A24","Galaxy A25","Galaxy A32","Galaxy A33",
-"Galaxy A34","Galaxy A35","Galaxy A42","Galaxy A51",
-"Galaxy A52","Galaxy A53","Galaxy A54","Galaxy A55",
-"Galaxy A56","Galaxy A72","Galaxy A73",
-"Galaxy M12","Galaxy M13","Galaxy M14","Galaxy M15",
-"Galaxy M21","Galaxy M23","Galaxy M32","Galaxy M33",
-"Galaxy M34","Galaxy M35","Galaxy M52","Galaxy M54",
-"Galaxy S20","Galaxy S20 FE","Galaxy S21","Galaxy S21 FE",
-"Galaxy S22","Galaxy S22 Plus","Galaxy S22 Ultra",
-"Galaxy S23","Galaxy S23 Plus","Galaxy S23 Ultra",
-"Galaxy S24","Galaxy S24 Plus","Galaxy S24 Ultra",
-"Galaxy S24 FE","Galaxy S25","Galaxy S25 Plus",
-"Galaxy S25 Ultra","Galaxy S25 FE","Galaxy S26",
-"Galaxy S26 Plus","Galaxy S26 Ultra",
-"Galaxy Note 10","Galaxy Note 10 Plus",
-"Galaxy Note 20","Galaxy Note 20 Ultra",
-"Galaxy Z Flip 3","Galaxy Z Flip 4","Galaxy Z Flip 5",
-"Galaxy Z Flip 6","Galaxy Z Flip 7",
-"Galaxy Z Fold 3","Galaxy Z Fold 4","Galaxy Z Fold 5",
-"Galaxy Z Fold 6","Galaxy Z Fold 7"
-],
-
-Motorola: [
-"Moto E6","Moto E7","Moto E13","Moto E20","Moto E22",
-"Moto E22s","Moto E32","Moto E40",
-"Moto G5","Moto G6","Moto G7","Moto G8","Moto G8 Play",
-"Moto G8 Power","Moto G9 Play","Moto G9 Power","Moto G10",
-"Moto G20","Moto G22","Moto G23","Moto G24",
-"Moto G24 Power","Moto G30","Moto G31","Moto G32",
-"Moto G34","Moto G35","Moto G40 Fusion","Moto G41",
-"Moto G42","Moto G50","Moto G51","Moto G52","Moto G53",
-"Moto G54","Moto G55","Moto G56","Moto G60","Moto G62",
-"Moto G71","Moto G72","Moto G73","Moto G75","Moto G82",
-"Moto G84","Moto G85",
-"Motorola Edge","Motorola Edge 20","Motorola Edge 20 Lite",
-"Motorola Edge 20 Pro","Motorola Edge 30",
-"Motorola Edge 30 Neo","Motorola Edge 30 Fusion",
-"Motorola Edge 30 Pro","Motorola Edge 40",
-"Motorola Edge 40 Neo","Motorola Edge 40 Pro",
-"Motorola Edge 50 Fusion","Motorola Edge 50 Neo",
-"Motorola Edge 50 Pro","Motorola Edge 50 Ultra",
-"Motorola Edge 60 Fusion","Motorola Edge 60 Neo",
-"Motorola Edge 60 Pro","Motorola Edge 70 Fusion",
-"Motorola Razr 40","Motorola Razr 40 Ultra",
-"Motorola Razr 50","Motorola Razr 50 Ultra",
-"Motorola Razr 60","Motorola Razr 60 Ultra"
-],
-
-Xiaomi: [
-"Redmi 9","Redmi 9A","Redmi 9C","Redmi 10","Redmi 10C",
-"Redmi 12C","Redmi 12","Redmi 13C","Redmi 13",
-"Redmi 14C","Redmi 15C",
-"Redmi Note 8","Redmi Note 9","Redmi Note 10",
-"Redmi Note 11","Redmi Note 12","Redmi Note 13",
-"Redmi Note 14","Redmi Note 14 Pro",
-"Redmi Note 14 Pro Plus","Redmi Note 15",
-"POCO X3","POCO X3 NFC","POCO X3 Pro","POCO X4 Pro",
-"POCO X5","POCO X5 Pro","POCO X6","POCO X6 Pro",
-"POCO X7","POCO X7 Pro",
-"POCO F3","POCO F4","POCO F5","POCO F6","POCO F7",
-"Xiaomi 12","Xiaomi 12 Lite","Xiaomi 12 Pro",
-"Xiaomi 13","Xiaomi 13 Lite","Xiaomi 13 Pro",
-"Xiaomi 14","Xiaomi 14T","Xiaomi 14T Pro",
-"Xiaomi 15","Xiaomi 15T","Xiaomi 15T Pro"
-]
-
-};
-
-
-var fabricante = document.getElementById("fabricante");
-var modelo = document.getElementById("modelo");
-var estilo = document.getElementById("estilo");
-var gerar = document.getElementById("gerar");
-
-
-/* MODELOS */
-
-function carregarModelos(nome){
-
-    modelo.innerHTML =
-        '<option value="">Selecione o modelo</option>';
-
-    if(!nome || !DADOS[nome]){
-        return;
-    }
-
-    var i;
-
-    for(i=0;i<DADOS[nome].length;i++){
-
-        var op = document.createElement("option");
-
-        op.value = DADOS[nome][i];
-        op.textContent = DADOS[nome][i];
-
-        modelo.appendChild(op);
-    }
-}
-
-
-fabricante.addEventListener("change",function(){
-
-    carregarModelos(fabricante.value);
-
-});
-
-
-/* IDENTIFICAÇÃO */
-
-function identificarDispositivo(){
-
-    var ua = navigator.userAgent || navigator.platform || "";
-
-    var texto = ua.toLowerCase();
-
-    var fabricanteDetectado = "Não identificado";
-    var modeloDetectado = "Navegador não informa o modelo exato";
-
-    if(texto.indexOf("samsung") >= 0){
-        fabricanteDetectado = "Samsung";
-    }
-
-    else if(
-        texto.indexOf("motorola") >= 0 ||
-        texto.indexOf("moto") >= 0
-    ){
-        fabricanteDetectado = "Motorola";
-    }
-
-    else if(
-        texto.indexOf("xiaomi") >= 0 ||
-        texto.indexOf("redmi") >= 0 ||
-        texto.indexOf("poco") >= 0
-    ){
-        fabricanteDetectado = "Xiaomi";
-    }
-
-    /*
-       Alguns navegadores Android deixam o modelo
-       disponível no User-Agent.
-    */
-
-    var partes = ua.match(/Android[^;]*;\s*([^;)]+)(?:Build\/([^;)]+))?/i);
-
-    if(partes && partes[1]){
-
-        var possivel = partes[1].trim();
-
-        if(
-            possivel &&
-            possivel.toLowerCase() !== "wv" &&
-            possivel.toLowerCase() !== "mobile"
-        ){
-            modeloDetectado = possivel;
-        }
-    }
-
-    document.getElementById("detectFabricante").textContent =
-        fabricanteDetectado;
-
-    document.getElementById("detectModelo").textContent =
-        modeloDetectado;
-}
-
-
-identificarDispositivo();
-
-
-/* ALEATORIEDADE */
-
-function aleatorio(min,max){
-
-    return Math.floor(
-        Math.random()*(max-min+1)
-    )+min;
-
-}
-
-
-/*
-   PERFIS DE DESEMPENHO
-
-   A geração muda conforme a família do aparelho.
-*/
-
-function perfilModelo(nome){
-
-    var n = nome.toLowerCase();
-
-    var perfil = {
-        base:90,
-        dpiMin:400,
-        dpiMax:480,
-        botMin:44,
-        botMax:52
-    };
-
-
-    if(
-        n.indexOf("a05")>=0 ||
-        n.indexOf("a06")>=0 ||
-        n.indexOf("a07")>=0 ||
-        n.indexOf("a12")>=0 ||
-        n.indexOf("a13")>=0
-    ){
-        perfil.base=87;
-        perfil.dpiMin=380;
-        perfil.dpiMax=440;
-        perfil.botMin=46;
-        perfil.botMax=53;
-    }
-
-
-    if(
-        n.indexOf("a14")>=0 ||
-        n.indexOf("a15")>=0 ||
-        n.indexOf("a16")>=0 ||
-        n.indexOf("a17")>=0 ||
-        n.indexOf("a24")>=0 ||
-        n.indexOf("a25")>=0 ||
-        n.indexOf("a34")>=0 ||
-        n.indexOf("a35")>=0 ||
-        n.indexOf("a54")>=0 ||
-        n.indexOf("a55")>=0 ||
-        n.indexOf("a56")>=0
-    ){
-        perfil.base=93;
-        perfil.dpiMin=420;
-        perfil.dpiMax=500;
-        perfil.botMin=45;
-        perfil.botMax=52;
-    }
-
-
-    if(
-        n.indexOf("s20")>=0 ||
-        n.indexOf("s21")>=0 ||
-        n.indexOf("s22")>=0 ||
-        n.indexOf("s23")>=0 ||
-        n.indexOf("s24")>=0 ||
-        n.indexOf("s25")>=0 ||
-        n.indexOf("s26")>=0 ||
-        n.indexOf("fold")>=0 ||
-        n.indexOf("flip")>=0
-    ){
-        perfil.base=97;
-        perfil.dpiMin=450;
-        perfil.dpiMax=560;
-        perfil.botMin=43;
-        perfil.botMax=50;
-    }
-
-
-    if(n.indexOf("moto e")>=0){
-        perfil.base=86;
-        perfil.dpiMin=380;
-        perfil.dpiMax=430;
-        perfil.botMin=47;
-        perfil.botMax=54;
-    }
-
-
-    if(n.indexOf("moto g")>=0){
-        perfil.base=91;
-        perfil.dpiMin=400;
-        perfil.dpiMax=480;
-        perfil.botMin=45;
-        perfil.botMax=53;
-    }
-
-
-    if(n.indexOf("edge")>=0 || n.indexOf("razr")>=0){
-        perfil.base=97;
-        perfil.dpiMin=450;
-        perfil.dpiMax=560;
-        perfil.botMin=43;
-        perfil.botMax=50;
-    }
-
-
-    if(
-        n.indexOf("redmi note")>=0 ||
-        n.indexOf("poco x")>=0
-    ){
-        perfil.base=94;
-        perfil.dpiMin=430;
-        perfil.dpiMax=520;
-        perfil.botMin=44;
-        perfil.botMax=51;
-    }
-
-
-    if(
-        n.indexOf("poco f")>=0 ||
-        n.indexOf("xiaomi 13")>=0 ||
-        n.indexOf("xiaomi 14")>=0 ||
-        n.indexOf("xiaomi 15")>=0
-    ){
-        perfil.base=98;
-        perfil.dpiMin=460;
-        perfil.dpiMax=580;
-        perfil.botMin=42;
-        perfil.botMax=49;
-    }
-
-
-    return perfil;
-
-}
-
-
-/* GERADOR */
-
-function gerarConfiguracao(){
-
-    if(modelo.value===""){
-        alert("Selecione o modelo.");
-        return;
-    }
-
-    if(estilo.value===""){
-        alert("Selecione seu estilo de jogo.");
-        return;
-    }
-
-
-    var perfil = perfilModelo(modelo.value);
-
-    var base = perfil.base;
-
-
-    if(estilo.value==="rush"){
-        base += 4;
-    }
-
-    if(estilo.value==="precisao"){
-        base -= 3;
-    }
-
-    if(estilo.value==="capa"){
-        base += 5;
-    }
-
-
-    var geral = Math.max(
-        60,
-        Math.min(200,base+aleatorio(-2,2))
-    );
-
-    var redDot = Math.max(
-        55,
-        geral-aleatorio(1,5)
-    );
-
-    var mira2 = Math.max(
-        50,
-        geral-aleatorio(6,12)
-    );
-
-    var mira4 = Math.max(
-        40,
-        geral-aleatorio(13,22)
-    );
-
-    var awm = Math.max(
-        30,
-        geral-aleatorio(22,34)
-    );
-
-    var olhadinha = Math.max(
-        55,
-        geral-aleatorio(1,7)
-    );
-
-
-    var dpi = aleatorio(
-        perfil.dpiMin,
-        perfil.dpiMax
-    );
-
-
-    var botao = aleatorio(
-        perfil.botMin,
-        perfil.botMax
-    );
-
-
-    if(estilo.value==="capa"){
-        botao += 1;
-    }
-
-
-    document.getElementById("geral").textContent=geral;
-    document.getElementById("redDot").textContent=redDot;
-    document.getElementById("mira2").textContent=mira2;
-    document.getElementById("mira4").textContent=mira4;
-    document.getElementById("awm").textContent=awm;
-    document.getElementById("olhadinha").textContent=olhadinha;
-
-    document.getElementById("dpi").textContent=dpi;
-
-    document.getElementById("botao").textContent=
-        botao+"%";
-
-
-    /* BOT ANALISTA */
-
-    var analise="";
-
-
-    if(estilo.value==="rush"){
-
-        analise =
-        "O perfil do <strong>"+modelo.value+
-        "</strong> foi ajustado para um estilo agressivo. "+
-        "A Sensi Geral está mais alta para facilitar movimentos "+
-    
+    <section class="analyst">
+      <div class="brain">◉</div>
+
+      <div class="analyst-copy">
+        <div class="analyst-head">
+          <div class="step">
+            GOAT ANALYST / LEITURA DO AJUSTE
+          </div>
+
+          <div class="live">
+            <span class="live-dot"></span>
+            análise local
+          </div>
+        </div>
+
+        <p id="analysis">
+          Selecione seus dados para receber uma leitura objetiva do ajuste:
+          o que muda no seu aparelho, qual distância ele favorece e como o
+          perfil escolhido conversa com seu jeito de jogar.
+        </p>
+      </div>
+
+      <div
+        class="signal"
+        id="signal"
+      >
+        AGUARDANDO DADOS
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="left">
+        <div class="mark mini">
