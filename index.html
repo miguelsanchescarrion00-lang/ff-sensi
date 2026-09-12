@@ -1,1203 +1,223 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>GOAT SENSI</title>
-
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-
-body{
-font-family:Arial,sans-serif;
-background:#030303;
-color:#fff;
-min-height:100vh;
-}
-
-body:before{
-content:"";
-position:fixed;
-inset:0;
-z-index:-1;
-background:
-linear-gradient(rgba(255,23,68,.025) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,23,68,.025) 1px,transparent 1px);
-background-size:35px 35px;
-}
-
-.container{
-width:min(950px,92%);
-margin:auto;
-padding:35px 0;
-}
-
-.header{text-align:center;margin-bottom:25px}
-
-.logo{
-font-size:48px;
-font-weight:1000;
-letter-spacing:-3px;
-}
-
-.logo span{color:#ff1744}
-
-.status{
-margin-top:8px;
-font-size:12px;
-font-weight:900;
-color:#00e676;
-}
-
-.status i{
-display:inline-block;
-width:8px;
-height:8px;
-border-radius:50%;
-background:#00e676;
-margin-right:5px;
-box-shadow:0 0 10px #00e676;
-}
-
-.subtitle{
-margin-top:8px;
-color:#777;
-font-size:14px;
-}
-
-.badge{
-display:inline-block;
-margin-top:13px;
-padding:7px 13px;
-border-radius:30px;
-background:#100307;
-border:1px solid #4a0d1c;
-color:#ff4968;
-font-size:11px;
-font-weight:900;
-}
-
-.card{
-background:#080808;
-border:1px solid #242424;
-border-radius:22px;
-padding:25px;
-box-shadow:0 20px 70px rgba(0,0,0,.5);
-}
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:16px;
-}
-
-.field{
-display:flex;
-flex-direction:column;
-gap:8px;
-}
-
-.full{grid-column:1/-1}
-
-label{
-font-size:11px;
-font-weight:900;
-color:#aaa;
-text-transform:uppercase;
-}
-
-select{
-width:100%;
-height:53px;
-padding:0 15px;
-border-radius:13px;
-border:1px solid #292929;
-background:#111;
-color:#fff;
-font-size:15px;
-outline:none;
-}
-
-select:focus{
-border-color:#ff1744;
-}
-
-.generate{
-width:100%;
-height:57px;
-margin-top:22px;
-border:0;
-border-radius:14px;
-background:linear-gradient(135deg,#c90029,#ff1744);
-color:#fff;
-font-weight:1000;
-cursor:pointer;
-font-size:15px;
-}
-
-.aviso{
-display:none;
-margin-top:14px;
-padding:13px;
-border-radius:11px;
-background:#21070d;
-border:1px solid #7c1028;
-color:#ff617d;
-text-align:center;
-font-size:13px;
-}
-
-.resultado{
-display:none;
-margin-top:23px;
-padding:21px;
-border-radius:18px;
-background:#080808;
-border:1px solid #35101a;
-}
-
-.result-title{
-text-align:center;
-font-size:21px;
-font-weight:1000;
-color:#ff1744;
-}
-
-.result-device{
-text-align:center;
-color:#777;
-font-size:13px;
-margin:7px 0 20px;
-}
-
-.sensi-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
-.sensi{
-background:#101010;
-border:1px solid #222;
-border-radius:12px;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.sensi span{
-color:#bbb;
-font-size:13px;
-}
-
-.sensi strong{
-background:#e50932;
-padding:7px 11px;
-border-radius:8px;
-min-width:45px;
-text-align:center;
-}
-
-.section-title{
-margin:20px 0 10px;
-font-size:14px;
-font-weight:1000;
-color:#ff1744;
-}
-
-.extra-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
-.extra{
-padding:16px;
-background:#101010;
-border:1px solid #242424;
-border-radius:12px;
-}
-
-.extra span{
-display:block;
-font-size:11px;
-color:#777;
-text-transform:uppercase;
-font-weight:900;
-margin-bottom:6px;
-}
-
-.extra strong{
-font-size:20px;
-}
-
-.analysis{
-margin-top:15px;
-padding:15px;
-background:#0d0d0d;
-border-left:3px solid #e50932;
-border-radius:8px;
-color:#aaa;
-font-size:13px;
-line-height:1.6;
-}
-
-.quality{
-margin-top:14px;
-padding:14px;
-background:#0b0b0b;
-border:1px solid #1e1e1e;
-border-radius:10px;
-}
-
-.quality-top{
-display:flex;
-justify-content:space-between;
-font-size:12px;
-color:#999;
-margin-bottom:8px;
-}
-
-.quality-top b{color:#ff1744}
-
-.bar{
-height:7px;
-background:#1d1d1d;
-border-radius:20px;
-overflow:hidden;
-}
-
-.fill{
-height:100%;
-width:0;
-background:#ff1744;
-transition:1s;
-}
-
-.ai{
-margin-top:20px;
-padding:20px;
-border-radius:17px;
-background:#0b0b0b;
-border:1px solid #3b101c;
-}
-
-.ai-title{
-font-size:17px;
-font-weight:1000;
-margin-bottom:14px;
-}
-
-.score{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px;
-background:#101010;
-border-radius:13px;
-}
-
-.score span{color:#999;font-size:12px}
-
-.score strong{
-font-size:28px;
-color:#ff1744;
-}
-
-.tags{
-display:flex;
-flex-wrap:wrap;
-gap:7px;
-margin-top:12px;
-}
-
-.tag{
-padding:7px 10px;
-border-radius:20px;
-background:#151515;
-border:1px solid #2c2c2c;
-color:#ccc;
-font-size:11px;
-font-weight:800;
-}
-
-.tag.special{
-color:#ff4968;
-border-color:#541021;
-}
-
-.ai-text{
-margin-top:13px;
-padding:14px;
-background:#090909;
-border-left:2px solid #ff1744;
-border-radius:10px;
-color:#aaa;
-font-size:13px;
-line-height:1.6;
-}
-
-.actions{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:15px;
-}
-
-.action{
-height:48px;
-border-radius:11px;
-border:1px solid #292929;
-background:#121212;
-color:#fff;
-font-weight:900;
-cursor:pointer;
-}
-
-.contact{
-margin-top:23px;
-padding:25px;
-background:#080808;
-border:1px solid #242424;
-border-radius:20px;
-text-align:center;
-}
-
-.contact h2{
-color:#ff1744;
-font-size:21px;
-margin-bottom:8px;
-}
-
-.contact p{
-color:#888;
-font-size:13px;
-}
-
-.whatsapp{
-display:inline-block;
-margin-top:16px;
-padding:13px 21px;
-border-radius:12px;
-background:#151515;
-border:1px solid #292929;
-color:#fff;
-text-decoration:none;
-font-weight:900;
-}
-
-.donation{
-margin-top:19px;
-padding:18px;
-background:#101010;
-border:1px solid #292929;
-border-radius:14px;
-}
-
-.donation h3{margin-bottom:7px}
-
-.donation p{
-color:#999;
-font-size:13px;
-line-height:1.5;
-}
-
-.donation b{color:#ff1744}
-
-.credits{
-text-align:center;
-color:#555;
-font-size:12px;
-margin-top:25px;
-line-height:1.6;
-}
-
-@media(max-width:650px){
-.container{padding:25px 0}
-.logo{font-size:37px}
-.grid{grid-template-columns:1fr}
-.full{grid-column:auto}
-.sensi-grid,.extra-grid,.actions{grid-template-columns:1fr}
-.card{padding:19px}
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<header class="header">
-
-<div class="logo">
-GOAT <span>SENSI</span>
-</div>
-
-<div class="status">
-<i></i>SERVIDOR ATIVO
-</div>
-
-<div class="subtitle">
-Gerador inteligente de sensibilidade para Free Fire
-</div>
-
-<div class="badge">
-MOTOR GOAT • ANÁLISE INTELIGENTE
-</div>
-
-</header>
-
-<main class="card">
-
-<div class="grid">
-
-<div class="field">
-<label>Jogo</label>
-
-<select id="jogo">
-<option value="">Selecione</option>
-<option value="normal">Free Fire</option>
-<option value="max">Free Fire MAX</option>
-</select>
-</div>
-
-
-<div class="field">
-<label>Fabricante</label>
-
-<!-- AQUI ESTÁ A CORREÇÃO PRINCIPAL -->
-<select id="fabricante" onchange="carregarModelos(this.value)">
-<option value="">Selecione</option>
-<option value="Samsung">Samsung</option>
-<option value="Xiaomi">Xiaomi</option>
-<option value="Motorola">Motorola</option>
-</select>
-
-</div>
-
-
-<div class="field full">
-
-<label>Modelo</label>
-
-<select id="modelo">
-<option value="">Selecione primeiro o fabricante</option>
-
-<!-- SAMSUNG -->
-<optgroup label="Samsung" id="grupoSamsung">
-
-<option value="Samsung|Galaxy A05">Galaxy A05</option>
-<option value="Samsung|Galaxy A05s">Galaxy A05s</option>
-<option value="Samsung|Galaxy A06">Galaxy A06</option>
-<option value="Samsung|Galaxy A12">Galaxy A12</option>
-<option value="Samsung|Galaxy A13">Galaxy A13</option>
-<option value="Samsung|Galaxy A14">Galaxy A14</option>
-<option value="Samsung|Galaxy A15">Galaxy A15</option>
-<option value="Samsung|Galaxy A16">Galaxy A16</option>
-<option value="Samsung|Galaxy A17">Galaxy A17</option>
-<option value="Samsung|Galaxy A22">Galaxy A22</option>
-<option value="Samsung|Galaxy A23">Galaxy A23</option>
-<option value="Samsung|Galaxy A24">Galaxy A24</option>
-<option value="Samsung|Galaxy A25">Galaxy A25</option>
-<option value="Samsung|Galaxy A32">Galaxy A32</option>
-<option value="Samsung|Galaxy A33">Galaxy A33</option>
-<option value="Samsung|Galaxy A34">Galaxy A34</option>
-<option value="Samsung|Galaxy A52">Galaxy A52</option>
-<option value="Samsung|Galaxy A53">Galaxy A53</option>
-<option value="Samsung|Galaxy A54">Galaxy A54</option>
-<option value="Samsung|Galaxy A55">Galaxy A55</option>
-<option value="Samsung|Galaxy A72">Galaxy A72</option>
-<option value="Samsung|Galaxy S20">Galaxy S20</option>
-<option value="Samsung|Galaxy S21">Galaxy S21</option>
-<option value="Samsung|Galaxy S22">Galaxy S22</option>
-<option value="Samsung|Galaxy S23">Galaxy S23</option>
-<option value="Samsung|Galaxy S24">Galaxy S24</option>
-<option value="Samsung|Galaxy S25">Galaxy S25</option>
-
-</optgroup>
-
-
-<!-- XIAOMI -->
-<optgroup label="Xiaomi" id="grupoXiaomi">
-
-<option value="Xiaomi|Redmi Note 8">Redmi Note 8</option>
-<option value="Xiaomi|Redmi Note 9">Redmi Note 9</option>
-<option value="Xiaomi|Redmi Note 10">Redmi Note 10</option>
-<option value="Xiaomi|Redmi Note 11">Redmi Note 11</option>
-<option value="Xiaomi|Redmi Note 12">Redmi Note 12</option>
-<option value="Xiaomi|Redmi Note 13">Redmi Note 13</option>
-<option value="Xiaomi|Redmi Note 14">Redmi Note 14</option>
-<option value="Xiaomi|POCO X3">POCO X3</option>
-<option value="Xiaomi|POCO X4">POCO X4</option>
-<option value="Xiaomi|POCO X5">POCO X5</option>
-<option value="Xiaomi|POCO X6">POCO X6</option>
-<option value="Xiaomi|POCO F5">POCO F5</option>
-<option value="Xiaomi|POCO F6">POCO F6</option>
-
-</optgroup>
-
-
-<!-- MOTOROLA -->
-<optgroup label="Motorola" id="grupoMotorola">
-
-<option value="Motorola|Moto E5">Moto E5</option>
-<option value="Motorola|Moto E6">Moto E6</option>
-<option value="Motorola|Moto E7">Moto E7</option>
-<option value="Motorola|Moto E20">Moto E20</option>
-<option value="Motorola|Moto E22">Moto E22</option>
-<option value="Motorola|Moto E32">Moto E32</option>
-<option value="Motorola|Moto E40">Moto E40</option>
-<option value="Motorola|Moto G5">Moto G5</option>
-<option value="Motorola|Moto G7">Moto G7</option>
-<option value="Motorola|Moto G8">Moto G8</option>
-<option value="Motorola|Moto G9 Play">Moto G9 Play</option>
-<option value="Motorola|Moto G20">Moto G20</option>
-<option value="Motorola|Moto G22">Moto G22</option>
-<option value="Motorola|Moto G23">Moto G23</option>
-<option value="Motorola|Moto G30">Moto G30</option>
-<option value="Motorola|Moto G32">Moto G32</option>
-<option value="Motorola|Moto G42">Moto G42</option>
-<option value="Motorola|Moto G52">Moto G52</option>
-<option value="Motorola|Moto G54">Moto G54</option>
-<option value="Motorola|Moto G73">Moto G73</option>
-<option value="Motorola|Moto G84">Moto G84</option>
-<option value="Motorola|Motorola Edge 20">Motorola Edge 20</option>
-<option value="Motorola|Motorola Edge 30">Motorola Edge 30</option>
-<option value="Motorola|Motorola Edge 40">Motorola Edge 40</option>
-<option value="Motorola|Motorola Edge 50 Fusion">Motorola Edge 50 Fusion</option>
-
-</optgroup>
-
-</select>
-
-</div>
-
-
-<div class="field">
-
-<label>Estilo</label>
-
-<select id="nivel">
-<option value="">Selecione</option>
-<option value="controle">Controle</option>
-<option value="equilibrada">Equilibrada</option>
-<option value="rapida">Rápida</option>
-</select>
-
-</div>
-
-
-<div class="field">
-
-<label>Quantidade de dedos</label>
-
-<select id="dedos">
-<option value="">Selecione</option>
-<option value="2">2 dedos</option>
-<option value="3">3 dedos</option>
-<option value="4">4 dedos</option>
-</select>
-
-</div>
-
-</div>
-
-
-<button class="generate" id="gerar" type="button">
-GERAR CONFIGURAÇÃO
-</button>
-
-<div class="aviso" id="aviso"></div>
-
-
-<section class="resultado" id="resultado">
-
-<div class="result-title">
-CONFIGURAÇÃO GOAT
-</div>
-
-<div class="result-device" id="resultDevice"></div>
-
-
-<div class="sensi-grid">
-
-<div class="sensi">
-<span>Geral</span>
-<strong id="geral">0</strong>
-</div>
-
-<div class="sensi">
-<span>Ponto Vermelho</span>
-<strong id="red">0</strong>
-</div>
-
-<div class="sensi">
-<span>Mira 2x</span>
-<strong id="m2x">0</strong>
-</div>
-
-<div class="sensi">
-<span>Mira 4x</span>
-<strong id="m4x">0</strong>
-</div>
-
-<div class="sensi">
-<span>Mira AWM</span>
-<strong id="awm">0</strong>
-</div>
-
-<div class="sensi">
-<span>Olhadinha</span>
-<strong id="olhadinha">0</strong>
-</div>
-
-</div>
-
-
-<div class="section-title">
-CONFIGURAÇÃO OPERACIONAL
-</div>
-
-
-<div class="extra-grid">
-
-<div class="extra">
-<span>DPI recomendada</span>
-<strong id="dpi">0</strong>
-</div>
-
-<div class="extra">
-<span>Botão de tiro</span>
-<strong id="botao">0%</strong>
-</div>
-
-<div class="extra">
-<span>Especialidade</span>
-<strong id="especialidade">-</strong>
-</div>
-
-<div class="extra">
-<span>Nível operacional</span>
-<strong id="operacional">-</strong>
-</div>
-
-</div>
-
-
-<div class="analysis" id="analise"></div>
-
-
-<div class="quality">
-
-<div class="quality-top">
-<span>Qualidade da configuração</span>
-<b id="qualidade">0%</b>
-</div>
-
-<div class="bar">
-<div class="fill" id="qualityFill"></div>
-</div>
-
-</div>
-
-
-<div class="ai">
-
-<div class="ai-title">
-🧠 IA ANALISTA
-</div>
-
-<div class="score">
-<span>GOAT SCORE</span>
-<strong id="score">0</strong>
-</div>
-
-<div class="tags" id="tags"></div>
-
-<div class="ai-text" id="aiText">
-Aguardando configuração.
-</div>
-
-</div>
-
-
-<div class="actions">
-
-<button class="action" id="copiar" type="button">
-COPIAR CONFIGURAÇÃO
-</button>
-
-<button class="action" id="ajustar" type="button">
-AJUSTE FINO +1
-</button>
-
-</div>
-
-</section>
-
-</main>
-
-
-<section class="contact">
-
-<h2>FALE CONOSCO</h2>
-
-<p>
-Dúvidas, sugestões ou problemas com o GOAT SENSI?
-</p>
-
-<a class="whatsapp"
-href="https://wa.me/5511921149458"
-target="_blank"
-rel="noopener">
-📱 WHATSAPP
-</a>
-
-<div class="donation">
-
-<h3>APOIE O GOAT SENSI</h3>
-
-<p>
-Se o site te ajudou, você pode apoiar o projeto
-com uma pequena contribuição de <b>R$ 0,50</b>.
-</p>
-
-</div>
-
-</section>
-
-
-<div class="credits">
-
-GOAT SENSI © 2026<br>
-
-<b>
-Miguel Sanches Carrion & Thalles Vinícius Rios Gazda
-</b>
-
-</div>
-
-</div>
-
-
 <script>
+var gerar = document.getElementById("gerar");
 
-/* ==========================================
-CORREÇÃO DEFINITIVA DO FABRICANTE/MODELO
-========================================== */
+gerar.onclick = function () {
 
-function carregarModelos(fabricante){
+    var jogo = document.getElementById("jogo");
+    var fabricante = document.getElementById("fabricante");
+    var modelo = document.getElementById("modelo");
+    var nivel = document.getElementById("nivel");
+    var dedos = document.getElementById("dedos");
+    var aviso = document.getElementById("aviso");
+    var resultado = document.getElementById("resultado");
 
-var modelo = document.getElementById("modelo");
+    aviso.style.display = "none";
 
-modelo.value = "";
+    if (jogo.value === "") {
+        aviso.textContent = "Selecione o jogo.";
+        aviso.style.display = "block";
+        return;
+    }
 
-var grupos = modelo.getElementsByTagName("optgroup");
+    if (fabricante.value === "") {
+        aviso.textContent = "Selecione o fabricante.";
+        aviso.style.display = "block";
+        return;
+    }
 
-var i;
+    if (modelo.value === "") {
+        aviso.textContent = "Selecione o modelo.";
+        aviso.style.display = "block";
+        return;
+    }
 
-for(i=0;i<grupos.length;i++){
+    if (nivel.value === "") {
+        aviso.textContent = "Selecione o estilo.";
+        aviso.style.display = "block";
+        return;
+    }
 
-if(grupos[i].id === "grupo"+fabricante){
+    if (dedos.value === "") {
+        aviso.textContent = "Selecione quantos dedos você usa.";
+        aviso.style.display = "block";
+        return;
+    }
 
-grupos[i].style.display = "";
+    /* GERA A CONFIGURAÇÃO DIRETAMENTE */
 
-}else{
+    var base = 150;
 
-grupos[i].style.display = "none";
+    if (nivel.value === "controle") {
+        base = 137;
+    }
 
-}
+    if (nivel.value === "equilibrada") {
+        base = 157;
+    }
 
-}
+    if (nivel.value === "rapida") {
+        base = 178;
+    }
 
-if(fabricante === ""){
+    if (dedos.value === "2") {
+        base -= 3;
+    }
 
-modelo.disabled = true;
-modelo.selectedIndex = 0;
+    if (dedos.value === "3") {
+        base += 2;
+    }
 
-}else{
+    if (dedos.value === "4") {
+        base += 5;
+    }
 
-modelo.disabled = false;
+    if (jogo.value === "max") {
+        base += 3;
+    }
 
-}
+    if (fabricante.value === "Samsung") {
+        base += 1;
+    }
 
-}
+    if (fabricante.value === "Xiaomi") {
+        base += 3;
+    }
 
+    var geralValor = Math.round(base);
 
-/* ==========================================
-INICIALIZAÇÃO
-========================================== */
+    var redValor = geralValor - 4;
+    var m2Valor = geralValor - 16;
+    var m4Valor = geralValor - 31;
+    var awmValor = geralValor - 49;
+    var olhoValor = geralValor - 1;
 
-carregarModelos("");
+    /* LIMITA OS VALORES */
 
+    if (redValor < 0) redValor = 0;
+    if (m2Valor < 0) m2Valor = 0;
+    if (m4Valor < 0) m4Valor = 0;
+    if (awmValor < 0) awmValor = 0;
+    if (olhoValor < 0) olhoValor = 0;
 
-/* ==========================================
-ELEMENTOS
-========================================== */
+    /* MOSTRA SENSIBILIDADE */
 
-var jogo=document.getElementById("jogo");
-var fabricante=document.getElementById("fabricante");
-var modelo=document.getElementById("modelo");
-var nivel=document.getElementById("nivel");
-var dedos=document.getElementById("dedos");
-var gerar=document.getElementById("gerar");
-var aviso=document.getElementById("aviso");
-var resultado=document.getElementById("resultado");
+    document.getElementById("geral").textContent = geralValor;
+    document.getElementById("red").textContent = redValor;
+    document.getElementById("m2x").textContent = m2Valor;
+    document.getElementById("m4x").textContent = m4Valor;
+    document.getElementById("awm").textContent = awmValor;
+    document.getElementById("olhadinha").textContent = olhoValor;
 
-var geral=document.getElementById("geral");
-var red=document.getElementById("red");
-var m2x=document.getElementById("m2x");
-var m4x=document.getElementById("m4x");
-var awm=document.getElementById("awm");
-var olhadinha=document.getElementById("olhadinha");
+    /* DPI */
 
-var dpi=document.getElementById("dpi");
-var botao=document.getElementById("botao");
-var especialidade=document.getElementById("especialidade");
-var operacional=document.getElementById("operacional");
+    var dpiValor = 520;
 
-var analise=document.getElementById("analise");
-var qualidade=document.getElementById("qualidade");
-var qualityFill=document.getElementById("qualityFill");
+    if (fabricante.value === "Samsung") dpiValor = 560;
+    if (fabricante.value === "Xiaomi") dpiValor = 600;
+    if (fabricante.value === "Motorola") dpiValor = 540;
 
-var score=document.getElementById("score");
-var tags=document.getElementById("tags");
-var aiText=document.getElementById("aiText");
+    if (modelo.value.indexOf("POCO") >= 0) dpiValor += 40;
+    if (modelo.value.indexOf("S23") >= 0) dpiValor += 60;
+    if (modelo.value.indexOf("S24") >= 0) dpiValor += 60;
+    if (modelo.value.indexOf("S25") >= 0) dpiValor += 60;
+    if (modelo.value.indexOf("Edge") >= 0) dpiValor += 30;
 
-var copiar=document.getElementById("copiar");
-var ajustar=document.getElementById("ajustar");
-var resultDevice=document.getElementById("resultDevice");
+    document.getElementById("dpi").textContent = dpiValor;
 
+    /* BOTÃO */
 
-function limitar(v,min,max){
+    var botaoValor = 50;
 
-v=Number(v);
+    if (nivel.value === "controle") botaoValor = 52;
+    if (nivel.value === "rapida") botaoValor = 47;
 
-if(isNaN(v)){
-v=min;
-}
+    if (dedos.value === "2") botaoValor += 3;
+    if (dedos.value === "4") botaoValor -= 2;
 
-return Math.max(min,Math.min(max,Math.round(v)));
+    document.getElementById("botao").textContent = botaoValor + "%";
 
-}
+    /* ESPECIALIDADE */
 
+    var especialidadeValor = "EQUILIBRADA";
+    var operacionalValor = "ALTO";
 
-function avisoMostrar(texto){
+    if (geralValor >= 170) {
+        especialidadeValor = "CAPA + RUSH";
+        operacionalValor = "ALTÍSSIMO";
+    } else if (redValor >= 145) {
+        especialidadeValor = "PRECISÃO";
+        operacionalValor = "ALTO";
+    } else if (geralValor < 150) {
+        especialidadeValor = "CONTROLE";
+        operacionalValor = "ESTÁVEL";
+    }
 
-aviso.textContent=texto;
-aviso.style.display="block";
+    document.getElementById("especialidade").textContent = especialidadeValor;
+    document.getElementById("operacional").textContent = operacionalValor;
 
-}
+    /* ANÁLISE */
 
+    document.getElementById("analise").textContent =
+        "Configuração " + especialidadeValor.toLowerCase() +
+        " criada para " + fabricante.value +
+        " " + (modelo.value.split("|")[1] || modelo.value) +
+        ". O motor GOAT combinou sensibilidade, DPI e botão de tiro de acordo com o estilo escolhido.";
 
-function avisoEsconder(){
+    /* QUALIDADE */
 
-aviso.style.display="none";
-aviso.textContent="";
+    var qualidadeValor = 90;
 
-}
+    if (nivel.value === "equilibrada") qualidadeValor = 95;
+    if (dedos.value === "3") qualidadeValor += 2;
+    if (dedos.value === "4") qualidadeValor += 3;
 
+    if (qualidadeValor > 99) qualidadeValor = 99;
 
-/* ==========================================
-GERAR
-========================================== */
+    document.getElementById("qualidade").textContent =
+        qualidadeValor + "%";
 
-gerar.onclick=function(){
+    document.getElementById("qualityFill").style.width =
+        qualidadeValor + "%";
 
-avisoEsconder();
+    /* IA */
 
-if(!jogo.value){
-avisoMostrar("Selecione o jogo.");
-jogo.focus();
-return;
-}
+    var scoreValor = 85;
 
-if(!fabricante.value){
-avisoMostrar("Selecione o fabricante.");
-fabricante.focus();
-return;
-}
+    if (geralValor >= 170) scoreValor += 7;
+    if (redValor >= 145) scoreValor += 3;
+    if (dedos.value === "3") scoreValor += 2;
+    if (dedos.value === "4") scoreValor += 3;
 
-if(!modelo.value){
-avisoMostrar("Selecione o modelo.");
-modelo.focus();
-return;
-}
+    if (scoreValor > 99) scoreValor = 99;
 
-if(!nivel.value){
-avisoMostrar("Selecione o estilo.");
-nivel.focus();
-return;
-}
+    document.getElementById("score").textContent = scoreValor;
 
-if(!dedos.value){
-avisoMostrar("Selecione quantos dedos você usa.");
-dedos.focus();
-return;
-}
+    document.getElementById("tags").innerHTML =
+        '<div class="tag special">🎯 ' + especialidadeValor + '</div>' +
+        '<div class="tag">⚡ DPI ' + dpiValor + '</div>' +
+        '<div class="tag">🔘 Botão ' + botaoValor + '%</div>' +
+        '<div class="tag">🎮 ' + dedos.value + ' dedos</div>';
 
-gerar.disabled=true;
-gerar.textContent="CALCULANDO...";
+    document.getElementById("aiText").innerHTML =
+        "<b>Análise GOAT:</b> Esta configuração foi identificada como " +
+        "<b>" + especialidadeValor.toLowerCase() + "</b>. " +
+        "DPI recomendada: <b>" + dpiValor +
+        "</b> e botão de tiro: <b>" + botaoValor + "%</b>.";
 
-setTimeout(function(){
+    /* DISPOSITIVO */
 
-gerarConfiguracao();
+    document.getElementById("resultDevice").textContent =
+        fabricante.value + " " +
+        (modelo.value.split("|")[1] || modelo.value) +
+        " • " + dedos.value + " dedos";
 
-gerar.disabled=false;
-gerar.textContent="GERAR NOVAMENTE";
+    /* MOSTRA RESULTADO */
 
-},300);
+    resultado.style.display = "block";
 
+    resultado.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
 };
-
-
-/* ==========================================
-GERADOR
-========================================== */
-
-function gerarConfiguracao(){
-
-var fabricanteNome=fabricante.value;
-
-var modeloTexto=modelo.value.split("|")[1] || modelo.value;
-
-var base=0;
-
-if(nivel.value==="controle"){
-base=137;
-}
-
-if(nivel.value==="equilibrada"){
-base=157;
-}
-
-if(nivel.value==="rapida"){
-base=178;
-}
-
-if(dedos.value==="2"){
-base-=3;
-}
-
-if(dedos.value==="3"){
-base+=2;
-}
-
-if(dedos.value==="4"){
-base+=5;
-}
-
-if(jogo.value==="max"){
-base+=3;
-}
-
-if(fabricanteNome==="Samsung"){
-base+=1;
-}
-
-if(fabricanteNome==="Xiaomi"){
-base+=3;
-}
-
-if(fabricanteNome==="Motorola"){
-base+=0;
-}
-
-base=limitar(base,125,190);
-
-var g=base;
-var r=limitar(g-4,0,200);
-var m2=limitar(g-16,0,200);
-var m4=limitar(g-31,0,200);
-var a=limitar(g-49,0,200);
-var o=limitar(g-1,0,200);
-
-if(dedos.value==="2"){
-r=limitar(r-1,0,200);
-m2=limitar(m2-1,0,200);
-}
-
-if(dedos.value==="4"){
-r=limitar(r+1,0,200);
-o=limitar(o+1,0,200);
-}
-
-geral.textContent=g;
-red.textContent=r;
-m2x.textContent=m2;
-m4x.textContent=m4;
-awm.textContent=a;
-olhadinha.textContent=o;
-
-
-/* DPI */
-
-var dpiValor=520;
-
-if(fabricanteNome==="Samsung"){
-dpiValor=560;
-}
-
-if(fabricanteNome==="Xiaomi"){
-dpiValor=600;
-}
-
-if(fabricanteNome==="Motorola"){
-dpiValor=540;
-}
-
-if(
-modeloTexto.indexOf("S23")>=0 ||
-modeloTexto.indexOf("S24")>=0 ||
-modeloTexto.indexOf("S25")>=0
-){
-dpiValor+=60;
-}
-
-if(
-modeloTexto.indexOf("A54")>=0 ||
-modeloTexto.indexOf("A55")>=0
-){
-dpiValor+=20;
-}
-
-if(modeloTexto.indexOf("POCO")>=0){
-dpiValor+=40;
-}
-
-if(modeloTexto.indexOf("Edge")>=0){
-dpiValor+=30;
-}
-
-if(dedos.value==="2"){
-dpiValor-=10;
-}
-
-if(dedos.value==="4"){
-dpiValor+=15;
-}
-
-if(nivel.value==="rapida"){
-dpiValor+=20;
-}
-
-if(nivel.value==="controle"){
-dpiValor-=20;
-}
-
-dpiValor=limitar(dpiValor,400,800);
-
-dpi.textContent=dpiValor;
-
-
-/* BOTÃO */
-
-var tamanho=50;
-
-if(nivel.value==="controle"){
-tamanho=52;
-}
-
-if(nivel.value==="rapida"){
-tamanho=47;
-}
-
-if(dedos.value==="2"){
-tamanho+=3;
-}
-
-if(dedos.value==="4"){
-tamanho-=2;
-}
-
-if(modeloTexto.indexOf("POCO")>=0){
-tamanho-=1;
-}
-
-tamanho=limitar(tamanho,42,58);
-
-botao.textContent=tamanho+"%";
-
-
-/* ESPECIALIDADE */
-
-var esp="";
-var op="";
-
-if(g>=170 && r>=160){
-
-esp="CAPA + RUSH";
-op="ALTÍSSIMO";
-
-}else if(r>=145 && m2>=120){
-
-esp="PRECISÃO";
-op="ALTO";
-
-}else if(g<150){
-
-esp="CONTROLE";
-op="ESTÁVEL";
-
-}else{
-
-esp="EQUILIBRADA";
-op="ALTO";
-
-}
-
-especialidade.textContent=esp;
-operacional.textContent=op;
-
-
-/* ANÁLISE */
-
-if(esp==="CAPA + RUSH"){
-
-analise.textContent=
-"Configuração agressiva e rápida, indicada para movimentação veloz, trocas próximas e busca por capa.";
-
-}else if(esp==="PRECISÃO"){
-
-analise.textContent=
-"Configuração focada em precisão, mantendo as miras equilibradas para ajustes mais controlados.";
-
-}else if(esp==="CONTROLE"){
-
-analise.textContent=
-"Configuração voltada para controle e estabilidade, com movimentos mais previsíveis.";
-
-}else{
-
-analise.textContent=
-"Configuração equilibrada para uso geral, combinando velocidade, controle e precisão.";
-
-}
-
-
-/* QUALIDADE */
-
-var nota=88;
-
-if(nivel.value==="equilibrada"){
-nota+=4;
-}
-
-if(dedos.value==="3"){
-nota+=3;
-}
-
-if(dedos.value==="4"){
-nota+=4;
-}
-
-if(jogo.value==="max"){
-nota+=1;
-}
-
-nota=limitar(nota,70,99);
-
-qualidade.textContent=nota+"%";
-
-qualityFill.style.width=
+</script>
