@@ -3,12 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#030303">
-
 <title>GOAT SENSI</title>
 
 <style>
-
 *{
 box-sizing:border-box;
 margin:0;
@@ -31,51 +28,44 @@ body:before{
 content:"";
 position:fixed;
 inset:0;
+z-index:-2;
 pointer-events:none;
 background:
-linear-gradient(rgba(255,0,40,.025) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,0,40,.025) 1px,transparent 1px);
+linear-gradient(rgba(255,23,68,.025) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,23,68,.025) 1px,transparent 1px);
 background-size:35px 35px;
-z-index:-3;
-animation:gridMove 14s linear infinite;
+animation:gridMove 15s linear infinite;
 }
 
 body:after{
 content:"";
 position:fixed;
-width:440px;
-height:440px;
-top:-190px;
+width:420px;
+height:420px;
+top:-180px;
 left:50%;
 transform:translateX(-50%);
 background:rgba(229,9,50,.08);
 filter:blur(100px);
 border-radius:50%;
+z-index:-1;
 pointer-events:none;
-z-index:-2;
-animation:orb 5s ease-in-out infinite alternate;
-}
-
-button,
-select{
-font-family:inherit;
 }
 
 .container{
 width:min(950px,92%);
 margin:auto;
-padding:35px 0 30px;
+padding:35px 0;
 }
 
 .header{
 text-align:center;
-margin-bottom:30px;
-animation:fadeDown .8s ease;
+margin-bottom:28px;
+animation:fadeDown .7s ease;
 }
 
 .logo{
 font-size:48px;
-line-height:1;
 font-weight:1000;
 letter-spacing:-3px;
 }
@@ -85,20 +75,19 @@ color:#ff1744;
 }
 
 .server-status{
-margin-top:10px;
+margin-top:9px;
 color:#00e676;
 font-size:12px;
 font-weight:900;
-letter-spacing:.4px;
 }
 
-.server-status-dot{
+.server-status span{
 display:inline-block;
 width:8px;
 height:8px;
-margin-right:5px;
 background:#00e676;
 border-radius:50%;
+margin-right:5px;
 box-shadow:0 0 10px #00e676;
 animation:serverPulse 1.5s infinite;
 }
@@ -111,8 +100,8 @@ font-size:14px;
 
 .badge{
 display:inline-block;
-margin-top:15px;
-padding:7px 14px;
+margin-top:14px;
+padding:7px 13px;
 border-radius:50px;
 background:#100307;
 border:1px solid #4a0d1c;
@@ -125,21 +114,15 @@ font-weight:900;
 background:rgba(8,8,8,.96);
 border:1px solid #242424;
 border-radius:22px;
-padding:26px;
-box-shadow:
-0 25px 80px rgba(0,0,0,.55),
-inset 0 1px rgba(255,255,255,.025);
+padding:25px;
+box-shadow:0 25px 80px rgba(0,0,0,.55);
 animation:fadeUp .8s ease;
-}
-
-.card:hover{
-border-color:#35101a;
 }
 
 .grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:18px;
+gap:17px;
 }
 
 .field{
@@ -148,7 +131,7 @@ flex-direction:column;
 gap:8px;
 }
 
-.field.full{
+.full{
 grid-column:1/-1;
 }
 
@@ -168,34 +151,24 @@ border-radius:13px;
 border:1px solid #292929;
 background:#111;
 color:#fff;
-outline:none;
 font-size:15px;
-cursor:pointer;
-transition:.25s;
-}
-
-select:hover{
-border-color:#444;
+outline:none;
+transition:.2s;
 }
 
 select:focus{
 border-color:#ff1744;
-box-shadow:
-0 0 0 2px rgba(255,23,68,.10),
-0 0 25px rgba(255,23,68,.10);
+box-shadow:0 0 0 2px rgba(255,23,68,.08);
 }
 
 select:disabled{
 opacity:.45;
-cursor:not-allowed;
 }
 
 .generate{
-position:relative;
-overflow:hidden;
 width:100%;
 height:57px;
-margin-top:23px;
+margin-top:22px;
 border:0;
 border-radius:14px;
 background:linear-gradient(135deg,#c90029,#ff1744);
@@ -203,15 +176,12 @@ color:#fff;
 font-size:15px;
 font-weight:1000;
 cursor:pointer;
-box-shadow:0 8px 25px rgba(229,9,50,.18);
-transition:.25s;
+transition:.2s;
 }
 
 .generate:hover{
 transform:translateY(-2px);
-box-shadow:
-0 15px 40px rgba(229,9,50,.30),
-0 0 20px rgba(229,9,50,.12);
+box-shadow:0 12px 30px rgba(229,9,50,.25);
 }
 
 .generate:active{
@@ -219,13 +189,13 @@ transform:scale(.98);
 }
 
 .generate:disabled{
-opacity:.7;
+opacity:.65;
 cursor:wait;
 }
 
 .aviso{
 display:none;
-margin-top:15px;
+margin-top:14px;
 padding:13px;
 border-radius:11px;
 background:#21070d;
@@ -237,12 +207,12 @@ text-align:center;
 
 .resultado{
 display:none;
-margin-top:25px;
-padding:22px;
+margin-top:23px;
+padding:21px;
 border-radius:18px;
 background:#080808;
 border:1px solid #35101a;
-animation:resultIn .6s ease;
+animation:resultIn .5s ease;
 }
 
 .result-title{
@@ -273,11 +243,11 @@ padding:15px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-transition:.25s;
+transition:.2s;
 }
 
 .sensi:hover{
-transform:translateY(-3px);
+transform:translateY(-2px);
 border-color:#5a1021;
 }
 
@@ -292,8 +262,41 @@ padding:7px 11px;
 border-radius:8px;
 min-width:45px;
 text-align:center;
+}
+
+.section-title{
+margin-top:20px;
+margin-bottom:10px;
 font-size:14px;
-box-shadow:0 5px 15px rgba(229,9,50,.15);
+font-weight:1000;
+color:#ff1744;
+}
+
+.extra-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.extra{
+padding:16px;
+background:#101010;
+border:1px solid #242424;
+border-radius:12px;
+}
+
+.extra span{
+display:block;
+font-size:11px;
+color:#777;
+text-transform:uppercase;
+font-weight:900;
+margin-bottom:6px;
+}
+
+.extra strong{
+font-size:20px;
+color:#fff;
 }
 
 .analysis{
@@ -310,9 +313,9 @@ line-height:1.6;
 .quality{
 margin-top:14px;
 padding:14px;
-border-radius:10px;
 background:#0b0b0b;
 border:1px solid #1e1e1e;
+border-radius:10px;
 }
 
 .quality-title{
@@ -329,7 +332,6 @@ color:#ff1744;
 
 .quality-bar{
 height:7px;
-width:100%;
 background:#1d1d1d;
 border-radius:20px;
 overflow:hidden;
@@ -343,110 +345,11 @@ border-radius:20px;
 transition:width 1s ease;
 }
 
-.device-box{
-margin-top:18px;
-padding:20px;
-border-radius:17px;
-background:linear-gradient(145deg,#0d0d0d,#090909);
-border:1px solid #35101a;
-}
-
-.device-head{
-display:flex;
-align-items:center;
-gap:10px;
-margin-bottom:15px;
-}
-
-.device-icon{
-width:42px;
-height:42px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:12px;
-background:#19050a;
-border:1px solid #521022;
-font-size:20px;
-}
-
-.device-head h3{
-font-size:17px;
-font-weight:1000;
-}
-
-.device-head p{
-font-size:11px;
-color:#777;
-margin-top:3px;
-}
-
-.device-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
-.device-stat{
-padding:15px;
-background:#101010;
-border:1px solid #242424;
-border-radius:13px;
-}
-
-.device-stat span{
-display:block;
-color:#888;
-font-size:10px;
-font-weight:900;
-text-transform:uppercase;
-margin-bottom:7px;
-}
-
-.device-stat strong{
-font-size:23px;
-color:#ff1744;
-}
-
-.device-profile{
-grid-column:1/-1;
-padding:15px;
-background:#101010;
-border:1px solid #242424;
-border-radius:13px;
-}
-
-.device-profile span{
-color:#888;
-font-size:10px;
-font-weight:900;
-text-transform:uppercase;
-}
-
-.device-profile strong{
-display:block;
-margin-top:7px;
-font-size:15px;
-color:#fff;
-line-height:1.4;
-}
-
-.device-note{
-margin-top:10px;
-padding:12px;
-background:#0a0a0a;
-border-left:2px solid #ff1744;
-border-radius:9px;
-color:#888;
-font-size:12px;
-line-height:1.5;
-}
-
 .ai-box{
 margin-top:20px;
 padding:20px;
 border-radius:17px;
-background:linear-gradient(145deg,#0d0d0d,#090909);
+background:#0b0b0b;
 border:1px solid #3b101c;
 }
 
@@ -493,11 +396,10 @@ border-radius:13px;
 .ai-score-label{
 color:#999;
 font-size:12px;
-font-weight:900;
 }
 
 .ai-score-number{
-font-size:29px;
+font-size:28px;
 font-weight:1000;
 color:#ff1744;
 }
@@ -528,7 +430,7 @@ background:#18070b;
 .ai-text{
 margin-top:13px;
 padding:14px;
-background:#0b0b0b;
+background:#090909;
 border-radius:11px;
 color:#aaa;
 font-size:13px;
@@ -555,7 +457,7 @@ background:#121212;
 color:#fff;
 font-weight:900;
 cursor:pointer;
-transition:.25s;
+transition:.2s;
 }
 
 .action:hover{
@@ -564,9 +466,9 @@ transform:translateY(-2px);
 }
 
 .contact{
-margin-top:25px;
-padding:27px;
-background:rgba(8,8,8,.96);
+margin-top:23px;
+padding:25px;
+background:#080808;
 border:1px solid #242424;
 border-radius:20px;
 text-align:center;
@@ -589,24 +491,18 @@ display:inline-flex;
 align-items:center;
 justify-content:center;
 margin-top:16px;
-padding:13px 22px;
+padding:13px 21px;
 border-radius:12px;
 background:#151515;
 border:1px solid #292929;
 color:#fff;
 text-decoration:none;
 font-weight:900;
-transition:.25s;
-}
-
-.whatsapp:hover{
-border-color:#ff1744;
-transform:translateY(-2px);
 }
 
 .donation{
-margin-top:20px;
-padding:19px;
+margin-top:19px;
+padding:18px;
 background:#101010;
 border:1px solid #292929;
 border-radius:14px;
@@ -614,7 +510,7 @@ border-radius:14px;
 
 .donation h3{
 font-size:16px;
-margin-bottom:8px;
+margin-bottom:7px;
 }
 
 .donation p{
@@ -631,7 +527,7 @@ color:#ff1744;
 text-align:center;
 color:#555;
 font-size:12px;
-margin-top:28px;
+margin-top:25px;
 line-height:1.6;
 }
 
@@ -664,31 +560,11 @@ transform:translateY(0);
 @keyframes resultIn{
 from{
 opacity:0;
-transform:translateY(20px) scale(.97);
+transform:translateY(20px) scale(.98);
 }
 to{
 opacity:1;
 transform:translateY(0) scale(1);
-}
-}
-
-@keyframes gridMove{
-from{
-background-position:0 0,0 0;
-}
-to{
-background-position:35px 35px,35px 35px;
-}
-}
-
-@keyframes orb{
-from{
-transform:translateX(-50%) scale(.9);
-opacity:.5;
-}
-to{
-transform:translateX(-50%) scale(1.15);
-opacity:1;
 }
 }
 
@@ -698,8 +574,17 @@ opacity:1;
 transform:scale(1);
 }
 50%{
-opacity:.35;
+opacity:.4;
 transform:scale(.7);
+}
+}
+
+@keyframes gridMove{
+from{
+background-position:0 0,0 0;
+}
+to{
+background-position:35px 35px,35px 35px;
 }
 }
 
@@ -717,32 +602,21 @@ font-size:37px;
 grid-template-columns:1fr;
 }
 
-.field.full{
+.full{
 grid-column:auto;
 }
 
-.sensi-grid{
-grid-template-columns:1fr;
-}
-
-.device-grid{
-grid-template-columns:1fr;
-}
-
-.device-profile{
-grid-column:auto;
-}
-
+.sensi-grid,
+.extra-grid,
 .actions{
 grid-template-columns:1fr;
 }
 
 .card{
-padding:20px;
+padding:19px;
 }
 
 }
-
 </style>
 </head>
 
@@ -757,16 +631,15 @@ GOAT <span>SENSI</span>
 </div>
 
 <div class="server-status">
-<span class="server-status-dot"></span>
-SERVIDOR ATIVO
+<span></span> SERVIDOR ATIVO
 </div>
 
 <div class="subtitle">
-Gerador avançado de sensibilidade para Free Fire
+Gerador inteligente de sensibilidade para Free Fire
 </div>
 
 <div class="badge">
-⚡ MOTOR DE PRECISÃO • CONFIGURAÇÃO INTELIGENTE
+MOTOR GOAT • ANÁLISE INTELIGENTE
 </div>
 
 </header>
@@ -778,24 +651,12 @@ Gerador avançado de sensibilidade para Free Fire
 
 <div class="field">
 
-<label for="jogo">
-Jogo
-</label>
+<label for="jogo">Jogo</label>
 
 <select id="jogo">
-
-<option value="">
-Selecione
-</option>
-
-<option value="normal">
-Free Fire
-</option>
-
-<option value="max">
-Free Fire MAX
-</option>
-
+<option value="">Selecione</option>
+<option value="normal">Free Fire</option>
+<option value="max">Free Fire MAX</option>
 </select>
 
 </div>
@@ -803,15 +664,11 @@ Free Fire MAX
 
 <div class="field">
 
-<label for="fabricante">
-Fabricante
-</label>
+<label for="fabricante">Fabricante</label>
 
 <select id="fabricante">
 
-<option value="">
-Selecione
-</option>
+<option value="">Selecione</option>
 
 <option value="Samsung">
 Samsung
@@ -850,24 +707,22 @@ Selecione primeiro o fabricante
 <div class="field">
 
 <label for="nivel">
-Nível
+Estilo
 </label>
 
 <select id="nivel">
 
-<option value="">
-Selecione
-</option>
+<option value="">Selecione</option>
 
 <option value="controle">
 Controle
 </option>
 
-<option value="equilibrado">
+<option value="equilibrada">
 Equilibrada
 </option>
 
-<option value="rapido">
+<option value="rapida">
 Rápida
 </option>
 
@@ -884,9 +739,7 @@ Quantidade de dedos
 
 <select id="dedos">
 
-<option value="">
-Selecione
-</option>
+<option value="">Selecione</option>
 
 <option value="2">
 2 dedos
@@ -928,7 +781,7 @@ id="resultado"
 class="resultado">
 
 <div class="result-title">
-CONFIGURAÇÃO GERADA
+CONFIGURAÇÃO GOAT
 </div>
 
 <div
@@ -951,12 +804,12 @@ class="result-device">
 
 <div class="sensi">
 <span>Mira 2x</span>
-<strong id="mira2">0</strong>
+<strong id="m2x">0</strong>
 </div>
 
 <div class="sensi">
 <span>Mira 4x</span>
-<strong id="mira4">0</strong>
+<strong id="m4x">0</strong>
 </div>
 
 <div class="sensi">
@@ -967,6 +820,40 @@ class="result-device">
 <div class="sensi">
 <span>Olhadinha</span>
 <strong id="olhadinha">0</strong>
+</div>
+
+</div>
+
+
+<div class="section-title">
+CONFIGURAÇÃO OPERACIONAL
+</div>
+
+
+<div class="extra-grid">
+
+<div class="extra">
+<span>DPI recomendada</span>
+<strong id="dpi">0</strong>
+</div>
+
+<div class="extra">
+<span>Botão de tiro</span>
+<strong id="botao">0%</strong>
+</div>
+
+<div class="extra">
+<span>Especialidade</span>
+<strong id="especialidade">
+-
+</strong>
+</div>
+
+<div class="extra">
+<span>Nível operacional</span>
+<strong id="operacional">
+-
+</strong>
 </div>
 
 </div>
@@ -986,7 +873,7 @@ class="analysis">
 Qualidade da configuração
 </span>
 
-<strong id="qualidadeTexto">
+<strong id="qualidade">
 0%
 </strong>
 
@@ -995,7 +882,7 @@ Qualidade da configuração
 <div class="quality-bar">
 
 <div
-id="qualidadeFill"
+id="qualityFill"
 class="quality-fill">
 </div>
 
@@ -1003,88 +890,6 @@ class="quality-fill">
 
 </div>
 
-
-<!-- CONFIGURAÇÃO OPERACIONAL -->
-
-<div class="device-box">
-
-<div class="device-head">
-
-<div class="device-icon">
-📱
-</div>
-
-<div>
-
-<h3>
-CONFIGURAÇÃO OPERACIONAL
-</h3>
-
-<p>
-Perfil calculado para o aparelho selecionado
-</p>
-
-</div>
-
-</div>
-
-
-<div class="device-grid">
-
-
-<div class="device-stat">
-
-<span>
-DPI recomendado
-</span>
-
-<strong id="dpi">
-0
-</strong>
-
-</div>
-
-
-<div class="device-stat">
-
-<span>
-Botão de tiro
-</span>
-
-<strong id="botao">
-0%
-</strong>
-
-</div>
-
-
-<div class="device-profile">
-
-<span>
-Perfil identificado
-</span>
-
-<strong id="perfil">
-Aguardando geração...
-</strong>
-
-</div>
-
-</div>
-
-
-<div
-id="deviceNote"
-class="device-note">
-
-A configuração operacional aparecerá aqui depois da geração.
-
-</div>
-
-</div>
-
-
-<!-- IA -->
 
 <div class="ai-box">
 
@@ -1101,7 +906,7 @@ IA ANALISTA
 </h3>
 
 <p>
-Análise inteligente da configuração
+Leitura inteligente da configuração
 </p>
 
 </div>
@@ -1133,9 +938,7 @@ class="ai-tags">
 <div
 id="aiText"
 class="ai-text">
-
-Gere uma configuração para a IA analisar.
-
+Aguardando configuração.
 </div>
 
 </div>
@@ -1147,19 +950,14 @@ Gere uma configuração para a IA analisar.
 type="button"
 id="copiar"
 class="action">
-
 COPIAR CONFIGURAÇÃO
-
 </button>
-
 
 <button
 type="button"
 id="ajustar"
 class="action">
-
 AJUSTE FINO +1
-
 </button>
 
 </div>
@@ -1177,7 +975,6 @@ FALE CONOSCO
 
 <p class="contact-text">
 Dúvidas, sugestões ou problemas com o GOAT SENSI?
-Fale conosco pelo WhatsApp.
 </p>
 
 <a
@@ -1186,7 +983,7 @@ href="https://wa.me/5511921149458"
 target="_blank"
 rel="noopener">
 
-📱 WHATSAPP • 11 92114-9458
+📱 WHATSAPP
 
 </a>
 
@@ -1198,13 +995,9 @@ APOIE O GOAT SENSI
 </h3>
 
 <p>
-Se o site te ajudou e quiser apoiar o projeto,
-você pode contribuir com uma pequena doação de
+Se o site te ajudou, você pode apoiar o projeto
+com uma pequena contribuição de
 <strong>R$ 0,50</strong>.
-</p>
-
-<p style="margin-top:8px;">
-Obrigado por apoiar o projeto! ❤️
 </p>
 
 </div>
@@ -1214,9 +1007,7 @@ Obrigado por apoiar o projeto! ❤️
 
 <div class="credits">
 
-GOAT SENSI © 2026
-
-<br>
+GOAT SENSI © 2026<br>
 
 <b>
 Miguel Sanches Carrion & Thalles Vinícius Rios Gazda
@@ -1234,16 +1025,13 @@ Miguel Sanches Carrion & Thalles Vinícius Rios Gazda
 "use strict";
 
 
-/*
-====================================================
-BANCO CENTRAL DE APARELHOS
-====================================================
-*/
+/* =========================
+BANCO DE MODELOS
+========================= */
 
-var MODELOS = {
+var DADOS = {
 
 Samsung: [
-
 "Galaxy A05",
 "Galaxy A05s",
 "Galaxy A06",
@@ -1271,11 +1059,9 @@ Samsung: [
 "Galaxy S23",
 "Galaxy S24",
 "Galaxy S25"
-
 ],
 
 Xiaomi: [
-
 "Redmi Note 8",
 "Redmi Note 9",
 "Redmi Note 10",
@@ -1289,11 +1075,9 @@ Xiaomi: [
 "POCO X6",
 "POCO F5",
 "POCO F6"
-
 ],
 
 Motorola: [
-
 "Moto E5",
 "Moto E6",
 "Moto E7",
@@ -1319,144 +1103,113 @@ Motorola: [
 "Motorola Edge 30",
 "Motorola Edge 40",
 "Motorola Edge 50 Fusion"
-
 ]
 
 };
 
 
-/*
-====================================================
+/* =========================
 ELEMENTOS
-====================================================
-*/
+========================= */
 
-var jogo=
+var jogo =
 document.getElementById("jogo");
 
-var fabricante=
+var fabricante =
 document.getElementById("fabricante");
 
-var modelo=
+var modelo =
 document.getElementById("modelo");
 
-var nivel=
+var nivel =
 document.getElementById("nivel");
 
-var dedos=
+var dedos =
 document.getElementById("dedos");
 
-var gerar=
+var gerar =
 document.getElementById("gerar");
 
-var aviso=
+var aviso =
 document.getElementById("aviso");
 
-var resultado=
+var resultado =
 document.getElementById("resultado");
 
-var resultDevice=
-document.getElementById("resultDevice");
-
-var geral=
+var geral =
 document.getElementById("geral");
 
-var red=
+var red =
 document.getElementById("red");
 
-var mira2=
-document.getElementById("mira2");
+var m2x =
+document.getElementById("m2x");
 
-var mira4=
-document.getElementById("mira4");
+var m4x =
+document.getElementById("m4x");
 
-var awm=
+var awm =
 document.getElementById("awm");
 
-var olhadinha=
+var olhadinha =
 document.getElementById("olhadinha");
 
-var analise=
-document.getElementById("analise");
-
-var qualidadeTexto=
-document.getElementById("qualidadeTexto");
-
-var qualidadeFill=
-document.getElementById("qualidadeFill");
-
-var dpi=
+var dpi =
 document.getElementById("dpi");
 
-var botao=
+var botao =
 document.getElementById("botao");
 
-var perfil=
-document.getElementById("perfil");
+var especialidade =
+document.getElementById("especialidade");
 
-var deviceNote=
-document.getElementById("deviceNote");
+var operacional =
+document.getElementById("operacional");
 
-var score=
+var analise =
+document.getElementById("analise");
+
+var qualidade =
+document.getElementById("qualidade");
+
+var qualityFill =
+document.getElementById("qualityFill");
+
+var score =
 document.getElementById("score");
 
-var tags=
+var tags =
 document.getElementById("tags");
 
-var aiText=
+var aiText =
 document.getElementById("aiText");
 
-var copiar=
+var copiar =
 document.getElementById("copiar");
 
-var ajustar=
+var ajustar =
 document.getElementById("ajustar");
 
-
-/*
-====================================================
-ESTADO
-====================================================
-*/
-
-var estado={
-
-geral:0,
-red:0,
-mira2:0,
-mira4:0,
-awm:0,
-olhadinha:0,
-dpi:0,
-botao:0,
-score:0
-
-};
+var resultDevice =
+document.getElementById("resultDevice");
 
 
-/*
-====================================================
-UTILIDADES
-====================================================
-*/
+/* =========================
+FUNÇÕES BÁSICAS
+========================= */
 
-function limitarNumero(valor,minimo,maximo){
+function limitar(valor,min,max){
 
-var numero=Number(valor);
+valor=Number(valor);
 
-if(isNaN(numero)){
-numero=minimo;
+if(isNaN(valor)){
+valor=min;
 }
 
-if(numero<minimo){
-numero=minimo;
-}
-
-if(numero>maximo){
-numero=maximo;
-}
-
-return Math.round(numero);
+return Math.max(
+min,
+Math.min(max,Math.round(valor))
+);
 
 }
 
@@ -1464,7 +1217,6 @@ return Math.round(numero);
 function mostrarAviso(texto){
 
 aviso.textContent=texto;
-
 aviso.style.display="block";
 
 }
@@ -1473,82 +1225,60 @@ aviso.style.display="block";
 function esconderAviso(){
 
 aviso.textContent="";
-
 aviso.style.display="none";
 
 }
 
 
-function limparResultado(){
-
-resultado.style.display="none";
-
-estado.geral=0;
-estado.red=0;
-estado.mira2=0;
-estado.mira4=0;
-estado.awm=0;
-estado.olhadinha=0;
-estado.dpi=0;
-estado.botao=0;
-estado.score=0;
-
-}
-
-
-/*
-====================================================
+/* =========================
 FABRICANTE → MODELO
-====================================================
-*/
+========================= */
 
-function carregarModelos(){
+fabricante.addEventListener(
+"change",
+function(){
 
-var fabricanteSelecionado=
+var nomeFabricante =
 fabricante.value;
 
 modelo.innerHTML="";
 
+resultado.style.display="none";
 
-if(
-fabricanteSelecionado==="" ||
-!MODELOS[fabricanteSelecionado]
-){
+if(!nomeFabricante){
 
 modelo.disabled=true;
 
-var opcaoInicial=
-document.createElement("option");
-
-opcaoInicial.value="";
-
-opcaoInicial.textContent=
-"Selecione primeiro o fabricante";
-
-modelo.appendChild(opcaoInicial);
+modelo.innerHTML=
+'<option value="">Selecione primeiro o fabricante</option>';
 
 return;
 
 }
 
-
 modelo.disabled=false;
 
-
-var primeiraOpcao=
+var primeiraOpcao =
 document.createElement("option");
 
 primeiraOpcao.value="";
-
 primeiraOpcao.textContent=
 "Selecione o modelo";
 
-modelo.appendChild(primeiraOpcao);
+modelo.appendChild(
+primeiraOpcao
+);
 
+var lista =
+DADOS[nomeFabricante];
 
-var lista=
-MODELOS[fabricanteSelecionado];
+if(!lista){
 
+modelo.disabled=true;
+
+return;
+
+}
 
 for(
 var i=0;
@@ -1556,92 +1286,355 @@ i<lista.length;
 i++
 ){
 
-var opcao=
+var opcao =
 document.createElement("option");
 
-opcao.value=
-lista[i];
+opcao.value=lista[i];
 
-opcao.textContent=
-lista[i];
+opcao.textContent=lista[i];
 
-modelo.appendChild(opcao);
-
-}
+modelo.appendChild(
+opcao
+);
 
 }
-
-
-/*
-====================================================
-EVENTO DO FABRICANTE
-====================================================
-*/
-
-fabricante.addEventListener(
-"change",
-function(){
-
-esconderAviso();
-
-limparResultado();
-
-carregarModelos();
 
 }
 );
 
 
-/*
-====================================================
-PERFIL DO APARELHO
-====================================================
-*/
+/* =========================
+GERADOR PRINCIPAL
+========================= */
 
-function gerarPerfilAparelho(){
+function gerarConfiguracao(){
 
-var nome=modelo.value;
-
-var valorDpi=430;
-
-var valorBotao=50;
-
-var nomePerfil=
-"Perfil universal • equilíbrio operacional";
+var base=0;
 
 
-if(nome===""){
+/* ESTILO */
 
-return{
+if(nivel.value==="controle"){
+base=137;
+}
 
-dpi:430,
-botao:50,
-perfil:"Aguardando modelo"
+else if(nivel.value==="equilibrada"){
+base=157;
+}
 
-};
+else if(nivel.value==="rapida"){
+base=178;
+}
+
+
+/* DEDOS */
+
+if(dedos.value==="2"){
+base-=3;
+}
+
+else if(dedos.value==="3"){
+base+=2;
+}
+
+else if(dedos.value==="4"){
+base+=5;
+}
+
+
+/* JOGO */
+
+if(jogo.value==="max"){
+base+=3;
+}
+
+
+/* FABRICANTE */
+
+if(fabricante.value==="Samsung"){
+base+=1;
+}
+
+else if(fabricante.value==="Xiaomi"){
+base+=3;
+}
+
+else if(fabricante.value==="Motorola"){
+base+=0;
+}
+
+
+/* MODELO */
+
+var lista =
+DADOS[fabricante.value];
+
+var indice =
+lista.indexOf(modelo.value);
+
+if(indice>=0){
+
+base+=Math.min(
+5,
+Math.floor(indice/6)
+);
 
 }
 
 
-/*
-SAMSUNG
-*/
+base=
+limitar(base,125,190);
+
+
+/* SENSI */
+
+var valorGeral=base;
+
+var valorRed=
+limitar(valorGeral-4,0,200);
+
+var valor2x=
+limitar(valorGeral-16,0,200);
+
+var valor4x=
+limitar(valorGeral-31,0,200);
+
+var valorAwm=
+limitar(valorGeral-49,0,200);
+
+var valorOlhadinha=
+limitar(valorGeral-1,0,200);
+
+
+/* AJUSTES */
+
+if(dedos.value==="2"){
+
+valorRed=
+limitar(valorRed-1,0,200);
+
+valor2x=
+limitar(valor2x-1,0,200);
+
+}
+
+if(dedos.value==="4"){
+
+valorRed=
+limitar(valorRed+1,0,200);
+
+valorOlhadinha=
+limitar(valorOlhadinha+1,0,200);
+
+}
+
+
+/* MOSTRAR SENSI */
+
+geral.textContent=valorGeral;
+red.textContent=valorRed;
+m2x.textContent=valor2x;
+m4x.textContent=valor4x;
+awm.textContent=valorAwm;
+olhadinha.textContent=valorOlhadinha;
+
+
+/* =========================
+DPI POR MODELO
+========================= */
+
+var dpiBase=520;
+
+if(fabricante.value==="Samsung"){
+dpiBase=560;
+}
+
+else if(fabricante.value==="Xiaomi"){
+dpiBase=600;
+}
+
+else if(fabricante.value==="Motorola"){
+dpiBase=540;
+}
+
+
+/* MODELOS MAIS NOVOS */
 
 if(
-nome==="Galaxy S20" ||
-nome==="Galaxy S21" ||
-nome==="Galaxy S22" ||
-nome==="Galaxy S23" ||
-nome==="Galaxy S24" ||
-nome==="Galaxy S25"
+modelo.value.indexOf("S2")===0 ||
+modelo.value.indexOf("S23")>=0 ||
+modelo.value.indexOf("S24")>=0 ||
+modelo.value.indexOf("S25")>=0
 ){
 
-valorDpi=480;
-
-valorBotao=47;
-
-nomePerfil=
-"Premium • resposta rápida + controle fino";
+dpiBase+=60;
 
 }
-  
+
+if(
+modelo.value.indexOf("A5")>=0 ||
+modelo.value.indexOf("A54")>=0 ||
+modelo.value.indexOf("A55")>=0
+){
+
+dpiBase+=20;
+
+}
+
+if(
+modelo.value.indexOf("POCO")>=0
+){
+
+dpiBase+=40;
+
+}
+
+if(
+modelo.value.indexOf("Edge")>=0
+){
+
+dpiBase+=30;
+
+}
+
+
+if(dedos.value==="2"){
+dpiBase-=10;
+}
+
+if(dedos.value==="4"){
+dpiBase+=15;
+}
+
+if(nivel.value==="rapida"){
+dpiBase+=20;
+}
+
+if(nivel.value==="controle"){
+dpiBase-=20;
+}
+
+
+dpiBase=
+limitar(dpiBase,400,800);
+
+dpi.textContent=dpiBase;
+
+
+/* =========================
+BOTÃO DE TIRO
+========================= */
+
+var tamanhoBotao=48;
+
+if(nivel.value==="controle"){
+tamanhoBotao=52;
+}
+
+else if(nivel.value==="equilibrada"){
+tamanhoBotao=50;
+}
+
+else if(nivel.value==="rapida"){
+tamanhoBotao=47;
+}
+
+if(dedos.value==="2"){
+tamanhoBotao+=3;
+}
+
+else if(dedos.value==="4"){
+tamanhoBotao-=2;
+}
+
+if(
+modelo.value.indexOf("POCO")>=0
+){
+tamanhoBotao-=1;
+}
+
+tamanhoBotao=
+limitar(tamanhoBotao,42,58);
+
+botao.textContent=
+tamanhoBotao+"%";
+
+
+/* =========================
+ESPECIALIDADE
+========================= */
+
+var tipoEspecialidade="";
+var nivelOperacional="";
+
+if(
+valorGeral>=170 &&
+valorRed>=160
+){
+
+tipoEspecialidade=
+"CAPA + RUSH";
+
+nivelOperacional=
+"ALTÍSSIMO";
+
+}
+
+else if(
+valorRed>=145 &&
+valor2x>=120
+){
+
+tipoEspecialidade=
+"PRECISÃO";
+
+nivelOperacional=
+"ALTO";
+
+}
+
+else if(
+valorGeral<150
+){
+
+tipoEspecialidade=
+"CONTROLE";
+
+nivelOperacional=
+"ESTÁVEL";
+
+}
+
+else{
+
+tipoEspecialidade=
+"EQUILIBRADA";
+
+nivelOperacional=
+"ALTO";
+
+}
+
+
+especialidade.textContent=
+tipoEspecialidade;
+
+operacional.textContent=
+nivelOperacional;
+
+
+/* =========================
+ANÁLISE
+========================= */
+
+if(tipoEspecialidade==="CAPA + RUSH"){
+
+analise.textContent=
+"Configuração agressiva e rápida. O Geral elevado favorece movimentação de mira e respostas rápidas, enquanto o Ponto Vermelho foi mantido alto para confrontos próximos.";
+
+}
+
+else if(tipoEspecialidade==="PRECISÃO"){
+
+analise.textContent=
+"Configuração focada em precisão. As miras foram equilibradas para permitir ajustes mais controlados sem deixa
