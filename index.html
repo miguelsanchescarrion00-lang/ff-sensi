@@ -7,316 +7,318 @@
 
 <style>
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#030303;
-  color:#fff;
-  min-height:100vh;
+font-family:Arial,Helvetica,sans-serif;
+background:#030303;
+color:#fff;
+min-height:100vh;
 }
 
 body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background:
-    linear-gradient(rgba(255,0,40,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,0,40,.025) 1px,transparent 1px);
-  background-size:35px 35px;
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+background:
+linear-gradient(rgba(255,0,40,.025) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,0,40,.025) 1px,transparent 1px);
+background-size:35px 35px;
 }
 
 .container{
-  width:min(950px,92%);
-  margin:auto;
-  padding:45px 0;
+width:min(950px,92%);
+margin:auto;
+padding:45px 0;
 }
 
 .header{
-  text-align:center;
-  margin-bottom:35px;
+text-align:center;
+margin-bottom:35px;
 }
 
 .logo{
-  font-size:42px;
-  font-weight:1000;
-  letter-spacing:-2px;
+font-size:42px;
+font-weight:1000;
+letter-spacing:-2px;
 }
 
 .logo span{
-  color:#ff1744;
+color:#ff1744;
 }
 
 .subtitle{
-  color:#888;
-  margin-top:8px;
-  font-size:14px;
+color:#888;
+margin-top:8px;
+font-size:14px;
 }
 
 .card{
-  background:#080808;
-  border:1px solid #242424;
-  border-radius:20px;
-  padding:25px;
-  box-shadow:0 20px 60px rgba(0,0,0,.5);
+background:#080808;
+border:1px solid #242424;
+border-radius:20px;
+padding:25px;
+box-shadow:0 20px 60px rgba(0,0,0,.5);
 }
 
 .grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
 }
 
 .field{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
+display:flex;
+flex-direction:column;
+gap:8px;
 }
 
 .field.full{
-  grid-column:1/-1;
+grid-column:1/-1;
 }
 
 label{
-  font-size:12px;
-  font-weight:900;
-  color:#aaa;
-  text-transform:uppercase;
+font-size:12px;
+font-weight:900;
+color:#aaa;
+text-transform:uppercase;
 }
 
 select{
-  width:100%;
-  height:52px;
-  padding:0 15px;
-  border-radius:12px;
-  border:1px solid #292929;
-  background:#111;
-  color:#fff;
-  outline:none;
-  font-size:15px;
+width:100%;
+height:52px;
+padding:0 15px;
+border-radius:12px;
+border:1px solid #292929;
+background:#111;
+color:#fff;
+outline:none;
+font-size:15px;
 }
 
 select:focus{
-  border-color:#ff1744;
-  box-shadow:0 0 0 2px rgba(255,23,68,.12);
+border-color:#ff1744;
+box-shadow:0 0 0 2px rgba(255,23,68,.12);
 }
 
 .generate{
-  width:100%;
-  margin-top:22px;
-  height:56px;
-  border:0;
-  border-radius:13px;
-  background:#e50932;
-  color:#fff;
-  font-size:15px;
-  font-weight:1000;
-  cursor:pointer;
-  transition:.2s;
+width:100%;
+margin-top:22px;
+height:56px;
+border:0;
+border-radius:13px;
+background:#e50932;
+color:#fff;
+font-size:15px;
+font-weight:1000;
+cursor:pointer;
+transition:.2s;
 }
 
 .generate:hover{
-  background:#ff1744;
-  transform:translateY(-1px);
+background:#ff1744;
+transform:translateY(-1px);
 }
 
 .aviso{
-  display:none;
-  margin-top:15px;
-  padding:13px;
-  border-radius:10px;
-  background:#21070d;
-  border:1px solid #7c1028;
-  color:#ff617d;
-  font-size:13px;
-  text-align:center;
+display:none;
+margin-top:15px;
+padding:13px;
+border-radius:10px;
+background:#21070d;
+border:1px solid #7c1028;
+color:#ff617d;
+font-size:13px;
+text-align:center;
 }
 
 .resultado{
-  display:none;
-  margin-top:25px;
-  padding:22px;
-  border-radius:18px;
-  background:#080808;
-  border:1px solid #35101a;
+display:none;
+margin-top:25px;
+padding:22px;
+border-radius:18px;
+background:#080808;
+border:1px solid #35101a;
 }
 
 .result-title{
-  text-align:center;
-  font-size:20px;
-  font-weight:1000;
-  color:#ff1744;
+text-align:center;
+font-size:20px;
+font-weight:1000;
+color:#ff1744;
 }
 
 .result-device{
-  text-align:center;
-  color:#888;
-  font-size:13px;
-  margin:6px 0 20px;
+text-align:center;
+color:#888;
+font-size:13px;
+margin:6px 0 20px;
 }
 
 .sensi-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
 }
 
 .sensi{
-  background:#101010;
-  border:1px solid #222;
-  border-radius:12px;
-  padding:15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+background:#101010;
+border:1px solid #222;
+border-radius:12px;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 .sensi span{
-  color:#bbb;
-  font-size:13px;
+color:#bbb;
+font-size:13px;
 }
 
 .sensi strong{
-  background:#e50932;
-  padding:7px 11px;
-  border-radius:8px;
-  min-width:42px;
-  text-align:center;
+background:#e50932;
+padding:7px 11px;
+border-radius:8px;
+min-width:42px;
+text-align:center;
 }
 
 .analysis{
-  margin-top:15px;
-  padding:14px;
-  background:#0d0d0d;
-  border-left:3px solid #e50932;
-  border-radius:8px;
-  color:#aaa;
-  font-size:13px;
-  line-height:1.5;
+margin-top:15px;
+padding:14px;
+background:#0d0d0d;
+border-left:3px solid #e50932;
+border-radius:8px;
+color:#aaa;
+font-size:13px;
+line-height:1.5;
 }
 
 .actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:15px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:15px;
 }
 
 .action{
-  height:48px;
-  border-radius:11px;
-  border:1px solid #292929;
-  background:#121212;
-  color:#fff;
-  font-weight:900;
-  cursor:pointer;
+height:48px;
+border-radius:11px;
+border:1px solid #292929;
+background:#121212;
+color:#fff;
+font-weight:900;
+cursor:pointer;
 }
 
 .action:hover{
-  border-color:#e50932;
+border-color:#e50932;
 }
 
 .contact{
-  margin-top:25px;
-  padding:25px;
-  background:#080808;
-  border:1px solid #242424;
-  border-radius:20px;
-  text-align:center;
+margin-top:25px;
+padding:25px;
+background:#080808;
+border:1px solid #242424;
+border-radius:20px;
+text-align:center;
 }
 
 .contact h2{
-  color:#ff1744;
-  font-size:21px;
-  margin-bottom:8px;
+color:#ff1744;
+font-size:21px;
+margin-bottom:8px;
 }
 
 .contact-text{
-  color:#888;
-  font-size:13px;
-  line-height:1.5;
+color:#888;
+font-size:13px;
+line-height:1.5;
 }
 
 .contact-phone{
-  display:inline-block;
-  margin-top:15px;
-  padding:12px 20px;
-  border-radius:11px;
-  background:#e50932;
-  color:#fff;
-  text-decoration:none;
-  font-weight:900;
-  transition:.2s;
+display:inline-block;
+margin-top:15px;
+padding:12px 20px;
+border-radius:11px;
+background:#e50932;
+color:#fff;
+text-decoration:none;
+font-weight:900;
+transition:.2s;
 }
 
 .contact-phone:hover{
-  background:#ff1744;
-  transform:translateY(-1px);
+background:#ff1744;
+transform:translateY(-1px);
 }
 
 .donation{
-  margin-top:20px;
-  padding:18px;
-  background:#101010;
-  border:1px solid #292929;
-  border-radius:14px;
+margin-top:20px;
+padding:18px;
+background:#101010;
+border:1px solid #292929;
+border-radius:14px;
 }
 
 .donation h3{
-  color:#fff;
-  font-size:16px;
-  margin-bottom:8px;
+color:#fff;
+font-size:16px;
+margin-bottom:8px;
 }
 
 .donation p{
-  color:#999;
-  font-size:13px;
-  line-height:1.5;
+color:#999;
+font-size:13px;
+line-height:1.5;
 }
 
 .donation strong{
-  color:#ff1744;
+color:#ff1744;
 }
 
 .credits{
-  text-align:center;
-  color:#555;
-  font-size:12px;
-  margin-top:28px;
+text-align:center;
+color:#555;
+font-size:12px;
+margin-top:28px;
 }
 
 .credits b{
-  color:#777;
+color:#777;
 }
 
 @media(max-width:650px){
-  .container{
-    padding:25px 0;
-  }
 
-  .logo{
-    font-size:34px;
-  }
+.container{
+padding:25px 0;
+}
 
-  .grid{
-    grid-template-columns:1fr;
-  }
+.logo{
+font-size:34px;
+}
 
-  .field.full{
-    grid-column:auto;
-  }
+.grid{
+grid-template-columns:1fr;
+}
 
-  .sensi-grid{
-    grid-template-columns:1fr;
-  }
+.field.full{
+grid-column:auto;
+}
 
-  .actions{
-    grid-template-columns:1fr;
-  }
+.sensi-grid{
+grid-template-columns:1fr;
+}
+
+.actions{
+grid-template-columns:1fr;
+}
+
 }
 </style>
 </head>
@@ -326,13 +328,15 @@ select:focus{
 <div class="container">
 
 <header class="header">
-  <div class="logo">
-    GOAT <span>SENSI</span>
-  </div>
 
-  <div class="subtitle">
-    Gerador profissional de sensibilidade para Free Fire
-  </div>
+<div class="logo">
+GOAT <span>SENSI</span>
+</div>
+
+<div class="subtitle">
+Gerador profissional de sensibilidade para Free Fire
+</div>
+
 </header>
 
 <main class="card">
@@ -341,6 +345,7 @@ select:focus{
 
 <div class="field">
 <label for="freefire">Jogo</label>
+
 <select id="freefire">
 <option value="">Selecione</option>
 <option value="normal">Free Fire</option>
@@ -350,6 +355,7 @@ select:focus{
 
 <div class="field">
 <label for="marca">Fabricante</label>
+
 <select id="marca">
 <option value="">Selecione</option>
 <option value="Samsung">Samsung</option>
@@ -359,30 +365,39 @@ select:focus{
 </div>
 
 <div class="field full">
+
 <label for="modelo">Modelo</label>
+
 <select id="modelo">
 <option value="">Selecione o fabricante primeiro</option>
 </select>
+
 </div>
 
 <div class="field">
+
 <label for="nivel">Nível</label>
+
 <select id="nivel">
 <option value="">Selecione</option>
 <option value="baixa">Baixa</option>
 <option value="media">Média</option>
 <option value="alta">Alta</option>
 </select>
+
 </div>
 
 <div class="field">
+
 <label for="dedos">Quantidade de dedos</label>
+
 <select id="dedos">
 <option value="">Selecione</option>
 <option value="2">2 dedos</option>
 <option value="3">3 dedos</option>
 <option value="4">4 dedos</option>
 </select>
+
 </div>
 
 </div>
@@ -404,12 +419,12 @@ SENSIBILIDADE GERADA
 <div class="sensi-grid">
 
 <div class="sensi">
-<span>Geral</span>
+<span>Geral / Velocidade</span>
 <strong id="vGeral">0</strong>
 </div>
 
 <div class="sensi">
-<span>Ponto Vermelho</span>
+<span>Ponto Vermelho / Capa</span>
 <strong id="vRed">0</strong>
 </div>
 
@@ -501,11 +516,12 @@ GOAT SENSI © 2026<br>
 </div>
 
 <script>
+
 (function(){
 
 "use strict";
 
-var DADOS = {
+var DADOS={
 
 Samsung:[
 "Galaxy A05",
@@ -607,24 +623,41 @@ var copiar=document.getElementById("copiar");
 var variar=document.getElementById("variar");
 var resultDevice=document.getElementById("resultDevice");
 
-function limitar(numero){
+function limitar(numero,minimo,maximo){
+
 numero=Number(numero);
 
 if(isNaN(numero)){
-numero=0;
+numero=minimo;
 }
 
-return Math.max(0,Math.min(200,Math.round(numero)));
+return Math.max(
+minimo,
+Math.min(maximo,Math.round(numero))
+);
+
+}
+
+function aleatorio(minimo,maximo){
+
+return Math.floor(
+Math.random()*(maximo-minimo+1)
+)+minimo;
+
 }
 
 function avisoTexto(texto){
+
 aviso.textContent=texto;
 aviso.style.display="block";
+
 }
 
 function esconderAviso(){
+
 aviso.textContent="";
 aviso.style.display="none";
+
 }
 
 function carregarModelos(){
@@ -635,9 +668,11 @@ modelo.innerHTML="";
 
 if(!fabricante || !DADOS[fabricante]){
 
-modelo.innerHTML='<option value="">Selecione o fabricante primeiro</option>';
+modelo.innerHTML=
+'<option value="">Selecione o fabricante primeiro</option>';
 
 return;
+
 }
 
 var primeiro=document.createElement("option");
@@ -668,155 +703,265 @@ carregarModelos();
 
 });
 
+
 gerar.addEventListener("click",function(){
 
 esconderAviso();
 
 if(!freefire.value){
+
 avisoTexto("Selecione o jogo.");
 freefire.focus();
 return;
+
 }
 
 if(!marca.value){
+
 avisoTexto("Selecione o fabricante.");
 marca.focus();
 return;
+
 }
 
 if(!modelo.value){
+
 avisoTexto("Selecione o modelo.");
 modelo.focus();
 return;
+
 }
 
 if(!nivel.value){
+
 avisoTexto("Selecione o nível.");
 nivel.focus();
 return;
+
 }
 
 if(!dedos.value){
+
 avisoTexto("Selecione quantos dedos você usa.");
 dedos.focus();
 return;
+
 }
 
-var base=145;
+
+/*
+=================================================
+GERADOR 100.000+ COMBINAÇÕES
+=================================================
+
+Geral: 80 opções
+Capa: 80 opções
+
+80 x 80 = 6.400
+
+Somando as variações de 2x, 4x,
+AWM, olhadinha, DPI e botão:
+
+mais de 100.000 combinações possíveis.
+*/
+
+
+var geral;
+var red;
+
+
+/* VELOCIDADE */
 
 if(nivel.value==="baixa"){
-base=110;
+
+geral=aleatorio(85,145);
+
+}
+else if(nivel.value==="media"){
+
+geral=aleatorio(120,180);
+
+}
+else{
+
+geral=aleatorio(145,200);
+
 }
 
-if(nivel.value==="media"){
-base=145;
+
+/* CAPA */
+
+if(nivel.value==="baixa"){
+
+red=aleatorio(
+Math.max(70,geral-35),
+Math.min(170,geral+10)
+);
+
+}
+else if(nivel.value==="media"){
+
+red=aleatorio(
+Math.max(90,geral-30),
+Math.min(195,geral+12)
+);
+
+}
+else{
+
+red=aleatorio(
+Math.max(110,geral-25),
+200
+);
+
 }
 
-if(nivel.value==="alta"){
-base=180;
-}
 
-if(dedos.value==="3"){
-base+=4;
-}
-
-if(dedos.value==="4"){
-base+=8;
-}
-
-if(freefire.value==="max"){
-base+=3;
-}
+/* AJUSTE POR FABRICANTE */
 
 if(marca.value==="Xiaomi"){
-base+=2;
+
+red=limitar(
+red+aleatorio(-3,5),
+0,
+200
+);
+
 }
 
 if(marca.value==="Motorola"){
-base+=1;
-}
 
-var lista=DADOS[marca.value];
-var indice=lista.indexOf(modelo.value);
+red=limitar(
+red+aleatorio(-4,4),
+0,
+200
+);
 
-if(indice>=0){
-base+=Math.min(5,Math.floor(indice/7));
-}
-
-var geral=limitar(base);
-var red=limitar(geral-7);
-var doisX=limitar(geral-19);
-var quatroX=limitar(geral-34);
-var awm=limitar(geral-52);
-var olhadinha=limitar(geral-3);
-
-/* DPI */
-
-var dpi=440;
-
-if(nivel.value==="baixa"){
-dpi=420;
-}
-
-if(nivel.value==="media"){
-dpi=520;
-}
-
-if(nivel.value==="alta"){
-dpi=600;
-}
-
-if(dedos.value==="3"){
-dpi+=20;
-}
-
-if(dedos.value==="4"){
-dpi+=35;
 }
 
 if(marca.value==="Samsung"){
-dpi+=10;
+
+red=limitar(
+red+aleatorio(-2,4),
+0,
+200
+);
+
+}
+
+
+/* MIRAS */
+
+var doisX=limitar(
+red-aleatorio(8,22),
+0,
+200
+);
+
+var quatroX=limitar(
+doisX-aleatorio(10,25),
+0,
+200
+);
+
+var awm=limitar(
+quatroX-aleatorio(10,25),
+0,
+200
+);
+
+var olhadinha=limitar(
+geral-aleatorio(1,8),
+0,
+200
+);
+
+
+/* DPI */
+
+var dpi;
+
+if(nivel.value==="baixa"){
+
+dpi=aleatorio(380,470);
+
+}
+else if(nivel.value==="media"){
+
+dpi=aleatorio(450,570);
+
+}
+else{
+
+dpi=aleatorio(540,700);
+
+}
+
+
+/* AJUSTES DE DPI POR MARCA */
+
+if(marca.value==="Samsung"){
+
+dpi+=aleatorio(-10,15);
+
 }
 
 if(marca.value==="Xiaomi"){
-dpi+=20;
+
+dpi+=aleatorio(5,25);
+
 }
 
 if(marca.value==="Motorola"){
-dpi+=5;
+
+dpi+=aleatorio(-15,10);
+
 }
 
-if(freefire.value==="max"){
-dpi+=10;
-}
+dpi=limitar(dpi,360,720);
 
-dpi=Math.max(360,Math.min(700,dpi));
 
 /* BOTÃO DE ATIRAR */
 
-var fire=52;
+var fire;
 
-if(nivel.value==="baixa"){
-fire=55;
+if(dedos.value==="2"){
+
+fire=aleatorio(50,60);
+
 }
+else if(dedos.value==="3"){
 
-if(nivel.value==="media"){
-fire=52;
+fire=aleatorio(45,56);
+
+}
+else{
+
+fire=aleatorio(40,52);
+
 }
 
 if(nivel.value==="alta"){
-fire=48;
+
+fire-=aleatorio(0,4);
+
 }
 
-if(dedos.value==="3"){
-fire-=2;
+fire=limitar(fire,38,60);
+
+
+/* FREE FIRE MAX */
+
+if(freefire.value==="max"){
+
+geral=limitar(geral+aleatorio(-2,5),0,200);
+
+red=limitar(red+aleatorio(-2,5),0,200);
+
 }
 
-if(dedos.value==="4"){
-fire-=4;
-}
 
-fire=Math.max(42,Math.min(60,fire));
+/* MOSTRAR */
 
 vGeral.textContent=geral;
 vRed.textContent=red;
@@ -827,32 +972,42 @@ vLook.textContent=olhadinha;
 vDpi.textContent=dpi;
 vFire.textContent=fire;
 
+
 resultDevice.textContent=
-marca.value+" "+
+marca.value+
+" "+
 modelo.value+
 " • "+
-dedos.value+" dedos";
+dedos.value+
+" dedos";
 
-if(nivel.value==="baixa"){
+
+/* ANALISTA */
+
+var diferenca=red-geral;
+
+if(diferenca>=0){
 
 analise.textContent=
-"Perfil focado em controle e estabilidade. DPI mais controlado e botão de tiro maior para facilitar a precisão.";
-
-}
-else if(nivel.value==="media"){
-
-analise.textContent=
-"Perfil equilibrado entre controle, velocidade e precisão. DPI e botão de tiro configurados para uso geral.";
+"BOT ANALISTA: configuração focada em capa. "+
+"Velocidade "+geral+
+" e Ponto Vermelho "+red+
+". Boa combinação para quem gosta de respostas rápidas.";
 
 }
 else{
 
 analise.textContent=
-"Perfil rápido e agressivo. DPI mais alto e botão de tiro menor para respostas mais rápidas.";
+"BOT ANALISTA: configuração equilibrada. "+
+"Velocidade "+geral+
+" e Ponto Vermelho "+red+
+". Feita para combinar controle e velocidade.";
 
 }
 
+
 resultado.style.display="block";
+
 
 setTimeout(function(){
 
@@ -865,62 +1020,136 @@ block:"start"
 
 });
 
+
 variar.addEventListener("click",function(){
 
 if(resultado.style.display==="none"){
 
-avisoTexto("Gere uma sensibilidade primeiro.");
+avisoTexto(
+"Gere uma sensibilidade primeiro."
+);
+
 return;
 
 }
 
-vGeral.textContent=limitar(Number(vGeral.textContent)+1);
-vRed.textContent=limitar(Number(vRed.textContent)+1);
-v2x.textContent=limitar(Number(v2x.textContent)+1);
-v4x.textContent=limitar(Number(v4x.textContent)+1);
-vAwm.textContent=limitar(Number(vAwm.textContent)+1);
-vLook.textContent=limitar(Number(vLook.textContent)+1);
+vGeral.textContent=
+limitar(
+Number(vGeral.textContent)+1,
+0,
+200
+);
+
+vRed.textContent=
+limitar(
+Number(vRed.textContent)+1,
+0,
+200
+);
+
+v2x.textContent=
+limitar(
+Number(v2x.textContent)+1,
+0,
+200
+);
+
+v4x.textContent=
+limitar(
+Number(v4x.textContent)+1,
+0,
+200
+);
+
+vAwm.textContent=
+limitar(
+Number(vAwm.textContent)+1,
+0,
+200
+);
+
+vLook.textContent=
+limitar(
+Number(vLook.textContent)+1,
+0,
+200
+);
 
 analise.textContent=
-"Ajuste fino aplicado: +1 nas sensibilidades.";
+"BOT ANALISTA: ajuste fino aplicado. "+
+"Todas as sensibilidades receberam +1.";
 
 });
+
 
 copiar.addEventListener("click",function(){
 
 if(resultado.style.display==="none"){
 
-avisoTexto("Gere uma sensibilidade primeiro.");
+avisoTexto(
+"Gere uma sensibilidade primeiro."
+);
+
 return;
 
 }
 
 var texto=
 "GOAT SENSI\n\n"+
-"Aparelho: "+marca.value+" "+modelo.value+"\n"+
-"Jogo: "+(freefire.value==="max"?"Free Fire MAX":"Free Fire")+"\n"+
-"Dedos: "+dedos.value+"\n\n"+
-"Geral: "+vGeral.textContent+"\n"+
-"Ponto Vermelho: "+vRed.textContent+"\n"+
-"Mira 2x: "+v2x.textContent+"\n"+
-"Mira 4x: "+v4x.textContent+"\n"+
-"Mira AWM: "+vAwm.textContent+"\n"+
-"Olhadinha: "+vLook.textContent+"\n"+
-"DPI: "+vDpi.textContent+"\n"+
-"Botão de Atirar: "+vFire.textContent;
+"Aparelho: "+
+marca.value+" "+
+modelo.value+"\n"+
+"Jogo: "+
+(freefire.value==="max"?
+"Free Fire MAX":
+"Free Fire")+
+"\n"+
+"Dedos: "+
+dedos.value+
+"\n\n"+
+"Geral / Velocidade: "+
+vGeral.textContent+
+"\n"+
+"Ponto Vermelho / Capa: "+
+vRed.textContent+
+"\n"+
+"Mira 2x: "+
+v2x.textContent+
+"\n"+
+"Mira 4x: "+
+v4x.textContent+
+"\n"+
+"Mira AWM: "+
+vAwm.textContent+
+"\n"+
+"Olhadinha: "+
+vLook.textContent+
+"\n"+
+"DPI: "+
+vDpi.textContent+
+"\n"+
+"Botão de Atirar: "+
+vFire.textContent;
+
 
 if(navigator.clipboard &&
 navigator.clipboard.writeText){
 
-navigator.clipboard.writeText(texto).then(function(){
+navigator.clipboard.writeText(texto)
+.then(function(){
 
-copiar.textContent="COPIADO ✓";
+copiar.textContent=
+"COPIADO ✓";
 
 setTimeout(function(){
-copiar.textContent="COPIAR CONFIGURAÇÃO";
+
+copiar.textContent=
+"COPIAR CONFIGURAÇÃO";
+
 },1800);
 
-}).catch(function(){
+})
+.catch(function(){
 
 copiarFallback(texto);
 
@@ -935,11 +1164,14 @@ copiarFallback(texto);
 
 });
 
+
 function copiarFallback(texto){
 
-var area=document.createElement("textarea");
+var area=
+document.createElement("textarea");
 
 area.value=texto;
+
 area.style.position="fixed";
 area.style.left="-9999px";
 
@@ -952,16 +1184,22 @@ try{
 
 document.execCommand("copy");
 
-copiar.textContent="COPIADO ✓";
+copiar.textContent=
+"COPIADO ✓";
 
 setTimeout(function(){
-copiar.textContent="COPIAR CONFIGURAÇÃO";
+
+copiar.textContent=
+"COPIAR CONFIGURAÇÃO";
+
 },1800);
 
 }
 catch(e){
 
-avisoTexto("Não foi possível copiar automaticamente.");
+avisoTexto(
+"Não foi possível copiar automaticamente."
+);
 
 }
 
@@ -969,12 +1207,14 @@ document.body.removeChild(area);
 
 }
 
-/* COMEÇA COM SAMSUNG E MOSTRA OS MODELOS */
+
+/* MODELOS */
 
 marca.value="Samsung";
 carregarModelos();
 
 })();
+
 </script>
 
 </body>
