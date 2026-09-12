@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#030303">
+
 <title>GOAT SENSI</title>
 
 <style>
+
 *{
 box-sizing:border-box;
 margin:0;
@@ -34,18 +37,18 @@ linear-gradient(rgba(255,0,40,.025) 1px,transparent 1px),
 linear-gradient(90deg,rgba(255,0,40,.025) 1px,transparent 1px);
 background-size:35px 35px;
 z-index:-3;
-animation:gridMove 12s linear infinite;
+animation:gridMove 14s linear infinite;
 }
 
 body:after{
 content:"";
 position:fixed;
-width:450px;
-height:450px;
-top:-180px;
+width:440px;
+height:440px;
+top:-190px;
 left:50%;
 transform:translateX(-50%);
-background:rgba(229,9,50,.09);
+background:rgba(229,9,50,.08);
 filter:blur(100px);
 border-radius:50%;
 pointer-events:none;
@@ -53,23 +56,28 @@ z-index:-2;
 animation:orb 5s ease-in-out infinite alternate;
 }
 
+button,
+select{
+font-family:inherit;
+}
+
 .container{
 width:min(950px,92%);
 margin:auto;
-padding:40px 0 30px;
+padding:35px 0 30px;
 }
 
 .header{
 text-align:center;
-margin-bottom:32px;
+margin-bottom:30px;
 animation:fadeDown .8s ease;
 }
 
 .logo{
 font-size:48px;
+line-height:1;
 font-weight:1000;
 letter-spacing:-3px;
-animation:logoPulse 3s ease-in-out infinite;
 }
 
 .logo span{
@@ -77,26 +85,27 @@ color:#ff1744;
 }
 
 .server-status{
-margin-top:8px;
+margin-top:10px;
 color:#00e676;
 font-size:12px;
 font-weight:900;
+letter-spacing:.4px;
 }
 
-.server-status span{
+.server-status-dot{
 display:inline-block;
 width:8px;
 height:8px;
+margin-right:5px;
 background:#00e676;
 border-radius:50%;
-margin-right:5px;
 box-shadow:0 0 10px #00e676;
 animation:serverPulse 1.5s infinite;
 }
 
 .subtitle{
-color:#777;
 margin-top:8px;
+color:#777;
 font-size:14px;
 }
 
@@ -110,26 +119,21 @@ border:1px solid #4a0d1c;
 color:#ff4968;
 font-size:11px;
 font-weight:900;
-animation:badgePulse 2s infinite;
 }
 
 .card{
-background:rgba(8,8,8,.95);
+background:rgba(8,8,8,.96);
 border:1px solid #242424;
 border-radius:22px;
 padding:26px;
 box-shadow:
 0 25px 80px rgba(0,0,0,.55),
 inset 0 1px rgba(255,255,255,.025);
-animation:fadeUp .9s ease;
-transition:border-color .3s,box-shadow .3s;
+animation:fadeUp .8s ease;
 }
 
 .card:hover{
 border-color:#35101a;
-box-shadow:
-0 25px 90px rgba(0,0,0,.65),
-0 0 30px rgba(229,9,50,.04);
 }
 
 .grid{
@@ -142,14 +146,7 @@ gap:18px;
 display:flex;
 flex-direction:column;
 gap:8px;
-animation:fieldIn .6s ease backwards;
 }
-
-.field:nth-child(1){animation-delay:.05s}
-.field:nth-child(2){animation-delay:.10s}
-.field:nth-child(3){animation-delay:.15s}
-.field:nth-child(4){animation-delay:.20s}
-.field:nth-child(5){animation-delay:.25s}
 
 .field.full{
 grid-column:1/-1;
@@ -173,15 +170,12 @@ background:#111;
 color:#fff;
 outline:none;
 font-size:15px;
-transition:
-border-color .25s,
-box-shadow .25s,
-transform .25s;
+cursor:pointer;
+transition:.25s;
 }
 
 select:hover{
 border-color:#444;
-transform:translateY(-1px);
 }
 
 select:focus{
@@ -189,19 +183,19 @@ border-color:#ff1744;
 box-shadow:
 0 0 0 2px rgba(255,23,68,.10),
 0 0 25px rgba(255,23,68,.10);
-transform:translateY(-1px);
 }
 
 select:disabled{
-opacity:.4;
+opacity:.45;
+cursor:not-allowed;
 }
 
 .generate{
 position:relative;
 overflow:hidden;
 width:100%;
-margin-top:23px;
 height:57px;
+margin-top:23px;
 border:0;
 border-radius:14px;
 background:linear-gradient(135deg,#c90029,#ff1744);
@@ -209,36 +203,19 @@ color:#fff;
 font-size:15px;
 font-weight:1000;
 cursor:pointer;
-transition:.25s;
 box-shadow:0 8px 25px rgba(229,9,50,.18);
-}
-
-.generate:before{
-content:"";
-position:absolute;
-top:0;
-left:-120%;
-width:70%;
-height:100%;
-background:linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,.25),
-transparent
-);
-transform:skewX(-20deg);
-animation:buttonShine 3s infinite;
+transition:.25s;
 }
 
 .generate:hover{
-transform:translateY(-3px) scale(1.005);
+transform:translateY(-2px);
 box-shadow:
 0 15px 40px rgba(229,9,50,.30),
 0 0 20px rgba(229,9,50,.12);
 }
 
 .generate:active{
-transform:scale(.97);
+transform:scale(.98);
 }
 
 .generate:disabled{
@@ -256,7 +233,6 @@ border:1px solid #7c1028;
 color:#ff617d;
 font-size:13px;
 text-align:center;
-animation:shake .35s ease;
 }
 
 .resultado{
@@ -266,7 +242,7 @@ padding:22px;
 border-radius:18px;
 background:#080808;
 border:1px solid #35101a;
-animation:resultIn .65s cubic-bezier(.2,.8,.2,1);
+animation:resultIn .6s ease;
 }
 
 .result-title{
@@ -274,7 +250,6 @@ text-align:center;
 font-size:21px;
 font-weight:1000;
 color:#ff1744;
-animation:titleGlow 2s ease-in-out infinite alternate;
 }
 
 .result-device{
@@ -299,20 +274,11 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 transition:.25s;
-animation:sensiIn .5s ease backwards;
 }
 
-.sensi:nth-child(1){animation-delay:.05s}
-.sensi:nth-child(2){animation-delay:.10s}
-.sensi:nth-child(3){animation-delay:.15s}
-.sensi:nth-child(4){animation-delay:.20s}
-.sensi:nth-child(5){animation-delay:.25s}
-.sensi:nth-child(6){animation-delay:.30s}
-
 .sensi:hover{
-transform:translateY(-4px) scale(1.015);
+transform:translateY(-3px);
 border-color:#5a1021;
-box-shadow:0 8px 25px rgba(229,9,50,.08);
 }
 
 .sensi span{
@@ -326,8 +292,8 @@ padding:7px 11px;
 border-radius:8px;
 min-width:45px;
 text-align:center;
+font-size:14px;
 box-shadow:0 5px 15px rgba(229,9,50,.15);
-animation:numberPop .45s ease;
 }
 
 .analysis{
@@ -339,7 +305,6 @@ border-radius:8px;
 color:#aaa;
 font-size:13px;
 line-height:1.6;
-animation:fadeUp .7s ease;
 }
 
 .quality{
@@ -363,8 +328,8 @@ color:#ff1744;
 }
 
 .quality-bar{
-width:100%;
 height:7px;
+width:100%;
 background:#1d1d1d;
 border-radius:20px;
 overflow:hidden;
@@ -372,14 +337,11 @@ overflow:hidden;
 
 .quality-fill{
 height:100%;
-width:0%;
+width:0;
 background:linear-gradient(90deg,#a90025,#ff1744);
 border-radius:20px;
-transition:width 1.3s cubic-bezier(.2,.8,.2,1);
-box-shadow:0 0 12px rgba(255,23,68,.35);
+transition:width 1s ease;
 }
-
-/* AJUSTE DO APARELHO */
 
 .device-box{
 margin-top:18px;
@@ -387,21 +349,6 @@ padding:20px;
 border-radius:17px;
 background:linear-gradient(145deg,#0d0d0d,#090909);
 border:1px solid #35101a;
-position:relative;
-overflow:hidden;
-animation:fadeUp .7s ease;
-}
-
-.device-box:before{
-content:"";
-position:absolute;
-top:0;
-left:-100%;
-width:65%;
-height:1px;
-background:#ff1744;
-box-shadow:0 0 15px #ff1744;
-animation:deviceScan 3s linear infinite;
 }
 
 .device-head{
@@ -412,12 +359,12 @@ margin-bottom:15px;
 }
 
 .device-icon{
-width:40px;
-height:40px;
-border-radius:12px;
+width:42px;
+height:42px;
 display:flex;
 align-items:center;
 justify-content:center;
+border-radius:12px;
 background:#19050a;
 border:1px solid #521022;
 font-size:20px;
@@ -441,39 +388,38 @@ gap:10px;
 }
 
 .device-stat{
+padding:15px;
 background:#101010;
 border:1px solid #242424;
 border-radius:13px;
-padding:15px;
 }
 
 .device-stat span{
 display:block;
 color:#888;
-font-size:11px;
-margin-bottom:7px;
+font-size:10px;
+font-weight:900;
 text-transform:uppercase;
-font-weight:800;
+margin-bottom:7px;
 }
 
 .device-stat strong{
+font-size:23px;
 color:#ff1744;
-font-size:22px;
-font-weight:1000;
 }
 
 .device-profile{
 grid-column:1/-1;
+padding:15px;
 background:#101010;
 border:1px solid #242424;
 border-radius:13px;
-padding:15px;
 }
 
 .device-profile span{
 color:#888;
-font-size:11px;
-font-weight:800;
+font-size:10px;
+font-weight:900;
 text-transform:uppercase;
 }
 
@@ -482,6 +428,7 @@ display:block;
 margin-top:7px;
 font-size:15px;
 color:#fff;
+line-height:1.4;
 }
 
 .device-note{
@@ -493,6 +440,104 @@ border-radius:9px;
 color:#888;
 font-size:12px;
 line-height:1.5;
+}
+
+.ai-box{
+margin-top:20px;
+padding:20px;
+border-radius:17px;
+background:linear-gradient(145deg,#0d0d0d,#090909);
+border:1px solid #3b101c;
+}
+
+.ai-head{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:15px;
+}
+
+.ai-icon{
+width:40px;
+height:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:12px;
+background:#19050a;
+border:1px solid #521022;
+font-size:20px;
+}
+
+.ai-head h3{
+font-size:17px;
+font-weight:1000;
+}
+
+.ai-head p{
+font-size:11px;
+color:#777;
+margin-top:3px;
+}
+
+.ai-score{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:15px;
+background:#101010;
+border:1px solid #242424;
+border-radius:13px;
+}
+
+.ai-score-label{
+color:#999;
+font-size:12px;
+font-weight:900;
+}
+
+.ai-score-number{
+font-size:29px;
+font-weight:1000;
+color:#ff1744;
+}
+
+.ai-tags{
+display:flex;
+flex-wrap:wrap;
+gap:7px;
+margin-top:12px;
+}
+
+.ai-tag{
+padding:7px 10px;
+border-radius:20px;
+background:#151515;
+border:1px solid #2c2c2c;
+color:#ccc;
+font-size:11px;
+font-weight:800;
+}
+
+.ai-tag.special{
+color:#ff4968;
+border-color:#541021;
+background:#18070b;
+}
+
+.ai-text{
+margin-top:13px;
+padding:14px;
+background:#0b0b0b;
+border-radius:11px;
+color:#aaa;
+font-size:13px;
+line-height:1.6;
+border-left:2px solid #ff1744;
+}
+
+.ai-text b{
+color:#fff;
 }
 
 .actions{
@@ -516,151 +561,21 @@ transition:.25s;
 .action:hover{
 border-color:#e50932;
 transform:translateY(-2px);
-box-shadow:0 8px 20px rgba(229,9,50,.08);
-}
-
-.action:active{
-transform:scale(.97);
-}
-
-/* IA */
-
-.ai-box{
-margin-top:20px;
-padding:20px;
-border-radius:17px;
-background:linear-gradient(145deg,#0d0d0d,#090909);
-border:1px solid #3b101c;
-position:relative;
-overflow:hidden;
-animation:aiEntrada .8s ease;
-}
-
-.ai-box:before{
-content:"";
-position:absolute;
-top:0;
-left:-100%;
-width:70%;
-height:1px;
-background:#ff1744;
-box-shadow:0 0 15px #ff1744;
-animation:aiScan 3s linear infinite;
-}
-
-.ai-head{
-display:flex;
-align-items:center;
-gap:10px;
-margin-bottom:15px;
-}
-
-.ai-icon{
-width:40px;
-height:40px;
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#19050a;
-border:1px solid #521022;
-font-size:20px;
-animation:aiIcon 2s ease-in-out infinite;
-}
-
-.ai-head h3{
-font-size:17px;
-font-weight:1000;
-}
-
-.ai-head p{
-font-size:11px;
-color:#777;
-margin-top:3px;
-}
-
-.ai-score{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:15px;
-background:#101010;
-border:1px solid #242424;
-border-radius:13px;
-margin-bottom:12px;
-}
-
-.ai-score-label{
-color:#999;
-font-size:12px;
-}
-
-.ai-score-number{
-font-size:28px;
-font-weight:1000;
-color:#ff1744;
-text-shadow:0 0 18px rgba(255,23,68,.2);
-}
-
-.ai-tags{
-display:flex;
-flex-wrap:wrap;
-gap:7px;
-margin-bottom:13px;
-}
-
-.ai-tag{
-padding:7px 10px;
-border-radius:20px;
-background:#151515;
-border:1px solid #2c2c2c;
-color:#ccc;
-font-size:11px;
-font-weight:800;
-animation:tagIn .5s ease backwards;
-}
-
-.ai-tag.special{
-color:#ff4968;
-border-color:#541021;
-background:#18070b;
-}
-
-.ai-text{
-padding:14px;
-background:#0b0b0b;
-border-radius:11px;
-color:#aaa;
-font-size:13px;
-line-height:1.6;
-border-left:2px solid #ff1744;
-}
-
-.ai-text b{
-color:#fff;
 }
 
 .contact{
 margin-top:25px;
 padding:27px;
-background:rgba(8,8,8,.95);
+background:rgba(8,8,8,.96);
 border:1px solid #242424;
 border-radius:20px;
 text-align:center;
-animation:fadeUp 1s ease;
-transition:.3s;
-}
-
-.contact:hover{
-border-color:#35101a;
-transform:translateY(-2px);
 }
 
 .contact h2{
 color:#ff1744;
 font-size:21px;
 margin-bottom:8px;
-animation:titleGlow 2s ease-in-out infinite alternate;
 }
 
 .contact-text{
@@ -673,7 +588,6 @@ line-height:1.5;
 display:inline-flex;
 align-items:center;
 justify-content:center;
-gap:8px;
 margin-top:16px;
 padding:13px 22px;
 border-radius:12px;
@@ -683,13 +597,11 @@ color:#fff;
 text-decoration:none;
 font-weight:900;
 transition:.25s;
-animation:whatsappPulse 2.5s infinite;
 }
 
 .whatsapp:hover{
 border-color:#ff1744;
-transform:translateY(-3px) scale(1.02);
-box-shadow:0 10px 25px rgba(229,9,50,.12);
+transform:translateY(-2px);
 }
 
 .donation{
@@ -698,12 +610,6 @@ padding:19px;
 background:#101010;
 border:1px solid #292929;
 border-radius:14px;
-transition:.25s;
-}
-
-.donation:hover{
-border-color:#45101e;
-transform:translateY(-2px);
 }
 
 .donation h3{
@@ -727,95 +633,35 @@ color:#555;
 font-size:12px;
 margin-top:28px;
 line-height:1.6;
-animation:fadeUp 1.2s ease;
 }
 
 .credits b{
 color:#777;
 }
 
-/* ANIMAÇÕES */
-
 @keyframes fadeDown{
-from{opacity:0;transform:translateY(-25px)}
-to{opacity:1;transform:translateY(0)}
+from{
+opacity:0;
+transform:translateY(-20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 @keyframes fadeUp{
-from{opacity:0;transform:translateY(25px)}
-to{opacity:1;transform:translateY(0)}
+from{
+opacity:0;
+transform:translateY(20px);
 }
-
-@keyframes fieldIn{
-from{opacity:0;transform:translateX(-15px)}
-to{opacity:1;transform:translateX(0)}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 @keyframes resultIn{
-from{opacity:0;transform:translateY(30px) scale(.96)}
-to{opacity:1;transform:translateY(0) scale(1)}
-}
-
-@keyframes sensiIn{
-from{opacity:0;transform:scale(.92) translateY(10px)}
-to{opacity:1;transform:scale(1) translateY(0)}
-}
-
-@keyframes numberPop{
-0%{transform:scale(.5);opacity:0}
-70%{transform:scale(1.12)}
-100%{transform:scale(1);opacity:1}
-}
-
-@keyframes logoPulse{
-0%,100%{text-shadow:0 0 10px rgba(255,23,68,.05)}
-50%{text-shadow:0 0 30px rgba(255,23,68,.25)}
-}
-
-@keyframes titleGlow{
-from{text-shadow:0 0 5px rgba(255,23,68,.05)}
-to{text-shadow:0 0 18px rgba(255,23,68,.35)}
-}
-
-@keyframes badgePulse{
-0%,100%{box-shadow:0 0 0 rgba(255,23,68,0)}
-50%{box-shadow:0 0 18px rgba(255,23,68,.12)}
-}
-
-@keyframes whatsappPulse{
-0%,100%{box-shadow:0 0 0 rgba(255,23,68,0)}
-50%{box-shadow:0 0 18px rgba(255,23,68,.10)}
-}
-
-@keyframes buttonShine{
-0%{left:-120%}
-35%{left:140%}
-100%{left:140%}
-}
-
-@keyframes orb{
-from{
-transform:translateX(-50%) scale(.9);
-opacity:.6;
-}
-to{
-transform:translateX(-50%) scale(1.15);
-opacity:1;
-}
-}
-
-@keyframes gridMove{
-from{background-position:0 0,0 0}
-to{background-position:35px 35px,35px 35px}
-}
-
-@keyframes shake{
-0%,100%{transform:translateX(0)}
-25%{transform:translateX(-6px)}
-75%{transform:translateX(6px)}
-}
-
-@keyframes aiEntrada{
 from{
 opacity:0;
 transform:translateY(20px) scale(.97);
@@ -826,31 +672,23 @@ transform:translateY(0) scale(1);
 }
 }
 
-@keyframes aiScan{
-0%{left:-100%}
-50%{left:130%}
-100%{left:130%}
-}
-
-@keyframes aiIcon{
-0%,100%{
-transform:scale(1);
-box-shadow:0 0 0 rgba(255,23,68,0);
-}
-50%{
-transform:scale(1.08);
-box-shadow:0 0 20px rgba(255,23,68,.12);
-}
-}
-
-@keyframes tagIn{
+@keyframes gridMove{
 from{
-opacity:0;
-transform:translateY(7px);
+background-position:0 0,0 0;
 }
 to{
+background-position:35px 35px,35px 35px;
+}
+}
+
+@keyframes orb{
+from{
+transform:translateX(-50%) scale(.9);
+opacity:.5;
+}
+to{
+transform:translateX(-50%) scale(1.15);
 opacity:1;
-transform:translateY(0);
 }
 }
 
@@ -860,15 +698,9 @@ opacity:1;
 transform:scale(1);
 }
 50%{
-opacity:.4;
+opacity:.35;
 transform:scale(.7);
 }
-}
-
-@keyframes deviceScan{
-0%{left:-100%}
-50%{left:130%}
-100%{left:130%}
 }
 
 @media(max-width:650px){
@@ -878,7 +710,7 @@ padding:25px 0;
 }
 
 .logo{
-font-size:36px;
+font-size:37px;
 }
 
 .grid{
@@ -910,6 +742,7 @@ padding:20px;
 }
 
 }
+
 </style>
 </head>
 
@@ -924,7 +757,8 @@ GOAT <span>SENSI</span>
 </div>
 
 <div class="server-status">
-<span></span> SERVIDOR ATIVO
+<span class="server-status-dot"></span>
+SERVIDOR ATIVO
 </div>
 
 <div class="subtitle">
@@ -937,134 +771,242 @@ Gerador avançado de sensibilidade para Free Fire
 
 </header>
 
+
 <main class="card">
 
 <div class="grid">
 
 <div class="field">
-<label for="freefire">Jogo</label>
 
-<select id="freefire">
-<option value="">Selecione</option>
-<option value="normal">Free Fire</option>
-<option value="max">Free Fire MAX</option>
+<label for="jogo">
+Jogo
+</label>
+
+<select id="jogo">
+
+<option value="">
+Selecione
+</option>
+
+<option value="normal">
+Free Fire
+</option>
+
+<option value="max">
+Free Fire MAX
+</option>
+
 </select>
+
 </div>
+
 
 <div class="field">
-<label for="marca">Fabricante</label>
 
-<select id="marca">
-<option value="">Selecione</option>
-<option value="Samsung">Samsung</option>
-<option value="Xiaomi">Xiaomi</option>
-<option value="Motorola">Motorola</option>
+<label for="fabricante">
+Fabricante
+</label>
+
+<select id="fabricante">
+
+<option value="">
+Selecione
+</option>
+
+<option value="Samsung">
+Samsung
+</option>
+
+<option value="Xiaomi">
+Xiaomi
+</option>
+
+<option value="Motorola">
+Motorola
+</option>
+
 </select>
+
 </div>
+
 
 <div class="field full">
-<label for="modelo">Modelo</label>
+
+<label for="modelo">
+Modelo
+</label>
 
 <select id="modelo" disabled>
-<option value="">Primeiro selecione o fabricante</option>
+
+<option value="">
+Selecione primeiro o fabricante
+</option>
+
 </select>
+
 </div>
 
+
 <div class="field">
-<label for="nivel">Nível</label>
+
+<label for="nivel">
+Nível
+</label>
 
 <select id="nivel">
-<option value="">Selecione</option>
-<option value="baixa">Controle</option>
-<option value="media">Equilibrada</option>
-<option value="alta">Rápida</option>
+
+<option value="">
+Selecione
+</option>
+
+<option value="controle">
+Controle
+</option>
+
+<option value="equilibrado">
+Equilibrada
+</option>
+
+<option value="rapido">
+Rápida
+</option>
+
 </select>
+
 </div>
+
 
 <div class="field">
-<label for="dedos">Quantidade de dedos</label>
+
+<label for="dedos">
+Quantidade de dedos
+</label>
 
 <select id="dedos">
-<option value="">Selecione</option>
-<option value="2">2 dedos</option>
-<option value="3">3 dedos</option>
-<option value="4">4 dedos</option>
+
+<option value="">
+Selecione
+</option>
+
+<option value="2">
+2 dedos
+</option>
+
+<option value="3">
+3 dedos
+</option>
+
+<option value="4">
+4 dedos
+</option>
+
 </select>
-</div>
 
 </div>
 
-<button type="button" id="gerar" class="generate">
-GERAR SENSIBILIDADE
+</div>
+
+
+<button
+type="button"
+id="gerar"
+class="generate">
+
+GERAR CONFIGURAÇÃO
+
 </button>
 
-<div id="aviso" class="aviso"></div>
 
-<section id="resultado" class="resultado">
-
-<div class="result-title">
-SENSIBILIDADE GERADA
+<div
+id="aviso"
+class="aviso">
 </div>
 
-<div id="resultDevice" class="result-device"></div>
+
+<section
+id="resultado"
+class="resultado">
+
+<div class="result-title">
+CONFIGURAÇÃO GERADA
+</div>
+
+<div
+id="resultDevice"
+class="result-device">
+</div>
+
 
 <div class="sensi-grid">
 
 <div class="sensi">
 <span>Geral</span>
-<strong id="vGeral">0</strong>
+<strong id="geral">0</strong>
 </div>
 
 <div class="sensi">
 <span>Ponto Vermelho</span>
-<strong id="vRed">0</strong>
+<strong id="red">0</strong>
 </div>
 
 <div class="sensi">
 <span>Mira 2x</span>
-<strong id="v2x">0</strong>
+<strong id="mira2">0</strong>
 </div>
 
 <div class="sensi">
 <span>Mira 4x</span>
-<strong id="v4x">0</strong>
+<strong id="mira4">0</strong>
 </div>
 
 <div class="sensi">
 <span>Mira AWM</span>
-<strong id="vAwm">0</strong>
+<strong id="awm">0</strong>
 </div>
 
 <div class="sensi">
 <span>Olhadinha</span>
-<strong id="vLook">0</strong>
+<strong id="olhadinha">0</strong>
 </div>
 
 </div>
 
-<div id="analise" class="analysis"></div>
+
+<div
+id="analise"
+class="analysis">
+</div>
+
 
 <div class="quality">
 
 <div class="quality-title">
 
-<span>Qualidade da configuração</span>
+<span>
+Qualidade da configuração
+</span>
 
-<strong id="qualityText">0%</strong>
+<strong id="qualidadeTexto">
+0%
+</strong>
 
 </div>
 
 <div class="quality-bar">
 
-<div id="qualityFill" class="quality-fill"></div>
-
+<div
+id="qualidadeFill"
+class="quality-fill">
 </div>
 
 </div>
+
+</div>
+
 
 <!-- CONFIGURAÇÃO OPERACIONAL -->
 
-<div id="deviceBox" class="device-box">
+<div class="device-box">
 
 <div class="device-head">
 
@@ -1074,33 +1016,55 @@ SENSIBILIDADE GERADA
 
 <div>
 
-<h3>CONFIGURAÇÃO OPERACIONAL</h3>
+<h3>
+CONFIGURAÇÃO OPERACIONAL
+</h3>
 
 <p>
-DPI e botão calculados para o aparelho selecionado
+Perfil calculado para o aparelho selecionado
 </p>
 
 </div>
 
 </div>
 
+
 <div class="device-grid">
 
-<div class="device-stat">
-<span>DPI recomendado</span>
-<strong id="deviceDpi">0</strong>
-</div>
 
 <div class="device-stat">
-<span>Botão de tiro</span>
-<strong id="deviceButton">0%</strong>
+
+<span>
+DPI recomendado
+</span>
+
+<strong id="dpi">
+0
+</strong>
+
 </div>
+
+
+<div class="device-stat">
+
+<span>
+Botão de tiro
+</span>
+
+<strong id="botao">
+0%
+</strong>
+
+</div>
+
 
 <div class="device-profile">
 
-<span>Perfil identificado</span>
+<span>
+Perfil identificado
+</span>
 
-<strong id="deviceProfile">
+<strong id="perfil">
 Aguardando geração...
 </strong>
 
@@ -1108,15 +1072,21 @@ Aguardando geração...
 
 </div>
 
-<div id="deviceNote" class="device-note">
-Selecione o aparelho e gere a sensibilidade.
+
+<div
+id="deviceNote"
+class="device-note">
+
+A configuração operacional aparecerá aqui depois da geração.
+
 </div>
 
 </div>
+
 
 <!-- IA -->
 
-<div id="aiBox" class="ai-box">
+<div class="ai-box">
 
 <div class="ai-head">
 
@@ -1126,15 +1096,18 @@ Selecione o aparelho e gere a sensibilidade.
 
 <div>
 
-<h3>IA ANALISTA</h3>
+<h3>
+IA ANALISTA
+</h3>
 
 <p>
-Análise inteligente da sua configuração
+Análise inteligente da configuração
 </p>
 
 </div>
 
 </div>
+
 
 <div class="ai-score">
 
@@ -1142,28 +1115,51 @@ Análise inteligente da sua configuração
 GOAT SCORE
 </div>
 
-<div id="aiScore" class="ai-score-number">
+<div
+id="score"
+class="ai-score-number">
 0
 </div>
 
 </div>
 
-<div id="aiTags" class="ai-tags"></div>
 
-<div id="aiText" class="ai-text">
-Gere sua sensibilidade para a IA analisar a configuração.
+<div
+id="tags"
+class="ai-tags">
+</div>
+
+
+<div
+id="aiText"
+class="ai-text">
+
+Gere uma configuração para a IA analisar.
+
 </div>
 
 </div>
+
 
 <div class="actions">
 
-<button type="button" id="copiar" class="action">
+<button
+type="button"
+id="copiar"
+class="action">
+
 COPIAR CONFIGURAÇÃO
+
 </button>
 
-<button type="button" id="variar" class="action">
+
+<button
+type="button"
+id="ajustar"
+class="action">
+
 AJUSTE FINO +1
+
 </button>
 
 </div>
@@ -1171,6 +1167,7 @@ AJUSTE FINO +1
 </section>
 
 </main>
+
 
 <section class="contact">
 
@@ -1193,6 +1190,7 @@ rel="noopener">
 
 </a>
 
+
 <div class="donation">
 
 <h3>
@@ -1213,9 +1211,12 @@ Obrigado por apoiar o projeto! ❤️
 
 </section>
 
+
 <div class="credits">
 
-GOAT SENSI © 2026<br>
+GOAT SENSI © 2026
+
+<br>
 
 <b>
 Miguel Sanches Carrion & Thalles Vinícius Rios Gazda
@@ -1225,15 +1226,24 @@ Miguel Sanches Carrion & Thalles Vinícius Rios Gazda
 
 </div>
 
+
 <script>
 
 (function(){
 
 "use strict";
 
-var DADOS={
 
-Samsung:[
+/*
+====================================================
+BANCO CENTRAL DE APARELHOS
+====================================================
+*/
+
+var MODELOS = {
+
+Samsung: [
+
 "Galaxy A05",
 "Galaxy A05s",
 "Galaxy A06",
@@ -1261,9 +1271,11 @@ Samsung:[
 "Galaxy S23",
 "Galaxy S24",
 "Galaxy S25"
+
 ],
 
-Xiaomi:[
+Xiaomi: [
+
 "Redmi Note 8",
 "Redmi Note 9",
 "Redmi Note 10",
@@ -1277,9 +1289,11 @@ Xiaomi:[
 "POCO X6",
 "POCO F5",
 "POCO F6"
+
 ],
 
-Motorola:[
+Motorola: [
+
 "Moto E5",
 "Moto E6",
 "Moto E7",
@@ -1305,25 +1319,329 @@ Motorola:[
 "Motorola Edge 30",
 "Motorola Edge 40",
 "Motorola Edge 50 Fusion"
+
 ]
 
 };
 
-var freefire=document.getElementById("freefire");
-var marca=document.getElementById("marca");
-var modelo=document.getElementById("modelo");
-var nivel=document.getElementById("nivel");
-var dedos=document.getElementById("dedos");
 
-var gerar=document.getElementById("gerar");
-var resultado=document.getElementById("resultado");
-var aviso=document.getElementById("aviso");
+/*
+====================================================
+ELEMENTOS
+====================================================
+*/
 
-var vGeral=document.getElementById("vGeral");
-var vRed=document.getElementById("vRed");
-var v2x=document.getElementById("v2x");
-var v4x=document.getElementById("v4x");
-var vAwm=document.getElementById("vAwm");
-var vLook=document.getElementById("vLook");
+var jogo=
+document.getElementById("jogo");
 
-var
+var fabricante=
+document.getElementById("fabricante");
+
+var modelo=
+document.getElementById("modelo");
+
+var nivel=
+document.getElementById("nivel");
+
+var dedos=
+document.getElementById("dedos");
+
+var gerar=
+document.getElementById("gerar");
+
+var aviso=
+document.getElementById("aviso");
+
+var resultado=
+document.getElementById("resultado");
+
+var resultDevice=
+document.getElementById("resultDevice");
+
+var geral=
+document.getElementById("geral");
+
+var red=
+document.getElementById("red");
+
+var mira2=
+document.getElementById("mira2");
+
+var mira4=
+document.getElementById("mira4");
+
+var awm=
+document.getElementById("awm");
+
+var olhadinha=
+document.getElementById("olhadinha");
+
+var analise=
+document.getElementById("analise");
+
+var qualidadeTexto=
+document.getElementById("qualidadeTexto");
+
+var qualidadeFill=
+document.getElementById("qualidadeFill");
+
+var dpi=
+document.getElementById("dpi");
+
+var botao=
+document.getElementById("botao");
+
+var perfil=
+document.getElementById("perfil");
+
+var deviceNote=
+document.getElementById("deviceNote");
+
+var score=
+document.getElementById("score");
+
+var tags=
+document.getElementById("tags");
+
+var aiText=
+document.getElementById("aiText");
+
+var copiar=
+document.getElementById("copiar");
+
+var ajustar=
+document.getElementById("ajustar");
+
+
+/*
+====================================================
+ESTADO
+====================================================
+*/
+
+var estado={
+
+geral:0,
+red:0,
+mira2:0,
+mira4:0,
+awm:0,
+olhadinha:0,
+dpi:0,
+botao:0,
+score:0
+
+};
+
+
+/*
+====================================================
+UTILIDADES
+====================================================
+*/
+
+function limitarNumero(valor,minimo,maximo){
+
+var numero=Number(valor);
+
+if(isNaN(numero)){
+numero=minimo;
+}
+
+if(numero<minimo){
+numero=minimo;
+}
+
+if(numero>maximo){
+numero=maximo;
+}
+
+return Math.round(numero);
+
+}
+
+
+function mostrarAviso(texto){
+
+aviso.textContent=texto;
+
+aviso.style.display="block";
+
+}
+
+
+function esconderAviso(){
+
+aviso.textContent="";
+
+aviso.style.display="none";
+
+}
+
+
+function limparResultado(){
+
+resultado.style.display="none";
+
+estado.geral=0;
+estado.red=0;
+estado.mira2=0;
+estado.mira4=0;
+estado.awm=0;
+estado.olhadinha=0;
+estado.dpi=0;
+estado.botao=0;
+estado.score=0;
+
+}
+
+
+/*
+====================================================
+FABRICANTE → MODELO
+====================================================
+*/
+
+function carregarModelos(){
+
+var fabricanteSelecionado=
+fabricante.value;
+
+modelo.innerHTML="";
+
+
+if(
+fabricanteSelecionado==="" ||
+!MODELOS[fabricanteSelecionado]
+){
+
+modelo.disabled=true;
+
+var opcaoInicial=
+document.createElement("option");
+
+opcaoInicial.value="";
+
+opcaoInicial.textContent=
+"Selecione primeiro o fabricante";
+
+modelo.appendChild(opcaoInicial);
+
+return;
+
+}
+
+
+modelo.disabled=false;
+
+
+var primeiraOpcao=
+document.createElement("option");
+
+primeiraOpcao.value="";
+
+primeiraOpcao.textContent=
+"Selecione o modelo";
+
+modelo.appendChild(primeiraOpcao);
+
+
+var lista=
+MODELOS[fabricanteSelecionado];
+
+
+for(
+var i=0;
+i<lista.length;
+i++
+){
+
+var opcao=
+document.createElement("option");
+
+opcao.value=
+lista[i];
+
+opcao.textContent=
+lista[i];
+
+modelo.appendChild(opcao);
+
+}
+
+}
+
+
+/*
+====================================================
+EVENTO DO FABRICANTE
+====================================================
+*/
+
+fabricante.addEventListener(
+"change",
+function(){
+
+esconderAviso();
+
+limparResultado();
+
+carregarModelos();
+
+}
+);
+
+
+/*
+====================================================
+PERFIL DO APARELHO
+====================================================
+*/
+
+function gerarPerfilAparelho(){
+
+var nome=modelo.value;
+
+var valorDpi=430;
+
+var valorBotao=50;
+
+var nomePerfil=
+"Perfil universal • equilíbrio operacional";
+
+
+if(nome===""){
+
+return{
+
+dpi:430,
+botao:50,
+perfil:"Aguardando modelo"
+
+};
+
+}
+
+
+/*
+SAMSUNG
+*/
+
+if(
+nome==="Galaxy S20" ||
+nome==="Galaxy S21" ||
+nome==="Galaxy S22" ||
+nome==="Galaxy S23" ||
+nome==="Galaxy S24" ||
+nome==="Galaxy S25"
+){
+
+valorDpi=480;
+
+valorBotao=47;
+
+nomePerfil=
+"Premium • resposta rápida + controle fino";
+
+}
+  
