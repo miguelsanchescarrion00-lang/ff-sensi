@@ -1,1045 +1,1139 @@
-<!DOCTYPE html>  <html lang="pt-BR">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<meta name="theme-color" content="#050505">  <title>GOAT SENSI</title>  <style>  
-* {  
-    margin: 0;  
-    padding: 0;  
-    box-sizing: border-box;  
-}  
-  
-body {  
-    min-height: 100vh;  
-    font-family: Arial, Helvetica, sans-serif;  
-    color: white;  
-    background:  
-        radial-gradient(circle at 50% -10%, #550000 0%, #180000 25%, #070707 60%, #000 100%);  
-    overflow-x: hidden;  
-}  
-  
-body::before {  
-    content: "";  
-    position: fixed;  
-    width: 400px;  
-    height: 400px;  
-    top: -200px;  
-    left: -180px;  
-    background: red;  
-    opacity: .08;  
-    filter: blur(100px);  
-    border-radius: 50%;  
-    pointer-events: none;  
-}  
-  
-body::after {  
-    content: "";  
-    position: fixed;  
-    width: 400px;  
-    height: 400px;  
-    right: -200px;  
-    bottom: -200px;  
-    background: red;  
-    opacity: .07;  
-    filter: blur(100px);  
-    border-radius: 50%;  
-    pointer-events: none;  
-}  
-  
-.page {  
-    width: 100%;  
-    max-width: 560px;  
-    margin: auto;  
-    padding: 25px 15px 40px;  
-    position: relative;  
-    z-index: 2;  
-}  
-  
-/* LOGO */  
-  
-.logo-area {  
-    text-align: center;  
-    margin: 15px 0 30px;  
-    perspective: 800px;  
-}  
-  
-.logo {  
-    display: inline-block;  
-    font-size: 47px;  
-    font-weight: 1000;  
-    letter-spacing: 3px;  
-    color: white;  
-  
-    text-shadow:  
-        0 2px 0 #9b0000,  
-        0 4px 0 #650000,  
-        0 6px 0 #350000,  
-        0 0 12px red,  
-        0 0 30px red,  
-        0 0 55px rgba(255,0,0,.7);  
-  
-    transform:  
-        rotateX(8deg)  
-        rotateY(-3deg);  
-  
-    animation: flutuar 3s ease-in-out infinite;  
-}  
-  
-@keyframes flutuar {  
-    0%,100% {  
-        transform: rotateX(8deg) rotateY(-3deg) translateY(0);  
-    }  
-  
-    50% {  
-        transform: rotateX(8deg) rotateY(-3deg) translateY(-7px);  
-    }  
-}  
-  
-.subtitle {  
-    margin-top: 8px;  
-    color: #999;  
-    font-size: 13px;  
-    letter-spacing: 1px;  
-}  
-  
-/* CARD */  
-  
-.card {  
-    padding: 25px;  
-    border-radius: 24px;  
-  
-    background:  
-        linear-gradient(145deg, #242424, #090909);  
-  
-    border: 1px solid rgba(255,0,0,.55);  
-  
-    box-shadow:  
-        0 15px 0 #050505,  
-        0 22px 35px rgba(0,0,0,.8),  
-        inset 0 1px 0 rgba(255,255,255,.08),  
-        0 0 30px rgba(255,0,0,.12);  
-  
-    transform: perspective(1000px) rotateX(1deg);  
-}  
-  
-.red-line {  
-    width: 100%;  
-    height: 3px;  
-    margin-bottom: 22px;  
-    border-radius: 20px;  
-  
-    background:  
-        linear-gradient(  
-            90deg,  
-            transparent,  
-            #ff0000,  
-            #ff6666,  
-            #ff0000,  
-            transparent  
-        );  
-  
-    box-shadow: 0 0 15px red;  
-}  
-  
-label {  
-    display: block;  
-    margin-top: 17px;  
-    margin-bottom: 8px;  
-  
-    color: #eee;  
-    font-size: 13px;  
-    font-weight: bold;  
-    letter-spacing: .5px;  
-}  
-  
-select {  
-    width: 100%;  
-    padding: 15px;  
-  
-    border-radius: 14px;  
-    border: 1px solid #3d3d3d;  
-  
-    outline: none;  
-  
-    background:  
-        linear-gradient(145deg, #222, #0d0d0d);  
-  
-    color: white;  
-    font-size: 15px;  
-  
-    box-shadow:  
-        inset 0 2px 5px rgba(0,0,0,.7),  
-        0 5px 0 #050505;  
-  
-    transition: .2s;  
-}  
-  
-select:focus {  
-    border-color: red;  
-  
-    box-shadow:  
-        0 0 15px rgba(255,0,0,.25),  
-        inset 0 2px 5px rgba(0,0,0,.7);  
-}  
-  
-select:disabled {  
-    opacity: .55;  
-}  
-  
-/* BOTÃO */  
-  
-.btn {  
-    width: 100%;  
-    margin-top: 24px;  
-    padding: 17px;  
-  
-    border: none;  
-    border-radius: 15px;  
-  
-    color: white;  
-    background:  
-        linear-gradient(145deg, #ff3030, #bd0000);  
-  
-    font-size: 16px;  
-    font-weight: 900;  
-    letter-spacing: 1px;  
-  
-    cursor: pointer;  
-  
-    box-shadow:  
-        0 7px 0 #610000,  
-        0 12px 25px rgba(255,0,0,.25),  
-        inset 0 1px 0 rgba(255,255,255,.25);  
-  
-    transition: .15s;  
-}  
-  
-.btn:hover {  
-    filter: brightness(1.15);  
-    transform: translateY(-2px);  
-}  
-  
-.btn:active {  
-    transform: translateY(5px);  
-    box-shadow: 0 2px 0 #610000;  
-}  
-  
-/* AVISO */  
-  
-.aviso {  
-    display: none;  
-  
-    margin-top: 15px;  
-    padding: 12px;  
-  
-    border-radius: 10px;  
-  
-    text-align: center;  
-  
-    color: #ff7070;  
-  
-    background: rgba(255,0,0,.08);  
-    border: 1px solid rgba(255,0,0,.25);  
-}  
-  
-/* RESULTADO */  
-  
-.resultado {  
-    display: none;  
-  
-    margin-top: 25px;  
-    padding: 20px;  
-  
-    border-radius: 20px;  
-  
-    background:  
-        linear-gradient(145deg, #1c1c1c, #080808);  
-  
-    border: 1px solid rgba(255,0,0,.35);  
-  
-    box-shadow:  
-        inset 0 1px 0 rgba(255,255,255,.05),  
-        0 10px 25px rgba(0,0,0,.7);  
-  
-    animation: aparecer .35s ease;  
-}  
-  
-@keyframes aparecer {  
-    from {  
-        opacity: 0;  
-        transform: translateY(15px) scale(.97);  
-    }  
-  
-    to {  
-        opacity: 1;  
-        transform: translateY(0) scale(1);  
-    }  
-}  
-  
-.result-title {  
-    text-align: center;  
-    margin-bottom: 15px;  
-  
-    color: #ff2525;  
-    font-weight: 900;  
-    letter-spacing: 1px;  
-}  
-  
-.sensi {  
-    display: flex;  
-    justify-content: space-between;  
-    align-items: center;  
-  
-    padding: 13px 7px;  
-  
-    border-bottom: 1px solid #292929;  
-}  
-  
-.valor {  
-    min-width: 55px;  
-  
-    padding: 6px 10px;  
-  
-    text-align: center;  
-  
-    border-radius: 9px;  
-  
-    color: white;  
-    font-weight: 900;  
-  
-    background:  
-        linear-gradient(145deg, #ff2525, #a00000);  
-  
-    box-shadow:  
-        0 3px 0 #550000,  
-        0 0 10px rgba(255,0,0,.2);  
-}  
-  
-.copy-btn {  
-    background:  
-        linear-gradient(145deg, #292929, #0c0c0c);  
-  
-    border: 1px solid red;  
-  
-    box-shadow:  
-        0 5px 0 #050505,  
-        0 0 15px rgba(255,0,0,.12);  
-}  
-  
-.copy-btn:hover {  
-    background:  
-        linear-gradient(145deg, #3c0000, #120000);  
-}  
-  
-/* FALE CONOSCO */  
-  
-.fale-conosco {  
-    margin-top: 25px;  
-    padding: 22px;  
-  
-    border-radius: 20px;  
-  
-    text-align: center;  
-  
-    background:  
-        linear-gradient(145deg, #1c1c1c, #080808);  
-  
-    border: 1px solid rgba(255,0,0,.35);  
-  
-    box-shadow:  
-        inset 0 1px 0 rgba(255,255,255,.05),  
-        0 10px 25px rgba(0,0,0,.7);  
-}  
-  
-.fale-titulo {  
-    color: #ff2525;  
-    font-size: 18px;  
-    font-weight: 900;  
-    letter-spacing: 1px;  
-    margin-bottom: 10px;  
-}  
-  
-.fale-texto {  
-    color: #999;  
-    font-size: 13px;  
-    line-height: 1.5;  
-    margin-bottom: 17px;  
-}  
-  
-.whatsapp-btn {  
-    display: block;  
-    width: 100%;  
-  
-    padding: 15px;  
-  
-    border-radius: 14px;  
-  
-    color: white;  
-    text-decoration: none;  
-  
-    background:  
-        linear-gradient(145deg, #ff3030, #bd0000);  
-  
-    font-size: 15px;  
-    font-weight: 900;  
-    letter-spacing: .5px;  
-  
-    box-shadow:  
-        0 6px 0 #610000,  
-        0 10px 20px rgba(255,0,0,.2);  
-  
-    transition: .15s;  
-}  
-  
-.whatsapp-btn:hover {  
-    filter: brightness(1.15);  
-    transform: translateY(-2px);  
-}  
-  
-.whatsapp-btn:active {  
-    transform: translateY(4px);  
-    box-shadow: 0 2px 0 #610000;  
-}  
-  
-/* CRÉDITOS */  
-  
-.creditos {  
-    text-align: center;  
-  
-    margin-top: 28px;  
-  
-    color: #666;  
-  
-    font-size: 11px;  
-  
-    line-height: 1.7;  
-}  
-  
-.creditos strong {  
-    color: #999;  
-}  
-  
-/* MOBILE */  
-  
-@media (max-width: 450px) {  
-  
-    .page {  
-        padding: 15px 10px 30px;  
-    }  
-  
-    .card {  
-        padding: 20px 17px;  
-        border-radius: 20px;  
-    }  
-  
-    .logo {  
-        font-size: 38px;  
-    }  
-}  
-</style>  </head>  <body>  <div class="page">  <div class="logo-area">  
-
-    <div class="logo">  
-        GOAT SENSI  
-    </div>  
-
-    <div class="subtitle">  
-        GERADOR DE SENSIBILIDADE • FREE FIRE  
-    </div>  
-
-</div>  
-
-
-<div class="card">  
-
-    <div class="red-line"></div>  
-
-
-    <!-- FREE FIRE -->  
-
-    <label for="freefire">  
-        QUAL É O SEU FREE FIRE?  
-    </label>  
-
-    <select id="freefire">  
-
-        <option value="">  
-            Selecione seu Free Fire  
-        </option>  
-
-        <option value="max">  
-            Free Fire MAX  
-        </option>  
-
-        <option value="normal">  
-            Free Fire Normal  
-        </option>  
-
-    </select>  
-
-
-    <!-- FABRICANTE -->  
-
-    <label for="marca">  
-        FABRICANTE  
-    </label>  
-
-    <select id="marca">  
-
-        <option value="">  
-            Selecione o fabricante  
-        </option>  
-
-        <option value="Samsung">  
-            Samsung  
-        </option>  
-
-        <option value="Xiaomi">  
-            Xiaomi  
-        </option>  
-
-        <option value="Motorola">  
-            Motorola  
-        </option>  
-
-    </select>  
-
-
-    <!-- MODELO -->  
-
-    <label for="modelo">  
-        MODELO  
-    </label>  
-
-    <select id="modelo" disabled>  
-
-        <option value="">  
-            Primeiro selecione o fabricante  
-        </option>  
-
-    </select>  
-
-
-    <!-- NÍVEL -->  
-
-    <label for="nivel">  
-        NÍVEL DE SENSIBILIDADE  
-    </label>  
-
-    <select id="nivel">  
-
-        <option value="baixa">  
-            Baixa  
-        </option>  
-
-        <option value="media" selected>  
-            Média  
-        </option>  
-
-        <option value="alta">  
-            Alta  
-        </option>  
-
-    </select>  
-
-
-    <!-- DEDOS -->  
-
-    <label for="dedos">  
-        QUANTIDADE DE DEDOS  
-    </label>  
-
-    <select id="dedos">  
-
-        <option value="2">  
-            2 dedos  
-        </option>  
-
-        <option value="3">  
-            3 dedos  
-        </option>  
-
-        <option value="4">  
-            4 dedos  
-        </option>  
-
-    </select>  
-
-
-    <div class="aviso" id="aviso"></div>  
-
-
-    <button class="btn" id="gerar">  
-        ⚡ GERAR SENSI  
-    </button>  
-
-
-    <!-- RESULTADO -->  
-
-    <div class="resultado" id="resultado">  
-
-        <div class="result-title">  
-            SENSIBILIDADE GERADA  
-        </div>  
-
-        <div class="sensi">  
-            <span>Geral</span>  
-            <span class="valor" id="geral">0</span>  
-        </div>  
-
-        <div class="sensi">  
-            <span>Ponto Vermelho</span>  
-            <span class="valor" id="red">0</span>  
-        </div>  
-
-        <div class="sensi">  
-            <span>Mira 2x</span>  
-            <span class="valor" id="mira2">0</span>  
-        </div>  
-
-        <div class="sensi">  
-            <span>Mira 4x</span>  
-            <span class="valor" id="mira4">0</span>  
-        </div>  
-
-        <div class="sensi">  
-            <span>Mira AWM</span>  
-            <span class="valor" id="awm">0</span>  
-        </div>  
-
-        <div class="sensi">  
-            <span>Olhadinha</span>  
-            <span class="valor" id="olha">0</span>  
-        </div>  
-
-        <button class="btn copy-btn" id="copiar">  
-            📋 COPIAR SENSI  
-        </button>  
-
-    </div>  
-
-</div>  
-
-
-<!-- FALE CONOSCO -->  
-
-<div class="fale-conosco">  
-
-    <div class="fale-titulo">  
-        FALE CONOSCO  
-    </div>  
-
-    <div class="fale-texto">  
-        Precisa de ajuda ou encontrou algum problema?  
-        Fale diretamente com a equipe do GOAT SENSI.  
-    </div>  
-
-    <a  
-        class="whatsapp-btn"  
-        href="https://wa.me/5511921149458"  
-        target="_blank"  
-        rel="noopener noreferrer"  
-    >  
-        💬 FALAR NO WHATSAPP  
-    </a>  
-
-</div>  
-
-
-<!-- CRÉDITOS -->  
-
-<div class="creditos">  
-
-    GOAT SENSI<br>  
-
-    <strong>  
-        Miguel Sanches Carrion  
-    </strong>  
-
-    &amp;  
-
-    <strong>  
-        Thalles Vinícius Rios Gazda  
-    </strong>  
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>GOAT SENSI</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --black:#030303;
+  --black2:#080808;
+  --black3:#101010;
+  --red:#e50932;
+  --red2:#ff1e46;
+  --red-dark:#8f001f;
+  --white:#ffffff;
+  --gray:#a7a7a7;
+  --gray2:#666;
+  --border:#202020;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at 50% -10%,rgba(229,9,50,.12),transparent 32%),
+    var(--black);
+  color:var(--white);
+  min-height:100vh;
+}
+
+/* =========================
+   FUNDO
+========================= */
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+  background-size:40px 40px;
+  mask-image:linear-gradient(to bottom,black,transparent);
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+  width:min(94%,680px);
+  margin:auto;
+  padding:38px 0 60px;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.logo-area{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.logo{
+  font-size:clamp(46px,13vw,76px);
+  font-weight:1000;
+  letter-spacing:-5px;
+  line-height:1;
+  color:#fff;
+  text-shadow:
+    0 2px 0 #37000d,
+    0 5px 0 #1c0006;
+}
+
+.logo span{
+  color:var(--red);
+}
+
+.subtitle{
+  margin-top:9px;
+  color:#7d7d7d;
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.status{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-top:16px;
+  padding:7px 12px;
+  border:1px solid #252525;
+  border-radius:30px;
+  background:#090909;
+  color:#aaa;
+  font-size:10px;
+}
+
+.status i{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#25d366;
+  box-shadow:0 0 8px rgba(37,211,102,.45);
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+  background:#080808;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:23px;
+  margin-bottom:18px;
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.35),
+    inset 0 1px rgba(255,255,255,.025);
+}
+
+.card-title{
+  font-size:18px;
+  font-weight:850;
+  margin-bottom:5px;
+}
+
+.card-desc{
+  color:#707070;
+  font-size:12px;
+  line-height:1.5;
+  margin-bottom:21px;
+}
+
+/* =========================
+   CAMPOS
+========================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
+
+.field{
+  margin-bottom:15px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+label{
+  display:block;
+  color:#8d8d8d;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+
+select{
+  width:100%;
+  height:49px;
+  border-radius:12px;
+  border:1px solid #292929;
+  background:#111111;
+  color:#fff;
+  padding:0 13px;
+  outline:none;
+  font-size:13px;
+  transition:.2s ease;
+}
+
+select:hover{
+  border-color:#393939;
+}
+
+select:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 3px rgba(229,9,50,.09);
+}
+
+select:disabled{
+  opacity:.45;
+}
+
+/* =========================
+   BOTÕES
+========================= */
+
+button{
+  font-family:inherit;
+  border:none;
+  cursor:pointer;
+}
+
+.generate{
+  position:relative;
+  width:100%;
+  height:56px;
+  margin-top:4px;
+  border-radius:13px;
+  color:#fff;
+  background:linear-gradient(135deg,var(--red2),var(--red-dark));
+  border:1px solid #ff3557;
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.5px;
+  box-shadow:
+    0 10px 25px rgba(229,9,50,.18),
+    inset 0 1px rgba(255,255,255,.14);
+  transition:.2s ease;
+  overflow:hidden;
+}
+
+.generate::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:80%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.13),
+    transparent
+  );
+  transform:skewX(-20deg);
+  transition:.55s;
+}
+
+.generate:hover::after{
+  left:140%;
+}
+
+.generate:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 14px 28px rgba(229,9,50,.24),
+    inset 0 1px rgba(255,255,255,.16);
+}
+
+.generate:active{
+  transform:scale(.985);
+}
+
+/* =========================
+   AVISO
+========================= */
+
+.warning{
+  display:none;
+  margin-top:13px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:#13070a;
+  border:1px solid #351018;
+  color:#ff8ca0;
+  font-size:11px;
+  text-align:center;
+}
+
+/* =========================
+   RESULTADO
+========================= */
+
+.result{
+  display:none;
+  animation:appear .35s ease;
+}
+
+@keyframes appear{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.result-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:17px;
+}
+
+.result-head h2{
+  font-size:19px;
+}
+
+.badge{
+  padding:6px 10px;
+  border-radius:20px;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.6px;
+  color:#ff607c;
+  border:1px solid #44101c;
+  background:#12070a;
+}
+
+.sensi-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.sensi{
+  padding:15px;
+  border-radius:13px;
+  background:#101010;
+  border:1px solid #232323;
+}
+
+.sensi span{
+  display:block;
+  color:#757575;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  margin-bottom:7px;
+}
+
+.sensi strong{
+  color:#fff;
+  font-size:26px;
+  font-weight:950;
+}
+
+.sensi strong::after{
+  content:"";
+}
+
+/* =========================
+   INFO
+========================= */
+
+.info{
+  margin-top:16px;
+  padding:14px;
+  background:#0d0d0d;
+  border:1px solid #222;
+  border-radius:13px;
+  color:#777;
+  font-size:11px;
+  line-height:1.6;
+}
+
+.info b{
+  color:#ddd;
+}
+
+.quality{
+  margin-top:13px;
+  padding:13px;
+  border-radius:13px;
+  background:linear-gradient(135deg,#100609,#090909);
+  border:1px solid #32101a;
+}
+
+.quality-title{
+  color:#ff4563;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+
+.quality p{
+  color:#898989;
+  font-size:11px;
+  line-height:1.5;
+}
+
+/* =========================
+   BOTÕES SECUNDÁRIOS
+========================= */
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:13px;
+}
+
+.secondary{
+  height:46px;
+  border-radius:12px;
+  background:#111;
+  border:1px solid #292929;
+  color:#eee;
+  font-size:12px;
+  font-weight:800;
+  transition:.2s;
+}
+
+.secondary:hover{
+  border-color:#4b4b4b;
+  background:#151515;
+  transform:translateY(-1px);
+}
+
+.bot-btn{
+  width:100%;
+  height:49px;
+  margin-top:12px;
+  border-radius:12px;
+  color:white;
+  background:#151515;
+  border:1px solid #303030;
+  font-size:12px;
+  font-weight:850;
+  transition:.2s;
+}
+
+.bot-btn:hover{
+  border-color:var(--red);
+  color:#ff5d78;
+}
+
+/* =========================
+   WHATSAPP
+========================= */
+
+.whatsapp{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:50px;
+  margin-top:12px;
+  border-radius:12px;
+  text-decoration:none;
+  color:#fff;
+  background:#101010;
+  border:1px solid #242424;
+  font-size:12px;
+  font-weight:850;
+  transition:.2s;
+}
+
+.whatsapp:hover{
+  background:#141414;
+  border-color:#25d366;
+  color:#25d366;
+}
+
+/* =========================
+   CHAT
+========================= */
+
+.chat-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(7px);
+  padding:18px;
+}
+
+.chat-box{
+  width:min(100%,430px);
+  height:min(650px,90vh);
+  margin:auto;
+  background:#080808;
+  border:1px solid #292929;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.65);
+  display:flex;
+  flex-direction:column;
+}
+
+.chat-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px;
+  border-bottom:1px solid #222;
+}
+
+.chat-top strong{
+  font-size:14px;
+}
+
+.close-chat{
+  width:34px;
+  height:34px;
+  border-radius:9px;
+  color:#aaa;
+  background:#111;
+  border:1px solid #252525;
+}
+
+.chat-messages{
+  flex:1;
+  overflow-y:auto;
+  padding:16px;
+}
+
+.msg{
+  max-width:85%;
+  padding:10px 12px;
+  margin-bottom:9px;
+  border-radius:11px;
+  font-size:12px;
+  line-height:1.45;
+}
+
+.msg.bot{
+  background:#121212;
+  border:1px solid #242424;
+  color:#ddd;
+}
+
+.msg.user{
+  margin-left:auto;
+  background:#6d0019;
+  border:1px solid #960027;
+  color:#fff;
+}
+
+.chat-bottom{
+  border-top:1px solid #222;
+  padding:12px;
+}
+
+.chat-form{
+  display:flex;
+  gap:8px;
+}
+
+.chat-form input{
+  flex:1;
+  height:43px;
+  border-radius:11px;
+  border:1px solid #292929;
+  background:#111;
+  color:#fff;
+  padding:0 12px;
+  outline:none;
+}
+
+.chat-form input:focus{
+  border-color:var(--red);
+}
+
+.send-chat{
+  width:45px;
+  border-radius:11px;
+  background:var(--red);
+  color:#fff;
+  font-weight:900;
+}
+
+.suggestions{
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+  margin-top:9px;
+}
+
+.suggestions button{
+  white-space:nowrap;
+  padding:7px 9px;
+  border-radius:9px;
+  color:#aaa;
+  background:#111;
+  border:1px solid #272727;
+  font-size:10px;
+}
+
+/* =========================
+   CRÉDITOS
+========================= */
+
+.credits{
+  text-align:center;
+  color:#555;
+  font-size:10px;
+  line-height:1.7;
+  margin-top:25px;
+}
+
+.credits b{
+  color:#777;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:560px){
+  .container{
+    padding-top:28px;
+  }
+
+  .card{
+    padding:18px;
+    border-radius:17px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+
+  .sensi-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .actions{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:360px){
+  .sensi-grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="logo-area">
+    <div class="logo">GOAT <span>SENSI</span></div>
+    <div class="subtitle">Gerador profissional de sensibilidade</div>
+
+    <div class="status">
+      <i></i>
+      SISTEMA ONLINE
+    </div>
+  </div>
+
+  <div class="card">
+
+    <div class="card-title">Configuração</div>
+    <div class="card-desc">
+      Escolha seu aparelho e estilo para gerar uma configuração consistente.
+    </div>
+
+    <div class="grid">
+
+      <div class="field">
+        <label>Jogo</label>
+        <select id="freefire">
+          <option value="">Selecione</option>
+          <option value="normal">Free Fire</option>
+          <option value="max">Free Fire MAX</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Fabricante</label>
+        <select id="marca">
+          <option value="">Selecione</option>
+          <option value="Samsung">Samsung</option>
+          <option value="Xiaomi">Xiaomi</option>
+          <option value="Motorola">Motorola</option>
+        </select>
+      </div>
+
+      <div class="field full">
+        <label>Modelo</label>
+        <select id="modelo" disabled>
+          <option value="">Primeiro selecione o fabricante</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Nível</label>
+        <select id="nivel">
+          <option value="">Selecione</option>
+          <option value="baixa">Controle</option>
+          <option value="media">Equilibrada</option>
+          <option value="alta">Rápida</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Dedos</label>
+        <select id="dedos">
+          <option value="">Selecione</option>
+          <option value="2">2 dedos</option>
+          <option value="3">3 dedos</option>
+          <option value="4">4 dedos</option>
+        </select>
+      </div>
+
+    </div>
+
+    <button class="generate" id="gerar">
+      GERAR SENSIBILIDADE
+    </button>
+
+    <div class="warning" id="aviso"></div>
+
+  </div>
+
+  <div class="card result" id="resultado">
+
+    <div class="result-head">
+      <h2>Configuração gerada</h2>
+      <div class="badge">OTIMIZADA</div>
+    </div>
+
+    <div class="sensi-grid">
+
+      <div class="sensi">
+        <span>Geral</span>
+        <strong id="vGeral">0</strong>
+      </div>
+
+      <div class="sensi">
+        <span>Ponto Vermelho</span>
+        <strong id="vRed">0</strong>
+      </div>
+
+      <div class="sensi">
+        <span>Mira 2x</span>
+        <strong id="v2x">0</strong>
+      </div>
+
+      <div class="sensi">
+        <span>Mira 4x</span>
+        <strong id="v4x">0</strong>
+      </div>
+
+      <div class="sensi">
+        <span>Mira AWM</span>
+        <strong id="vAwm">0</strong>
+      </div>
+
+      <div class="sensi">
+        <span>Olhadinha</span>
+        <strong id="vLook">0</strong>
+      </div>
+
+    </div>
+
+    <div class="quality">
+      <div class="quality-title">Análise da configuração</div>
+      <p id="analise">
+        Configuração preparada de acordo com os parâmetros escolhidos.
+      </p>
+    </div>
+
+    <div class="actions">
+      <button class="secondary" id="copiar">
+        COPIAR CONFIGURAÇÃO
+      </button>
+
+      <button class="secondary" id="variar">
+        AJUSTE FINO
+      </button>
+    </div>
+
+    <button class="bot-btn" id="abrirBot">
+      AJUDA — ASSISTENTE GOAT
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <div class="card-title">Suporte</div>
+
+    <div class="card-desc">
+      Precisa de ajuda para configurar sua sensibilidade?
+    </div>
+
+    <a
+      class="whatsapp"
+      href="https://wa.me/5511921149458"
+      target="_blank"
+      rel="noopener noreferrer">
+      FALAR NO WHATSAPP
+    </a>
+
+  </div>
+
+  <div class="credits">
+    GOAT SENSI<br>
+    Desenvolvido por <b>Miguel Sanches Carrion</b> &amp;
+    <b>Thalles Vinícius Rios Gazda</b>
+  </div>
 
 </div>
 
-</div>  <script>  
-  
-/* =====================================================  
-   BANCO DE MODELOS  
-===================================================== */  
-  
-const DADOS = {  
-  
-    Samsung: {  
-  
-        "Galaxy A05": 0,  
-        "Galaxy A05s": 1,  
-        "Galaxy A06": 2,  
-        "Galaxy A12": 1,  
-        "Galaxy A13": 2,  
-        "Galaxy A14": 2,  
-        "Galaxy A15": 0,  
-        "Galaxy A16": 3,  
-        "Galaxy A17": 5,  
-        "Galaxy A22": 2,  
-        "Galaxy A23": 3,  
-        "Galaxy A24": 4,  
-        "Galaxy A25": 5,  
-        "Galaxy A32": 3,  
-        "Galaxy A33": 4,  
-        "Galaxy A34": 5,  
-        "Galaxy A52": 4,  
-        "Galaxy A53": 5,  
-        "Galaxy A54": 6,  
-        "Galaxy A55": 7,  
-        "Galaxy A72": 5,  
-        "Galaxy S20": 6,  
-        "Galaxy S21": 7,  
-        "Galaxy S22": 8,  
-        "Galaxy S23": 9,  
-        "Galaxy S24": 10,  
-        "Galaxy S25": 11  
-  
-    },  
-  
-    Xiaomi: {  
-  
-        "Redmi Note 8": 0,  
-        "Redmi Note 9": 1,  
-        "Redmi Note 10": 2,  
-        "Redmi Note 11": 3,  
-        "Redmi Note 12": 4,  
-        "Redmi Note 13": 5,  
-        "Redmi Note 14": 6,  
-        "POCO X3": 5,  
-        "POCO X4": 6,  
-        "POCO X5": 7,  
-        "POCO X6": 8  
-  
-    },  
-  
-    Motorola: {  
-  
-        "Moto E5": 0,  
-        "Moto E6": 1,  
-        "Moto E7": 1,  
-        "Moto E7 Plus": 2,  
-        "Moto E20": 2,  
-        "Moto E22": 3,  
-        "Moto E32": 3,  
-        "Moto E40": 3,  
-        "Moto E50": 4,  
-        "Moto E13": 2,  
-  
-        "Moto G5": 0,  
-        "Moto G5 Plus": 1,  
-        "Moto G6": 1,  
-        "Moto G6 Plus": 2,  
-        "Moto G7": 2,  
-        "Moto G7 Power": 2,  
-        "Moto G7 Plus": 3,  
-        "Moto G8": 3,  
-        "Moto G8 Power": 3,  
-        "Moto G9 Play": 3,  
-        "Moto G9 Power": 4,  
-  
-        "Moto G20": 3,  
-        "Moto G22": 3,  
-        "Moto G23": 4,  
-        "Moto G24": 4,  
-        "Moto G30": 4,  
-        "Moto G31": 4,  
-        "Moto G32": 5,  
-        "Moto G34": 5,  
-        "Moto G40 Fusion": 5,  
-        "Moto G41": 5,  
-        "Moto G42": 5,  
-        "Moto G52": 6,  
-        "Moto G53": 6,  
-        "Moto G54": 7,  
-        "Moto G55": 7,  
-        "Moto G60": 6,  
-        "Moto G62": 6,  
-        "Moto G73": 7,  
-        "Moto G84": 8,  
-        "Moto G85": 9,  
-  
-        "Motorola Edge 20": 6,  
-        "Motorola Edge 30": 7,  
-        "Motorola Edge 30 Neo": 7,  
-        "Motorola Edge 30 Fusion": 8,  
-        "Motorola Edge 40": 8,  
-        "Motorola Edge 40 Neo": 8,  
-        "Motorola Edge 50 Fusion": 9,  
-        "Motorola Edge 50 Pro": 10,  
-  
-        "Motorola Razr 40": 8,  
-        "Motorola Razr 40 Ultra": 9,  
-        "Motorola Razr 50": 10,  
-        "Motorola Razr 50 Ultra": 11  
-  
-    }  
-  
-};  
-  
-  
-/* =====================================================  
-   ELEMENTOS  
-===================================================== */  
-  
-const freefire = document.getElementById("freefire");  
-const marca = document.getElementById("marca");  
-const modelo = document.getElementById("modelo");  
-const nivel = document.getElementById("nivel");  
-const dedos = document.getElementById("dedos");  
-const gerar = document.getElementById("gerar");  
-const copiar = document.getElementById("copiar");  
-const resultado = document.getElementById("resultado");  
-const aviso = document.getElementById("aviso");  
-  
-  
-/* =====================================================  
-   CARREGAR MODELOS  
-===================================================== */  
-  
-function carregarModelos() {  
-  
-    modelo.innerHTML = "";  
-  
-    const fabricante = marca.value;  
-  
-    if (!fabricante) {  
-  
-        modelo.disabled = true;  
-  
-        modelo.innerHTML =  
-            '<option value="">Primeiro selecione o fabricante</option>';  
-  
-        return;  
-    }  
-  
-    modelo.disabled = false;  
-  
-    modelo.innerHTML =  
-        '<option value="">Selecione o modelo</option>';  
-  
-    const lista = Object.keys(DADOS[fabricante]);  
-  
-    lista.forEach(function(nome) {  
-  
-        const option = document.createElement("option");  
-  
-        option.value = nome;  
-        option.textContent = nome;  
-  
-        modelo.appendChild(option);  
-  
-    });  
-}  
-  
-  
-/* =====================================================  
-   FABRICANTE  
-===================================================== */  
-  
-marca.addEventListener("change", function() {  
-  
-    esconderAviso();  
-  
-    resultado.style.display = "none";  
-  
-    carregarModelos();  
-  
-});  
-  
-  
-/* =====================================================  
-   AVISOS  
-===================================================== */  
-  
-function mostrarAviso(texto) {  
-  
-    aviso.textContent = texto;  
-    aviso.style.display = "block";  
-  
-}  
-  
-  
-function esconderAviso() {  
-  
-    aviso.textContent = "";  
-    aviso.style.display = "none";  
-  
-}  
-  
-  
-/* =====================================================  
-   LIMITADOR  
-===================================================== */  
-  
-function limitar(valor) {  
-  
-    return Math.max(  
-        0,  
-        Math.min(  
-            200,  
-            Math.round(valor)  
-        )  
-    );  
-  
-}  
-  
-  
-/* =====================================================  
-   ALEATÓRIO  
-===================================================== */  
-  
-function aleatorio() {  
-  
-    return Math.floor(  
-        Math.random() * 7  
-    ) - 3;  
-  
-}  
-  
-  
-/* =====================================================  
-   GERAR SENSI  
-===================================================== */  
-  
-gerar.addEventListener("click", function() {  
-  
-    esconderAviso();  
-  
-    if (!freefire.value) {  
-  
-        mostrarAviso(  
-            "Selecione qual Free Fire você usa."  
-        );  
-  
-        return;  
-    }  
-  
-    if (!marca.value) {  
-  
-        mostrarAviso(  
-            "Selecione o fabricante."  
-        );  
-  
-        return;  
-    }  
-  
-    if (!modelo.value) {  
-  
-        mostrarAviso(  
-            "Selecione o modelo."  
-        );  
-  
-        return;  
-    }  
-  
-  
-    const bases = {  
-  
-        baixa: 90,  
-        media: 140,  
-        alta: 180  
-  
-    };  
-  
-  
-    const ajusteDedos = {  
-  
-        "2": 0,  
-        "3": 5,  
-        "4": 10  
-  
-    };  
-  
-  
-    const ajusteFreeFire = {  
-  
-        normal: 0,  
-        max: 5  
-  
-    };  
-  
-  
-    const ajusteModelo =  
-        DADOS[marca.value][modelo.value];  
-  
-  
-    const geral =  
-        limitar(  
-  
-            bases[nivel.value]  
-            +  
-            ajusteDedos[dedos.value]  
-            +  
-            ajusteModelo  
-            +  
-            ajusteFreeFire[freefire.value]  
-            +  
-            aleatorio()  
-  
-        );  
-  
-  
-    const red =  
-        limitar(  
-            geral - 2 + aleatorio()  
-        );  
-  
-  
-    const mira2 =  
-        limitar(  
-            geral - 12 + aleatorio()  
-        );  
-  
-  
-    const mira4 =  
-        limitar(  
-            geral - 25 + aleatorio()  
-        );  
-  
-  
-    const awm =  
-        limitar(  
-            geral - 55 + aleatorio()  
-        );  
-  
-  
-    const olha =  
-        limitar(  
-            geral + 2 + aleatorio()  
-        );  
-  
-  
-    document.getElementById("geral").textContent = geral;  
-  
-    document.getElementById("red").textContent = red;  
-  
-    document.getElementById("mira2").textContent = mira2;  
-  
-    document.getElementById("mira4").textContent = mira4;  
-  
-    document.getElementById("awm").textContent = awm;  
-  
-    document.getElementById("olha").textContent = olha;  
-  
-  
-    resultado.style.display = "block";  
-  
-  
-    resultado.scrollIntoView({  
-        behavior: "smooth",  
-        block: "nearest"  
-    });  
-  
-});  
-  
-  
-/* =====================================================  
-   COPIAR SENSI  
-====================
+<!-- =========================
+     CHAT
+========================= -->
+
+<div class="chat-overlay" id="chatOverlay">
+
+  <div class="chat-box">
+
+    <div class="chat-top">
+      <strong>ASSISTENTE GOAT</strong>
+      <button class="close-chat" id="fecharChat">×</button>
+    </div>
+
+    <div class="chat-messages" id="chatMensagens">
+
+      <div class="msg bot">
+        Fala! Sou o assistente da GOAT SENSI. Pergunte sobre sensibilidade, aparelho ou configuração.
+      </div>
+
+    </div>
+
+    <div class="chat-bottom">
+
+      <div class="chat-form">
+        <input
+          id="chatInput"
+          type="text"
+          placeholder="Digite sua dúvida..."
+          autocomplete="off">
+
+        <button class="send-chat" id="enviarChat">
+          →
+        </button>
+      </div>
+
+      <div class="suggestions">
+        <button class="sugestao">Qual sensi uso?</button>
+        <button class="sugestao">Como melhorar capa?</button>
+        <button class="sugestao">2 dedos</button>
+        <button class="sugestao">A15</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+/* =========================
+   DADOS DOS APARELHOS
+========================= */
+
+const DADOS = {
+
+  Samsung:{
+    "Galaxy A05":0,
+    "Galaxy A05s":1,
+    "Galaxy A06":2,
+    "Galaxy A12":1,
+    "Galaxy A13":2,
+    "Galaxy A14":2,
+    "Galaxy A15":0,
+    "Galaxy A16":3,
+    "Galaxy A17":5,
+    "Galaxy A22":2,
+    "Galaxy A23":3,
+    "Galaxy A24":4,
+    "Galaxy A25":5,
+    "Galaxy A32":3,
+    "Galaxy A33":4,
+    "Galaxy A34":5,
+    "Galaxy A52":4,
+    "Galaxy A53":5,
+    "Galaxy A54":6,
+    "Galaxy A55":7,
+    "Galaxy A72":5,
+    "Galaxy S20":6,
+    "Galaxy S21":7,
+    "Galaxy S22":8,
+    "Galaxy S23":9,
+    "Galaxy S24":10,
+    "Galaxy S25":11
+  },
+
+  Xiaomi:{
+    "Redmi Note 8":0,
+    "Redmi Note 9":1,
+    "Redmi Note 10":2,
+    "Redmi Note 11":3,
+    "Redmi Note 12":4,
+    "Redmi Note 13":5,
+    "Redmi Note 14":6,
+    "POCO X3":5,
+    "POCO X4":6,
+    "POCO X5":7,
+    "POCO X6":8
+  },
+
+  Motorola:{
+    "Moto E5":0,
+    "Moto E6":1,
+    "Moto E7":1,
+    "Moto E7 Plus":2,
+    "Moto E20":2,
+    "Moto E22":3,
+    "Moto E32":3,
+    "Moto E40":3,
+    "Moto E50":4,
+    "Moto E13":2,
+    "Moto G5":0,
+    "Moto G5 Plus":1,
+    "Moto G6":1,
+    "Moto G6 Plus":2,
+    "Moto G7":2,
+    "Moto G7 Power":2,
+    "Moto G7 Plus":3,
+    "Moto G8":3,
+    "Moto G8 Power":3,
+    "Moto G9 Play":3,
+    "Moto G9 Power":4,
+    "Moto G20":3,
+    "Moto G22":3,
+    "Moto G23":4,
+    "Moto G24":4,
+    "Moto G30":4,
+    "Moto G31":4,
+    "Moto G32":5,
+    "Moto G34":5,
+    "Moto G40 Fusion":5,
+    "Moto G41":5,
+    "Moto G42":5,
+    "Moto G52":6,
+    "Moto G53":6,
+    "Moto G54":7,
+    "Moto G55":7,
+    "Moto G60":6,
+    "Moto G62":6,
+    "Moto G73":7,
+    "Moto G84":8,
+    "Moto G85":9,
+    "Motorola Edge 20":6,
+    "Motorola Edge 30":7,
+    "Motorola Edge 30 Neo":7,
+    "Motorola Edge 30 Fusion":8,
+    "Motorola Edge 40":8,
+    "Motorola Edge 40 Neo":8,
+    "Motorola Edge 50 Fusion":9,
+    "Motorola Edge 50 Pro":10,
+    "Motorola Razr 40":8,
+    "Motorola Razr 40 Ultra":9,
+    "Motorola Razr 50":10,
+    "Motorola Razr 50 Ultra":11
+  }
+
+};
+
+/* =========================
+   ELEMENTOS
+========================= */
+
+const freefire = document.getElementById("freefire");
+const marca = document.getElementById("marca");
+const modelo = document.getElementById("modelo");
+const nivel = document.getElementById("nivel");
+const dedos = document.getElementById("dedos");
+
+const gerar = document.getElementById("gerar");
+const copiar = document.getElementById("copiar");
+const variar = document.getElementById("variar");
+
+const resultado = document.getElementById("resultado");
+const aviso = document.getElementById("aviso");
+
+const vGeral = document.getElementById("vGeral");
+const vRed = document.getElementById("vRed");
+const v2x = document.getElementById("v2x");
+const v4x = document.getElementById("v4x");
+const vAwm = document.getElementById("vAwm");
+const vLook = document.getElementById("vLook");
+
+const analise = document.getElementById("analise");
+
+/* =========================
+   MODELOS
+========================= */
+
+function carregarModelos(){
+
+  const fabricante = marca.value;
+
+  modelo.innerHTML="";
+
+  if(!fabricante || !DADOS[fabricante]){
+
+    modelo.disabled=true;
+
+    modelo.innerHTML =
+      '<option value="">Primeiro selecione o fabricante</option>';
+
+    return;
+  }
+
+  modelo.disabled=false;
+
+  modelo.innerHTML =
+    '<option value="">Selecione o modelo</option>';
+
+  Object.keys(DADOS[fabricante]).forEach(nome=>{
+
+    const option=document.createElement("option");
+
+    option.value=nome;
+    option.textContent=nome;
+
+    modelo.appendChild(option);
+
+  });
+}
+
+marca.addEventListener("change",()=>{
+
+  resultado.style.display="none";
+  aviso.style.display="none";
+
+  carregarModelos();
+
+});
+
+/* =========================
+   UTILIDADES
+========================= */
+
+function limitar(valor){
+
+  return Math.max(0,Math.min(200,Math.round(valor)));
+
+}
+
+function mostrarAviso(texto){
+
+  aviso.textContent=texto;
+  aviso.style.display="block";
+
+}
+
+function esconderAviso(){
+
+  aviso.textContent="";
+  aviso.style.display="none";
+
+}
+
+/* =========================
+   GERADOR
+========================= */
+
+function gerarSensi(){
+
+  esconderAviso();
+
+  if(
+    !freefire.value ||
+    !marca.value ||
+    !modelo.value ||
+    !nivel.value ||
+    !dedos.value
+  ){
+
+    mostrarAviso(
+      "Preencha todos os campos antes de gerar a configuração."
+    );
+
+    return;
+  }
+
+  const ajusteModelo =
+    DADOS[marca.value][modelo.value] || 0;
+
+  const bases={
+    baixa:118,
+    media:145,
+    alta:174
+  };
+
+  let geral=bases[nivel.value];
+
+  /* Ajuste por dedos */
+
+  if(dedos.value==="3") geral+=4;
+  if(dedos.value==="4") geral+=8;
+
+  /* Free Fire MAX */
+
+  if(freefire.value==="max") geral+=3;
+
+  /* Modelo */
+
+  geral+=ajusteModelo;
+
+  geral=limitar(geral);
+
+  const red=limitar(geral-8);
+  const mira2=limitar(geral-21);
+  const mira4=limitar(geral-36);
+  const awm=limitar(geral-58);
+  const look=limitar(geral+3);
+
+  vGeral.textContent=geral;
+  vRed.textContent=red;
+  v2x.textContent=mira2;
+  v4x.textContent=mira4;
+  vAwm.textContent=awm;
+  vLook.textContent=look;
+
+  let descricao="Configuração equilibrada.";
+
+  if(nivel.value==="baixa"){
+    descricao=
+      "Prioridade em controle e estabilidade para movimentos ma
