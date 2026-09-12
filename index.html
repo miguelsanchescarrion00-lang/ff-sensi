@@ -225,6 +225,70 @@ select:disabled{
   border-color:#e50932;
 }
 
+/* CONTATO */
+
+.contact{
+  margin-top:25px;
+  padding:25px;
+  background:#080808;
+  border:1px solid #242424;
+  border-radius:20px;
+  text-align:center;
+}
+
+.contact h2{
+  color:#ff1744;
+  font-size:21px;
+  margin-bottom:8px;
+}
+
+.contact-text{
+  color:#888;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.contact-phone{
+  display:inline-block;
+  margin-top:15px;
+  padding:12px 20px;
+  border-radius:11px;
+  background:#e50932;
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  transition:.2s;
+}
+
+.contact-phone:hover{
+  background:#ff1744;
+  transform:translateY(-1px);
+}
+
+.donation{
+  margin-top:20px;
+  padding:18px;
+  background:#101010;
+  border:1px solid #292929;
+  border-radius:14px;
+}
+
+.donation h3{
+  color:#fff;
+  font-size:16px;
+  margin-bottom:8px;
+}
+
+.donation p{
+  color:#999;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.donation strong{
+  color:#ff1744;
+}
+
 .credits{
   text-align:center;
   color:#555;
@@ -254,6 +318,10 @@ select:disabled{
   }
 
   .sensi-grid{
+    grid-template-columns:1fr;
+  }
+
+  .actions{
     grid-template-columns:1fr;
   }
 }
@@ -432,6 +500,43 @@ select:disabled{
   </main>
 
 
+  <!-- FALE CONOSCO -->
+
+  <section class="contact">
+
+    <h2>FALE CONOSCO</h2>
+
+    <p class="contact-text">
+      Tem alguma dúvida, sugestão ou encontrou algum problema?
+      Entre em contato conosco.
+    </p>
+
+    <a
+      class="contact-phone"
+      href="tel:+5511921149458"
+    >
+      📞 11 92114-9458
+    </a>
+
+
+    <div class="donation">
+
+      <h3>APOIE O GOAT SENSI</h3>
+
+      <p>
+        Gostou do site? Se puder, apoie o projeto com uma
+        pequena contribuição de <strong>R$ 0,50</strong>.
+      </p>
+
+      <p style="margin-top:8px;">
+        💙 Obrigado por apoiar o projeto!
+      </p>
+
+    </div>
+
+  </section>
+
+
   <div class="credits">
     GOAT SENSI © 2026<br>
     <b>Miguel Sanches Carrion & Thalles Vinícius Rios Gazda</b>
@@ -579,10 +684,6 @@ select:disabled{
   }
 
 
-  /* ==============================
-     MODELOS
-     ============================== */
-
   function carregarModelos(){
 
     var fabricante = marca.value;
@@ -646,10 +747,6 @@ select:disabled{
   );
 
 
-  /* ==============================
-     GERAR
-     ============================== */
-
   gerar.addEventListener(
     "click",
     function(){
@@ -659,12 +756,8 @@ select:disabled{
 
       if(!freefire.value){
 
-        avisoTexto(
-          "Selecione o jogo."
-        );
-
+        avisoTexto("Selecione o jogo.");
         freefire.focus();
-
         return;
 
       }
@@ -672,12 +765,8 @@ select:disabled{
 
       if(!marca.value){
 
-        avisoTexto(
-          "Selecione o fabricante."
-        );
-
+        avisoTexto("Selecione o fabricante.");
         marca.focus();
-
         return;
 
       }
@@ -685,12 +774,8 @@ select:disabled{
 
       if(!modelo.value){
 
-        avisoTexto(
-          "Selecione o modelo."
-        );
-
+        avisoTexto("Selecione o modelo.");
         modelo.focus();
-
         return;
 
       }
@@ -698,12 +783,8 @@ select:disabled{
 
       if(!nivel.value){
 
-        avisoTexto(
-          "Selecione o nível."
-        );
-
+        avisoTexto("Selecione o nível.");
         nivel.focus();
-
         return;
 
       }
@@ -711,20 +792,12 @@ select:disabled{
 
       if(!dedos.value){
 
-        avisoTexto(
-          "Selecione quantos dedos você usa."
-        );
-
+        avisoTexto("Selecione quantos dedos você usa.");
         dedos.focus();
-
         return;
 
       }
 
-
-      /* ==========================
-         BASE
-         ========================== */
 
       var base = 145;
 
@@ -742,8 +815,6 @@ select:disabled{
       }
 
 
-      /* dedos */
-
       if(dedos.value === "3"){
         base += 4;
       }
@@ -753,14 +824,10 @@ select:disabled{
       }
 
 
-      /* MAX */
-
       if(freefire.value === "max"){
         base += 3;
       }
 
-
-      /* fabricante */
 
       if(marca.value === "Xiaomi"){
         base += 2;
@@ -771,48 +838,28 @@ select:disabled{
       }
 
 
-      /* modelo */
+      var lista = DADOS[marca.value];
 
-      var lista =
-        DADOS[marca.value];
-
-      var indice =
-        lista.indexOf(modelo.value);
+      var indice = lista.indexOf(modelo.value);
 
 
       if(indice >= 0){
 
-        base +=
-          Math.min(
-            5,
-            Math.floor(indice / 7)
-          );
+        base += Math.min(
+          5,
+          Math.floor(indice / 7)
+        );
 
       }
 
 
-      var geral =
-        limitar(base);
+      var geral = limitar(base);
 
-
-      /* ==========================
-         RESULTADOS
-         ========================== */
-
-      var red =
-        limitar(geral - 7);
-
-      var doisX =
-        limitar(geral - 19);
-
-      var quatroX =
-        limitar(geral - 34);
-
-      var awm =
-        limitar(geral - 52);
-
-      var olhadinha =
-        limitar(geral - 3);
+      var red = limitar(geral - 7);
+      var doisX = limitar(geral - 19);
+      var quatroX = limitar(geral - 34);
+      var awm = limitar(geral - 52);
+      var olhadinha = limitar(geral - 3);
 
 
       vGeral.textContent = geral;
@@ -851,8 +898,7 @@ select:disabled{
       }
 
 
-      resultado.style.display =
-        "block";
+      resultado.style.display = "block";
 
 
       setTimeout(
@@ -870,10 +916,6 @@ select:disabled{
     }
   );
 
-
-  /* ==============================
-     AJUSTE FINO
-     ============================== */
 
   variar.addEventListener(
     "click",
@@ -915,10 +957,6 @@ select:disabled{
     }
   );
 
-
-  /* ==============================
-     COPIAR
-     ============================== */
 
   copiar.addEventListener(
     "click",
@@ -1039,10 +1077,6 @@ Olhadinha: ${vLook.textContent}`;
 
   }
 
-
-  /* ==============================
-     INICIALIZAÇÃO
-     ============================== */
 
   carregarModelos();
 
