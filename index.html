@@ -7,1631 +7,1081 @@
 
 <style>
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
-
-html{
-scroll-behavior:smooth;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-font-family:Arial,Helvetica,sans-serif;
-background:#030303;
-color:#fff;
-min-height:100vh;
-overflow-x:hidden;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#030303;
+  color:#fff;
+  min-height:100vh;
 }
-
-/* FUNDO ANIMADO */
 
 body:before{
-content:"";
-position:fixed;
-inset:0;
-pointer-events:none;
-background:
-linear-gradient(rgba(255,0,40,.025) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,0,40,.025) 1px,transparent 1px);
-background-size:35px 35px;
-z-index:-3;
-animation:gridMove 12s linear infinite;
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,0,40,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,0,40,.025) 1px,transparent 1px);
+  background-size:35px 35px;
 }
-
-body:after{
-content:"";
-position:fixed;
-width:450px;
-height:450px;
-top:-180px;
-left:50%;
-transform:translateX(-50%);
-background:rgba(229,9,50,.09);
-filter:blur(100px);
-border-radius:50%;
-pointer-events:none;
-z-index:-2;
-animation:orb 5s ease-in-out infinite alternate;
-}
-
-/* CONTAINER */
 
 .container{
-width:min(950px,92%);
-margin:auto;
-padding:40px 0 30px;
+  width:min(950px,92%);
+  margin:auto;
+  padding:45px 0;
 }
 
-/* HEADER */
-
 .header{
-text-align:center;
-margin-bottom:32px;
-animation:fadeDown .8s ease;
+  text-align:center;
+  margin-bottom:35px;
 }
 
 .logo{
-font-size:48px;
-font-weight:1000;
-letter-spacing:-3px;
-animation:logoPulse 3s ease-in-out infinite;
+  font-size:42px;
+  font-weight:1000;
+  letter-spacing:-2px;
 }
 
 .logo span{
-color:#ff1744;
+  color:#ff1744;
 }
 
 .subtitle{
-color:#777;
-margin-top:8px;
-font-size:14px;
+  color:#888;
+  margin-top:8px;
+  font-size:14px;
 }
-
-.badge{
-display:inline-block;
-margin-top:15px;
-padding:7px 14px;
-border-radius:50px;
-background:#100307;
-border:1px solid #4a0d1c;
-color:#ff4968;
-font-size:11px;
-font-weight:900;
-animation:badgePulse 2s infinite;
-}
-
-/* CARD */
 
 .card{
-background:rgba(8,8,8,.95);
-border:1px solid #242424;
-border-radius:22px;
-padding:26px;
-box-shadow:
-0 25px 80px rgba(0,0,0,.55),
-inset 0 1px rgba(255,255,255,.025);
-animation:fadeUp .9s ease;
-transition:border-color .3s,box-shadow .3s;
+  background:#080808;
+  border:1px solid #242424;
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
 }
-
-.card:hover{
-border-color:#35101a;
-box-shadow:
-0 25px 90px rgba(0,0,0,.65),
-0 0 30px rgba(229,9,50,.04);
-}
-
-/* GRID */
 
 .grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:18px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
 }
 
 .field{
-display:flex;
-flex-direction:column;
-gap:8px;
-animation:fieldIn .6s ease backwards;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
 }
 
-.field:nth-child(1){animation-delay:.05s}
-.field:nth-child(2){animation-delay:.10s}
-.field:nth-child(3){animation-delay:.15s}
-.field:nth-child(4){animation-delay:.20s}
-.field:nth-child(5){animation-delay:.25s}
-
 .field.full{
-grid-column:1/-1;
+  grid-column:1/-1;
 }
 
 label{
-font-size:11px;
-font-weight:900;
-color:#aaa;
-text-transform:uppercase;
-letter-spacing:.5px;
+  font-size:12px;
+  font-weight:900;
+  color:#aaa;
+  text-transform:uppercase;
 }
-
-/* SELECT */
 
 select{
-width:100%;
-height:53px;
-padding:0 15px;
-border-radius:13px;
-border:1px solid #292929;
-background:#111;
-color:#fff;
-outline:none;
-font-size:15px;
-transition:
-border-color .25s,
-box-shadow .25s,
-transform .25s;
-}
-
-select:hover{
-border-color:#444;
-transform:translateY(-1px);
+  width:100%;
+  height:52px;
+  padding:0 15px;
+  border-radius:12px;
+  border:1px solid #292929;
+  background:#111;
+  color:#fff;
+  outline:none;
+  font-size:15px;
 }
 
 select:focus{
-border-color:#ff1744;
-box-shadow:
-0 0 0 2px rgba(255,23,68,.10),
-0 0 25px rgba(255,23,68,.10);
-transform:translateY(-1px);
+  border-color:#ff1744;
+  box-shadow:0 0 0 2px rgba(255,23,68,.12);
 }
 
 select:disabled{
-opacity:.4;
+  opacity:.45;
+  cursor:not-allowed;
 }
-
-/* BOTÃO */
 
 .generate{
-position:relative;
-overflow:hidden;
-width:100%;
-margin-top:23px;
-height:57px;
-border:0;
-border-radius:14px;
-background:linear-gradient(135deg,#c90029,#ff1744);
-color:#fff;
-font-size:15px;
-font-weight:1000;
-cursor:pointer;
-transition:.25s;
-box-shadow:0 8px 25px rgba(229,9,50,.18);
-}
-
-.generate:before{
-content:"";
-position:absolute;
-top:0;
-left:-120%;
-width:70%;
-height:100%;
-background:linear-gradient(
-90deg,
-transparent,
-rgba(255,255,255,.25),
-transparent
-);
-transform:skewX(-20deg);
-animation:buttonShine 3s infinite;
+  width:100%;
+  margin-top:22px;
+  height:56px;
+  border:0;
+  border-radius:13px;
+  background:#e50932;
+  color:#fff;
+  font-size:15px;
+  font-weight:1000;
+  cursor:pointer;
+  transition:.2s;
 }
 
 .generate:hover{
-transform:translateY(-3px) scale(1.005);
-box-shadow:
-0 15px 40px rgba(229,9,50,.30),
-0 0 20px rgba(229,9,50,.12);
+  background:#ff1744;
+  transform:translateY(-1px);
 }
-
-.generate:active{
-transform:scale(.97);
-}
-
-.generate:disabled{
-opacity:.7;
-cursor:wait;
-}
-
-/* AVISO */
 
 .aviso{
-display:none;
-margin-top:15px;
-padding:13px;
-border-radius:11px;
-background:#21070d;
-border:1px solid #7c1028;
-color:#ff617d;
-font-size:13px;
-text-align:center;
-animation:shake .35s ease;
+  display:none;
+  margin-top:15px;
+  padding:13px;
+  border-radius:10px;
+  background:#21070d;
+  border:1px solid #7c1028;
+  color:#ff617d;
+  font-size:13px;
+  text-align:center;
 }
 
-/* RESULTADO */
-
 .resultado{
-display:none;
-margin-top:25px;
-padding:22px;
-border-radius:18px;
-background:#080808;
-border:1px solid #35101a;
-animation:resultIn .65s cubic-bezier(.2,.8,.2,1);
+  display:none;
+  margin-top:25px;
+  padding:22px;
+  border-radius:18px;
+  background:#080808;
+  border:1px solid #35101a;
 }
 
 .result-title{
-text-align:center;
-font-size:21px;
-font-weight:1000;
-color:#ff1744;
-animation:titleGlow 2s ease-in-out infinite alternate;
+  text-align:center;
+  font-size:20px;
+  font-weight:1000;
+  color:#ff1744;
 }
 
 .result-device{
-text-align:center;
-color:#777;
-font-size:13px;
-margin:7px 0 20px;
+  text-align:center;
+  color:#888;
+  font-size:13px;
+  margin:6px 0 20px;
 }
 
-/* SENSI */
-
 .sensi-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
 .sensi{
-background:#101010;
-border:1px solid #222;
-border-radius:12px;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-transition:.25s;
-animation:sensiIn .5s ease backwards;
-}
-
-.sensi:nth-child(1){animation-delay:.05s}
-.sensi:nth-child(2){animation-delay:.10s}
-.sensi:nth-child(3){animation-delay:.15s}
-.sensi:nth-child(4){animation-delay:.20s}
-.sensi:nth-child(5){animation-delay:.25s}
-.sensi:nth-child(6){animation-delay:.30s}
-
-.sensi:hover{
-transform:translateY(-4px) scale(1.015);
-border-color:#5a1021;
-box-shadow:0 8px 25px rgba(229,9,50,.08);
+  background:#101010;
+  border:1px solid #222;
+  border-radius:12px;
+  padding:15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .sensi span{
-color:#bbb;
-font-size:13px;
+  color:#bbb;
+  font-size:13px;
 }
 
 .sensi strong{
-background:#e50932;
-padding:7px 11px;
-border-radius:8px;
-min-width:45px;
-text-align:center;
-box-shadow:0 5px 15px rgba(229,9,50,.15);
-animation:numberPop .45s ease;
+  background:#e50932;
+  padding:7px 11px;
+  border-radius:8px;
+  min-width:42px;
+  text-align:center;
 }
-
-/* ANALISE */
 
 .analysis{
-margin-top:15px;
-padding:15px;
-background:#0d0d0d;
-border-left:3px solid #e50932;
-border-radius:8px;
-color:#aaa;
-font-size:13px;
-line-height:1.6;
-animation:fadeUp .7s ease;
+  margin-top:15px;
+  padding:14px;
+  background:#0d0d0d;
+  border-left:3px solid #e50932;
+  border-radius:8px;
+  color:#aaa;
+  font-size:13px;
+  line-height:1.5;
 }
-
-/* QUALIDADE */
-
-.quality{
-margin-top:14px;
-padding:14px;
-border-radius:10px;
-background:#0b0b0b;
-border:1px solid #1e1e1e;
-}
-
-.quality-title{
-display:flex;
-justify-content:space-between;
-font-size:12px;
-color:#999;
-margin-bottom:8px;
-}
-
-.quality-title strong{
-color:#ff1744;
-}
-
-.quality-bar{
-width:100%;
-height:7px;
-background:#1d1d1d;
-border-radius:20px;
-overflow:hidden;
-}
-
-.quality-fill{
-height:100%;
-width:0%;
-background:linear-gradient(90deg,#a90025,#ff1744);
-border-radius:20px;
-transition:width 1.3s cubic-bezier(.2,.8,.2,1);
-box-shadow:0 0 12px rgba(255,23,68,.35);
-}
-
-/* ACTIONS */
 
 .actions{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:15px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
 }
 
 .action{
-height:48px;
-border-radius:11px;
-border:1px solid #292929;
-background:#121212;
-color:#fff;
-font-weight:900;
-cursor:pointer;
-transition:.25s;
+  height:48px;
+  border-radius:11px;
+  border:1px solid #292929;
+  background:#121212;
+  color:#fff;
+  font-weight:900;
+  cursor:pointer;
 }
 
 .action:hover{
-border-color:#e50932;
-transform:translateY(-2px);
-box-shadow:0 8px 20px rgba(229,9,50,.08);
-}
-
-.action:active{
-transform:scale(.97);
+  border-color:#e50932;
 }
 
 /* CONTATO */
 
 .contact{
-margin-top:25px;
-padding:27px;
-background:rgba(8,8,8,.95);
-border:1px solid #242424;
-border-radius:20px;
-text-align:center;
-animation:fadeUp 1s ease;
-transition:.3s;
-}
-
-.contact:hover{
-border-color:#35101a;
-transform:translateY(-2px);
+  margin-top:25px;
+  padding:25px;
+  background:#080808;
+  border:1px solid #242424;
+  border-radius:20px;
+  text-align:center;
 }
 
 .contact h2{
-color:#ff1744;
-font-size:21px;
-margin-bottom:8px;
-animation:titleGlow 2s ease-in-out infinite alternate;
+  color:#ff1744;
+  font-size:21px;
+  margin-bottom:8px;
 }
 
 .contact-text{
-color:#888;
-font-size:13px;
-line-height:1.5;
+  color:#888;
+  font-size:13px;
+  line-height:1.5;
 }
 
-.whatsapp{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-gap:8px;
-margin-top:16px;
-padding:13px 22px;
-border-radius:12px;
-background:#151515;
-border:1px solid #292929;
-color:#fff;
-text-decoration:none;
-font-weight:900;
-transition:.25s;
-animation:whatsappPulse 2.5s infinite;
+.contact-phone{
+  display:inline-block;
+  margin-top:15px;
+  padding:12px 20px;
+  border-radius:11px;
+  background:#e50932;
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  transition:.2s;
 }
 
-.whatsapp:hover{
-border-color:#ff1744;
-transform:translateY(-3px) scale(1.02);
-box-shadow:0 10px 25px rgba(229,9,50,.12);
+.contact-phone:hover{
+  background:#ff1744;
+  transform:translateY(-1px);
 }
 
 .donation{
-margin-top:20px;
-padding:19px;
-background:#101010;
-border:1px solid #292929;
-border-radius:14px;
-transition:.25s;
-}
-
-.donation:hover{
-border-color:#45101e;
-transform:translateY(-2px);
+  margin-top:20px;
+  padding:18px;
+  background:#101010;
+  border:1px solid #292929;
+  border-radius:14px;
 }
 
 .donation h3{
-font-size:16px;
-margin-bottom:8px;
+  color:#fff;
+  font-size:16px;
+  margin-bottom:8px;
 }
 
 .donation p{
-color:#999;
-font-size:13px;
-line-height:1.5;
+  color:#999;
+  font-size:13px;
+  line-height:1.5;
 }
 
 .donation strong{
-color:#ff1744;
+  color:#ff1744;
 }
 
-/* CREDITOS */
-
 .credits{
-text-align:center;
-color:#555;
-font-size:12px;
-margin-top:28px;
-line-height:1.6;
-animation:fadeUp 1.2s ease;
+  text-align:center;
+  color:#555;
+  font-size:12px;
+  margin-top:28px;
 }
 
 .credits b{
-color:#777;
+  color:#777;
 }
-
-/* ANIMAÇÕES */
-
-@keyframes fadeDown{
-from{
-opacity:0;
-transform:translateY(-25px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(25px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
-@keyframes fieldIn{
-from{
-opacity:0;
-transform:translateX(-15px);
-}
-to{
-opacity:1;
-transform:translateX(0);
-}
-}
-
-@keyframes resultIn{
-from{
-opacity:0;
-transform:translateY(30px) scale(.96);
-}
-to{
-opacity:1;
-transform:translateY(0) scale(1);
-}
-}
-
-@keyframes sensiIn{
-from{
-opacity:0;
-transform:scale(.92) translateY(10px);
-}
-to{
-opacity:1;
-transform:scale(1) translateY(0);
-}
-}
-
-@keyframes numberPop{
-0%{
-transform:scale(.5);
-opacity:0;
-}
-70%{
-transform:scale(1.12);
-}
-100%{
-transform:scale(1);
-opacity:1;
-}
-}
-
-@keyframes logoPulse{
-0%,100%{
-text-shadow:0 0 10px rgba(255,23,68,.05);
-}
-50%{
-text-shadow:0 0 30px rgba(255,23,68,.25);
-}
-}
-
-@keyframes titleGlow{
-from{
-text-shadow:0 0 5px rgba(255,23,68,.05);
-}
-to{
-text-shadow:0 0 18px rgba(255,23,68,.35);
-}
-}
-
-@keyframes badgePulse{
-0%,100%{
-box-shadow:0 0 0 rgba(255,23,68,0);
-}
-50%{
-box-shadow:0 0 18px rgba(255,23,68,.12);
-}
-}
-
-@keyframes whatsappPulse{
-0%,100%{
-box-shadow:0 0 0 rgba(255,23,68,0);
-}
-50%{
-box-shadow:0 0 18px rgba(255,23,68,.10);
-}
-}
-
-@keyframes buttonShine{
-0%{
-left:-120%;
-}
-35%{
-left:140%;
-}
-100%{
-left:140%;
-}
-}
-
-@keyframes orb{
-from{
-transform:translateX(-50%) scale(.9);
-opacity:.6;
-}
-to{
-transform:translateX(-50%) scale(1.15);
-opacity:1;
-}
-}
-
-@keyframes gridMove{
-from{
-background-position:0 0,0 0;
-}
-to{
-background-position:35px 35px,35px 35px;
-}
-}
-
-@keyframes shake{
-0%,100%{
-transform:translateX(0);
-}
-25%{
-transform:translateX(-6px);
-}
-75%{
-transform:translateX(6px);
-}
-}
-
-/* MOBILE */
 
 @media(max-width:650px){
+  .container{
+    padding:25px 0;
+  }
 
-.container{
-padding:25px 0;
-}
+  .logo{
+    font-size:34px;
+  }
 
-.logo{
-font-size:36px;
-}
+  .grid{
+    grid-template-columns:1fr;
+  }
 
-.grid{
-grid-template-columns:1fr;
-}
+  .field.full{
+    grid-column:auto;
+  }
 
-.field.full{
-grid-column:auto;
-}
+  .sensi-grid{
+    grid-template-columns:1fr;
+  }
 
-.sensi-grid{
-grid-template-columns:1fr;
-}
-
-.actions{
-grid-template-columns:1fr;
-}
-
-.card{
-padding:20px;
-}
-
+  .actions{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
-
 
 <body>
 
 <div class="container">
 
-<header class="header">
+  <header class="header">
+    <div class="logo">
+      GOAT <span>SENSI</span>
+    </div>
 
-<div class="logo">
-GOAT <span>SENSI</span>
-</div>
+    <div class="subtitle">
+      Gerador profissional de sensibilidade para Free Fire
+    </div>
+  </header>
 
-<div class="subtitle">
-Gerador avançado de sensibilidade para Free Fire
-</div>
 
-<div class="badge">
-⚡ MOTOR DE PRECISÃO • CONFIGURAÇÃO INTELIGENTE
-</div>
+  <main class="card">
 
-</header>
+    <div class="grid">
 
+      <div class="field">
+        <label for="freefire">Jogo</label>
 
-<main class="card">
+        <select id="freefire">
+          <option value="">Selecione</option>
+          <option value="normal">Free Fire</option>
+          <option value="max">Free Fire MAX</option>
+        </select>
+      </div>
 
-<div class="grid">
 
-<div class="field">
+      <div class="field">
+        <label for="marca">Fabricante</label>
 
-<label for="freefire">Jogo</label>
+        <select id="marca">
+          <option value="">Selecione</option>
+          <option value="Samsung">Samsung</option>
+          <option value="Xiaomi">Xiaomi</option>
+          <option value="Motorola">Motorola</option>
+        </select>
+      </div>
 
-<select id="freefire">
 
-<option value="">Selecione</option>
+      <div class="field full">
+        <label for="modelo">Modelo</label>
 
-<option value="normal">
-Free Fire
-</option>
+        <select id="modelo" disabled>
+          <option value="">
+            Primeiro selecione o fabricante
+          </option>
+        </select>
+      </div>
 
-<option value="max">
-Free Fire MAX
-</option>
 
-</select>
+      <div class="field">
+        <label for="nivel">Nível</label>
 
-</div>
+        <select id="nivel">
+          <option value="">Selecione</option>
+          <option value="baixa">Baixa</option>
+          <option value="media">Média</option>
+          <option value="alta">Alta</option>
+        </select>
+      </div>
 
 
-<div class="field">
+      <div class="field">
+        <label for="dedos">Quantidade de dedos</label>
 
-<label for="marca">Fabricante</label>
+        <select id="dedos">
+          <option value="">Selecione</option>
+          <option value="2">2 dedos</option>
+          <option value="3">3 dedos</option>
+          <option value="4">4 dedos</option>
+        </select>
+      </div>
 
-<select id="marca">
+    </div>
 
-<option value="">Selecione</option>
 
-<option value="Samsung">
-Samsung
-</option>
+    <button
+      type="button"
+      id="gerar"
+      class="generate"
+    >
+      GERAR SENSIBILIDADE
+    </button>
 
-<option value="Xiaomi">
-Xiaomi
-</option>
 
-<option value="Motorola">
-Motorola
-</option>
+    <div id="aviso" class="aviso"></div>
 
-</select>
 
-</div>
+    <section
+      id="resultado"
+      class="resultado"
+    >
 
+      <div class="result-title">
+        SENSIBILIDADE GERADA
+      </div>
 
-<div class="field full">
+      <div
+        id="resultDevice"
+        class="result-device"
+      ></div>
 
-<label for="modelo">Modelo</label>
 
-<select id="modelo" disabled>
+      <div class="sensi-grid">
 
-<option value="">
-Primeiro selecione o fabricante
-</option>
+        <div class="sensi">
+          <span>Geral</span>
+          <strong id="vGeral">0</strong>
+        </div>
 
-</select>
+        <div class="sensi">
+          <span>Ponto Vermelho</span>
+          <strong id="vRed">0</strong>
+        </div>
 
-</div>
+        <div class="sensi">
+          <span>Mira 2x</span>
+          <strong id="v2x">0</strong>
+        </div>
 
+        <div class="sensi">
+          <span>Mira 4x</span>
+          <strong id="v4x">0</strong>
+        </div>
 
-<div class="field">
+        <div class="sensi">
+          <span>Mira AWM</span>
+          <strong id="vAwm">0</strong>
+        </div>
 
-<label for="nivel">Nível</label>
+        <div class="sensi">
+          <span>Olhadinha</span>
+          <strong id="vLook">0</strong>
+        </div>
 
-<select id="nivel">
+      </div>
 
-<option value="">
-Selecione
-</option>
 
-<option value="baixa">
-Controle
-</option>
+      <div
+        id="analise"
+        class="analysis"
+      ></div>
 
-<option value="media">
-Equilibrada
-</option>
 
-<option value="alta">
-Rápida
-</option>
+      <div class="actions">
 
-</select>
+        <button
+          type="button"
+          id="copiar"
+          class="action"
+        >
+          COPIAR CONFIGURAÇÃO
+        </button>
 
-</div>
+        <button
+          type="button"
+          id="variar"
+          class="action"
+        >
+          AJUSTE FINO +1
+        </button>
 
+      </div>
 
-<div class="field">
+    </section>
 
-<label for="dedos">Quantidade de dedos</label>
+  </main>
 
-<select id="dedos">
 
-<option value="">
-Selecione
-</option>
+  <!-- FALE CONOSCO -->
 
-<option value="2">
-2 dedos
-</option>
+  <section class="contact">
 
-<option value="3">
-3 dedos
-</option>
+    <h2>FALE CONOSCO</h2>
 
-<option value="4">
-4 dedos
-</option>
+    <p class="contact-text">
+      Tem alguma dúvida, sugestão ou encontrou algum problema?
+      Entre em contato conosco.
+    </p>
 
-</select>
+    <a
+      class="contact-phone"
+      href="tel:+5511921149458"
+    >
+      📞 11 92114-9458
+    </a>
 
-</div>
 
-</div>
+    <div class="donation">
 
+      <h3>APOIE O GOAT SENSI</h3>
 
-<button
-type="button"
-id="gerar"
-class="generate">
+      <p>
+        Gostou do site? Se puder, apoie o projeto com uma
+        pequena contribuição de <strong>R$ 0,50</strong>.
+      </p>
 
-GERAR SENSIBILIDADE
+      <p style="margin-top:8px;">
+        💙 Obrigado por apoiar o projeto!
+      </p>
 
-</button>
+    </div>
 
+  </section>
 
-<div id="aviso" class="aviso"></div>
 
-
-<section
-id="resultado"
-class="resultado">
-
-<div class="result-title">
-SENSIBILIDADE GERADA
-</div>
-
-<div
-id="resultDevice"
-class="result-device">
-</div>
-
-
-<div class="sensi-grid">
-
-<div class="sensi">
-<span>Geral</span>
-<strong id="vGeral">0</strong>
-</div>
-
-<div class="sensi">
-<span>Ponto Vermelho</span>
-<strong id="vRed">0</strong>
-</div>
-
-<div class="sensi">
-<span>Mira 2x</span>
-<strong id="v2x">0</strong>
-</div>
-
-<div class="sensi">
-<span>Mira 4x</span>
-<strong id="v4x">0</strong>
-</div>
-
-<div class="sensi">
-<span>Mira AWM</span>
-<strong id="vAwm">0</strong>
-</div>
-
-<div class="sensi">
-<span>Olhadinha</span>
-<strong id="vLook">0</strong>
-</div>
-
-</div>
-
-
-<div
-id="analise"
-class="analysis">
-</div>
-
-
-<div class="quality">
-
-<div class="quality-title">
-
-<span>
-Qualidade da configuração
-</span>
-
-<strong id="qualityText">
-0%
-</strong>
-
-</div>
-
-<div class="quality-bar">
-
-<div
-id="qualityFill"
-class="quality-fill">
-</div>
-
-</div>
-
-</div>
-
-
-<div class="actions">
-
-<button
-type="button"
-id="copiar"
-class="action">
-
-COPIAR CONFIGURAÇÃO
-
-</button>
-
-
-<button
-type="button"
-id="variar"
-class="action">
-
-AJUSTE FINO +1
-
-</button>
-
-</div>
-
-</section>
-
-</main>
-
-
-<section class="contact">
-
-<h2>
-FALE CONOSCO
-</h2>
-
-<p class="contact-text">
-Dúvidas, sugestões ou problemas com o GOAT SENSI?
-Fale conosco pelo WhatsApp.
-</p>
-
-
-<a
-class="whatsapp"
-href="https://wa.me/5511921149458"
-target="_blank"
-rel="noopener">
-
-📱 WHATSAPP • 11 92114-9458
-
-</a>
-
-
-<div class="donation">
-
-<h3>
-APOIE O GOAT SENSI
-</h3>
-
-<p>
-Se o site te ajudou e quiser apoiar o projeto,
-você pode contribuir com uma pequena doação de
-<strong>R$ 0,50</strong>.
-</p>
-
-<p style="margin-top:8px;">
-Obrigado por apoiar o projeto! ❤️
-</p>
-
-</div>
-
-</section>
-
-
-<div class="credits">
-
-GOAT SENSI © 2026<br>
-
-<b>
-Miguel Sanches Carrion & Thalles Vinícius Rios Gazda
-</b>
-
-</div>
+  <div class="credits">
+    GOAT SENSI © 2026<br>
+    <b>Miguel Sanches Carrion & Thalles Vinícius Rios Gazda</b>
+  </div>
 
 </div>
 
 
 <script>
-
 (function(){
 
-"use strict";
-
-
-/* BANCO DE MODELOS */
-
-var DADOS={
-
-Samsung:[
-"Galaxy A05",
-"Galaxy A05s",
-"Galaxy A06",
-"Galaxy A12",
-"Galaxy A13",
-"Galaxy A14",
-"Galaxy A15",
-"Galaxy A16",
-"Galaxy A17",
-"Galaxy A22",
-"Galaxy A23",
-"Galaxy A24",
-"Galaxy A25",
-"Galaxy A32",
-"Galaxy A33",
-"Galaxy A34",
-"Galaxy A52",
-"Galaxy A53",
-"Galaxy A54",
-"Galaxy A55",
-"Galaxy A72",
-"Galaxy S20",
-"Galaxy S21",
-"Galaxy S22",
-"Galaxy S23",
-"Galaxy S24",
-"Galaxy S25"
-],
-
-Xiaomi:[
-"Redmi Note 8",
-"Redmi Note 9",
-"Redmi Note 10",
-"Redmi Note 11",
-"Redmi Note 12",
-"Redmi Note 13",
-"Redmi Note 14",
-"POCO X3",
-"POCO X4",
-"POCO X5",
-"POCO X6",
-"POCO F5",
-"POCO F6"
-],
-
-Motorola:[
-"Moto E5",
-"Moto E6",
-"Moto E7",
-"Moto E20",
-"Moto E22",
-"Moto E32",
-"Moto E40",
-"Moto G5",
-"Moto G7",
-"Moto G8",
-"Moto G9 Play",
-"Moto G20",
-"Moto G22",
-"Moto G23",
-"Moto G30",
-"Moto G32",
-"Moto G42",
-"Moto G52",
-"Moto G54",
-"Moto G73",
-"Moto G84",
-"Motorola Edge 20",
-"Motorola Edge 30",
-"Motorola Edge 40",
-"Motorola Edge 50 Fusion"
-]
+  "use strict";
+
+  var DADOS = {
+
+    Samsung: [
+      "Galaxy A05",
+      "Galaxy A05s",
+      "Galaxy A06",
+      "Galaxy A12",
+      "Galaxy A13",
+      "Galaxy A14",
+      "Galaxy A15",
+      "Galaxy A16",
+      "Galaxy A17",
+      "Galaxy A22",
+      "Galaxy A23",
+      "Galaxy A24",
+      "Galaxy A25",
+      "Galaxy A32",
+      "Galaxy A33",
+      "Galaxy A34",
+      "Galaxy A52",
+      "Galaxy A53",
+      "Galaxy A54",
+      "Galaxy A55",
+      "Galaxy A72",
+      "Galaxy S20",
+      "Galaxy S21",
+      "Galaxy S22",
+      "Galaxy S23",
+      "Galaxy S24",
+      "Galaxy S25"
+    ],
+
+    Xiaomi: [
+      "Redmi Note 8",
+      "Redmi Note 9",
+      "Redmi Note 10",
+      "Redmi Note 11",
+      "Redmi Note 12",
+      "Redmi Note 13",
+      "Redmi Note 14",
+      "POCO X3",
+      "POCO X4",
+      "POCO X5",
+      "POCO X6",
+      "POCO F5",
+      "POCO F6"
+    ],
+
+    Motorola: [
+      "Moto E5",
+      "Moto E6",
+      "Moto E7",
+      "Moto E20",
+      "Moto E22",
+      "Moto E32",
+      "Moto E40",
+      "Moto G5",
+      "Moto G7",
+      "Moto G8",
+      "Moto G9 Play",
+      "Moto G20",
+      "Moto G22",
+      "Moto G23",
+      "Moto G30",
+      "Moto G32",
+      "Moto G42",
+      "Moto G52",
+      "Moto G54",
+      "Moto G73",
+      "Moto G84",
+      "Motorola Edge 20",
+      "Motorola Edge 30",
+      "Motorola Edge 40",
+      "Motorola Edge 50 Fusion"
+    ]
 
-};
+  };
 
 
-/* ELEMENTOS */
+  var freefire = document.getElementById("freefire");
+  var marca = document.getElementById("marca");
+  var modelo = document.getElementById("modelo");
+  var nivel = document.getElementById("nivel");
+  var dedos = document.getElementById("dedos");
 
-var freefire=document.getElementById("freefire");
-var marca=document.getElementById("marca");
-var modelo=document.getElementById("modelo");
-var nivel=document.getElementById("nivel");
-var dedos=document.getElementById("dedos");
+  var gerar = document.getElementById("gerar");
+  var resultado = document.getElementById("resultado");
+  var aviso = document.getElementById("aviso");
 
-var gerar=document.getElementById("gerar");
-var resultado=document.getElementById("resultado");
-var aviso=document.getElementById("aviso");
+  var vGeral = document.getElementById("vGeral");
+  var vRed = document.getElementById("vRed");
+  var v2x = document.getElementById("v2x");
+  var v4x = document.getElementById("v4x");
+  var vAwm = document.getElementById("vAwm");
+  var vLook = document.getElementById("vLook");
 
-var vGeral=document.getElementById("vGeral");
-var vRed=document.getElementById("vRed");
-var v2x=document.getElementById("v2x");
-var v4x=document.getElementById("v4x");
-var vAwm=document.getElementById("vAwm");
-var vLook=document.getElementById("vLook");
+  var analise = document.getElementById("analise");
+  var copiar = document.getElementById("copiar");
+  var variar = document.getElementById("variar");
+  var resultDevice = document.getElementById("resultDevice");
 
-var analise=document.getElementById("analise");
 
-var copiar=document.getElementById("copiar");
-var variar=document.getElementById("variar");
+  function limitar(numero){
 
-var resultDevice=document.getElementById("resultDevice");
+    numero = Number(numero);
 
-var qualityText=document.getElementById("qualityText");
-var qualityFill=document.getElementById("qualityFill");
+    if(isNaN(numero)){
+      numero = 0;
+    }
 
+    return Math.max(
+      0,
+      Math.min(200, Math.round(numero))
+    );
 
-/* LIMITADOR */
+  }
 
-function limitar(numero){
 
-numero=Number(numero);
+  function avisoTexto(texto){
 
-if(isNaN(numero)){
-numero=0;
-}
+    aviso.textContent = texto;
+    aviso.style.display = "block";
 
-return Math.max(
-0,
-Math.min(
-200,
-Math.round(numero)
-)
-);
+  }
 
-}
 
+  function esconderAviso(){
 
-/* AVISO */
+    aviso.textContent = "";
+    aviso.style.display = "none";
 
-function avisoTexto(texto){
+  }
 
-aviso.textContent=texto;
 
-aviso.style.display="block";
+  function carregarModelos(){
 
-}
+    var fabricante = marca.value;
 
+    modelo.innerHTML = "";
 
-function esconderAviso(){
 
-aviso.textContent="";
+    if(!fabricante || !DADOS[fabricante]){
 
-aviso.style.display="none";
+      modelo.disabled = true;
 
-}
+      modelo.innerHTML =
+        '<option value="">Primeiro selecione o fabricante</option>';
 
+      return;
 
-/* MODELOS */
+    }
 
-function carregarModelos(){
 
-var fabricante=marca.value;
+    modelo.disabled = false;
 
-modelo.innerHTML="";
 
+    var primeiro =
+      document.createElement("option");
 
-if(
-!fabricante ||
-!DADOS[fabricante]
-){
+    primeiro.value = "";
+    primeiro.textContent =
+      "Selecione o modelo";
 
-modelo.disabled=true;
+    modelo.appendChild(primeiro);
 
-modelo.innerHTML=
-'<option value="">Primeiro selecione o fabricante</option>';
 
-return;
+    DADOS[fabricante].forEach(
+      function(nome){
 
-}
+        var option =
+          document.createElement("option");
 
+        option.value = nome;
+        option.textContent = nome;
 
-modelo.disabled=false;
+        modelo.appendChild(option);
 
+      }
+    );
 
-var primeiro=
-document.createElement("option");
+  }
 
-primeiro.value="";
 
-primeiro.textContent=
-"Selecione o modelo";
+  marca.addEventListener(
+    "change",
+    function(){
 
-modelo.appendChild(primeiro);
+      esconderAviso();
 
+      resultado.style.display = "none";
 
-DADOS[fabricante].forEach(
-function(nome){
+      carregarModelos();
 
-var option=
-document.createElement("option");
+    }
+  );
 
-option.value=nome;
 
-option.textContent=nome;
+  gerar.addEventListener(
+    "click",
+    function(){
 
-modelo.appendChild(option);
+      esconderAviso();
 
-}
-);
 
-}
+      if(!freefire.value){
 
+        avisoTexto("Selecione o jogo.");
+        freefire.focus();
+        return;
 
-marca.addEventListener(
-"change",
-function(){
+      }
 
-esconderAviso();
 
-resultado.style.display="none";
+      if(!marca.value){
 
-carregarModelos();
+        avisoTexto("Selecione o fabricante.");
+        marca.focus();
+        return;
 
-}
-);
+      }
 
 
-/* MOTOR */
+      if(!modelo.value){
 
-function gerarMotor(){
+        avisoTexto("Selecione o modelo.");
+        modelo.focus();
+        return;
 
-var base=0;
+      }
 
 
-/* NÍVEL */
+      if(!nivel.value){
 
-if(nivel.value==="baixa"){
-base=132;
-}
+        avisoTexto("Selecione o nível.");
+        nivel.focus();
+        return;
 
-if(nivel.value==="media"){
-base=156;
-}
+      }
 
-if(nivel.value==="alta"){
-base=177;
-}
 
+      if(!dedos.value){
 
-/* DEDOS */
+        avisoTexto("Selecione quantos dedos você usa.");
+        dedos.focus();
+        return;
 
-if(dedos.value==="2"){
-base-=2;
-}
+      }
 
-if(dedos.value==="3"){
-base+=3;
-}
 
-if(dedos.value==="4"){
-base+=6;
-}
+      var base = 145;
 
 
-/* JOGO */
+      if(nivel.value === "baixa"){
+        base = 110;
+      }
 
-if(freefire.value==="max"){
-base+=3;
-}
+      if(nivel.value === "media"){
+        base = 145;
+      }
 
+      if(nivel.value === "alta"){
+        base = 180;
+      }
 
-/* FABRICANTE */
 
-if(marca.value==="Samsung"){
-base+=1;
-}
+      if(dedos.value === "3"){
+        base += 4;
+      }
 
-if(marca.value==="Xiaomi"){
-base+=3;
-}
+      if(dedos.value === "4"){
+        base += 8;
+      }
 
-if(marca.value==="Motorola"){
-base+=0;
-}
 
+      if(freefire.value === "max"){
+        base += 3;
+      }
 
-/* MODELO */
 
-var lista=DADOS[marca.value];
+      if(marca.value === "Xiaomi"){
+        base += 2;
+      }
 
-var indice=lista.indexOf(modelo.value);
+      if(marca.value === "Motorola"){
+        base += 1;
+      }
 
-if(indice>=0){
 
-base+=Math.min(
-5,
-Math.floor(indice/6)
-);
+      var lista = DADOS[marca.value];
 
-}
+      var indice = lista.indexOf(modelo.value);
 
 
-/* EVITA VALORES EXTREMOS */
+      if(indice >= 0){
 
-if(base<125){
-base=125;
-}
+        base += Math.min(
+          5,
+          Math.floor(indice / 7)
+        );
 
-if(base>190){
-base=190;
-}
+      }
 
 
-var geral=limitar(base);
+      var geral = limitar(base);
 
+      var red = limitar(geral - 7);
+      var doisX = limitar(geral - 19);
+      var quatroX = limitar(geral - 34);
+      var awm = limitar(geral - 52);
+      var olhadinha = limitar(geral - 3);
 
-/* PERFIL BALANCEADO */
 
-var red=limitar(
-geral-4
-);
+      vGeral.textContent = geral;
+      vRed.textContent = red;
+      v2x.textContent = doisX;
+      v4x.textContent = quatroX;
+      vAwm.textContent = awm;
+      vLook.textContent = olhadinha;
 
-var doisX=limitar(
-geral-16
-);
 
-var quatroX=limitar(
-geral-31
-);
+      resultDevice.textContent =
+        marca.value +
+        " " +
+        modelo.value +
+        " • " +
+        (dedos.value + " dedos");
 
-var awm=limitar(
-geral-49
-);
 
-var olhadinha=limitar(
-geral-1
-);
+      if(nivel.value === "baixa"){
 
+        analise.textContent =
+          "Perfil focado em controle e estabilidade.";
 
-/* AJUSTES */
+      }
+      else if(nivel.value === "media"){
 
-if(dedos.value==="2"){
+        analise.textContent =
+          "Perfil equilibrado entre controle e velocidade.";
 
-red=limitar(red-1);
+      }
+      else{
 
-doisX=limitar(doisX-1);
+        analise.textContent =
+          "Perfil rápido para quem prefere respostas mais agressivas.";
 
-}
+      }
 
-if(dedos.value==="4"){
 
-red=limitar(red+1);
+      resultado.style.display = "block";
 
-olhadinha=limitar(olhadinha+1);
 
-}
+      setTimeout(
+        function(){
 
+          resultado.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+          });
 
-/* VALORES */
+        },
+        100
+      );
 
-vGeral.textContent=geral;
-vRed.textContent=red;
-v2x.textContent=doisX;
-v4x.textContent=quatroX;
-vAwm.textContent=awm;
-vLook.textContent=olhadinha;
+    }
+  );
 
 
-/* APARELHO */
+  variar.addEventListener(
+    "click",
+    function(){
 
-resultDevice.textContent=
-marca.value+
-" "+
-modelo.value+
-" • "+
-dedos.value+
-" dedos";
+      if(resultado.style.display === "none"){
 
+        avisoTexto(
+          "Gere uma sensibilidade primeiro."
+        );
 
-/* ANÁLISE */
+        return;
 
-if(nivel.value==="baixa"){
+      }
 
-analise.textContent=
-"Perfil de controle: configuração estável, priorizando precisão e controle da mira.";
 
-}
-else if(nivel.value==="media"){
+      vGeral.textContent =
+        limitar(Number(vGeral.textContent) + 1);
 
-analise.textContent=
-"Perfil competitivo equilibrado: combina velocidade de resposta com controle.";
+      vRed.textContent =
+        limitar(Number(vRed.textContent) + 1);
 
-}
-else{
+      v2x.textContent =
+        limitar(Number(v2x.textContent) + 1);
 
-analise.textContent=
-"Perfil rápido: resposta mais agressiva para quem prefere movimentação veloz.";
+      v4x.textContent =
+        limitar(Number(v4x.textContent) + 1);
 
-}
+      vAwm.textContent =
+        limitar(Number(vAwm.textContent) + 1);
 
+      vLook.textContent =
+        limitar(Number(vLook.textContent) + 1);
 
-/* QUALIDADE */
 
-var qualidade=92;
+      analise.textContent =
+        "Ajuste fino aplicado: +1 em todas as sensibilidades.";
 
-if(nivel.value==="media"){
-qualidade+=3;
-}
+    }
+  );
 
-if(dedos.value==="3"){
-qualidade+=2;
-}
 
-if(dedos.value==="4"){
-qualidade+=3;
-}
+  copiar.addEventListener(
+    "click",
+    function(){
 
-if(freefire.value==="max"){
-qualidade+=1;
-}
+      if(resultado.style.display === "none"){
 
-if(qualidade>99){
-qualidade=99;
-}
+        avisoTexto(
+          "Gere uma sensibilidade primeiro."
+        );
 
-qualityText.textContent=
-qualidade+"%";
+        return;
 
-qualityFill.style.width="0%";
+      }
 
-setTimeout(
-function(){
 
-qualityFill.style.width=
-qualidade+"%";
+      var texto =
+`GOAT SENSI
 
-},
-100
-);
+Aparelho: ${marca.value} ${modelo.value}
+Jogo: ${freefire.value === "max" ? "Free Fire MAX" : "Free Fire"}
+Dedos: ${dedos.value}
 
+Geral: ${vGeral.textContent}
+Ponto Vermelho: ${vRed.textContent}
+Mira 2x: ${v2x.textContent}
+Mira 4x: ${v4x.textContent}
+Mira AWM: ${vAwm.textContent}
+Olhadinha: ${vLook.textContent}`;
 
-resultado.style.display="block";
 
+      if(
+        navigator.clipboard &&
+        navigator.clipboard.writeText
+      ){
 
-setTimeout(
-function(){
+        navigator.clipboard
+          .writeText(texto)
+          .then(
+            function(){
 
-resultado.scrollIntoView({
-behavior:"smooth",
-block:"start"
-});
+              copiar.textContent =
+                "COPIADO ✓";
 
-},
-100
-);
+              setTimeout(
+                function(){
 
-}
+                  copiar.textContent =
+                    "COPIAR CONFIGURAÇÃO";
 
+                },
+                1800
+              );
 
-/* GERAR */
+            }
+          )
+          .catch(
+            function(){
 
-gerar.addEventListener(
-"click",
-function(){
+              copiarFallback(texto);
 
-esconderAviso();
+            }
+          );
 
+      }
+      else{
 
-if(!freefire.value){
+        copiarFallback(texto);
 
-avisoTexto("Selecione o jogo.");
+      }
 
-freefire.focus();
+    }
+  );
 
-return;
 
-}
+  function copiarFallback(texto){
 
+    var area =
+      document.createElement("textarea");
 
-if(!marca.value){
+    area.value = texto;
 
-avisoTexto("Selecione o fabricante.");
+    area.style.position = "fixed";
+    area.style.left = "-9999px";
 
-marca.focus();
+    document.body.appendChild(area);
 
-return;
+    area.focus();
+    area.select();
 
-}
+    try{
 
+      document.execCommand("copy");
 
-if(!modelo.value){
+      copiar.textContent =
+        "COPIADO ✓";
 
-avisoTexto("Selecione o modelo.");
+      setTimeout(
+        function(){
 
-modelo.focus();
+          copiar.textContent =
+            "COPIAR CONFIGURAÇÃO";
 
-return;
+        },
+        1800
+      );
 
-}
+    }
+    catch(e){
 
+      avisoTexto(
+        "Não foi possível copiar automaticamente."
+      );
 
-if(!nivel.value){
+    }
 
-avisoTexto("Selecione o nível.");
+    document.body.removeChild(area);
 
-nivel.focus();
+  }
 
-return;
 
-}
+  carregarModelos();
 
+})();
+</script>
 
-if(!dedos.value){
-
-avisoTexto(
-"Selecione quantos dedos você usa."
-);
-
-dedos.focus();
-
-return;
-
-}
-
-
-gerar.textContent=
-"⚙ CALCULANDO...";
-
-gerar.disabled=true;
-
-
-setTimeout(
-function(){
-
-gerarMotor();
-
-gerar.textContent=
-"GERAR NOVAMENTE";
-
-gerar.disabled=false;
-
-},
-550
-);
-
-}
-);
-
-
-/* AJUSTE */
-
-variar.addEventListener(
-"click",
-function(){
-
-if(resultado.style.display==="none"){
-
-avisoTexto(
-"Gere uma sensibilidade primeiro."
-);
-
-return;
-
-}
-
-
-vGeral.textContent=
-limitar(
-Number(vGeral.textContent)+1
-);
-
-vRed.textContent=
-limitar(
-Number(vRed.textContent)+1
-);
-
-v2x.textContent=
-limitar(
-Number(v2x.textContent)+1
-);
-
-v4x.textContent=
-limitar(
-Number(v4x.textContent)+1
-);
-
-vAwm.textContent=
-limitar(
-Number(vAwm.textContent)+1
-);
-
-vLook.textContent=
-limitar(
-Number(vLook.textContent)+1
-);
-
-
-analise.textContent=
-"Ajuste fino aplicado: +1 em todas as sensibilidades.";
-
-}
-);
-
-
-/* COPIAR */
-
-copiar.addEventListener(
-"click",
-function(){
-
-if(
+</body>
+  </html>
