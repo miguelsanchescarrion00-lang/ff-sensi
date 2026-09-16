@@ -2,323 +2,319 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>GOAT SENSI</title>
 
 <style>
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-font-family:Arial,Helvetica,sans-serif;
-background:#030303;
-color:#fff;
-min-height:100vh;
-}
-
-body:before{
-content:"";
-position:fixed;
-inset:0;
-pointer-events:none;
-background:
-linear-gradient(rgba(255,0,40,.025) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,0,40,.025) 1px,transparent 1px);
-background-size:35px 35px;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at top,#260707 0%,#0b0b0b 38%,#050505 100%);
+  color:#fff;
+  padding:20px;
 }
 
 .container{
-width:min(950px,92%);
-margin:auto;
-padding:45px 0;
+  width:100%;
+  max-width:1050px;
+  margin:auto;
 }
 
-.header{
-text-align:center;
-margin-bottom:35px;
+header{
+  text-align:center;
+  padding:20px 10px 25px;
 }
 
 .logo{
-font-size:42px;
-font-weight:1000;
-letter-spacing:-2px;
+  width:90px;
+  height:90px;
+  border-radius:22px;
+  object-fit:cover;
+  margin-bottom:12px;
+  box-shadow:0 0 35px rgba(255,0,0,.25);
 }
 
-.logo span{
-color:#ff1744;
+h1{
+  font-size:38px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+h1 span{
+  color:#ff2020;
 }
 
 .subtitle{
-color:#888;
-margin-top:8px;
-font-size:14px;
+  color:#aaa;
+  margin-top:7px;
+  font-size:14px;
+}
+
+.online{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-top:13px;
+  padding:7px 12px;
+  border:1px solid #193d20;
+  border-radius:30px;
+  background:#0d160f;
+  color:#6cff7a;
+  font-size:12px;
+}
+
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#35ff51;
+  box-shadow:0 0 10px #35ff51;
 }
 
 .card{
-background:#080808;
-border:1px solid #242424;
-border-radius:20px;
-padding:25px;
-box-shadow:0 20px 60px rgba(0,0,0,.5);
+  background:linear-gradient(145deg,rgba(25,25,25,.97),rgba(9,9,9,.97));
+  border:1px solid #2d2d2d;
+  border-radius:20px;
+  padding:22px;
+  margin-bottom:18px;
+  box-shadow:0 15px 45px rgba(0,0,0,.35);
+}
+
+.card h2{
+  font-size:19px;
+  margin-bottom:18px;
 }
 
 .grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:18px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
 }
 
-.field{
-display:flex;
-flex-direction:column;
-gap:8px;
-}
-
-.field.full{
-grid-column:1/-1;
-}
-
-label{
-font-size:12px;
-font-weight:900;
-color:#aaa;
-text-transform:uppercase;
+.field label{
+  display:block;
+  font-size:12px;
+  color:#aaa;
+  margin-bottom:7px;
 }
 
 select{
-width:100%;
-height:52px;
-padding:0 15px;
-border-radius:12px;
-border:1px solid #292929;
-background:#111;
-color:#fff;
-outline:none;
-font-size:15px;
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #333;
+  background:#111;
+  color:#fff;
+  outline:none;
+  font-size:14px;
 }
 
 select:focus{
-border-color:#ff1744;
-box-shadow:0 0 0 2px rgba(255,23,68,.12);
+  border-color:#e51b23;
 }
 
 .generate{
-width:100%;
-margin-top:22px;
-height:56px;
-border:0;
-border-radius:13px;
-background:#e50932;
-color:#fff;
-font-size:15px;
-font-weight:1000;
-cursor:pointer;
-transition:.2s;
+  width:100%;
+  border:0;
+  margin-top:18px;
+  padding:16px;
+  border-radius:13px;
+  background:linear-gradient(135deg,#ff2020,#a90000);
+  color:#fff;
+  font-weight:900;
+  font-size:15px;
+  cursor:pointer;
+  box-shadow:0 8px 25px rgba(255,0,0,.22);
+  transition:.2s;
 }
 
 .generate:hover{
-background:#ff1744;
-transform:translateY(-1px);
+  transform:translateY(-2px);
+  filter:brightness(1.08);
+}
+
+.generate:active{
+  transform:scale(.98);
 }
 
 .aviso{
-display:none;
-margin-top:15px;
-padding:13px;
-border-radius:10px;
-background:#21070d;
-border:1px solid #7c1028;
-color:#ff617d;
-font-size:13px;
-text-align:center;
+  display:none;
+  background:#210b0b;
+  border:1px solid #6e1717;
+  color:#ff9b9b;
+  padding:12px;
+  border-radius:12px;
+  margin-top:14px;
+  font-size:13px;
+  text-align:center;
 }
 
 .resultado{
-display:none;
-margin-top:25px;
-padding:22px;
-border-radius:18px;
-background:#080808;
-border:1px solid #35101a;
+  display:none;
+}
+
+.result-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:17px;
 }
 
 .result-title{
-text-align:center;
-font-size:20px;
-font-weight:1000;
-color:#ff1744;
+  font-size:20px;
+  font-weight:900;
 }
 
-.result-device{
-text-align:center;
-color:#888;
-font-size:13px;
-margin:6px 0 20px;
+.badge{
+  padding:7px 11px;
+  border-radius:20px;
+  background:#210909;
+  border:1px solid #641414;
+  color:#ff5a5a;
+  font-size:11px;
+  font-weight:bold;
 }
 
 .sensi-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:11px;
 }
 
 .sensi{
-background:#101010;
-border:1px solid #222;
-border-radius:12px;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+  background:#101010;
+  border:1px solid #292929;
+  border-radius:14px;
+  padding:15px;
+  position:relative;
+  overflow:hidden;
 }
 
-.sensi span{
-color:#bbb;
-font-size:13px;
+.sensi:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:3px;
+  height:100%;
+  background:#e51b23;
 }
 
-.sensi strong{
-background:#e50932;
-padding:7px 11px;
-border-radius:8px;
-min-width:42px;
-text-align:center;
+.sensi-name{
+  color:#999;
+  font-size:11px;
+  margin-bottom:5px;
+}
+
+.sensi-value{
+  font-size:28px;
+  font-weight:900;
+}
+
+.sensi-sub{
+  color:#ff4b4b;
+  font-size:10px;
+  margin-top:3px;
 }
 
 .analysis{
-margin-top:15px;
-padding:14px;
-background:#0d0d0d;
-border-left:3px solid #e50932;
-border-radius:8px;
-color:#aaa;
-font-size:13px;
-line-height:1.5;
+  margin-top:14px;
+  padding:15px;
+  border-radius:14px;
+  background:#0e0e0e;
+  border:1px solid #292929;
+  color:#cfcfcf;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.analysis strong{
+  color:#fff;
 }
 
 .actions{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:15px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:14px;
 }
 
-.action{
-height:48px;
-border-radius:11px;
-border:1px solid #292929;
-background:#121212;
-color:#fff;
-font-weight:900;
-cursor:pointer;
+.btn{
+  border:1px solid #363636;
+  background:#141414;
+  color:#fff;
+  padding:13px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
-.action:hover{
-border-color:#e50932;
+.btn:hover{
+  border-color:#e51b23;
 }
 
 .contact{
-margin-top:25px;
-padding:25px;
-background:#080808;
-border:1px solid #242424;
-border-radius:20px;
-text-align:center;
+  text-align:center;
 }
 
-.contact h2{
-color:#ff1744;
-font-size:21px;
-margin-bottom:8px;
+.contact p{
+  color:#aaa;
+  font-size:13px;
+  line-height:1.6;
 }
 
-.contact-text{
-color:#888;
-font-size:13px;
-line-height:1.5;
-}
-
-.contact-phone{
-display:inline-block;
-margin-top:15px;
-padding:12px 20px;
-border-radius:11px;
-background:#e50932;
-color:#fff;
-text-decoration:none;
-font-weight:900;
-transition:.2s;
-}
-
-.contact-phone:hover{
-background:#ff1744;
-transform:translateY(-1px);
-}
-
-.donation{
-margin-top:20px;
-padding:18px;
-background:#101010;
-border:1px solid #292929;
-border-radius:14px;
-}
-
-.donation h3{
-color:#fff;
-font-size:16px;
-margin-bottom:8px;
-}
-
-.donation p{
-color:#999;
-font-size:13px;
-line-height:1.5;
-}
-
-.donation strong{
-color:#ff1744;
+.whatsapp{
+  display:inline-block;
+  margin-top:13px;
+  padding:13px 18px;
+  border-radius:12px;
+  background:#151515;
+  border:1px solid #333;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
 }
 
 .credits{
-text-align:center;
-color:#555;
-font-size:12px;
-margin-top:28px;
+  text-align:center;
+  color:#666;
+  font-size:11px;
+  padding:10px 0 20px;
 }
 
-.credits b{
-color:#777;
+.counter{
+  text-align:center;
+  color:#777;
+  font-size:11px;
+  margin-top:12px;
 }
 
 @media(max-width:650px){
+  body{
+    padding:12px;
+  }
 
-.container{
-padding:25px 0;
-}
+  h1{
+    font-size:30px;
+  }
 
-.logo{
-font-size:34px;
-}
+  .grid,
+  .sensi-grid,
+  .actions{
+    grid-template-columns:1fr;
+  }
 
-.grid{
-grid-template-columns:1fr;
-}
-
-.field.full{
-grid-column:auto;
-}
-
-.sensi-grid{
-grid-template-columns:1fr;
-}
-
-.actions{
-grid-template-columns:1fr;
-}
-
+  .card{
+    padding:17px;
+  }
 }
 </style>
 </head>
@@ -327,893 +323,752 @@ grid-template-columns:1fr;
 
 <div class="container">
 
-<header class="header">
+<header>
+  <!-- Se você já possui uma logo, coloque o link dela abaixo -->
+  <img class="logo"
+       src="https://raw.githubusercontent.com/miguelsanchescarrion00-lang/ff-sensi/main/logo.png"
+       onerror="this.style.display='none'">
 
-<div class="logo">
-GOAT <span>SENSI</span>
-</div>
+  <h1>GOAT <span>SENSI</span></h1>
+  <div class="subtitle">Gerador profissional de sensibilidade para Free Fire</div>
 
-<div class="subtitle">
-Gerador profissional de sensibilidade para Free Fire
-</div>
-
+  <div class="online">
+    <span class="dot"></span>
+    Servidor Online
+  </div>
 </header>
 
-<main class="card">
+<div class="card">
+  <h2>Configuração</h2>
 
-<div class="grid">
+  <div class="grid">
 
-<div class="field">
-<label for="freefire">Jogo</label>
+    <div class="field">
+      <label>Jogo</label>
+      <select id="freefire">
+        <option value="normal">Free Fire</option>
+        <option value="max">Free Fire MAX</option>
+      </select>
+    </div>
 
-<select id="freefire">
-<option value="">Selecione</option>
-<option value="normal">Free Fire</option>
-<option value="max">Free Fire MAX</option>
-</select>
+    <div class="field">
+      <label>Fabricante</label>
+      <select id="marca">
+        <option>Samsung</option>
+        <option>Xiaomi</option>
+        <option>Motorola</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Modelo</label>
+      <select id="modelo"></select>
+    </div>
+
+    <div class="field">
+      <label>Nível</label>
+      <select id="nivel">
+        <option value="baixa">Baixa</option>
+        <option value="media" selected>Média</option>
+        <option value="alta">Alta</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Quantidade de dedos</label>
+      <select id="dedos">
+        <option value="2">2 dedos</option>
+        <option value="3">3 dedos</option>
+        <option value="4">4 dedos</option>
+      </select>
+    </div>
+
+  </div>
+
+  <button class="generate" id="gerar">
+    GERAR SENSIBILIDADE
+  </button>
+
+  <div class="aviso" id="aviso"></div>
 </div>
 
-<div class="field">
-<label for="marca">Fabricante</label>
+<div class="card resultado" id="resultado">
 
-<select id="marca">
-<option value="">Selecione</option>
-<option value="Samsung">Samsung</option>
-<option value="Xiaomi">Xiaomi</option>
-<option value="Motorola">Motorola</option>
-</select>
-</div>
+  <div class="result-head">
+    <div class="result-title">Sua Sensi</div>
+    <div class="badge">FOCO EM CAPA</div>
+  </div>
 
-<div class="field full">
+  <div class="sensi-grid">
 
-<label for="modelo">Modelo</label>
+    <div class="sensi">
+      <div class="sensi-name">GERAL / VELOCIDADE</div>
+      <div class="sensi-value" id="vGeral">0</div>
+      <div class="sensi-sub">Resposta rápida</div>
+    </div>
 
-<select id="modelo">
-<option value="">Selecione o fabricante primeiro</option>
-</select>
+    <div class="sensi">
+      <div class="sensi-name">PONTO VERMELHO / CAPA</div>
+      <div class="sensi-value" id="vRed">0</div>
+      <div class="sensi-sub">Foco principal</div>
+    </div>
 
-</div>
+    <div class="sensi">
+      <div class="sensi-name">MIRA 2X</div>
+      <div class="sensi-value" id="v2x">0</div>
+      <div class="sensi-sub">Controle de puxada</div>
+    </div>
 
-<div class="field">
+    <div class="sensi">
+      <div class="sensi-name">MIRA 4X</div>
+      <div class="sensi-value" id="v4x">0</div>
+      <div class="sensi-sub">Precisão</div>
+    </div>
 
-<label for="nivel">Nível</label>
+    <div class="sensi">
+      <div class="sensi-name">MIRA AWM</div>
+      <div class="sensi-value" id="vAwm">0</div>
+      <div class="sensi-sub">Precisão de longa distância</div>
+    </div>
 
-<select id="nivel">
-<option value="">Selecione</option>
-<option value="baixa">Baixa</option>
-<option value="media">Média</option>
-<option value="alta">Alta</option>
-</select>
+    <div class="sensi">
+      <div class="sensi-name">OLHADINHA</div>
+      <div class="sensi-value" id="vLook">0</div>
+      <div class="sensi-sub">Movimento</div>
+    </div>
 
-</div>
+    <div class="sensi">
+      <div class="sensi-name">DPI</div>
+      <div class="sensi-value" id="vDpi">0</div>
+      <div class="sensi-sub">Ajuste do aparelho</div>
+    </div>
 
-<div class="field">
+    <div class="sensi">
+      <div class="sensi-name">BOTÃO DE ATIRAR</div>
+      <div class="sensi-value" id="vFire">0</div>
+      <div class="sensi-sub">Tamanho recomendado</div>
+    </div>
 
-<label for="dedos">Quantidade de dedos</label>
+  </div>
 
-<select id="dedos">
-<option value="">Selecione</option>
-<option value="2">2 dedos</option>
-<option value="3">3 dedos</option>
-<option value="4">4 dedos</option>
-</select>
+  <div class="analysis" id="analise"></div>
 
-</div>
+  <div class="actions">
+    <button class="btn" id="copiar">COPIAR CONFIGURAÇÃO</button>
+    <button class="btn" id="variar">AJUSTE FINO +1</button>
+  </div>
 
-</div>
-
-<button type="button" id="gerar" class="generate">
-GERAR SENSIBILIDADE
-</button>
-
-<div id="aviso" class="aviso"></div>
-
-<section id="resultado" class="resultado">
-
-<div class="result-title">
-SENSIBILIDADE GERADA
-</div>
-
-<div id="resultDevice" class="result-device"></div>
-
-<div class="sensi-grid">
-
-<div class="sensi">
-<span>Geral / Velocidade</span>
-<strong id="vGeral">0</strong>
-</div>
-
-<div class="sensi">
-<span>Ponto Vermelho / Capa</span>
-<strong id="vRed">0</strong>
-</div>
-
-<div class="sensi">
-<span>Mira 2x</span>
-<strong id="v2x">0</strong>
-</div>
-
-<div class="sensi">
-<span>Mira 4x</span>
-<strong id="v4x">0</strong>
-</div>
-
-<div class="sensi">
-<span>Mira AWM</span>
-<strong id="vAwm">0</strong>
-</div>
-
-<div class="sensi">
-<span>Olhadinha</span>
-<strong id="vLook">0</strong>
-</div>
-
-<div class="sensi">
-<span>DPI</span>
-<strong id="vDpi">0</strong>
-</div>
-
-<div class="sensi">
-<span>Botão de Atirar</span>
-<strong id="vFire">0</strong>
-</div>
-
-</div>
-
-<div id="analise" class="analysis"></div>
-
-<div class="actions">
-
-<button type="button" id="copiar" class="action">
-COPIAR CONFIGURAÇÃO
-</button>
-
-<button type="button" id="variar" class="action">
-AJUSTE FINO +1
-</button>
+  <div class="counter">
+    Mais de 20 milhões de combinações matematicamente possíveis por modelo.
+  </div>
 
 </div>
 
-</section>
+<div class="card contact">
+  <h2>Contato</h2>
 
-</main>
+  <p>
+    Encontrou algum problema ou quer mandar sua opinião sobre a sensi?
+  </p>
 
-<section class="contact">
+  <a class="whatsapp" href="tel:+5511921149458">
+    FALAR COM A EQUIPE
+  </a>
 
-<h2>FALE CONOSCO</h2>
-
-<p class="contact-text">
-Tem alguma dúvida, sugestão ou encontrou algum problema?
-Entre em contato conosco.
-</p>
-
-<a class="contact-phone" href="tel:+5511921149458">
-📞 11 92114-9458
-</a>
-
-<div class="donation">
-
-<h3>APOIE O GOAT SENSI</h3>
-
-<p>
-Gostou do site? Se puder, apoie o projeto com uma
-pequena contribuição de <strong>R$ 0,50</strong>.
-</p>
-
-<p style="margin-top:8px;">
-💙 Obrigado por apoiar o projeto!
-</p>
-
+  <p style="margin-top:12px;">
+    Se quiser apoiar o projeto: R$0,50 já ajuda.
+  </p>
 </div>
-
-</section>
 
 <div class="credits">
-GOAT SENSI © 2026<br>
-<b>Miguel Sanches Carrion & Thalles Vinícius Rios Gazda</b>
+  GOAT SENSI • Criado por Miguel Sanches Carrion & Thalles Vinícius Rios Gazda
 </div>
 
 </div>
 
 <script>
 
-(function(){
+/* ============================
+   MODELOS
+============================ */
 
-"use strict";
+var DADOS = {
 
-var DADOS={
+  Samsung: [
+    "Galaxy A05",
+    "Galaxy A05s",
+    "Galaxy A06",
+    "Galaxy A12",
+    "Galaxy A13",
+    "Galaxy A14",
+    "Galaxy A15",
+    "Galaxy A16",
+    "Galaxy A17",
+    "Galaxy A22",
+    "Galaxy A23",
+    "Galaxy A24",
+    "Galaxy A25",
+    "Galaxy A32",
+    "Galaxy A33",
+    "Galaxy A34",
+    "Galaxy A52",
+    "Galaxy A53",
+    "Galaxy A54",
+    "Galaxy A55",
+    "Galaxy A72",
+    "Galaxy S20",
+    "Galaxy S21",
+    "Galaxy S22",
+    "Galaxy S23",
+    "Galaxy S24",
+    "Galaxy S25"
+  ],
 
-Samsung:[
-"Galaxy A05",
-"Galaxy A05s",
-"Galaxy A06",
-"Galaxy A12",
-"Galaxy A13",
-"Galaxy A14",
-"Galaxy A15",
-"Galaxy A16",
-"Galaxy A17",
-"Galaxy A22",
-"Galaxy A23",
-"Galaxy A24",
-"Galaxy A25",
-"Galaxy A32",
-"Galaxy A33",
-"Galaxy A34",
-"Galaxy A52",
-"Galaxy A53",
-"Galaxy A54",
-"Galaxy A55",
-"Galaxy A72",
-"Galaxy S20",
-"Galaxy S21",
-"Galaxy S22",
-"Galaxy S23",
-"Galaxy S24",
-"Galaxy S25"
-],
+  Xiaomi: [
+    "Redmi Note 8",
+    "Redmi Note 9",
+    "Redmi Note 10",
+    "Redmi Note 11",
+    "Redmi Note 12",
+    "Redmi Note 13",
+    "Redmi Note 14",
+    "POCO X3",
+    "POCO X4",
+    "POCO X5",
+    "POCO X6",
+    "POCO F5",
+    "POCO F6"
+  ],
 
-Xiaomi:[
-"Redmi Note 8",
-"Redmi Note 9",
-"Redmi Note 10",
-"Redmi Note 11",
-"Redmi Note 12",
-"Redmi Note 13",
-"Redmi Note 14",
-"POCO X3",
-"POCO X4",
-"POCO X5",
-"POCO X6",
-"POCO F5",
-"POCO F6"
-],
-
-Motorola:[
-"Moto E5",
-"Moto E6",
-"Moto E7",
-"Moto E20",
-"Moto E22",
-"Moto E32",
-"Moto E40",
-"Moto G5",
-"Moto G7",
-"Moto G8",
-"Moto G9 Play",
-"Moto G20",
-"Moto G22",
-"Moto G23",
-"Moto G30",
-"Moto G32",
-"Moto G42",
-"Moto G52",
-"Moto G54",
-"Moto G73",
-"Moto G84",
-"Motorola Edge 20",
-"Motorola Edge 30",
-"Motorola Edge 40",
-"Motorola Edge 50 Fusion"
-]
+  Motorola: [
+    "Moto E5",
+    "Moto E6",
+    "Moto E7",
+    "Moto E20",
+    "Moto E22",
+    "Moto E32",
+    "Moto E40",
+    "Moto G5",
+    "Moto G7",
+    "Moto G8",
+    "Moto G9 Play",
+    "Moto G20",
+    "Moto G22",
+    "Moto G23",
+    "Moto G30",
+    "Moto G32",
+    "Moto G42",
+    "Moto G52",
+    "Moto G54",
+    "Moto G73",
+    "Moto G84",
+    "Motorola Edge 20",
+    "Motorola Edge 30",
+    "Motorola Edge 40",
+    "Motorola Edge 50 Fusion"
+  ]
 
 };
 
-var freefire=document.getElementById("freefire");
-var marca=document.getElementById("marca");
-var modelo=document.getElementById("modelo");
-var nivel=document.getElementById("nivel");
-var dedos=document.getElementById("dedos");
+/* ============================
+   ELEMENTOS
+============================ */
 
-var gerar=document.getElementById("gerar");
-var resultado=document.getElementById("resultado");
-var aviso=document.getElementById("aviso");
+var freefire = document.getElementById("freefire");
+var marca = document.getElementById("marca");
+var modelo = document.getElementById("modelo");
+var nivel = document.getElementById("nivel");
+var dedos = document.getElementById("dedos");
 
-var vGeral=document.getElementById("vGeral");
-var vRed=document.getElementById("vRed");
-var v2x=document.getElementById("v2x");
-var v4x=document.getElementById("v4x");
-var vAwm=document.getElementById("vAwm");
-var vLook=document.getElementById("vLook");
-var vDpi=document.getElementById("vDpi");
-var vFire=document.getElementById("vFire");
+var gerar = document.getElementById("gerar");
+var variar = document.getElementById("variar");
+var copiar = document.getElementById("copiar");
 
-var analise=document.getElementById("analise");
-var copiar=document.getElementById("copiar");
-var variar=document.getElementById("variar");
-var resultDevice=document.getElementById("resultDevice");
+var aviso = document.getElementById("aviso");
+var resultado = document.getElementById("resultado");
 
-function limitar(numero,minimo,maximo){
+var resultDevice = document.getElementById("resultDevice");
 
-numero=Number(numero);
+var vGeral = document.getElementById("vGeral");
+var vRed = document.getElementById("vRed");
+var v2x = document.getElementById("v2x");
+var v4x = document.getElementById("v4x");
+var vAwm = document.getElementById("vAwm");
+var vLook = document.getElementById("vLook");
+var vDpi = document.getElementById("vDpi");
+var vFire = document.getElementById("vFire");
+var analise = document.getElementById("analise");
 
-if(isNaN(numero)){
-numero=minimo;
+/* ============================
+   CARREGAR MODELOS
+============================ */
+
+function carregarModelos(){
+
+  modelo.innerHTML = "";
+
+  var lista = DADOS[marca.value] || [];
+
+  for(var i = 0; i < lista.length; i++){
+
+    var option = document.createElement("option");
+
+    option.value = lista[i];
+    option.textContent = lista[i];
+
+    modelo.appendChild(option);
+  }
 }
 
-return Math.max(
-minimo,
-Math.min(maximo,Math.round(numero))
-);
+/* ============================
+   FUNÇÕES ALEATÓRIAS
+============================ */
 
+function aleatorio(min,max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function aleatorio(minimo,maximo){
+function limitar(valor,min,max){
 
-return Math.floor(
-Math.random()*(maximo-minimo+1)
-)+minimo;
+  if(valor < min){
+    return min;
+  }
 
+  if(valor > max){
+    return max;
+  }
+
+  return valor;
 }
 
-function avisoTexto(texto){
+/*
+  O modelo cria uma "assinatura" numérica.
+  Isso faz cada modelo possuir pequenas diferenças
+  sem alterar a lista de aparelhos.
+*/
 
-aviso.textContent=texto;
-aviso.style.display="block";
+function assinaturaModelo(nome){
 
+  var total = 0;
+
+  for(var i = 0; i < nome.length; i++){
+    total += nome.charCodeAt(i) * (i + 3);
+  }
+
+  return total;
+}
+
+/* ============================
+   GERADOR PRINCIPAL
+============================ */
+
+function gerarSensi(){
+
+  esconderAviso();
+
+  var jogo = freefire.value;
+  var fabricante = marca.value;
+  var aparelho = modelo.value;
+  var nivelAtual = nivel.value;
+  var dedosAtual = dedos.value;
+
+  if(!aparelho){
+
+    mostrarAviso("Selecione um modelo antes de gerar.");
+    return;
+  }
+
+  /*
+    Cada modelo recebe uma assinatura.
+    O gerador combina essa assinatura com
+    dezenas de variações aleatórias.
+  */
+
+  var assinatura = assinaturaModelo(aparelho);
+
+  var baseModelo = assinatura % 31;
+
+  var geralMin;
+  var geralMax;
+
+  if(nivelAtual === "baixa"){
+    geralMin = 120;
+    geralMax = 166;
+  }
+  else if(nivelAtual === "media"){
+    geralMin = 145;
+    geralMax = 190;
+  }
+  else{
+    geralMin = 165;
+    geralMax = 200;
+  }
+
+  /*
+    GERAL
+  */
+
+  var geral =
+    aleatorio(geralMin,geralMax)
+    + (baseModelo % 7);
+
+  geral = limitar(geral,100,200);
+
+  /*
+    PONTO VERMELHO
+    Mais próximo da geral para facilitar
+    a puxada sem deixar o valor absurdo.
+  */
+
+  var redBonus = aleatorio(7,25);
+
+  if(nivelAtual === "baixa"){
+    redBonus = aleatorio(5,17);
+  }
+
+  if(nivelAtual === "media"){
+    redBonus = aleatorio(8,21);
+  }
+
+  if(nivelAtual === "alta"){
+    redBonus = aleatorio(12,27);
+  }
+
+  var red = geral + redBonus;
+
+  /*
+    Fabricante influencia levemente.
+  */
+
+  if(fabricante === "Samsung"){
+    red += aleatorio(0,5);
+  }
+
+  if(fabricante === "Xiaomi"){
+    red += aleatorio(1,7);
+  }
+
+  if(fabricante === "Motorola"){
+    red += aleatorio(-1,5);
+  }
+
+  red = limitar(red,110,200);
+
+  /*
+    FREE FIRE MAX
+  */
+
+  if(jogo === "max"){
+
+    geral += aleatorio(0,4);
+    red += aleatorio(0,4);
+
+    geral = limitar(geral,100,200);
+    red = limitar(red,110,200);
+  }
+
+  /*
+    MIRA 2X
+  */
+
+  var doisX =
+    red
+    - aleatorio(3,15)
+    + (assinatura % 5);
+
+  /*
+    MIRA 4X
+  */
+
+  var quatroX =
+    doisX
+    - aleatorio(5,16)
+    + (assinatura % 4);
+
+  /*
+    AWM
+  */
+
+  var awm =
+    quatroX
+    - aleatorio(5,18)
+    + (assinatura % 3);
+
+  /*
+    OLHADINHA
+  */
+
+  var olhadinha =
+    geral
+    - aleatorio(0,7)
+    + (assinatura % 4);
+
+  /*
+    DPI
+  */
+
+  var dpiMin;
+  var dpiMax;
+
+  if(nivelAtual === "baixa"){
+    dpiMin = 400;
+    dpiMax = 500;
+  }
+  else if(nivelAtual === "media"){
+    dpiMin = 450;
+    dpiMax = 600;
+  }
+  else{
+    dpiMin = 520;
+    dpiMax = 720;
+  }
+
+  var dpi = aleatorio(dpiMin,dpiMax);
+
+  if(fabricante === "Samsung"){
+    dpi += aleatorio(-12,15);
+  }
+
+  if(fabricante === "Xiaomi"){
+    dpi += aleatorio(4,22);
+  }
+
+  if(fabricante === "Motorola"){
+    dpi += aleatorio(-15,12);
+  }
+
+  dpi += assinatura % 13;
+
+  dpi = limitar(dpi,360,720);
+
+  /*
+    BOTÃO DE ATIRAR
+  */
+
+  var fireMin = 45;
+  var fireMax = 60;
+
+  if(dedosAtual === "2"){
+    fireMin = 51;
+    fireMax = 60;
+  }
+
+  if(dedosAtual === "3"){
+    fireMin = 46;
+    fireMax = 57;
+  }
+
+  if(dedosAtual === "4"){
+    fireMin = 40;
+    fireMax = 53;
+  }
+
+  if(nivelAtual === "alta"){
+    fireMax -= aleatorio(0,3);
+  }
+
+  var fire = aleatorio(fireMin,fireMax);
+
+  fire += assinatura % 2;
+
+  fire = limitar(fire,38,60);
+
+  /*
+    LIMITES FINAIS
+  */
+
+  doisX = limitar(doisX,80,200);
+  quatroX = limitar(quatroX,70,190);
+  awm = limitar(awm,60,180);
+  olhadinha = limitar(olhadinha,90,200);
+
+  /*
+    MOSTRAR RESULTADO
+  */
+
+  vGeral.textContent = geral;
+  vRed.textContent = red;
+  v2x.textContent = doisX;
+  v4x.textContent = quatroX;
+  vAwm.textContent = awm;
+  vLook.textContent = olhadinha;
+  vDpi.textContent = dpi;
+  vFire.textContent = fire;
+
+  var diferenca = red - geral;
+
+  var nivelTexto = "";
+
+  if(diferenca >= 18){
+    nivelTexto = "perfil de puxada mais agressivo";
+  }
+  else if(diferenca >= 10){
+    nivelTexto = "perfil equilibrado para puxada";
+  }
+  else{
+    nivelTexto = "perfil mais controlado";
+  }
+
+  analise.innerHTML =
+    "<strong>BOT ANALISTA:</strong> " +
+    aparelho +
+    " recebeu uma configuração com " +
+    nivelTexto +
+    ". " +
+    "O Ponto Vermelho foi priorizado para resposta rápida, " +
+    "enquanto as miras maiores foram reduzidas gradualmente " +
+    "para ajudar no controle. Teste a configuração e faça pequenos ajustes conforme sua jogabilidade.";
+
+  resultado.style.display = "block";
+
+  resultado.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+/* ============================
+   AJUSTE FINO
+============================ */
+
+function ajusteFino(){
+
+  if(resultado.style.display === "none" || resultado.style.display === ""){
+
+    mostrarAviso("Gere uma sensibilidade primeiro.");
+    return;
+  }
+
+  var valores = [
+    vGeral,
+    vRed,
+    v2x,
+    v4x,
+    vAwm,
+    vLook
+  ];
+
+  for(var i = 0; i < valores.length; i++){
+
+    var numero = parseInt(valores[i].textContent,10);
+
+    if(numero < 200){
+      numero++;
+    }
+
+    valores[i].textContent = numero;
+  }
+
+  analise.innerHTML =
+    "<strong>AJUSTE FINO:</strong> " +
+    "as sensibilidades foram aumentadas em +1 para testar uma puxada um pouco mais rápida.";
+}
+
+/* ============================
+   COPIAR
+============================ */
+
+function copiarConfiguracao(){
+
+  if(resultado.style.display === "none" || resultado.style.display === ""){
+
+    mostrarAviso("Gere uma sensibilidade primeiro.");
+    return;
+  }
+
+  var texto =
+    "GOAT SENSI\n\n" +
+    "Jogo: " + freefire.options[freefire.selectedIndex].text + "\n" +
+    "Fabricante: " + marca.value + "\n" +
+    "Modelo: " + modelo.value + "\n" +
+    "Nível: " + nivel.options[nivel.selectedIndex].text + "\n" +
+    "Dedos: " + dedos.options[dedos.selectedIndex].text + "\n\n" +
+
+    "Geral: " + vGeral.textContent + "\n" +
+    "Ponto Vermelho/Capa: " + vRed.textContent + "\n" +
+    "Mira 2x: " + v2x.textContent + "\n" +
+    "Mira 4x: " + v4x.textContent + "\n" +
+    "Mira AWM: " + vAwm.textContent + "\n" +
+    "Olhadinha: " + vLook.textContent + "\n" +
+    "DPI: " + vDpi.textContent + "\n" +
+    "Botão de Atirar: " + vFire.textContent;
+
+  if(navigator.clipboard){
+
+    navigator.clipboard.writeText(texto).then(function(){
+
+      copiar.textContent = "COPIADO!";
+
+      setTimeout(function(){
+        copiar.textContent = "COPIAR CONFIGURAÇÃO";
+      },1500);
+
+    });
+
+  }
+  else{
+
+    var area = document.createElement("textarea");
+
+    area.value = texto;
+
+    document.body.appendChild(area);
+
+    area.select();
+
+    document.execCommand("copy");
+
+    area.remove();
+
+    copiar.textContent = "COPIADO!";
+
+    setTimeout(function(){
+      copiar.textContent = "COPIAR CONFIGURAÇÃO";
+    },1500);
+  }
+}
+
+/* ============================
+   AVISOS
+============================ */
+
+function mostrarAviso(texto){
+
+  aviso.textContent = texto;
+  aviso.style.display = "block";
 }
 
 function esconderAviso(){
 
-aviso.textContent="";
-aviso.style.display="none";
-
+  aviso.style.display = "none";
 }
 
-function carregarModelos(){
-
-var fabricante=marca.value;
-
-modelo.innerHTML="";
-
-if(!fabricante || !DADOS[fabricante]){
-
-modelo.innerHTML=
-'<option value="">Selecione o fabricante primeiro</option>';
-
-return;
-
-}
-
-var primeiro=document.createElement("option");
-
-primeiro.value="";
-primeiro.textContent="Selecione o modelo";
-
-modelo.appendChild(primeiro);
-
-for(var i=0;i<DADOS[fabricante].length;i++){
-
-var option=document.createElement("option");
-
-option.value=DADOS[fabricante][i];
-option.textContent=DADOS[fabricante][i];
-
-modelo.appendChild(option);
-
-}
-
-}
+/* ============================
+   EVENTOS
+============================ */
 
 marca.addEventListener("change",function(){
 
-esconderAviso();
-resultado.style.display="none";
+  esconderAviso();
+
+  resultado.style.display = "none";
+
+  carregarModelos();
+});
+
+gerar.addEventListener("click",gerarSensi);
+
+variar.addEventListener("click",ajusteFino);
+
+copiar.addEventListener("click",copiarConfiguracao);
+
+/* ============================
+   INICIALIZAÇÃO
+============================ */
+
+marca.value = "Samsung";
+
 carregarModelos();
-
-});
-
-
-gerar.addEventListener("click",function(){
-
-esconderAviso();
-
-if(!freefire.value){
-
-avisoTexto("Selecione o jogo.");
-freefire.focus();
-return;
-
-}
-
-if(!marca.value){
-
-avisoTexto("Selecione o fabricante.");
-marca.focus();
-return;
-
-}
-
-if(!modelo.value){
-
-avisoTexto("Selecione o modelo.");
-modelo.focus();
-return;
-
-}
-
-if(!nivel.value){
-
-avisoTexto("Selecione o nível.");
-nivel.focus();
-return;
-
-}
-
-if(!dedos.value){
-
-avisoTexto("Selecione quantos dedos você usa.");
-dedos.focus();
-return;
-
-}
-
-
-/*
-=================================================
-GERADOR 100.000+ COMBINAÇÕES
-=================================================
-
-Geral: 80 opções
-Capa: 80 opções
-
-80 x 80 = 6.400
-
-Somando as variações de 2x, 4x,
-AWM, olhadinha, DPI e botão:
-
-mais de 100.000 combinações possíveis.
-*/
-
-
-var geral;
-var red;
-
-
-/* VELOCIDADE */
-
-if(nivel.value==="baixa"){
-
-geral=aleatorio(85,145);
-
-}
-else if(nivel.value==="media"){
-
-geral=aleatorio(120,180);
-
-}
-else{
-
-geral=aleatorio(145,200);
-
-}
-
-
-/* CAPA */
-
-if(nivel.value==="baixa"){
-
-red=aleatorio(
-Math.max(70,geral-35),
-Math.min(170,geral+10)
-);
-
-}
-else if(nivel.value==="media"){
-
-red=aleatorio(
-Math.max(90,geral-30),
-Math.min(195,geral+12)
-);
-
-}
-else{
-
-red=aleatorio(
-Math.max(110,geral-25),
-200
-);
-
-}
-
-
-/* AJUSTE POR FABRICANTE */
-
-if(marca.value==="Xiaomi"){
-
-red=limitar(
-red+aleatorio(-3,5),
-0,
-200
-);
-
-}
-
-if(marca.value==="Motorola"){
-
-red=limitar(
-red+aleatorio(-4,4),
-0,
-200
-);
-
-}
-
-if(marca.value==="Samsung"){
-
-red=limitar(
-red+aleatorio(-2,4),
-0,
-200
-);
-
-}
-
-
-/* MIRAS */
-
-var doisX=limitar(
-red-aleatorio(8,22),
-0,
-200
-);
-
-var quatroX=limitar(
-doisX-aleatorio(10,25),
-0,
-200
-);
-
-var awm=limitar(
-quatroX-aleatorio(10,25),
-0,
-200
-);
-
-var olhadinha=limitar(
-geral-aleatorio(1,8),
-0,
-200
-);
-
-
-/* DPI */
-
-var dpi;
-
-if(nivel.value==="baixa"){
-
-dpi=aleatorio(380,470);
-
-}
-else if(nivel.value==="media"){
-
-dpi=aleatorio(450,570);
-
-}
-else{
-
-dpi=aleatorio(540,700);
-
-}
-
-
-/* AJUSTES DE DPI POR MARCA */
-
-if(marca.value==="Samsung"){
-
-dpi+=aleatorio(-10,15);
-
-}
-
-if(marca.value==="Xiaomi"){
-
-dpi+=aleatorio(5,25);
-
-}
-
-if(marca.value==="Motorola"){
-
-dpi+=aleatorio(-15,10);
-
-}
-
-dpi=limitar(dpi,360,720);
-
-
-/* BOTÃO DE ATIRAR */
-
-var fire;
-
-if(dedos.value==="2"){
-
-fire=aleatorio(50,60);
-
-}
-else if(dedos.value==="3"){
-
-fire=aleatorio(45,56);
-
-}
-else{
-
-fire=aleatorio(40,52);
-
-}
-
-if(nivel.value==="alta"){
-
-fire-=aleatorio(0,4);
-
-}
-
-fire=limitar(fire,38,60);
-
-
-/* FREE FIRE MAX */
-
-if(freefire.value==="max"){
-
-geral=limitar(geral+aleatorio(-2,5),0,200);
-
-red=limitar(red+aleatorio(-2,5),0,200);
-
-}
-
-
-/* MOSTRAR */
-
-vGeral.textContent=geral;
-vRed.textContent=red;
-v2x.textContent=doisX;
-v4x.textContent=quatroX;
-vAwm.textContent=awm;
-vLook.textContent=olhadinha;
-vDpi.textContent=dpi;
-vFire.textContent=fire;
-
-
-resultDevice.textContent=
-marca.value+
-" "+
-modelo.value+
-" • "+
-dedos.value+
-" dedos";
-
-
-/* ANALISTA */
-
-var diferenca=red-geral;
-
-if(diferenca>=0){
-
-analise.textContent=
-"BOT ANALISTA: configuração focada em capa. "+
-"Velocidade "+geral+
-" e Ponto Vermelho "+red+
-". Boa combinação para quem gosta de respostas rápidas.";
-
-}
-else{
-
-analise.textContent=
-"BOT ANALISTA: configuração equilibrada. "+
-"Velocidade "+geral+
-" e Ponto Vermelho "+red+
-". Feita para combinar controle e velocidade.";
-
-}
-
-
-resultado.style.display="block";
-
-
-setTimeout(function(){
-
-resultado.scrollIntoView({
-behavior:"smooth",
-block:"start"
-});
-
-},100);
-
-});
-
-
-variar.addEventListener("click",function(){
-
-if(resultado.style.display==="none"){
-
-avisoTexto(
-"Gere uma sensibilidade primeiro."
-);
-
-return;
-
-}
-
-vGeral.textContent=
-limitar(
-Number(vGeral.textContent)+1,
-0,
-200
-);
-
-vRed.textContent=
-limitar(
-Number(vRed.textContent)+1,
-0,
-200
-);
-
-v2x.textContent=
-limitar(
-Number(v2x.textContent)+1,
-0,
-200
-);
-
-v4x.textContent=
-limitar(
-Number(v4x.textContent)+1,
-0,
-200
-);
-
-vAwm.textContent=
-limitar(
-Number(vAwm.textContent)+1,
-0,
-200
-);
-
-vLook.textContent=
-limitar(
-Number(vLook.textContent)+1,
-0,
-200
-);
-
-analise.textContent=
-"BOT ANALISTA: ajuste fino aplicado. "+
-"Todas as sensibilidades receberam +1.";
-
-});
-
-
-copiar.addEventListener("click",function(){
-
-if(resultado.style.display==="none"){
-
-avisoTexto(
-"Gere uma sensibilidade primeiro."
-);
-
-return;
-
-}
-
-var texto=
-"GOAT SENSI\n\n"+
-"Aparelho: "+
-marca.value+" "+
-modelo.value+"\n"+
-"Jogo: "+
-(freefire.value==="max"?
-"Free Fire MAX":
-"Free Fire")+
-"\n"+
-"Dedos: "+
-dedos.value+
-"\n\n"+
-"Geral / Velocidade: "+
-vGeral.textContent+
-"\n"+
-"Ponto Vermelho / Capa: "+
-vRed.textContent+
-"\n"+
-"Mira 2x: "+
-v2x.textContent+
-"\n"+
-"Mira 4x: "+
-v4x.textContent+
-"\n"+
-"Mira AWM: "+
-vAwm.textContent+
-"\n"+
-"Olhadinha: "+
-vLook.textContent+
-"\n"+
-"DPI: "+
-vDpi.textContent+
-"\n"+
-"Botão de Atirar: "+
-vFire.textContent;
-
-
-if(navigator.clipboard &&
-navigator.clipboard.writeText){
-
-navigator.clipboard.writeText(texto)
-.then(function(){
-
-copiar.textContent=
-"COPIADO ✓";
-
-setTimeout(function(){
-
-copiar.textContent=
-"COPIAR CONFIGURAÇÃO";
-
-},1800);
-
-})
-.catch(function(){
-
-copiarFallback(texto);
-
-});
-
-}
-else{
-
-copiarFallback(texto);
-
-}
-
-});
-
-
-function copiarFallback(texto){
-
-var area=
-document.createElement("textarea");
-
-area.value=texto;
-
-area.style.position="fixed";
-area.style.left="-9999px";
-
-document.body.appendChild(area);
-
-area.focus();
-area.select();
-
-try{
-
-document.execCommand("copy");
-
-copiar.textContent=
-"COPIADO ✓";
-
-setTimeout(function(){
-
-copiar.textContent=
-"COPIAR CONFIGURAÇÃO";
-
-},1800);
-
-}
-catch(e){
-
-avisoTexto(
-"Não foi possível copiar automaticamente."
-);
-
-}
-
-document.body.removeChild(area);
-
-}
-
-
-/* MODELOS */
-
-marca.value="Samsung";
-carregarModelos();
-
-})();
 
 </script>
 
