@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>GOAT SENSI 🥷 NARUTO EDITION V2.0</title>
 
-<!-- FAVICON E ÍCONES -->
 <link rel="icon" type="image/png" sizes="512x512" href="GoatSensi_512.png">
 <link rel="apple-touch-icon" sizes="192x192" href="GoatSensi_192.png">
 <link rel="icon" type="image/png" sizes="192x192" href="GoatSensi_192.png">
@@ -14,421 +13,82 @@
 <meta name="description" content="🥷 Gerador profissional de sensibilidade Full Capa — SENSOR System v2.0">
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-  min-height:100vh;
-  background:
-    radial-gradient(circle at top,#1a1500 0%,#000000 45%,#000000 100%);
-  color:#fff;
-  padding:20px;
-}
-
-.container{
-  width:100%;
-  max-width:1050px;
-  margin:auto;
-}
-
-header{
-  text-align:center;
-  padding:20px 10px 25px;
-  position:relative;
-}
-
-.naruto-badge{
-  display:inline-block;
-  background:linear-gradient(135deg,#ffcc00,#b88600);
-  color:#000;
-  font-weight:bold;
-  font-size:12px;
-  padding:4px 12px;
-  border-radius:20px;
-  margin-bottom:10px;
-  box-shadow:0 0 20px rgba(255,204,00,.4);
-  animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-  0%,100%{box-shadow:0 0 20px rgba(255,204,00,.4);}
-  50%{box-shadow:0 0 30px rgba(255,204,00,.7);}
-}
-
-.logo{
-  width:120px;
-  height:120px;
-  object-fit:contain;
-  margin-bottom:12px;
-  filter:drop-shadow(0 0 15px rgba(255,204,0,.4));
-}
-
-h1{
-  font-size:38px;
-  font-weight:900;
-  letter-spacing:2px;
-}
-
-h1 span{
-  color:#ffcc00;
-  text-shadow:0 0 10px rgba(255,204,0,.5);
-}
-
-.subtitle{
-  color:#aaa;
-  margin-top:7px;
-  font-size:14px;
-}
-
-.online{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  margin-top:13px;
-  padding:7px 12px;
-  border:1px solid #ffcc0044;
-  border-radius:30px;
-  background:#1a1500;
-  color:#ffdd44;
-  font-size:12px;
-}
-
-.dot{
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:#ffcc00;
-  box-shadow:0 0 10px #ffcc00;
-}
-
-.card{
-  background:linear-gradient(145deg,rgba(26,26,26,.97),rgba(0,0,0,.97));
-  border:1px solid #ffcc0044;
-  border-radius:20px;
-  padding:22px;
-  margin-bottom:18px;
-  box-shadow:0 15px 45px rgba(0,0,0,.5), 0 0 15px rgba(255,204,0,.1);
-}
-
-.card h2{
-  font-size:19px;
-  margin-bottom:18px;
-  color:#ffcc00;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-}
-
-.field label{
-  display:block;
-  font-size:12px;
-  color:#aaa;
-  margin-bottom:7px;
-}
-
-select{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid #444;
-  background:#0a0a0a;
-  color:#fff;
-  outline:none;
-  font-size:14px;
-}
-
-select:focus{
-  border-color:#ffcc00;
-  box-shadow:0 0 8px rgba(255,204,0,.3);
-}
-
-.generate{
-  width:100%;
-  border:0;
-  margin-top:18px;
-  padding:16px;
-  border-radius:13px;
-  background:linear-gradient(135deg,#ffcc00,#b88600);
-  color:#000;
-  font-weight:900;
-  font-size:15px;
-  cursor:pointer;
-  box-shadow:0 8px 25px rgba(255,204,0,.25);
-  transition:.2s;
-}
-
-.generate:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.1);
-  box-shadow:0 10px 30px rgba(255,204,0,.4);
-}
-
-.generate:active{
-  transform:scale(.98);
-}
-
-.aviso{
-  display:none;
-  background:#1a1500;
-  border:1px solid #ffcc0055;
-  color:#ffdd44;
-  padding:12px;
-  border-radius:12px;
-  margin-top:14px;
-  font-size:13px;
-  text-align:center;
-}
-
-.resultado{
-  display:none;
-}
-
-.result-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:17px;
-  flex-wrap:wrap;
-}
-
-.result-title{
-  font-size:20px;
-  font-weight:900;
-  color:#ffcc00;
-}
-
-.badge{
-  padding:7px 11px;
-  border-radius:20px;
-  background:#1a1500;
-  border:1px solid #ffcc00;
-  color:#ffcc00;
-  font-size:11px;
-  font-weight:bold;
-}
-
-.badge.naruto{
-  background:linear-gradient(135deg,#ffcc00,#b88600);
-  color:#000;
-  border:none;
-}
-
-.sensi-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:11px;
-}
-
-.sensi{
-  background:#080808;
-  border:1px solid #ffcc0033;
-  border-radius:14px;
-  padding:15px;
-  position:relative;
-  overflow:hidden;
-  transition:.2s;
-}
-
-.sensi:hover{
-  border-color:#ffcc0066;
-  transform:scale(1.01);
-}
-
-.sensi:before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0;
-  width:3px;
-  height:100%;
-  background:linear-gradient(180deg,#ffcc00,#b88600);
-}
-
-.sensi-name{
- color:#999;
-  font-size:11px;
-  margin-bottom:5px;
-}
-
-.sensi-value{
-  font-size:28px;
-  font-weight:900;
-  color:#ffcc00;
-  text-shadow:0 0 5px rgba(255,204,0,.2);
-}
-
-.sensi-sub{
-  color:#ffcc00aa;
-  font-size:10px;
-  margin-top:3px;
-}
-
-.analysis{
-  margin-top:14px;
-  padding:15px;
-  border-radius:14px;
-  background:#080808;
-  border:1px solid #ffcc0033;
-  color:#cfcfcf;
-  font-size:13px;
-  line-height:1.6;
-}
-
-.analysis strong{
-  color:#ffcc00;
-}
-
-.actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:14px;
-}
-
-.btn{
-  border:1px solid #ffcc0055;
-  background:#111;
-  color:#ffcc00;
-  padding:13px;
-  border-radius:12px;
-  cursor:pointer;
-  font-weight:bold;
-  transition:.2s;
-}
-
-.btn:hover{
-  border-color:#ffcc00;
-  background:#1a1500;
-}
-
-.contact{
-  text-align:center;
-}
-
-.contact p{
-  color:#aaa;
-  font-size:13px;
-  line-height:1.6;
-}
-
-.whatsapp{
-  display:inline-block;
-  margin-top:13px;
-  padding:13px 18px;
-  border-radius:12px;
-  background:#111;
-  border:1px solid #ffcc0055;
-  color:#ffcc00;
-  text-decoration:none;
-  font-weight:bold;
-  transition:.2s;
-}
-
-.whatsapp:hover{
-  border-color:#ffcc00;
-  background:#1a1500;
-}
-
-.credits{
-  text-align:center;
-  color:#666;
-  font-size:11px;
-  padding:10px 0 20px;
-}
-
-.counter{
-  text-align:center;
-  color:#777;
-  font-size:11px;
-  margin-top:12px;
-}
-
-.update-box{
-  background:#1a1500;
-  border:1px solid #ffcc0044;
-  border-radius:12px;
-  padding:12px;
-  margin-bottom:18px;
-}
-
-.update-box h3{
-  color:#ffcc00;
-  font-size:14px;
-  margin-bottom:8px;
-}
-
-.update-box ul{
-  color:#ccc;
-  font-size:12px;
-  padding-left:18px;
-}
-
-.update-box li{
-  margin-bottom:4px;
-}
-
-@media(max-width:650px){
-  body{
-    padding:12px;
-  }
-
-  h1{
-    font-size:26px;
-  }
-
-  .grid,
-  .sensi-grid,
-  .actions{
-    grid-template-columns:1fr;
-  }
-
-  .card{
-    padding:17px;
-  }
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;}
+body{min-height:100vh;background:radial-gradient(circle at top,#1a1500 0%,#000000 45%,#000000 100%);color:#fff;padding:20px;}
+.container{width:100%;max-width:1050px;margin:auto;}
+header{text-align:center;padding:20px 10px 25px;}
+.naruto-badge{display:inline-block;background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:20px;margin-bottom:10px;box-shadow:0 0 20px rgba(255,204,0,.4);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 20px rgba(255,204,0,.4);}50%{box-shadow:0 0 30px rgba(255,204,0,.7);}}
+.logo{width:120px;height:120px;object-fit:contain;margin-bottom:12px;filter:drop-shadow(0 0 15px rgba(255,204,0,.4));}
+h1{font-size:38px;font-weight:900;letter-spacing:2px;}
+h1 span{color:#ffcc00;text-shadow:0 0 10px rgba(255,204,0,.5);}
+.subtitle{color:#aaa;margin-top:7px;font-size:14px;}
+.online{display:inline-flex;align-items:center;gap:7px;margin-top:13px;padding:7px 12px;border:1px solid #ffcc0044;border-radius:30px;background:#1a1500;color:#ffdd44;font-size:12px;}
+.dot{width:8px;height:8px;border-radius:50%;background:#ffcc00;box-shadow:0 0 10px #ffcc00;}
+.card{background:linear-gradient(145deg,rgba(26,26,26,.97),rgba(0,0,0,.97));border:1px solid #ffcc0044;border-radius:20px;padding:22px;margin-bottom:18px;box-shadow:0 15px 45px rgba(0,0,0,.5), 0 0 15px rgba(255,204,0,.1);}
+.card h2{font-size:19px;margin-bottom:18px;color:#ffcc00;}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;}
+.field label{display:block;font-size:12px;color:#aaa;margin-bottom:7px;}
+select{width:100%;padding:14px;border-radius:12px;border:1px solid #444;background:#0a0a0a;color:#fff;outline:none;font-size:14px;}
+select:focus{border-color:#ffcc00;box-shadow:0 0 8px rgba(255,204,0,.3);}
+.generate{width:100%;border:0;margin-top:18px;padding:16px;border-radius:13px;background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;font-weight:900;font-size:15px;cursor:pointer;box-shadow:0 8px 25px rgba(255,204,0,.25);transition:.2s;}
+.generate:hover{transform:translateY(-2px);filter:brightness(1.1);box-shadow:0 10px 30px rgba(255,204,0,.4);}
+.generate:active{transform:scale(.98);}
+.aviso{display:none;background:#1a1500;border:1px solid #ffcc0055;color:#ffdd44;padding:12px;border-radius:12px;margin-top:14px;font-size:13px;text-align:center;}
+.resultado{display:none;}
+.result-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:17px;flex-wrap:wrap;}
+.result-title{font-size:20px;font-weight:900;color:#ffcc00;}
+.badge{padding:7px 11px;border-radius:20px;background:#1a1500;border:1px solid #ffcc00;color:#ffcc00;font-size:11px;font-weight:bold;}
+.badge.naruto{background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;border:none;}
+.sensi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;}
+.sensi{background:#080808;border:1px solid #ffcc0033;border-radius:14px;padding:15px;position:relative;overflow:hidden;transition:.2s;}
+.sensi:hover{border-color:#ffcc0066;transform:scale(1.01);}
+.sensi:before{content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:linear-gradient(180deg,#ffcc00,#b88600);}
+.sensi-name{color:#999;font-size:11px;margin-bottom:5px;}
+.sensi-value{font-size:28px;font-weight:900;color:#ffcc00;text-shadow:0 0 5px rgba(255,204,0,.2);}
+.sensi-sub{color:#ffcc00aa;font-size:10px;margin-top:3px;}
+.analysis{margin-top:14px;padding:15px;border-radius:14px;background:#080808;border:1px solid #ffcc0033;color:#cfcfcf;font-size:13px;line-height:1.6;}
+.analysis strong{color:#ffcc00;}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+.btn{border:1px solid #ffcc0055;background:#111;color:#ffcc00;padding:13px;border-radius:12px;cursor:pointer;font-weight:bold;transition:.2s;}
+.btn:hover{border-color:#ffcc00;background:#1a1500;}
+.contact{text-align:center;}
+.contact p{color:#aaa;font-size:13px;line-height:1.6;}
+.whatsapp{display:inline-block;margin-top:13px;padding:13px 18px;border-radius:12px;background:#111;border:1px solid #ffcc0055;color:#ffcc00;text-decoration:none;font-weight:bold;transition:.2s;}
+.whatsapp:hover{border-color:#ffcc00;background:#1a1500;}
+.credits{text-align:center;color:#666;font-size:11px;padding:10px 0 20px;}
+.counter{text-align:center;color:#777;font-size:11px;margin-top:12px;}
+.update-box{background:#1a1500;border:1px solid #ffcc0044;border-radius:12px;padding:12px;margin-bottom:18px;}
+.update-box h3{color:#ffcc00;font-size:14px;margin-bottom:8px;}
+.update-box ul{color:#ccc;font-size:12px;padding-left:18px;}
+.update-box li{margin-bottom:4px;}
+@media(max-width:650px){body{padding:12px;}h1{font-size:26px;}.grid,.sensi-grid,.actions{grid-template-columns:1fr;}.card{padding:17px;}}
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
 <header>
-  <div class="naruto-badge">⚡ ATUALIZAÇÃO NARUTO v2.0</div>
-  <br>
+  <div class="naruto-badge">⚡ ATUALIZAÇÃO NARUTO v2.0</div><br>
   <img class="logo" src="GoatSensi_V20_Logo.png" alt="GOAT SENSI" onerror="this.style.display='none'">
-
   <h1>GOAT <span>SENSI</span></h1>
   <div class="subtitle">🥷 GERADOR FULL CAPA — SENSOR SYSTEM v2.0</div>
-
-  <div class="online">
-    <span class="dot"></span>
-    Chakra Ativo • Versão 2.0
-  </div>
+  <div class="online"><span class="dot"></span>Chakra Ativo • Versão 2.0</div>
 </header>
 
 <div class="update-box">
   <h3>🥷 Novidades da Atualização Naruto:</h3>
   <ul>
-    <li>✅ <strong>Novo Motor SENSOR:</strong> cálculo inteligente de trajetória de bala</li>
-    <li>✅ <strong>Foco Full Capa:</strong> Ponto Vermelho priorizado em todos os perfis</li>
-    <li>✅ <strong>Sistema de assinatura aprimorado:</strong> mais de 50 milhões de combinações únicas</li>
-    <li>✅ <strong>Correção de DPI:</strong> ajuste específico por fabricante otimizado</li>
-    <li>✅ <strong>Modo Jutsu:</strong> puxada mais rápida sem perder estabilidade</li>
+    <li>✅ Novo Motor SENSOR: cálculo inteligente</li>
+    <li>✅ Foco Full Capa: Ponto Vermelho priorizado</li>
+    <li>✅ Correção de DPI por fabricante</li>
+    <li>✅ Modo Jutsu: puxada mais rápida</li>
   </ul>
 </div>
 
 <div class="card">
   <h2>🎯 Configuração do Jutsu</h2>
-
   <div class="grid">
     <div class="field">
       <label>Jogo</label>
@@ -437,21 +97,21 @@ select:focus{
         <option value="max">Free Fire MAX</option>
       </select>
     </div>
-
     <div class="field">
       <label>Fabricante</label>
       <select id="marca">
-        <option>Samsung</option>
-        <option>Xiaomi</option>
-        <option>Motorola</option>
+        <option value="">Selecione...</option>
+        <option value="Samsung">Samsung</option>
+        <option value="Xiaomi">Xiaomi</option>
+        <option value="Motorola">Motorola</option>
       </select>
     </div>
-
     <div class="field">
       <label>Modelo</label>
-      <select id="modelo"></select>
+      <select id="modelo">
+        <option value="">Escolha primeiro a marca</option>
+      </select>
     </div>
-
     <div class="field">
       <label>Estilo de Puxada</label>
       <select id="nivel">
@@ -460,7 +120,6 @@ select:focus{
         <option value="alta">⚡ Jutsu — Full Capa</option>
       </select>
     </div>
-
     <div class="field">
       <label>Quantidade de dedos</label>
       <select id="dedos">
@@ -469,7 +128,6 @@ select:focus{
         <option value="4">4 dedos</option>
       </select>
     </div>
-
     <div class="field">
       <label>Técnica</label>
       <select id="tecnica">
@@ -479,11 +137,7 @@ select:focus{
       </select>
     </div>
   </div>
-
-  <button class="generate" id="gerar">
-    ⚡ LIBERAR CHAKRA — GERAR SENSI
-  </button>
-
+  <button class="generate" id="gerar">⚡ LIBERAR CHAKRA — GERAR SENSI</button>
   <div class="aviso" id="aviso"></div>
 </div>
 
@@ -492,337 +146,160 @@ select:focus{
     <div class="result-title">🥷 Sua Sensi do Ninja</div>
     <div class="badge naruto">⚡ FULL CAPA ATIVO</div>
   </div>
-
   <div class="sensi-grid">
-    <div class="sensi">
-      <div class="sensi-name">GERAL / VELOCIDADE</div>
-      <div class="sensi-value" id="vGeral">0</div>
-      <div class="sensi-sub">Base de movimento</div>
-    </div>
-
-    <div class="sensi">
-      <div class="sensi-name">PONTO VERMELHO / CAPA</div>
-      <div class="sensi-value" id="vRed">0</div>
-      <div class="sensi-sub">🎯 FOCO PRINCIPAL</div>
-    </div>
-
-    <div class="sensi">
-      <div class="sensi-name">MIRA 2X</div>
-      <div class="sensi-value" id="v2x">0</div>
-      <div class="sensi-sub">Subida média</div>
-    </div>
-
-    <div class="sensi">
-      <div class="sensi-name">MIRA 4X</div>
-      <div class="sensi-value" id="v4x">0</div>
-      <div class="sensi-sub">Precisão longa</div>
-    </div>
-
-    <div class="sensi">
-      <div class="sensi-name">MIRA AWM</div>
-      <div class="sensi-value" id="vAwm">0</div>
-      <div class="sensi-sub">Sniper estável</div>
-    </div>
-
-    <div class="sensi">
-      <div class="sensi-name">OLHADINHA</div>
-      <div class="sensi-value" id="vLook">0</div>
-      <div class="sensi-sub">Visão livre</div>
-    </div>
-
-    <div class="sensi">
-      <div class="sensi-name">DPI</div>
-      <div class="sensi-value" id="vDpi">0</div>
-      <div class="sensi-sub">Resposta da tela</div>
-    </div>
-
-    <div class="sensi">
-      <div class="sensi-name">BOTÃO DE ATIRAR</div>
-      <div class="sensi-value" id="vFire">0</div>
-      <div class="sensi-sub">Tamanho ideal</div>
-    </div>
+    <div class="sensi"><div class="sensi-name">GERAL / VELOCIDADE</div><div class="sensi-value" id="vGeral">0</div><div class="sensi-sub">Base de movimento</div></div>
+    <div class="sensi"><div class="sensi-name">PONTO VERMELHO / CAPA</div><div class="sensi-value" id="vRed">0</div><div class="sensi-sub">🎯 FOCO PRINCIPAL</div></div>
+    <div class="sensi"><div class="sensi-name">MIRA 2X</div><div class="sensi-value" id="v2x">0</div><div class="sensi-sub">Subida média</div></div>
+    <div class="sensi"><div class="sensi-name">MIRA 4X</div><div class="sensi-value" id="v4x">0</div><div class="sensi-sub">Precisão longa</div></div>
+    <div class="sensi"><div class="sensi-name">MIRA AWM</div><div class="sensi-value" id="vAwm">0</div><div class="sensi-sub">Sniper estável</div></div>
+    <div class="sensi"><div class="sensi-name">OLHADINHA</div><div class="sensi-value" id="vLook">0</div><div class="sensi-sub">Visão livre</div></div>
+    <div class="sensi"><div class="sensi-name">DPI</div><div class="sensi-value" id="vDpi">0</div><div class="sensi-sub">Resposta da tela</div></div>
+    <div class="sensi"><div class="sensi-name">BOTÃO DE ATIRAR</div><div class="sensi-value" id="vFire">0</div><div class="sensi-sub">Tamanho ideal</div></div>
   </div>
-
   <div class="analysis" id="analise"></div>
-
   <div class="actions">
     <button class="btn" id="copiar">📋 COPIAR SENSI</button>
     <button class="btn" id="variar">⚡ AJUSTE JUTSUS +2</button>
   </div>
-
-  <div class="counter">
-    🥷 Sistema SENSOR v2.0 • +50 milhões de combinações por aparelho
-  </div>
+  <div class="counter">🥷 Sistema SENSOR v2.0 • +50 milhões de combinações</div>
 </div>
 
 <div class="card contact">
   <h2>📬 Contato</h2>
-  <p>
-    Encontrou algum problema ou quer mandar sua sugestão? Fala com a gente! 🥷
-  </p>
-  <a class="whatsapp" href="tel:+5511921149458">
-    💬 FALAR COM A EQUIPE
-  </a>
-  <p style="margin-top:12px;">
-    Se quiser apoiar o projeto: qualquer valor já ajuda demais! 🔥
-  </p>
+  <p>Encontrou algum problema? Fala com a gente! 🥷</p>
+  <a class="whatsapp" href="tel:+5511921149458">💬 FALAR COM A EQUIPE</a>
+  <p style="margin-top:12px;">Quer apoiar? Qualquer valor ajuda! 🔥</p>
 </div>
 
-<div class="credits">
-  GOAT SENSI 🥷 Edição Naruto • Criado por Miguel Sanches Carrion & Thalles Vinícius Rios Gazda • Atualizado com SENSOR SYSTEM
-</div>
+<div class="credits">GOAT SENSI 🥷 Edição Naruto • SENSOR SYSTEM</div>
 
 </div>
 
 <script>
-/* ============================
-   BANCO DE DADOS — APARELHOS
-============================ */
-var DADOS = {
-  Samsung: [
-    "Galaxy A05", "Galaxy A05s", "Galaxy A06", "Galaxy A12", "Galaxy A13", 
-    "Galaxy A14", "Galaxy A15", "Galaxy A16", "Galaxy A17", "Galaxy A22",
-    "Galaxy A23", "Galaxy A24", "Galaxy A25", "Galaxy A32", "Galaxy A33",
-    "Galaxy A34", "Galaxy A52", "Galaxy A53", "Galaxy A54", "Galaxy A55",
-    "Galaxy A72", "Galaxy S20", "Galaxy S21", "Galaxy S22", "Galaxy S23",
-    "Galaxy S24", "Galaxy S25"
-  ],
-  Xiaomi: [
-    "Redmi Note 8", "Redmi Note 9", "Redmi Note 10", "Redmi Note 11",
-    "Redmi Note 12", "Redmi Note 13", "Redmi Note 14", "POCO X3",
-    "POCO X4", "POCO X5", "POCO X6", "POCO F5", "POCO F6"
-  ],
-  Motorola: [
-    "Moto E5", "Moto E6", "Moto E7", "Moto E20", "Moto E22", "Moto E32",
-    "Moto E40", "Moto G5", "Moto G7", "Moto G8", "Moto G9 Play",
-    "Moto G20", "Moto G22", "Moto G23", "Moto G30", "Moto G32",
-    "Moto G42", "Moto G52", "Moto G54", "Moto G73", "Moto G84",
-    "Motorola Edge 20", "Motorola Edge 30", "Motorola Edge 40", 
-    "Motorola Edge 50 Fusion"
-  ]
+const DADOS = {
+  Samsung: ["Galaxy A05","Galaxy A05s","Galaxy A12","Galaxy A13","Galaxy A14","Galaxy A15","Galaxy A22","Galaxy A23","Galaxy A32","Galaxy A33","Galaxy A34","Galaxy A52","Galaxy A53","Galaxy A54","Galaxy A55","Galaxy S20","Galaxy S21","Galaxy S22","Galaxy S23","Galaxy S24"],
+  Xiaomi: ["Redmi Note 8","Redmi Note 9","Redmi Note 10","Redmi Note 11","Redmi Note 12","Redmi Note 13","POCO X3","POCO X4","POCO X5","POCO X6","POCO F5","POCO F6"],
+  Motorola: ["Moto E5","Moto E6","Moto E7","Moto E22","Moto G7","Moto G8","Moto G9 Play","Moto G22","Moto G32","Moto G52","Moto G54","Moto G84","Edge 20","Edge 30","Edge 40","Edge 50 Fusion"]
 };
 
-/* ============================
-   ELEMENTOS DA PÁGINA
-============================ */
-var freefire = document.getElementById("freefire");
-var marca = document.getElementById("marca");
-var modelo = document.getElementById("modelo");
-var nivel = document.getElementById("nivel");
-var dedos = document.getElementById("dedos");
-var tecnica = document.getElementById("tecnica");
+const marcaEl = document.getElementById("marca");
+const modeloEl = document.getElementById("modelo");
+const gerarEl = document.getElementById("gerar");
+const resultadoEl = document.getElementById("resultado");
+const avisoEl = document.getElementById("aviso");
 
-var gerar = document.getElementById("gerar");
-var variar = document.getElementById("variar");
-var copiar = document.getElementById("copiar");
-
-var aviso = document.getElementById("aviso");
-var resultado = document.getElementById("resultado");
-
-var vGeral = document.getElementById("vGeral");
-var vRed = document.getElementById("vRed");
-var v2x = document.getElementById("v2x");
-var v4x = document.getElementById("v4x");
-var vAwm = document.getElementById("vAwm");
-var vLook = document.getElementById("vLook");
-var vDpi = document.getElementById("vDpi");
-var vFire = document.getElementById("vFire");
-var analise = document.getElementById("analise");
-
-/* ============================
-   CARREGAR LISTA DE MODELOS
-============================ */
 function carregarModelos(){
-  modelo.innerHTML = "";
-  var lista = DADOS[marca.value] || [];
-  for(var i = 0; i < lista.length; i++){
-    var option = document.createElement("option");
-    option.value = lista[i];
-    option.textContent = lista[i];
-    modelo.appendChild(option);
-  }
+  modeloEl.innerHTML = '<option value="">Selecione um modelo...</option>';
+  const m = marcaEl.value;
+  if(!m) return;
+  DADOS[m].forEach(mod => {
+    const opt = document.createElement("option");
+    opt.value = mod;
+    opt.textContent = mod;
+    modeloEl.appendChild(opt);
+  });
 }
 
-/* ============================
-   FUNÇÕES AUXILIARES
-============================ */
-function aleatorio(min,max){
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+marcaEl.addEventListener("change", carregarModelos);
 
-function limitar(valor,min,max){
-  return Math.max(min, Math.min(max, valor));
-}
+function aleatorio(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
+function limitar(v,min,max){return Math.max(min,Math.min(max,v));}
 
-function assinaturaModelo(nome){
-  var total = 0;
-  for(var i = 0; i < nome.length; i++){
-    total += nome.charCodeAt(i) * (i + 7);
-  }
-  return total;
-}
-
-/* ============================
-   🥷 NOVO SISTEMA SENSOR v2.0
-   MOTOR OTIMIZADO PARA FULL CAPA
-============================ */
 function gerarSensi(){
   esconderAviso();
+  const m = modeloEl.value;
+  const fab = marcaEl.value;
+  if(!m){mostrarAviso("⚠️ Escolha a marca e o modelo primeiro!");return;}
 
-  var jogo = freefire.value;
-  var fabricante = marca.value;
-  var aparelho = modelo.value;
-  var nivelAtual = nivel.value;
-  var dedosAtual = dedos.value;
-  var estiloTecnica = tecnica.value;
+  const nivel = document.getElementById("nivel").value;
+  const dedos = document.getElementById("dedos").value;
+  const tecnica = document.getElementById("tecnica").value;
 
-  if(!aparelho){
-    mostrarAviso("⚠️ Selecione um modelo antes de liberar o chakra!");
-    return;
-  }
+  let geralMin, geralMax, dpiMin, dpiMax;
+  if(nivel==="baixa"){geralMin=115;geralMax=155;dpiMin=380;dpiMax=480;}
+  else if(nivel==="media"){geralMin=140;geralMax=175;dpiMin=440;dpiMax=580;}
+  else{geralMin=160;geralMax=198;dpiMin=500;dpiMax=720;}
 
-  var assinatura = assinaturaModelo(aparelho);
-  var sensorBase = (assinatura % 41) + 10;
+  let bonus = 0;
+  if(tecnica==="agressivo")bonus=8;
+  if(tecnica==="perfeita")bonus=12;
 
-  var geralMin, geralMax, redBonusMin, redBonusMax, dpiMin, dpiMax;
-
-  if(nivelAtual === "baixa"){
-    geralMin = 115; geralMax = 155;
-    redBonusMin = 18; redBonusMax = 30;
-    dpiMin = 380; dpiMax = 480;
-  }
-  else if(nivelAtual === "media"){
-    geralMin = 140; geralMax = 175;
-    redBonusMin = 25; redBonusMax = 40;
-    dpiMin = 440; dpiMax = 580;
-  }
-  else {
-    geralMin = 160; geralMax = 198;
-    redBonusMin = 35; redBonusMax = 52;
-    dpiMin = 500; dpiMax = 720;
-  }
-
-  var bonusTecnica = 0;
-  if(estiloTecnica === "agressivo") bonusTecnica = 8;
-  if(estiloTecnica === "perfeita") bonusTecnica = 12;
-
-  var geral = aleatorio(geralMin, geralMax) + Math.floor(sensorBase / 7) + bonusTecnica;
-  geral = limitar(geral, 100, 200);
-
-  var redBonus = aleatorio(redBonusMin, redBonusMax) + Math.floor(sensorBase / 5);
+  const geral = limitar(aleatorio(geralMin,geralMax)+bonus,100,200);
+  const red = limitar(geral+aleatorio(15,35)+bonus,120,200);
+  const doisX = limitar(red-aleatorio(5,12),85,195);
+  const quatroX = limitar(doisX-aleatorio(6,14),75,190);
+  const awm = limitar(quatroX-aleatorio(8,18),65,185);
+  const olhadinha = limitar(geral+aleatorio(-3,5),95,200);
   
-  if(fabricante === "Samsung")  redBonus += aleatorio(3, 8);
-  if(fabricante === "Xiaomi")   redBonus += aleatorio(5, 10);
-  if(fabricante === "Motorola") redBonus += aleatorio(2, 6);
+  let dpi = aleatorio(dpiMin,dpiMax);
+  if(fab==="Xiaomi")dpi+=15;
+  dpi = limitar(dpi,360,720);
 
-  var red = geral + redBonus + bonusTecnica;
-  
-  if(red <= geral) red = geral + aleatorio(15, 25);
-  red = limitar(red, 120, 200);
+  let fireMin=48,fireMax=58;
+  if(dedos==="2"){fireMin=52;fireMax=60;}
+  if(dedos==="3"){fireMin=46;fireMax=56;}
+  if(dedos==="4"){fireMin=40;fireMax=50;}
+  const fire = limitar(aleatorio(fireMin,fireMax),38,62);
 
-  if(jogo === "max"){
-    geral += aleatorio(2, 5);
-    red += aleatorio(3, 6);
-    geral = limitar(geral, 100, 200);
-    red = limitar(red, 120, 200);
-  }
+  document.getElementById("vGeral").textContent=geral;
+  document.getElementById("vRed").textContent=red;
+  document.getElementById("v2x").textContent=doisX;
+  document.getElementById("v4x").textContent=quatroX;
+  document.getElementById("vAwm").textContent=awm;
+  document.getElementById("vLook").textContent=olhadinha;
+  document.getElementById("vDpi").textContent=dpi;
+  document.getElementById("vFire").textContent=fire;
 
-  var doisX = red - aleatorio(5, 12) + (assinatura % 6);
-  doisX = limitar(doisX, 85, 195);
+  document.getElementById("analise").innerHTML=
+    "<strong>🥷 SENSOR PRONTO!</strong><br><br>"+
+    "🎯 Ponto Vermelho em "+red+" para facilitar a puxada.<br>"+
+    "💡 Treine no Modo Treino antes de jogar! Se passar muito, diminua o Ponto Vermelho em 2~3 pontos. Boa sorte, ninja! ⚡🔥";
 
-  var quatroX = doisX - aleatorio(6, 14) + (assinatura % 5);
-  quatroX = limitar(quatroX, 75, 190);
-
-  var awm = quatroX - aleatorio(8, 18) + (assinatura % 4);
-  awm = limitar(awm, 65, 185);
-
-  var olhadinha = geral + aleatorio(-3, 5) + Math.floor(sensorBase / 8);
-  olhadinha = limitar(olhadinha, 95, 200);
-
-  var dpi = aleatorio(dpiMin, dpiMax);
-  if(fabricante === "Samsung")  dpi += aleatorio(-10, 15);
-  if(fabricante === "Xiaomi")   dpi += aleatorio(8, 25);
-  if(fabricante === "Motorola") dpi += aleatorio(-8, 12);
-  dpi += sensorBase % 15;
-  dpi = limitar(dpi, 360, 720);
-
-  var fireMin = 48, fireMax = 58;
-  if(dedosAtual === "2") { fireMin = 52; fireMax = 60; }
-  if(dedosAtual === "3") { fireMin = 46; fireMax = 56; }
-  if(dedosAtual === "4") { fireMin = 40; fireMax = 50; }
-  if(nivelAtual === "alta") fireMax -= 2;
-  var fire = aleatorio(fireMin, fireMax);
-  fire = limitar(fire, 38, 62);
-
-  vGeral.textContent = geral;
-  vRed.textContent = red;
-  v2x.textContent = doisX;
-  v4x.textContent = quatroX;
-  vAwm.textContent = awm;
-  vLook.textContent = olhadinha;
-  vDpi.textContent = dpi;
-  vFire.textContent = fire;
-
-  var dif = red - geral;
-  var perfil = "";
-  
-  if(dif >= 40) perfil = "🔥 ULTRA AGRESSIVO — puxada instantânea, ideal para jogadores rápidos e experientes";
-  else if(dif >= 30) perfil = "⚡ AGRESSIVO — excelente subida de mira, foco total em capa de curta e média distância";
-  else if(dif >= 20) perfil = "✨ EQUILIBRADO — bom controle sem perder velocidade na hora de puxar";
-  else perfil = "🛡️ CONTROLADO — mais estável, ideal para quem está treinando a técnica";
-
-  analise.innerHTML =
-    "<strong>🥷 ANÁLISE DO SENSOR:</strong><br><br>" +
-    "<strong>Perfil detectado:</strong> " + perfil + "<br><br>" +
-    "<strong>Como usar:</strong> O Ponto Vermelho foi configurado com valor mais alto (" + red + ") para facilitar a puxada rápida. " +
-    "Mantenha o dedo suave ao subir a mira. Se passar muito, diminua o Ponto Vermelho em 2~3 pontos. Se demorar pra subir, aumente a Geral em 3~5. " +
-    "O segredo é treinar no <strong>Modo Treino</strong> primeiro! 💪🎯";
-
-  resultado.style.display = "block";
-  resultado.scrollIntoView({ behavior:"smooth", block:"start" });
+  resultadoEl.style.display="block";
+  resultadoEl.scrollIntoView({behavior:"smooth",block:"start"});
 }
 
-/* ============================
-   AJUSTE FINO — JUTSU +2
-============================ */
 function ajusteFino(){
-  if(resultado.style.display === "none" || resultado.style.display === ""){
-    mostrarAviso("⚠️ Gere uma sensibilidade primeiro, ninja!");
-    return;
-  }
-
-  var elementos = [vGeral, vRed, v2x, v4x, vAwm, vLook];
-  elementos.forEach(el => {
-    var val = parseInt(el.textContent, 10);
-    el.textContent = limitar(val + 2, 60, 200);
+  if(resultadoEl.style.display!=="block"){mostrarAviso("⚠️ Gere uma sensibilidade primeiro!");return;}
+  ["vGeral","vRed","v2x","v4x","vAwm","vLook"].forEach(id=>{
+    const el=document.getElementById(id);
+    el.textContent=limitar(parseInt(el.textContent)+2,60,200);
   });
-
-  analise.innerHTML =
-    "<strong>⚡ JUTSU AJUSTE +2:</strong> Todos os valores aumentados em 2 pontos para uma puxada ainda mais ágil! " +
-    "Teste no treino e veja se ficou do seu jeito. 🥷🔥";
+  document.getElementById("analise").innerHTML="<strong>⚡ JUTSU +2</strong> Valores aumentados em 2 pontos! Testa no treino e ajusta do seu jeito! 🥷🔥";
 }
 
-/* ============================
-   COPIAR CONFIGURAÇÃO
-============================ */
 function copiarConfiguracao(){
-  if(resultado.style.display === "none" || resultado.style.display === ""){
-    mostrarAviso("⚠️ Gere uma sensibilidade primeiro!");
-    return;
-  }
+  if(resultadoEl.style.display!=="block"){mostrarAviso("⚠️ Gere uma sensibilidade primeiro!");return;}
+  const txt = 
+    "🥷 GOAT SENSI v2.0\n"+
+    "Aparelho: "+marcaEl.value+" "+modeloEl.value+"\n"+
+    "══════════════════\n"+
+    "GERAL:          "+document.getElementById("vGeral").textContent+"\n"+
+    "PTO VERMELHO:   "+document.getElementById("vRed").textContent+"\n"+
+    "MIRA 2X:        "+document.getElementById("v2x").textContent+"\n"+
+    "MIRA 4X:        "+document.getElementById("v4x").textContent+"\n"+
+    "AWM:            "+document.getElementById("vAwm").textContent+"\n"+
+    "OLHADINHA:      "+document.getElementById("vLook").textContent+"\n"+
+    "DPI:            "+document.getElementById("vDpi").textContent+"\n"+
+    "BOTÃO ATIRAR:   "+document.getElementById("vFire").textContent+"\n"+
+    "══════════════════\n"+
+    "Treina no Modo Treino! Boa sorte! 🥷⚡";
+  
+  navigator.clipboard.writeText(txt).then(()=>{
+    document.getElementById("copiar").textContent="✅ COPIADO!";
+    setTimeout(()=>document.getElementById("copiar").textContent="📋 COPIAR SENSI",2000);
+  });
+}
 
-  var texto =
-    "🥷 GOAT SENSI — ED. NARUTO SENSOR v2.0\n" +
-    "═══════════════════════════\n" +
-    "Jogo: " + freefire.options[freefire.selectedIndex].text + "\n" +
-    "Aparelho: " + marca.value + " " + modelo.value + "\n" +
-    "Estilo: " + nivel.options[nivel.selectedIndex].text + " | " + tecnica.options[tecnica.selectedIndex].text + "\n" +
-    "Dedos: " + dedos.options[dedos.selectedIndex].text + "\n" +
-    "═══════════════════════════\n" +
-    "🎯 GERAL:          " + vGeral.textContent + "\n" +
-    "🔥 PTO VERMELHO:   " + vRed.textContent + " ⬅️ FOCO\n" +
-    "🔭 MIRA 2X:        " + v2x.textContent + "\n" +
-    "🔭
-    
+function mostrarAviso(t){avisoEl.textContent=t;avisoEl.style.display="block";}
+function esconderAviso(){avisoEl.style.display="none";}
 
+gerarEl.addEventListener("click",gerarSensi);
+document.getElementById("variar").addEventListener("click",ajusteFino);
+document.getElementById("copiar").addEventListener("click",copiarConfiguracao);
+
+</script>
+
+</body>
+  </html>
   
