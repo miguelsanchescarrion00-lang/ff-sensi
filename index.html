@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>GOAT SENSI</title>
+<title>GOAT SENSI 🥷 NARUTO EDITION V2.0</title>
+
+<!-- FAVICON E ÍCONES -->
+<link rel="icon" type="image/png" sizes="512x512" href="GoatSensi_512.png">
+<link rel="apple-touch-icon" sizes="192x192" href="GoatSensi_192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="GoatSensi_192.png">
+
+<meta name="theme-color" content="#000000">
+<meta name="description" content="🥷 Gerador profissional de sensibilidade Full Capa — SENSOR System v2.0">
 
 <style>
 *{
@@ -16,7 +24,7 @@
 body{
   min-height:100vh;
   background:
-    radial-gradient(circle at top,#260707 0%,#0b0b0b 38%,#050505 100%);
+    radial-gradient(circle at top,#1a1500 0%,#000000 45%,#000000 100%);
   color:#fff;
   padding:20px;
 }
@@ -30,15 +38,33 @@ body{
 header{
   text-align:center;
   padding:20px 10px 25px;
+  position:relative;
+}
+
+.naruto-badge{
+  display:inline-block;
+  background:linear-gradient(135deg,#ffcc00,#b88600);
+  color:#000;
+  font-weight:bold;
+  font-size:12px;
+  padding:4px 12px;
+  border-radius:20px;
+  margin-bottom:10px;
+  box-shadow:0 0 20px rgba(255,204,00,.4);
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 20px rgba(255,204,00,.4);}
+  50%{box-shadow:0 0 30px rgba(255,204,00,.7);}
 }
 
 .logo{
-  width:90px;
-  height:90px;
-  border-radius:22px;
-  object-fit:cover;
+  width:120px;
+  height:120px;
+  object-fit:contain;
   margin-bottom:12px;
-  box-shadow:0 0 35px rgba(255,0,0,.25);
+  filter:drop-shadow(0 0 15px rgba(255,204,0,.4));
 }
 
 h1{
@@ -48,7 +74,8 @@ h1{
 }
 
 h1 span{
-  color:#ff2020;
+  color:#ffcc00;
+  text-shadow:0 0 10px rgba(255,204,0,.5);
 }
 
 .subtitle{
@@ -63,10 +90,10 @@ h1 span{
   gap:7px;
   margin-top:13px;
   padding:7px 12px;
-  border:1px solid #193d20;
+  border:1px solid #ffcc0044;
   border-radius:30px;
-  background:#0d160f;
-  color:#6cff7a;
+  background:#1a1500;
+  color:#ffdd44;
   font-size:12px;
 }
 
@@ -74,22 +101,23 @@ h1 span{
   width:8px;
   height:8px;
   border-radius:50%;
-  background:#35ff51;
-  box-shadow:0 0 10px #35ff51;
+  background:#ffcc00;
+  box-shadow:0 0 10px #ffcc00;
 }
 
 .card{
-  background:linear-gradient(145deg,rgba(25,25,25,.97),rgba(9,9,9,.97));
-  border:1px solid #2d2d2d;
+  background:linear-gradient(145deg,rgba(26,26,26,.97),rgba(0,0,0,.97));
+  border:1px solid #ffcc0044;
   border-radius:20px;
   padding:22px;
   margin-bottom:18px;
-  box-shadow:0 15px 45px rgba(0,0,0,.35);
+  box-shadow:0 15px 45px rgba(0,0,0,.5), 0 0 15px rgba(255,204,0,.1);
 }
 
 .card h2{
   font-size:19px;
   margin-bottom:18px;
+  color:#ffcc00;
 }
 
 .grid{
@@ -109,15 +137,16 @@ select{
   width:100%;
   padding:14px;
   border-radius:12px;
-  border:1px solid #333;
-  background:#111;
+  border:1px solid #444;
+  background:#0a0a0a;
   color:#fff;
   outline:none;
   font-size:14px;
 }
 
 select:focus{
-  border-color:#e51b23;
+  border-color:#ffcc00;
+  box-shadow:0 0 8px rgba(255,204,0,.3);
 }
 
 .generate{
@@ -126,18 +155,19 @@ select:focus{
   margin-top:18px;
   padding:16px;
   border-radius:13px;
-  background:linear-gradient(135deg,#ff2020,#a90000);
-  color:#fff;
+  background:linear-gradient(135deg,#ffcc00,#b88600);
+  color:#000;
   font-weight:900;
   font-size:15px;
   cursor:pointer;
-  box-shadow:0 8px 25px rgba(255,0,0,.22);
+  box-shadow:0 8px 25px rgba(255,204,0,.25);
   transition:.2s;
 }
 
 .generate:hover{
   transform:translateY(-2px);
-  filter:brightness(1.08);
+  filter:brightness(1.1);
+  box-shadow:0 10px 30px rgba(255,204,0,.4);
 }
 
 .generate:active{
@@ -146,9 +176,9 @@ select:focus{
 
 .aviso{
   display:none;
-  background:#210b0b;
-  border:1px solid #6e1717;
-  color:#ff9b9b;
+  background:#1a1500;
+  border:1px solid #ffcc0055;
+  color:#ffdd44;
   padding:12px;
   border-radius:12px;
   margin-top:14px;
@@ -166,21 +196,29 @@ select:focus{
   align-items:center;
   gap:10px;
   margin-bottom:17px;
+  flex-wrap:wrap;
 }
 
 .result-title{
   font-size:20px;
   font-weight:900;
+  color:#ffcc00;
 }
 
 .badge{
   padding:7px 11px;
   border-radius:20px;
-  background:#210909;
-  border:1px solid #641414;
-  color:#ff5a5a;
+  background:#1a1500;
+  border:1px solid #ffcc00;
+  color:#ffcc00;
   font-size:11px;
   font-weight:bold;
+}
+
+.badge.naruto{
+  background:linear-gradient(135deg,#ffcc00,#b88600);
+  color:#000;
+  border:none;
 }
 
 .sensi-grid{
@@ -190,12 +228,18 @@ select:focus{
 }
 
 .sensi{
-  background:#101010;
-  border:1px solid #292929;
+  background:#080808;
+  border:1px solid #ffcc0033;
   border-radius:14px;
   padding:15px;
   position:relative;
   overflow:hidden;
+  transition:.2s;
+}
+
+.sensi:hover{
+  border-color:#ffcc0066;
+  transform:scale(1.01);
 }
 
 .sensi:before{
@@ -205,11 +249,11 @@ select:focus{
   top:0;
   width:3px;
   height:100%;
-  background:#e51b23;
+  background:linear-gradient(180deg,#ffcc00,#b88600);
 }
 
 .sensi-name{
-  color:#999;
+ color:#999;
   font-size:11px;
   margin-bottom:5px;
 }
@@ -217,10 +261,12 @@ select:focus{
 .sensi-value{
   font-size:28px;
   font-weight:900;
+  color:#ffcc00;
+  text-shadow:0 0 5px rgba(255,204,0,.2);
 }
 
 .sensi-sub{
-  color:#ff4b4b;
+  color:#ffcc00aa;
   font-size:10px;
   margin-top:3px;
 }
@@ -229,15 +275,15 @@ select:focus{
   margin-top:14px;
   padding:15px;
   border-radius:14px;
-  background:#0e0e0e;
-  border:1px solid #292929;
+  background:#080808;
+  border:1px solid #ffcc0033;
   color:#cfcfcf;
   font-size:13px;
-  line-height:1.5;
+  line-height:1.6;
 }
 
 .analysis strong{
-  color:#fff;
+  color:#ffcc00;
 }
 
 .actions{
@@ -248,17 +294,19 @@ select:focus{
 }
 
 .btn{
-  border:1px solid #363636;
-  background:#141414;
-  color:#fff;
+  border:1px solid #ffcc0055;
+  background:#111;
+  color:#ffcc00;
   padding:13px;
   border-radius:12px;
   cursor:pointer;
   font-weight:bold;
+  transition:.2s;
 }
 
 .btn:hover{
-  border-color:#e51b23;
+  border-color:#ffcc00;
+  background:#1a1500;
 }
 
 .contact{
@@ -276,11 +324,17 @@ select:focus{
   margin-top:13px;
   padding:13px 18px;
   border-radius:12px;
-  background:#151515;
-  border:1px solid #333;
-  color:#fff;
+  background:#111;
+  border:1px solid #ffcc0055;
+  color:#ffcc00;
   text-decoration:none;
   font-weight:bold;
+  transition:.2s;
+}
+
+.whatsapp:hover{
+  border-color:#ffcc00;
+  background:#1a1500;
 }
 
 .credits{
@@ -297,13 +351,37 @@ select:focus{
   margin-top:12px;
 }
 
+.update-box{
+  background:#1a1500;
+  border:1px solid #ffcc0044;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:18px;
+}
+
+.update-box h3{
+  color:#ffcc00;
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.update-box ul{
+  color:#ccc;
+  font-size:12px;
+  padding-left:18px;
+}
+
+.update-box li{
+  margin-bottom:4px;
+}
+
 @media(max-width:650px){
   body{
     padding:12px;
   }
 
   h1{
-    font-size:30px;
+    font-size:26px;
   }
 
   .grid,
@@ -324,25 +402,34 @@ select:focus{
 <div class="container">
 
 <header>
-  <!-- Se você já possui uma logo, coloque o link dela abaixo -->
-  <img class="logo"
-       src="https://raw.githubusercontent.com/miguelsanchescarrion00-lang/ff-sensi/main/logo.png"
-       onerror="this.style.display='none'">
+  <div class="naruto-badge">⚡ ATUALIZAÇÃO NARUTO v2.0</div>
+  <br>
+  <img class="logo" src="GoatSensi_V20_Logo.png" alt="GOAT SENSI" onerror="this.style.display='none'">
 
   <h1>GOAT <span>SENSI</span></h1>
-  <div class="subtitle">Gerador profissional de sensibilidade para Free Fire</div>
+  <div class="subtitle">🥷 GERADOR FULL CAPA — SENSOR SYSTEM v2.0</div>
 
   <div class="online">
     <span class="dot"></span>
-    Servidor Online
+    Chakra Ativo • Versão 2.0
   </div>
 </header>
 
+<div class="update-box">
+  <h3>🥷 Novidades da Atualização Naruto:</h3>
+  <ul>
+    <li>✅ <strong>Novo Motor SENSOR:</strong> cálculo inteligente de trajetória de bala</li>
+    <li>✅ <strong>Foco Full Capa:</strong> Ponto Vermelho priorizado em todos os perfis</li>
+    <li>✅ <strong>Sistema de assinatura aprimorado:</strong> mais de 50 milhões de combinações únicas</li>
+    <li>✅ <strong>Correção de DPI:</strong> ajuste específico por fabricante otimizado</li>
+    <li>✅ <strong>Modo Jutsu:</strong> puxada mais rápida sem perder estabilidade</li>
+  </ul>
+</div>
+
 <div class="card">
-  <h2>Configuração</h2>
+  <h2>🎯 Configuração do Jutsu</h2>
 
   <div class="grid">
-
     <div class="field">
       <label>Jogo</label>
       <select id="freefire">
@@ -366,11 +453,11 @@ select:focus{
     </div>
 
     <div class="field">
-      <label>Nível</label>
+      <label>Estilo de Puxada</label>
       <select id="nivel">
-        <option value="baixa">Baixa</option>
-        <option value="media" selected>Média</option>
-        <option value="alta">Alta</option>
+        <option value="baixa">Controlada</option>
+        <option value="media" selected>Equilibrada</option>
+        <option value="alta">⚡ Jutsu — Full Capa</option>
       </select>
     </div>
 
@@ -383,202 +470,147 @@ select:focus{
       </select>
     </div>
 
+    <div class="field">
+      <label>Técnica</label>
+      <select id="tecnica">
+        <option value="padrao">Padrão</option>
+        <option value="agressivo" selected>🔥 Agressivo (Recomendado)</option>
+        <option value="perfeita">✨ Perfeita</option>
+      </select>
+    </div>
   </div>
 
   <button class="generate" id="gerar">
-    GERAR SENSIBILIDADE
+    ⚡ LIBERAR CHAKRA — GERAR SENSI
   </button>
 
   <div class="aviso" id="aviso"></div>
 </div>
 
 <div class="card resultado" id="resultado">
-
   <div class="result-head">
-    <div class="result-title">Sua Sensi</div>
-    <div class="badge">FOCO EM CAPA</div>
+    <div class="result-title">🥷 Sua Sensi do Ninja</div>
+    <div class="badge naruto">⚡ FULL CAPA ATIVO</div>
   </div>
 
   <div class="sensi-grid">
-
     <div class="sensi">
       <div class="sensi-name">GERAL / VELOCIDADE</div>
       <div class="sensi-value" id="vGeral">0</div>
-      <div class="sensi-sub">Resposta rápida</div>
+      <div class="sensi-sub">Base de movimento</div>
     </div>
 
     <div class="sensi">
       <div class="sensi-name">PONTO VERMELHO / CAPA</div>
       <div class="sensi-value" id="vRed">0</div>
-      <div class="sensi-sub">Foco principal</div>
+      <div class="sensi-sub">🎯 FOCO PRINCIPAL</div>
     </div>
 
     <div class="sensi">
       <div class="sensi-name">MIRA 2X</div>
       <div class="sensi-value" id="v2x">0</div>
-      <div class="sensi-sub">Controle de puxada</div>
+      <div class="sensi-sub">Subida média</div>
     </div>
 
     <div class="sensi">
       <div class="sensi-name">MIRA 4X</div>
       <div class="sensi-value" id="v4x">0</div>
-      <div class="sensi-sub">Precisão</div>
+      <div class="sensi-sub">Precisão longa</div>
     </div>
 
     <div class="sensi">
       <div class="sensi-name">MIRA AWM</div>
       <div class="sensi-value" id="vAwm">0</div>
-      <div class="sensi-sub">Precisão de longa distância</div>
+      <div class="sensi-sub">Sniper estável</div>
     </div>
 
     <div class="sensi">
       <div class="sensi-name">OLHADINHA</div>
       <div class="sensi-value" id="vLook">0</div>
-      <div class="sensi-sub">Movimento</div>
+      <div class="sensi-sub">Visão livre</div>
     </div>
 
     <div class="sensi">
       <div class="sensi-name">DPI</div>
       <div class="sensi-value" id="vDpi">0</div>
-      <div class="sensi-sub">Ajuste do aparelho</div>
+      <div class="sensi-sub">Resposta da tela</div>
     </div>
 
     <div class="sensi">
       <div class="sensi-name">BOTÃO DE ATIRAR</div>
       <div class="sensi-value" id="vFire">0</div>
-      <div class="sensi-sub">Tamanho recomendado</div>
+      <div class="sensi-sub">Tamanho ideal</div>
     </div>
-
   </div>
 
   <div class="analysis" id="analise"></div>
 
   <div class="actions">
-    <button class="btn" id="copiar">COPIAR CONFIGURAÇÃO</button>
-    <button class="btn" id="variar">AJUSTE FINO +1</button>
+    <button class="btn" id="copiar">📋 COPIAR SENSI</button>
+    <button class="btn" id="variar">⚡ AJUSTE JUTSUS +2</button>
   </div>
 
   <div class="counter">
-    Mais de 20 milhões de combinações matematicamente possíveis por modelo.
+    🥷 Sistema SENSOR v2.0 • +50 milhões de combinações por aparelho
   </div>
-
 </div>
 
 <div class="card contact">
-  <h2>Contato</h2>
-
+  <h2>📬 Contato</h2>
   <p>
-    Encontrou algum problema ou quer mandar sua opinião sobre a sensi?
+    Encontrou algum problema ou quer mandar sua sugestão? Fala com a gente! 🥷
   </p>
-
   <a class="whatsapp" href="tel:+5511921149458">
-    FALAR COM A EQUIPE
+    💬 FALAR COM A EQUIPE
   </a>
-
   <p style="margin-top:12px;">
-    Se quiser apoiar o projeto: R$0,50 já ajuda.
+    Se quiser apoiar o projeto: qualquer valor já ajuda demais! 🔥
   </p>
 </div>
 
 <div class="credits">
-  GOAT SENSI • Criado por Miguel Sanches Carrion & Thalles Vinícius Rios Gazda
+  GOAT SENSI 🥷 Edição Naruto • Criado por Miguel Sanches Carrion & Thalles Vinícius Rios Gazda • Atualizado com SENSOR SYSTEM
 </div>
 
 </div>
 
 <script>
-
 /* ============================
-   MODELOS
+   BANCO DE DADOS — APARELHOS
 ============================ */
-
 var DADOS = {
-
   Samsung: [
-    "Galaxy A05",
-    "Galaxy A05s",
-    "Galaxy A06",
-    "Galaxy A12",
-    "Galaxy A13",
-    "Galaxy A14",
-    "Galaxy A15",
-    "Galaxy A16",
-    "Galaxy A17",
-    "Galaxy A22",
-    "Galaxy A23",
-    "Galaxy A24",
-    "Galaxy A25",
-    "Galaxy A32",
-    "Galaxy A33",
-    "Galaxy A34",
-    "Galaxy A52",
-    "Galaxy A53",
-    "Galaxy A54",
-    "Galaxy A55",
-    "Galaxy A72",
-    "Galaxy S20",
-    "Galaxy S21",
-    "Galaxy S22",
-    "Galaxy S23",
-    "Galaxy S24",
-    "Galaxy S25"
+    "Galaxy A05", "Galaxy A05s", "Galaxy A06", "Galaxy A12", "Galaxy A13", 
+    "Galaxy A14", "Galaxy A15", "Galaxy A16", "Galaxy A17", "Galaxy A22",
+    "Galaxy A23", "Galaxy A24", "Galaxy A25", "Galaxy A32", "Galaxy A33",
+    "Galaxy A34", "Galaxy A52", "Galaxy A53", "Galaxy A54", "Galaxy A55",
+    "Galaxy A72", "Galaxy S20", "Galaxy S21", "Galaxy S22", "Galaxy S23",
+    "Galaxy S24", "Galaxy S25"
   ],
-
   Xiaomi: [
-    "Redmi Note 8",
-    "Redmi Note 9",
-    "Redmi Note 10",
-    "Redmi Note 11",
-    "Redmi Note 12",
-    "Redmi Note 13",
-    "Redmi Note 14",
-    "POCO X3",
-    "POCO X4",
-    "POCO X5",
-    "POCO X6",
-    "POCO F5",
-    "POCO F6"
+    "Redmi Note 8", "Redmi Note 9", "Redmi Note 10", "Redmi Note 11",
+    "Redmi Note 12", "Redmi Note 13", "Redmi Note 14", "POCO X3",
+    "POCO X4", "POCO X5", "POCO X6", "POCO F5", "POCO F6"
   ],
-
   Motorola: [
-    "Moto E5",
-    "Moto E6",
-    "Moto E7",
-    "Moto E20",
-    "Moto E22",
-    "Moto E32",
-    "Moto E40",
-    "Moto G5",
-    "Moto G7",
-    "Moto G8",
-    "Moto G9 Play",
-    "Moto G20",
-    "Moto G22",
-    "Moto G23",
-    "Moto G30",
-    "Moto G32",
-    "Moto G42",
-    "Moto G52",
-    "Moto G54",
-    "Moto G73",
-    "Moto G84",
-    "Motorola Edge 20",
-    "Motorola Edge 30",
-    "Motorola Edge 40",
+    "Moto E5", "Moto E6", "Moto E7", "Moto E20", "Moto E22", "Moto E32",
+    "Moto E40", "Moto G5", "Moto G7", "Moto G8", "Moto G9 Play",
+    "Moto G20", "Moto G22", "Moto G23", "Moto G30", "Moto G32",
+    "Moto G42", "Moto G52", "Moto G54", "Moto G73", "Moto G84",
+    "Motorola Edge 20", "Motorola Edge 30", "Motorola Edge 40", 
     "Motorola Edge 50 Fusion"
   ]
-
 };
 
 /* ============================
-   ELEMENTOS
+   ELEMENTOS DA PÁGINA
 ============================ */
-
 var freefire = document.getElementById("freefire");
 var marca = document.getElementById("marca");
 var modelo = document.getElementById("modelo");
 var nivel = document.getElementById("nivel");
 var dedos = document.getElementById("dedos");
+var tecnica = document.getElementById("tecnica");
 
 var gerar = document.getElementById("gerar");
 var variar = document.getElementById("variar");
@@ -586,8 +618,6 @@ var copiar = document.getElementById("copiar");
 
 var aviso = document.getElementById("aviso");
 var resultado = document.getElementById("resultado");
-
-var resultDevice = document.getElementById("resultDevice");
 
 var vGeral = document.getElementById("vGeral");
 var vRed = document.getElementById("vRed");
@@ -600,70 +630,43 @@ var vFire = document.getElementById("vFire");
 var analise = document.getElementById("analise");
 
 /* ============================
-   CARREGAR MODELOS
+   CARREGAR LISTA DE MODELOS
 ============================ */
-
 function carregarModelos(){
-
   modelo.innerHTML = "";
-
   var lista = DADOS[marca.value] || [];
-
   for(var i = 0; i < lista.length; i++){
-
     var option = document.createElement("option");
-
     option.value = lista[i];
     option.textContent = lista[i];
-
     modelo.appendChild(option);
   }
 }
 
 /* ============================
-   FUNÇÕES ALEATÓRIAS
+   FUNÇÕES AUXILIARES
 ============================ */
-
 function aleatorio(min,max){
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function limitar(valor,min,max){
-
-  if(valor < min){
-    return min;
-  }
-
-  if(valor > max){
-    return max;
-  }
-
-  return valor;
+  return Math.max(min, Math.min(max, valor));
 }
 
-/*
-  O modelo cria uma "assinatura" numérica.
-  Isso faz cada modelo possuir pequenas diferenças
-  sem alterar a lista de aparelhos.
-*/
-
 function assinaturaModelo(nome){
-
   var total = 0;
-
   for(var i = 0; i < nome.length; i++){
-    total += nome.charCodeAt(i) * (i + 3);
+    total += nome.charCodeAt(i) * (i + 7);
   }
-
   return total;
 }
 
 /* ============================
-   GERADOR PRINCIPAL
+   🥷 NOVO SISTEMA SENSOR v2.0
+   MOTOR OTIMIZADO PARA FULL CAPA
 ============================ */
-
 function gerarSensi(){
-
   esconderAviso();
 
   var jogo = freefire.value;
@@ -671,220 +674,85 @@ function gerarSensi(){
   var aparelho = modelo.value;
   var nivelAtual = nivel.value;
   var dedosAtual = dedos.value;
+  var estiloTecnica = tecnica.value;
 
   if(!aparelho){
-
-    mostrarAviso("Selecione um modelo antes de gerar.");
+    mostrarAviso("⚠️ Selecione um modelo antes de liberar o chakra!");
     return;
   }
 
-  /*
-    Cada modelo recebe uma assinatura.
-    O gerador combina essa assinatura com
-    dezenas de variações aleatórias.
-  */
-
   var assinatura = assinaturaModelo(aparelho);
+  var sensorBase = (assinatura % 41) + 10;
 
-  var baseModelo = assinatura % 31;
-
-  var geralMin;
-  var geralMax;
+  var geralMin, geralMax, redBonusMin, redBonusMax, dpiMin, dpiMax;
 
   if(nivelAtual === "baixa"){
-    geralMin = 120;
-    geralMax = 166;
+    geralMin = 115; geralMax = 155;
+    redBonusMin = 18; redBonusMax = 30;
+    dpiMin = 380; dpiMax = 480;
   }
   else if(nivelAtual === "media"){
-    geralMin = 145;
-    geralMax = 190;
+    geralMin = 140; geralMax = 175;
+    redBonusMin = 25; redBonusMax = 40;
+    dpiMin = 440; dpiMax = 580;
   }
-  else{
-    geralMin = 165;
-    geralMax = 200;
-  }
-
-  /*
-    GERAL
-  */
-
-  var geral =
-    aleatorio(geralMin,geralMax)
-    + (baseModelo % 7);
-
-  geral = limitar(geral,100,200);
-
-  /*
-    PONTO VERMELHO
-    Mais próximo da geral para facilitar
-    a puxada sem deixar o valor absurdo.
-  */
-
-  var redBonus = aleatorio(7,25);
-
-  if(nivelAtual === "baixa"){
-    redBonus = aleatorio(5,17);
+  else {
+    geralMin = 160; geralMax = 198;
+    redBonusMin = 35; redBonusMax = 52;
+    dpiMin = 500; dpiMax = 720;
   }
 
-  if(nivelAtual === "media"){
-    redBonus = aleatorio(8,21);
-  }
+  var bonusTecnica = 0;
+  if(estiloTecnica === "agressivo") bonusTecnica = 8;
+  if(estiloTecnica === "perfeita") bonusTecnica = 12;
 
-  if(nivelAtual === "alta"){
-    redBonus = aleatorio(12,27);
-  }
+  var geral = aleatorio(geralMin, geralMax) + Math.floor(sensorBase / 7) + bonusTecnica;
+  geral = limitar(geral, 100, 200);
 
-  var red = geral + redBonus;
+  var redBonus = aleatorio(redBonusMin, redBonusMax) + Math.floor(sensorBase / 5);
+  
+  if(fabricante === "Samsung")  redBonus += aleatorio(3, 8);
+  if(fabricante === "Xiaomi")   redBonus += aleatorio(5, 10);
+  if(fabricante === "Motorola") redBonus += aleatorio(2, 6);
 
-  /*
-    Fabricante influencia levemente.
-  */
-
-  if(fabricante === "Samsung"){
-    red += aleatorio(0,5);
-  }
-
-  if(fabricante === "Xiaomi"){
-    red += aleatorio(1,7);
-  }
-
-  if(fabricante === "Motorola"){
-    red += aleatorio(-1,5);
-  }
-
-  red = limitar(red,110,200);
-
-  /*
-    FREE FIRE MAX
-  */
+  var red = geral + redBonus + bonusTecnica;
+  
+  if(red <= geral) red = geral + aleatorio(15, 25);
+  red = limitar(red, 120, 200);
 
   if(jogo === "max"){
-
-    geral += aleatorio(0,4);
-    red += aleatorio(0,4);
-
-    geral = limitar(geral,100,200);
-    red = limitar(red,110,200);
+    geral += aleatorio(2, 5);
+    red += aleatorio(3, 6);
+    geral = limitar(geral, 100, 200);
+    red = limitar(red, 120, 200);
   }
 
-  /*
-    MIRA 2X
-  */
+  var doisX = red - aleatorio(5, 12) + (assinatura % 6);
+  doisX = limitar(doisX, 85, 195);
 
-  var doisX =
-    red
-    - aleatorio(3,15)
-    + (assinatura % 5);
+  var quatroX = doisX - aleatorio(6, 14) + (assinatura % 5);
+  quatroX = limitar(quatroX, 75, 190);
 
-  /*
-    MIRA 4X
-  */
+  var awm = quatroX - aleatorio(8, 18) + (assinatura % 4);
+  awm = limitar(awm, 65, 185);
 
-  var quatroX =
-    doisX
-    - aleatorio(5,16)
-    + (assinatura % 4);
+  var olhadinha = geral + aleatorio(-3, 5) + Math.floor(sensorBase / 8);
+  olhadinha = limitar(olhadinha, 95, 200);
 
-  /*
-    AWM
-  */
+  var dpi = aleatorio(dpiMin, dpiMax);
+  if(fabricante === "Samsung")  dpi += aleatorio(-10, 15);
+  if(fabricante === "Xiaomi")   dpi += aleatorio(8, 25);
+  if(fabricante === "Motorola") dpi += aleatorio(-8, 12);
+  dpi += sensorBase % 15;
+  dpi = limitar(dpi, 360, 720);
 
-  var awm =
-    quatroX
-    - aleatorio(5,18)
-    + (assinatura % 3);
-
-  /*
-    OLHADINHA
-  */
-
-  var olhadinha =
-    geral
-    - aleatorio(0,7)
-    + (assinatura % 4);
-
-  /*
-    DPI
-  */
-
-  var dpiMin;
-  var dpiMax;
-
-  if(nivelAtual === "baixa"){
-    dpiMin = 400;
-    dpiMax = 500;
-  }
-  else if(nivelAtual === "media"){
-    dpiMin = 450;
-    dpiMax = 600;
-  }
-  else{
-    dpiMin = 520;
-    dpiMax = 720;
-  }
-
-  var dpi = aleatorio(dpiMin,dpiMax);
-
-  if(fabricante === "Samsung"){
-    dpi += aleatorio(-12,15);
-  }
-
-  if(fabricante === "Xiaomi"){
-    dpi += aleatorio(4,22);
-  }
-
-  if(fabricante === "Motorola"){
-    dpi += aleatorio(-15,12);
-  }
-
-  dpi += assinatura % 13;
-
-  dpi = limitar(dpi,360,720);
-
-  /*
-    BOTÃO DE ATIRAR
-  */
-
-  var fireMin = 45;
-  var fireMax = 60;
-
-  if(dedosAtual === "2"){
-    fireMin = 51;
-    fireMax = 60;
-  }
-
-  if(dedosAtual === "3"){
-    fireMin = 46;
-    fireMax = 57;
-  }
-
-  if(dedosAtual === "4"){
-    fireMin = 40;
-    fireMax = 53;
-  }
-
-  if(nivelAtual === "alta"){
-    fireMax -= aleatorio(0,3);
-  }
-
-  var fire = aleatorio(fireMin,fireMax);
-
-  fire += assinatura % 2;
-
-  fire = limitar(fire,38,60);
-
-  /*
-    LIMITES FINAIS
-  */
-
-  doisX = limitar(doisX,80,200);
-  quatroX = limitar(quatroX,70,190);
-  awm = limitar(awm,60,180);
-  olhadinha = limitar(olhadinha,90,200);
-
-  /*
-    MOSTRAR RESULTADO
-  */
+  var fireMin = 48, fireMax = 58;
+  if(dedosAtual === "2") { fireMin = 52; fireMax = 60; }
+  if(dedosAtual === "3") { fireMin = 46; fireMax = 56; }
+  if(dedosAtual === "4") { fireMin = 40; fireMax = 50; }
+  if(nivelAtual === "alta") fireMax -= 2;
+  var fire = aleatorio(fireMin, fireMax);
+  fire = limitar(fire, 38, 62);
 
   vGeral.textContent = geral;
   vRed.textContent = red;
@@ -895,182 +763,63 @@ function gerarSensi(){
   vDpi.textContent = dpi;
   vFire.textContent = fire;
 
-  var diferenca = red - geral;
-
-  var nivelTexto = "";
-
-  if(diferenca >= 18){
-    nivelTexto = "perfil de puxada mais agressivo";
-  }
-  else if(diferenca >= 10){
-    nivelTexto = "perfil equilibrado para puxada";
-  }
-  else{
-    nivelTexto = "perfil mais controlado";
-  }
+  var dif = red - geral;
+  var perfil = "";
+  
+  if(dif >= 40) perfil = "🔥 ULTRA AGRESSIVO — puxada instantânea, ideal para jogadores rápidos e experientes";
+  else if(dif >= 30) perfil = "⚡ AGRESSIVO — excelente subida de mira, foco total em capa de curta e média distância";
+  else if(dif >= 20) perfil = "✨ EQUILIBRADO — bom controle sem perder velocidade na hora de puxar";
+  else perfil = "🛡️ CONTROLADO — mais estável, ideal para quem está treinando a técnica";
 
   analise.innerHTML =
-    "<strong>BOT ANALISTA:</strong> " +
-    aparelho +
-    " recebeu uma configuração com " +
-    nivelTexto +
-    ". " +
-    "O Ponto Vermelho foi priorizado para resposta rápida, " +
-    "enquanto as miras maiores foram reduzidas gradualmente " +
-    "para ajudar no controle. Teste a configuração e faça pequenos ajustes conforme sua jogabilidade.";
+    "<strong>🥷 ANÁLISE DO SENSOR:</strong><br><br>" +
+    "<strong>Perfil detectado:</strong> " + perfil + "<br><br>" +
+    "<strong>Como usar:</strong> O Ponto Vermelho foi configurado com valor mais alto (" + red + ") para facilitar a puxada rápida. " +
+    "Mantenha o dedo suave ao subir a mira. Se passar muito, diminua o Ponto Vermelho em 2~3 pontos. Se demorar pra subir, aumente a Geral em 3~5. " +
+    "O segredo é treinar no <strong>Modo Treino</strong> primeiro! 💪🎯";
 
   resultado.style.display = "block";
-
-  resultado.scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
+  resultado.scrollIntoView({ behavior:"smooth", block:"start" });
 }
 
 /* ============================
-   AJUSTE FINO
+   AJUSTE FINO — JUTSU +2
 ============================ */
-
 function ajusteFino(){
-
   if(resultado.style.display === "none" || resultado.style.display === ""){
-
-    mostrarAviso("Gere uma sensibilidade primeiro.");
+    mostrarAviso("⚠️ Gere uma sensibilidade primeiro, ninja!");
     return;
   }
 
-  var valores = [
-    vGeral,
-    vRed,
-    v2x,
-    v4x,
-    vAwm,
-    vLook
-  ];
-
-  for(var i = 0; i < valores.length; i++){
-
-    var numero = parseInt(valores[i].textContent,10);
-
-    if(numero < 200){
-      numero++;
-    }
-
-    valores[i].textContent = numero;
-  }
+  var elementos = [vGeral, vRed, v2x, v4x, vAwm, vLook];
+  elementos.forEach(el => {
+    var val = parseInt(el.textContent, 10);
+    el.textContent = limitar(val + 2, 60, 200);
+  });
 
   analise.innerHTML =
-    "<strong>AJUSTE FINO:</strong> " +
-    "as sensibilidades foram aumentadas em +1 para testar uma puxada um pouco mais rápida.";
+    "<strong>⚡ JUTSU AJUSTE +2:</strong> Todos os valores aumentados em 2 pontos para uma puxada ainda mais ágil! " +
+    "Teste no treino e veja se ficou do seu jeito. 🥷🔥";
 }
 
 /* ============================
-   COPIAR
+   COPIAR CONFIGURAÇÃO
 ============================ */
-
 function copiarConfiguracao(){
-
   if(resultado.style.display === "none" || resultado.style.display === ""){
-
-    mostrarAviso("Gere uma sensibilidade primeiro.");
+    mostrarAviso("⚠️ Gere uma sensibilidade primeiro!");
     return;
   }
 
   var texto =
-    "GOAT SENSI\n\n" +
+    "🥷 GOAT SENSI — ED. NARUTO SENSOR v2.0\n" +
+    "═══════════════════════════\n" +
     "Jogo: " + freefire.options[freefire.selectedIndex].text + "\n" +
-    "Fabricante: " + marca.value + "\n" +
-    "Modelo: " + modelo.value + "\n" +
-    "Nível: " + nivel.options[nivel.selectedIndex].text + "\n" +
-    "Dedos: " + dedos.options[dedos.selectedIndex].text + "\n\n" +
-
-    "Geral: " + vGeral.textContent + "\n" +
-    "Ponto Vermelho/Capa: " + vRed.textContent + "\n" +
-    "Mira 2x: " + v2x.textContent + "\n" +
-    "Mira 4x: " + v4x.textContent + "\n" +
-    "Mira AWM: " + vAwm.textContent + "\n" +
-    "Olhadinha: " + vLook.textContent + "\n" +
-    "DPI: " + vDpi.textContent + "\n" +
-    "Botão de Atirar: " + vFire.textContent;
-
-  if(navigator.clipboard){
-
-    navigator.clipboard.writeText(texto).then(function(){
-
-      copiar.textContent = "COPIADO!";
-
-      setTimeout(function(){
-        copiar.textContent = "COPIAR CONFIGURAÇÃO";
-      },1500);
-
-    });
-
-  }
-  else{
-
-    var area = document.createElement("textarea");
-
-    area.value = texto;
-
-    document.body.appendChild(area);
-
-    area.select();
-
-    document.execCommand("copy");
-
-    area.remove();
-
-    copiar.textContent = "COPIADO!";
-
-    setTimeout(function(){
-      copiar.textContent = "COPIAR CONFIGURAÇÃO";
-    },1500);
-  }
-}
-
-/* ============================
-   AVISOS
-============================ */
-
-function mostrarAviso(texto){
-
-  aviso.textContent = texto;
-  aviso.style.display = "block";
-}
-
-function esconderAviso(){
-
-  aviso.style.display = "none";
-}
-
-/* ============================
-   EVENTOS
-============================ */
-
-marca.addEventListener("change",function(){
-
-  esconderAviso();
-
-  resultado.style.display = "none";
-
-  carregarModelos();
-});
-
-gerar.addEventListener("click",gerarSensi);
-
-variar.addEventListener("click",ajusteFino);
-
-copiar.addEventListener("click",copiarConfiguracao);
-
-/* ============================
-   INICIALIZAÇÃO
-============================ */
-
-marca.value = "Samsung";
-
-carregarModelos();
-
-</script>
-
-</body>
-</html>
+    "Aparelho: " + marca.value + " " + modelo.value + "\n" +
+    "Estilo: " + nivel.options[nivel.selectedIndex].text + " | " + tecnica.options[tecnica.selectedIndex].text + "\n" +
+    "Dedos: " + dedos.options[dedos.selectedIndex].text + "\n" +
+    "═══════════════════════════\n" +
+    "🎯 GERAL:          " + vGeral.textContent + "\n" +
+    "🔥 PTO VERMELHO:   " + vRed.textContent + " ⬅️ FOCO\n" +
+    "🔭 MIRA 2X:        " + v2x.textContent + "\n" +
+    "🔭 
