@@ -65,6 +65,85 @@ select:focus{border-color:#ffcc00;}
 </head>
 
 <body>
+
+<!-- ========================
+  🔒 TELA DE VERIFICAÇÃO
+======================== -->
+<div id="tela-bloqueio" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:linear-gradient(145deg,#1a1500,#000);border:2px solid #ffcc0044;border-radius:20px;padding:30px;max-width:420px;width:100%;text-align:center;box-shadow:0 0 30px rgba(255,204,0,.15);">
+    <div style="font-size:50px;margin-bottom:10px;">🔓</div>
+    <h2 style="color:#ffcc00;font-size:22px;margin-bottom:10px;">LIBERAR ACESSO</h2>
+    <p style="color:#ccc;font-size:14px;line-height:1.6;margin-bottom:20px;">
+      Para usar o Goat Sensi, curta e comente nosso post no Instagram! 📱
+    </p>
+
+    <!-- BOTÃO DO INSTAGRAM -->
+    <a id="link-instagram" href="https://www.instagram.com/goat_sensibilidade" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;font-weight:bold;padding:12px 24px;border-radius:12px;text-decoration:none;font-size:15px;margin-bottom:20px;transition:.2s;">
+      📱 ABRIR POST NO INSTAGRAM
+    </a>
+
+    <!-- CONTADOR -->
+    <div id="contador-box" style="display:none;margin:15px 0;">
+      <p style="color:#aaa;font-size:13px;">⏳ Aguarde... <span id="segundos">5</span>s</p>
+    </div>
+
+    <!-- BOTÃO DE CONFIRMAR -->
+    <button id="btn-confirmar" disabled style="background:#222;color:#777;border:1px solid #444;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:bold;cursor:not-allowed;opacity:0.5;transition:.2s;margin-bottom:15px;">
+      ⏳ Aguarde os 5 segundos...
+    </button>
+
+    <p style="color:#666;font-size:11px;">Depois de curtir e comentar, volte aqui e confirme ✅</p>
+  </div>
+</div>
+
+<script>
+const LINK_POST_INSTAGRAM = "https://www.instagram.com/goat_sensibilidade";
+
+let tempoRestante = 5;
+let cronometro;
+
+document.getElementById("link-instagram").addEventListener("click", function(){
+  const btnConfirmar = document.getElementById("btn-confirmar");
+  const contadorBox = document.getElementById("contador-box");
+  const spanSegundos = document.getElementById("segundos");
+  
+  contadorBox.style.display = "block";
+  btnConfirmar.disabled = true;
+  btnConfirmar.style.opacity = "0.5";
+  tempoRestante = 5;
+  spanSegundos.textContent = tempoRestante;
+  
+  if(cronometro) clearInterval(cronometro);
+  
+  cronometro = setInterval(function(){
+    tempoRestante--;
+    spanSegundos.textContent = tempoRestante;
+    
+    if(tempoRestante <= 0){
+      clearInterval(cronometro);
+      btnConfirmar.disabled = false;
+      btnConfirmar.innerHTML = "✅ JÁ CURTI E COMENTEI — LIBERAR";
+      btnConfirmar.style.background = "linear-gradient(135deg,#ffcc00,#b88600)";
+      btnConfirmar.style.color = "#000";
+      btnConfirmar.style.border = "none";
+      btnConfirmar.style.cursor = "pointer";
+      btnConfirmar.style.opacity = "1";
+      contadorBox.style.display = "none";
+    }
+  }, 1000);
+});
+
+document.getElementById("btn-confirmar").addEventListener("click", function(){
+  localStorage.setItem("liberadoGoatSensi", "sim");
+  document.getElementById("tela-bloqueio").style.display = "none";
+});
+
+if(localStorage.getItem("liberadoGoatSensi") === "sim"){
+  document.getElementById("tela-bloqueio").style.display = "none";
+}
+</script>
+<!-- FIM DA TELA DE VERIFICAÇÃO -->
+
 <div class="container">
 
 <header>
@@ -83,6 +162,7 @@ select:focus{border-color:#ffcc00;}
     <li>✅ Adicionado: Moto G5, G5 Plus, G5S e G5S Plus</li>
     <li>✅ Correção de DPI por fabricante</li>
     <li>✅ Modo Jutsu: puxada mais rápida</li>
+    <li>✅ 🔒 Sistema de verificação com Instagram</li>
   </ul>
 </div>
 
@@ -165,8 +245,8 @@ select:focus{border-color:#ffcc00;}
 
 <div class="card contact">
   <h2>📬 Contato</h2>
-  <p>Encontrou algum problema? Fala com a gente! 🥷</p>
-  <a class="whatsapp" href="tel:+5511921149458">💬 FALAR COM A EQUIPE</a>
+  <p>Siga nosso Instagram: <strong>@goat_sensibilidade</strong> 📱</p>
+  <a class="whatsapp" href="https://www.instagram.com/goat_sensibilidade" target="_blank">📱 SEGUE NO INSTAGRAM</a>
   <p style="margin-top:12px;">Quer apoiar? Qualquer valor ajuda! 🔥</p>
 </div>
 
@@ -300,5 +380,4 @@ document.getElementById("copiar").addEventListener("click",copiarConfiguracao);
 </script>
 
 </body>
-  </html>
-  
+</html>
