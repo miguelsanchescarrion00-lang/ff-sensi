@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>GOAT SENSI 🥷 NARUTO EDITION V2.0</title>
+<title>GOAT SENSI — SENSOR SYSTEM v2.1</title>
 
 <link rel="icon" type="image/png" sizes="512x512" href="GoatSensi_512.png">
 <link rel="apple-touch-icon" sizes="192x192" href="GoatSensi_192.png">
 <link rel="icon" type="image/png" sizes="192x192" href="GoatSensi_192.png">
 
 <meta name="theme-color" content="#000000">
-<meta name="description" content="🥷 Gerador profissional de sensibilidade Full Capa — SENSOR System v2.0">
+<meta name="description" content="Gerador profissional de sensibilidade Full Capa — SENSOR System v2.1">
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;}
 body{min-height:100vh;background:radial-gradient(circle at top,#1a1500 0%,#000000 45%,#000000 100%);color:#fff;padding:20px;}
 .container{width:100%;max-width:1050px;margin:auto;}
 header{text-align:center;padding:20px 10px 25px;}
-.naruto-badge{display:inline-block;background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:20px;margin-bottom:10px;animation:pulse 2s infinite;}
+.update-badge{display:inline-block;background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:20px;margin-bottom:10px;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{box-shadow:0 0 20px rgba(255,204,0,.4);}50%{box-shadow:0 0 30px rgba(255,204,0,.7);}}
 .logo{width:120px;height:120px;object-fit:contain;margin-bottom:12px;}
 h1{font-size:38px;font-weight:900;letter-spacing:2px;}
@@ -38,7 +38,7 @@ select:focus{border-color:#ffcc00;}
 .result-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:17px;flex-wrap:wrap;}
 .result-title{font-size:20px;font-weight:900;color:#ffcc00;}
 .badge{padding:7px 11px;border-radius:20px;background:#1a1500;border:1px solid #ffcc00;color:#ffcc00;font-size:11px;font-weight:bold;}
-.badge.naruto{background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;border:none;}
+.badge.highlight{background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;border:none;}
 .sensi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;}
 .sensi{background:#080808;border:1px solid #ffcc0033;border-radius:14px;padding:15px;position:relative;}
 .sensi:before{content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:linear-gradient(180deg,#ffcc00,#b88600);}
@@ -60,15 +60,16 @@ select:focus{border-color:#ffcc00;}
 .update-box h3{color:#ffcc00;font-size:14px;margin-bottom:8px;}
 .update-box ul{color:#ccc;font-size:12px;padding-left:18px;}
 .update-box li{margin-bottom:4px;}
+.partnership-box{background:linear-gradient(135deg,#1a1500,#000);border:1px solid #ffcc0044;border-radius:12px;padding:15px;margin-bottom:18px;text-align:center;}
+.partnership-box h3{color:#ffcc00;font-size:15px;margin-bottom:8px;}
+.partnership-box p{color:#ccc;font-size:13px;}
 @media(max-width:650px){body{padding:12px;}h1{font-size:26px;}.grid,.sensi-grid,.actions{grid-template-columns:1fr;}.card{padding:17px;}}
 </style>
 </head>
 
 <body>
 
-<!-- ========================
-  🔒 TELA DE VERIFICAÇÃO CORRIGIDA — SEM TEMPO, SEM FECHAR
-======================== -->
+<!-- 🔒 TELA DE VERIFICAÇÃO -->
 <div id="tela-bloqueio" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;">
   <div style="background:linear-gradient(145deg,#1a1500,#000);border:2px solid #ffcc0044;border-radius:20px;padding:30px;max-width:420px;width:100%;text-align:center;box-shadow:0 0 30px rgba(255,204,0,.15);">
     <div style="font-size:50px;margin-bottom:10px;">🔓</div>
@@ -76,63 +77,58 @@ select:focus{border-color:#ffcc00;}
     <p style="color:#ccc;font-size:14px;line-height:1.6;margin-bottom:20px;">
       Curta e comente nosso post no Instagram para usar o Goat Sensi! 📱
     </p>
-
-    <!-- PASSO 1: Abrir Instagram -->
     <a id="link-instagram" href="https://www.instagram.com/goat_sensibilidade" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;font-weight:bold;padding:12px 24px;border-radius:12px;text-decoration:none;font-size:15px;margin-bottom:15px;transition:.2s;">
       📱 1º — ABRIR POST NO INSTAGRAM
     </a>
-
     <div style="color:#888;font-size:18px;margin:8px 0;">⬇️</div>
-
-    <!-- PASSO 2: Confirmar -->
     <button id="btn-confirmar" style="background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;border:none;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:bold;cursor:pointer;transition:.2s;margin-bottom:10px;">
       ✅ 2º — JÁ FIZ TUDO, LIBERAR AGORA
     </button>
-
-    <p style="color:#666;font-size:11px;line-height:1.5;">💡 <strong>Importante:</strong> Mantenha esta aba aberta! Depois de curtir e comentar no Instagram, é só voltar aqui e clicar no botão acima ✅<br>Você só faz isso uma vez!</p>
+    <p style="color:#666;font-size:11px;line-height:1.5;">💡 Mantenha esta aba aberta! Depois de curtir e comentar no Instagram, é só voltar aqui e clicar em "Liberar Agora" ✅<br>Você só faz isso uma vez!</p>
   </div>
 </div>
 
 <script>
 const CHAVE_LIBERACAO = "liberadoGoatSensi_v2";
-
-// Verifica se JÁ foi liberado antes — se sim, some a tela imediatamente
 if(localStorage.getItem(CHAVE_LIBERACAO) === "sim"){
   document.getElementById("tela-bloqueio").style.display = "none";
 }
-
-// Quando clicar em "Já fiz tudo"
 document.getElementById("btn-confirmar").addEventListener("click", function(){
   localStorage.setItem(CHAVE_LIBERACAO, "sim");
   document.getElementById("tela-bloqueio").style.display = "none";
 });
 </script>
-<!-- FIM DA TELA DE VERIFICAÇÃO -->
 
 <div class="container">
 
 <header>
-  <div class="naruto-badge">⚡ ATUALIZAÇÃO NARUTO v2.0</div><br>
+  <div class="update-badge">✨ ATUALIZAÇÃO v2.1</div><br>
   <img class="logo" src="GoatSensi_V20_Logo.png" alt="GOAT SENSI" onerror="this.style.display='none'">
   <h1>GOAT <span>SENSI</span></h1>
-  <div class="subtitle">🥷 GERADOR FULL CAPA — SENSOR SYSTEM v2.0</div>
-  <div class="online"><span class="dot"></span>Chakra Ativo • Versão 2.0</div>
+  <div class="subtitle">GERADOR FULL CAPA — SENSOR SYSTEM v2.1</div>
+  <div class="online"><span class="dot"></span>Sistema Ativo • Versão 2.1</div>
 </header>
 
+<div class="partnership-box">
+  <h3>🤝 PARCERIA OFICIAL: GOAT SENSI × BEIJO MORES 💋</h3>
+  <p>Sensibilidade perfeita com a beleza que você merece! ✨ Descontos exclusivos pra nossa comunidade em breve!</p>
+</div>
+
 <div class="update-box">
-  <h3>🥷 Novidades da Atualização Naruto:</h3>
+  <h3>✨ Novidades da Atualização:</h3>
   <ul>
+    <li>🤝 Parceria oficial com Beijo Mores 💋</li>
+    <li>📱 Adicionados TODOS os modelos de iPhone!</li>
     <li>✅ Novo Motor SENSOR: cálculo inteligente</li>
     <li>✅ Foco Full Capa: Ponto Vermelho priorizado</li>
     <li>✅ Adicionado: Moto G5, G5 Plus, G5S e G5S Plus</li>
     <li>✅ Correção de DPI por fabricante</li>
-    <li>✅ Modo Jutsu: puxada mais rápida</li>
     <li>✅ 🔒 Verificação simplificada — sem tempo, sem fechar!</li>
   </ul>
 </div>
 
 <div class="card">
-  <h2>🎯 Configuração do Jutsu</h2>
+  <h2>🎯 Configuração</h2>
   <div class="grid">
     <div class="field">
       <label>Jogo</label>
@@ -145,6 +141,7 @@ document.getElementById("btn-confirmar").addEventListener("click", function(){
       <label>Fabricante</label>
       <select id="marca">
         <option value="">Selecione uma marca...</option>
+        <option value="Apple">Apple (iPhone)</option>
         <option value="Samsung">Samsung</option>
         <option value="Xiaomi">Xiaomi</option>
         <option value="Motorola">Motorola</option>
@@ -161,7 +158,7 @@ document.getElementById("btn-confirmar").addEventListener("click", function(){
       <select id="nivel">
         <option value="baixa">Controlada</option>
         <option value="media" selected>Equilibrada</option>
-        <option value="alta">⚡ Jutsu — Full Capa</option>
+        <option value="alta">⚡ Rápida — Full Capa</option>
       </select>
     </div>
     <div class="field">
@@ -181,14 +178,14 @@ document.getElementById("btn-confirmar").addEventListener("click", function(){
       </select>
     </div>
   </div>
-  <button class="generate" id="gerar">⚡ LIBERAR CHAKRA — GERAR SENSI</button>
+  <button class="generate" id="gerar">⚡ GERAR SENSI</button>
   <div class="aviso" id="aviso"></div>
 </div>
 
 <div class="card resultado" id="resultado">
   <div class="result-head">
-    <div class="result-title">🥷 Sua Sensi do Ninja</div>
-    <div class="badge naruto">⚡ FULL CAPA ATIVO</div>
+    <div class="result-title">Sua Sensi Pronta</div>
+    <div class="badge highlight">⚡ FULL CAPA ATIVO</div>
   </div>
   <div class="sensi-grid">
     <div class="sensi"><div class="sensi-name">GERAL / VELOCIDADE</div><div class="sensi-value" id="vGeral">0</div><div class="sensi-sub">Base de movimento</div></div>
@@ -197,33 +194,61 @@ document.getElementById("btn-confirmar").addEventListener("click", function(){
     <div class="sensi"><div class="sensi-name">MIRA 4X</div><div class="sensi-value" id="v4x">0</div><div class="sensi-sub">Precisão longa</div></div>
     <div class="sensi"><div class="sensi-name">MIRA AWM</div><div class="sensi-value" id="vAwm">0</div><div class="sensi-sub">Sniper estável</div></div>
     <div class="sensi"><div class="sensi-name">OLHADINHA</div><div class="sensi-value" id="vLook">0</div><div class="sensi-sub">Visão livre</div></div>
-    <div class="sensi"><div class="sensi-name">DPI</div><div class="sensi-value" id="vDpi">0</div><div class="sensi-sub">Resposta da tela</div></div>
+    <div class="sensi"><div class="sensi-name">DPI</div><div class="sensi-value" id="vDpi">—</div><div class="sensi-sub">Não alterar no iPhone</div></div>
     <div class="sensi"><div class="sensi-name">BOTÃO DE ATIRAR</div><div class="sensi-value" id="vFire">0</div><div class="sensi-sub">Tamanho ideal</div></div>
   </div>
   <div class="analysis" id="analise"></div>
   <div class="actions">
     <button class="btn" id="copiar">📋 COPIAR SENSI</button>
-    <button class="btn" id="variar">⚡ AJUSTE JUTSUS +2</button>
+    <button class="btn" id="variar">⚡ AJUSTE +2</button>
   </div>
-  <div class="counter">🥷 Sistema SENSOR v2.0 • +50 milhões de combinações</div>
+  <div class="counter">SENSOR SYSTEM v2.1 • +50 milhões de combinações</div>
 </div>
 
 <div class="card contact">
   <h2>📬 Contato</h2>
   <p>Siga nosso Instagram: <strong>@goat_sensibilidade</strong> 📱</p>
   <a class="whatsapp" href="https://www.instagram.com/goat_sensibilidade" target="_blank">📱 SEGUE NO INSTAGRAM</a>
-  <p style="margin-top:12px;">Quer apoiar? Qualquer valor ajuda! 🔥</p>
+  <p style="margin-top:12px;">Parceria: <strong>Beijo Mores</strong> 💋</p>
 </div>
 
-<div class="credits">GOAT SENSI 🥷 Edição Naruto • SENSOR SYSTEM</div>
+<div class="credits">GOAT SENSI • SENSOR SYSTEM v2.1</div>
 
 </div>
 
 <script>
 const DADOS = {
-  Samsung: ["Galaxy A05","Galaxy A05s","Galaxy A12","Galaxy A13","Galaxy A14","Galaxy A15","Galaxy A22","Galaxy A23","Galaxy A32","Galaxy A33","Galaxy A34","Galaxy A52","Galaxy A53","Galaxy A54","Galaxy A55","Galaxy S20","Galaxy S21","Galaxy S22","Galaxy S23","Galaxy S24"],
-  Xiaomi: ["Redmi Note 8","Redmi Note 9","Redmi Note 10","Redmi Note 11","Redmi Note 12","Redmi Note 13","POCO X3","POCO X4","POCO X5","POCO X6","POCO F5","POCO F6"],
-  Motorola: ["Moto E5","Moto E6","Moto E7","Moto G5","Moto G5 Plus","Moto G5S","Moto G5S Plus","Moto E22","Moto G7","Moto G8","Moto G9 Play","Moto G22","Moto G32","Moto G52","Moto G54","Moto G84","Edge 20","Edge 30","Edge 40","Edge 50 Fusion"]
+  Apple: [
+    "iPhone 2G", "iPhone 3G", "iPhone 3GS", "iPhone 4", "iPhone 4S",
+    "iPhone 5", "iPhone 5C", "iPhone 5S",
+    "iPhone 6 / 6 Plus", "iPhone 6S / 6S Plus",
+    "iPhone SE (1ª gen)",
+    "iPhone 7 / 7 Plus", "iPhone 8 / 8 Plus",
+    "iPhone X", "iPhone XR", "iPhone XS / XS Max",
+    "iPhone 11", "iPhone 11 Pro / Pro Max",
+    "iPhone SE (2ª gen)",
+    "iPhone 12 / 12 Mini", "iPhone 12 Pro / Pro Max",
+    "iPhone 13 / 13 Mini", "iPhone 13 Pro / Pro Max",
+    "iPhone SE (3ª gen)",
+    "iPhone 14 / 14 Plus", "iPhone 14 Pro / Pro Max",
+    "iPhone 15 / 15 Plus", "iPhone 15 Pro / Pro Max",
+    "iPhone 16 / 16 Plus", "iPhone 16 Pro / Pro Max"
+  ],
+  Samsung: [
+    "Galaxy A05", "Galaxy A05s", "Galaxy A12", "Galaxy A13", "Galaxy A14", "Galaxy A15",
+    "Galaxy A22", "Galaxy A23", "Galaxy A32", "Galaxy A33", "Galaxy A34",
+    "Galaxy A52", "Galaxy A53", "Galaxy A54", "Galaxy A55",
+    "Galaxy S20", "Galaxy S21", "Galaxy S22", "Galaxy S23", "Galaxy S24"
+  ],
+  Xiaomi: [
+    "Redmi Note 8", "Redmi Note 9", "Redmi Note 10", "Redmi Note 11", "Redmi Note 12", "Redmi Note 13",
+    "POCO X3", "POCO X4", "POCO X5", "POCO X6", "POCO F5", "POCO F6"
+  ],
+  Motorola: [
+    "Moto E5", "Moto E6", "Moto E7", "Moto G5", "Moto G5 Plus", "Moto G5S", "Moto G5S Plus",
+    "Moto E22", "Moto G7", "Moto G8", "Moto G9 Play", "Moto G22", "Moto G32",
+    "Moto G52", "Moto G54", "Moto G84", "Edge 20", "Edge 30", "Edge 40", "Edge 50 Fusion"
+  ]
 };
 
 const marcaEl = document.getElementById("marca");
@@ -275,9 +300,12 @@ function gerarSensi(){
   const awm = limitar(quatroX-aleatorio(8,18),65,185);
   const olhadinha = limitar(geral+aleatorio(-3,5),95,200);
   
-  let dpi = aleatorio(dpiMin,dpiMax);
-  if(fab==="Xiaomi")dpi+=15;
-  dpi = limitar(dpi,360,720);
+  let dpi = "—";
+  if(fab !== "Apple"){
+    dpi = aleatorio(dpiMin,dpiMax);
+    if(fab==="Xiaomi")dpi+=15;
+    dpi = limitar(dpi,360,720);
+  }
 
   let fireMin=48,fireMax=58;
   if(dedos==="2"){fireMin=52;fireMax=60;}
@@ -294,10 +322,12 @@ function gerarSensi(){
   document.getElementById("vDpi").textContent=dpi;
   document.getElementById("vFire").textContent=fire;
 
+  let dpiNota = fab === "Apple" ? "\n📱 No iPhone não é preciso alterar DPI!" : "";
+
   document.getElementById("analise").innerHTML=
-    "<strong>🥷 SENSOR PRONTO!</strong><br><br>"+
-    "🎯 Ponto Vermelho em "+red+" para facilitar a puxada.<br>"+
-    "💡 Treine no Modo Treino antes de jogar! Se passar muito, diminua o Ponto Vermelho em 2~3 pontos. Boa sorte, ninja! ⚡🔥";
+    "<strong>SENSOR PRONTO!</strong><br><br>"+
+    "🎯 Ponto Vermelho em "+red+" para facilitar a puxada.<br>"+dpiNota+"<br>"+
+    "💡 Treine no Modo Treino antes de jogar! Se passar muito, diminua o Ponto Vermelho em 2~3 pontos. Boa sorte! ⚡🔥";
 
   resultadoEl.style.display="block";
   resultadoEl.scrollIntoView({behavior:"smooth",block:"start"});
@@ -309,13 +339,16 @@ function ajusteFino(){
     const el=document.getElementById(id);
     el.textContent=limitar(parseInt(el.textContent)+2,60,200);
   });
-  document.getElementById("analise").innerHTML="<strong>⚡ JUTSU +2</strong> Valores aumentados em 2 pontos! Testa no treino e ajusta do seu jeito! 🥷🔥";
+  document.getElementById("analise").innerHTML="<strong>⚡ AJUSTE +2</strong> Valores aumentados em 2 pontos! Testa no treino e ajusta do seu jeito! 🔥";
 }
 
 function copiarConfiguracao(){
   if(resultadoEl.style.display!=="block"){mostrarAviso("⚠️ Gere uma sensibilidade primeiro!");return;}
+  const fab = marcaEl.value;
+  let dpiTexto = fab === "Apple" ? "Não alterar (fixo)" : document.getElementById("vDpi").textContent;
+  
   const txt = 
-    "🥷 GOAT SENSI v2.0\n"+
+    "GOAT SENSI v2.1\n"+
     "Aparelho: "+marcaEl.value+" "+modeloEl.value+"\n"+
     "══════════════════\n"+
     "GERAL:          "+document.getElementById("vGeral").textContent+"\n"+
@@ -324,10 +357,10 @@ function copiarConfiguracao(){
     "MIRA 4X:        "+document.getElementById("v4x").textContent+"\n"+
     "AWM:            "+document.getElementById("vAwm").textContent+"\n"+
     "OLHADINHA:      "+document.getElementById("vLook").textContent+"\n"+
-    "DPI:            "+document.getElementById("vDpi").textContent+"\n"+
+    "DPI:            "+dpiTexto+"\n"+
     "BOTÃO ATIRAR:   "+document.getElementById("vFire").textContent+"\n"+
     "══════════════════\n"+
-    "Treina no Modo Treino! Boa sorte! 🥷⚡";
+    "Treina no Modo Treino! Boa sorte! ⚡";
   
   navigator.clipboard.writeText(txt).then(()=>{
     document.getElementById("copiar").textContent="✅ COPIADO!";
@@ -345,4 +378,5 @@ document.getElementById("copiar").addEventListener("click",copiarConfiguracao);
 </script>
 
 </body>
-</html>
+  </html>
+  
