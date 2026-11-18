@@ -1,382 +1,256 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>GOAT SENSI — SENSOR SYSTEM v2.1</title>
-
-<link rel="icon" type="image/png" sizes="512x512" href="GoatSensi_512.png">
-<link rel="apple-touch-icon" sizes="192x192" href="GoatSensi_192.png">
-<link rel="icon" type="image/png" sizes="192x192" href="GoatSensi_192.png">
-
-<meta name="theme-color" content="#000000">
-<meta name="description" content="Gerador profissional de sensibilidade Full Capa — SENSOR System v2.1">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Goat Sensi | Gerador Pro</title>
+<meta name="description" content="Goat Sensi Gerador Pro: gere a sensibilidade do Free Fire para o seu celular.">
+<meta name="theme-color" content="#050507">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%E2%98%95%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;}
-body{min-height:100vh;background:radial-gradient(circle at top,#1a1500 0%,#000000 45%,#000000 100%);color:#fff;padding:20px;}
-.container{width:100%;max-width:1050px;margin:auto;}
-header{text-align:center;padding:20px 10px 25px;}
-.update-badge{display:inline-block;background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:20px;margin-bottom:10px;animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{box-shadow:0 0 20px rgba(255,204,0,.4);}50%{box-shadow:0 0 30px rgba(255,204,0,.7);}}
-.logo{width:120px;height:120px;object-fit:contain;margin-bottom:12px;}
-h1{font-size:38px;font-weight:900;letter-spacing:2px;}
-h1 span{color:#ffcc00;}
-.subtitle{color:#aaa;margin-top:7px;font-size:14px;}
-.online{display:inline-flex;align-items:center;gap:7px;margin-top:13px;padding:7px 12px;border:1px solid #ffcc0044;border-radius:30px;background:#1a1500;color:#ffdd44;font-size:12px;}
-.dot{width:8px;height:8px;border-radius:50%;background:#ffcc00;}
-.card{background:linear-gradient(145deg,rgba(26,26,26,.97),rgba(0,0,0,.97));border:1px solid #ffcc0044;border-radius:20px;padding:22px;margin-bottom:18px;}
-.card h2{font-size:19px;margin-bottom:18px;color:#ffcc00;}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;}
-.field label{display:block;font-size:12px;color:#aaa;margin-bottom:7px;}
-select{width:100%;padding:14px;border-radius:12px;border:1px solid #444;background:#0a0a0a;color:#fff;outline:none;font-size:14px;}
-select:focus{border-color:#ffcc00;}
-.generate{width:100%;border:0;margin-top:18px;padding:16px;border-radius:13px;background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;font-weight:900;font-size:15px;cursor:pointer;transition:.2s;}
-.generate:hover{transform:translateY(-2px);filter:brightness(1.05);}
-.aviso{display:none;background:#1a1500;border:1px solid #ffcc0055;color:#ffdd44;padding:12px;border-radius:12px;margin-top:14px;font-size:13px;text-align:center;}
-.resultado{display:none;}
-.result-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:17px;flex-wrap:wrap;}
-.result-title{font-size:20px;font-weight:900;color:#ffcc00;}
-.badge{padding:7px 11px;border-radius:20px;background:#1a1500;border:1px solid #ffcc00;color:#ffcc00;font-size:11px;font-weight:bold;}
-.badge.highlight{background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;border:none;}
-.sensi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;}
-.sensi{background:#080808;border:1px solid #ffcc0033;border-radius:14px;padding:15px;position:relative;}
-.sensi:before{content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:linear-gradient(180deg,#ffcc00,#b88600);}
-.sensi-name{color:#999;font-size:11px;margin-bottom:5px;}
-.sensi-value{font-size:28px;font-weight:900;color:#ffcc00;}
-.sensi-sub{color:#ffcc00aa;font-size:10px;margin-top:3px;}
-.analysis{margin-top:14px;padding:15px;border-radius:14px;background:#080808;border:1px solid #ffcc0033;color:#cfcfcf;font-size:13px;line-height:1.6;}
-.analysis strong{color:#ffcc00;}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
-.btn{border:1px solid #ffcc0055;background:#111;color:#ffcc00;padding:13px;border-radius:12px;cursor:pointer;font-weight:bold;transition:.2s;}
-.btn:hover{border-color:#ffcc00;background:#1a1500;}
-.contact{text-align:center;}
-.contact p{color:#aaa;font-size:13px;line-height:1.6;}
-.whatsapp{display:inline-block;margin-top:13px;padding:13px 18px;border-radius:12px;background:#111;border:1px solid #ffcc0055;color:#ffcc00;text-decoration:none;font-weight:bold;transition:.2s;}
-.whatsapp:hover{border-color:#ffcc00;background:#1a1500;}
-.credits{text-align:center;color:#666;font-size:11px;padding:10px 0 20px;}
-.counter{text-align:center;color:#777;font-size:11px;margin-top:12px;}
-.update-box{background:#1a1500;border:1px solid #ffcc0044;border-radius:12px;padding:12px;margin-bottom:18px;}
-.update-box h3{color:#ffcc00;font-size:14px;margin-bottom:8px;}
-.update-box ul{color:#ccc;font-size:12px;padding-left:18px;}
-.update-box li{margin-bottom:4px;}
-.partnership-box{background:linear-gradient(135deg,#1a1500,#000);border:1px solid #ffcc0044;border-radius:12px;padding:15px;margin-bottom:18px;text-align:center;}
-.partnership-box h3{color:#ffcc00;font-size:15px;margin-bottom:8px;}
-.partnership-box p{color:#ccc;font-size:13px;}
-@media(max-width:650px){body{padding:12px;}h1{font-size:26px;}.grid,.sensi-grid,.actions{grid-template-columns:1fr;}.card{padding:17px;}}
+:root{--bg:#050507;--card:#0b0b10;--line:#5b3bd6;--accent:#6c3ee0;--accent2:#9b7bff;--text:#fff;--muted:#a79fc4;
+color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:'Poppins',system-ui,sans-serif}
+body{background:radial-gradient(circle at 50% 0%,#1a0f3d 0%,var(--bg) 60%) fixed}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:24px 18px 40px;min-height:100vh;display:flex;flex-direction:column;justify-content:center}
+.screen{display:none;text-align:center;animation:in .35s ease}
+.screen.on{display:block}
+@keyframes in{from{opacity:0;transform:perspective(900px) rotateY(-28deg) translateZ(-90px)}to{opacity:1;transform:none}}
+h1,h2{font-family:'Anton','Impact',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.5px;margin:0 0 10px;line-height:1.05}
+h1{font-size:46px}h2{font-size:32px}
+h1,h2{text-shadow:0 1px 0 #7b4cf0,0 2px 0 #6c3ee0,0 3px 0 #5a2fc8,0 4px 0 #4a24a8,0 5px 0 #3a1c8a,0 12px 16px rgba(0,0,0,.7)}
+p.sub{color:var(--muted);margin:0 0 22px;font-size:15px}
+.btn{display:block;width:100%;border:0;border-radius:18px;background:var(--accent);color:#fff;font:700 20px 'Poppins',sans-serif;padding:18px;cursor:pointer;text-transform:uppercase;box-shadow:0 7px 0 #3a1c9c,0 16px 30px rgba(108,62,224,.5);transition:transform .12s,box-shadow .12s,background .15s}
+.btn:hover{background:#7a4cf0}.btn:active{transform:translateY(5px);box-shadow:0 2px 0 #3a1c9c,0 6px 14px rgba(108,62,224,.4)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:transparent;border:2px solid var(--line);box-shadow:none;margin-top:12px;font-size:15px;padding:13px}
+:focus-visible{outline:3px solid var(--accent2);outline-offset:3px}
+/* xícara */
+.stage{perspective:700px;height:200px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;position:relative}
+.cup3d{width:240px;height:200px}
+.chat{height:44vh;overflow-y:auto;display:flex;flex-direction:column;gap:10px;margin-bottom:12px;padding:4px}
+.msg{max-width:85%;padding:11px 14px;border-radius:18px;font-size:15px;line-height:1.4;text-align:left;white-space:pre-wrap;word-break:break-word;box-shadow:0 4px 0 #1a0f3d}
+.msg.ia{align-self:flex-start;background:var(--card);border:2px solid var(--line);border-bottom-left-radius:4px}
+.msg.eu{align-self:flex-end;background:var(--accent);border-bottom-right-radius:4px}
+.chatbar{display:flex;gap:8px;align-items:center}
+.chatbar input[type=text]{margin:0;text-align:left;padding:14px;font-size:16px;flex:1;min-width:0}
+.chatbar .btn{width:auto;padding:14px 18px;font-size:16px}
+.hero{display:flex;align-items:center;gap:4px;margin-bottom:18px;text-align:left}
+.hero .cup3d{width:48%;height:auto;aspect-ratio:1.2;flex:none}
+.brand{flex:1;min-width:0}
+.goat{font-family:'Anton','Impact',sans-serif;font-size:54px;line-height:.92;font-style:italic;transform:skewX(-8deg);transform-origin:left;background:linear-gradient(180deg,#fff 25%,#b79cff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;animation:glow 2.4s ease-in-out infinite,flick 4.5s infinite}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 8px rgba(155,123,255,.6))}50%{filter:drop-shadow(0 0 22px rgba(155,123,255,1))}}
+@keyframes flick{0%,90%,100%{opacity:1}92%{opacity:.55}94%{opacity:1}97%{opacity:.7}}
+.pro{display:inline-block;margin-top:12px;background:var(--accent);padding:6px 16px 6px 11px;font:700 13px 'Poppins',sans-serif;letter-spacing:2px;text-transform:uppercase;clip-path:polygon(0 0,100% 0,90% 100%,0 100%)}
+.btn{position:relative;overflow:hidden}
+.btn:not(.ghost)::after{content:"";position:absolute;top:0;left:-60%;width:35%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);transform:skewX(-20deg);animation:shine 2.8s infinite}
+@keyframes shine{0%,55%{left:-60%}100%{left:130%}}
+#fx{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+#fx span{position:absolute;bottom:-60px;opacity:0;animation:up linear infinite;filter:drop-shadow(0 0 8px rgba(155,123,255,.7))}
+@keyframes up{10%,90%{opacity:.55}100%{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+@keyframes spin{to{transform:rotateY(360deg)}}
+.steam{position:absolute;top:6px;left:50%;width:60px;margin-left:-30px;display:flex;justify-content:space-around;pointer-events:none}
+.steam i{width:6px;height:34px;border-radius:6px;background:linear-gradient(#b9a5ff,transparent);opacity:0;animation:rise 2.2s ease-in infinite}
+.steam i:nth-child(2){animation-delay:.7s}.steam i:nth-child(3){animation-delay:1.4s}
+@keyframes rise{0%{opacity:0;transform:translateY(24px) scaleX(1)}40%{opacity:.8}100%{opacity:0;transform:translateY(-16px) scaleX(1.8)}}
+/* cartões emoji */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:26px;perspective:900px}
+.tile{background:linear-gradient(160deg,#171030,var(--card));border:2px solid var(--line);border-radius:22px;padding:16px 8px 14px;font-family:'Anton',sans-serif;font-size:17px;text-transform:uppercase;line-height:1.1;transform-style:preserve-3d;transform:rotateX(10deg) rotateY(-12deg);box-shadow:9px 11px 0 #24124f,0 20px 30px rgba(0,0,0,.6);transition:transform .25s}
+.tile:nth-child(2n){transform:rotateX(10deg) rotateY(12deg);box-shadow:-9px 11px 0 #24124f,0 20px 30px rgba(0,0,0,.6)}
+.tile:hover{transform:rotateX(0) rotateY(0) translateZ(14px)}
+.tile span{display:block;font-size:56px;margin-bottom:8px;translate:0 0 50px;filter:drop-shadow(0 12px 8px rgba(0,0,0,.6));animation:float 2.4s ease-in-out infinite}
+.tile:nth-child(2n) span{animation-delay:-.8s}.tile:nth-child(3n) span{animation-delay:-1.5s}
+.tile:nth-child(1) span{animation-name:zap}.tile:nth-child(4) span{animation-name:wob}.tile:nth-child(6) span{animation-name:pulse}
+@keyframes float{50%{transform:translateY(-10px) rotate(-6deg)}}
+@keyframes zap{0%,100%{transform:scale(1) rotate(0)}25%{transform:scale(1.2) rotate(-12deg)}50%{transform:scale(.95) rotate(10deg)}}
+@keyframes wob{0%,100%{transform:translateX(-6px)}50%{transform:translateX(6px)}}
+@keyframes pulse{50%{transform:scale(1.25)}}
+/* formulário */
+.dots{display:flex;gap:6px;justify-content:center;margin-bottom:22px}
+.dots b{width:34px;height:5px;border-radius:5px;background:#24203a}.dots b.on{background:var(--accent2)}
+input[type=text]{width:100%;background:var(--card);border:2px solid var(--line);border-radius:16px;color:#fff;font:500 19px 'Poppins',sans-serif;padding:16px;text-align:center;margin-bottom:18px}
+input::placeholder{color:#6c6488}
+.opts{display:grid;gap:10px;margin-bottom:18px;text-align:left}
+.opt{background:var(--card);border:2px solid var(--line);border-radius:16px;color:#fff;font:600 17px 'Poppins',sans-serif;padding:15px 18px;cursor:pointer;display:flex;align-items:center;gap:12px;width:100%;box-shadow:0 6px 0 #2a1566,0 14px 20px rgba(0,0,0,.5);transition:transform .12s,box-shadow .12s,background .15s}
+.opt:hover,.opt.sel{background:#1c1140;border-color:var(--accent2);transform:translateY(-2px)}
+.opt:active{transform:translateY(5px);box-shadow:0 1px 0 #2a1566}
+.opt em{font-style:normal;font-size:24px}
+.list{max-height:52vh;overflow-y:auto;padding-right:2px}
+/* carregando */
+.bar{height:14px;border-radius:14px;background:#1b1730;overflow:hidden;margin:20px 0 14px;border:1px solid var(--line)}
+.bar div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:14px}
+.bar.run div{animation:fill 7s linear forwards}
+@keyframes fill{to{width:100%}}
+#status{color:var(--muted);min-height:24px;font-size:15px}
+/* resultado */
+.res{background:linear-gradient(160deg,#171030,var(--card));border:2px solid var(--line);border-radius:22px;padding:18px;text-align:left;margin-bottom:22px;transform:perspective(900px) rotateX(5deg);box-shadow:0 10px 0 #24124f,0 26px 40px rgba(0,0,0,.65)}
+.res .who{font-family:'Anton',sans-serif;font-size:24px;text-transform:uppercase}
+.res .eng{color:var(--accent2);font-size:14px;margin-bottom:14px}
+.row{margin:11px 0}
+.row .l{display:flex;justify-content:space-between;font-size:15px;font-weight:700;margin-bottom:5px}
+.row .t{height:9px;background:#1b1730;border-radius:9px;overflow:hidden}
+.row .t i{display:block;height:100%;width:0;border-radius:9px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width 1s ease}
+.note{color:var(--muted);font-size:12.5px;margin:12px 0 0}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important}}
 </style>
 </head>
-
 <body>
+<canvas id="bg"></canvas>
+<div class="wrap">
 
-<!-- 🔒 TELA DE VERIFICAÇÃO -->
-<div id="tela-bloqueio" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;">
-  <div style="background:linear-gradient(145deg,#1a1500,#000);border:2px solid #ffcc0044;border-radius:20px;padding:30px;max-width:420px;width:100%;text-align:center;box-shadow:0 0 30px rgba(255,204,0,.15);">
-    <div style="font-size:50px;margin-bottom:10px;">🔓</div>
-    <h2 style="color:#ffcc00;font-size:22px;margin-bottom:10px;">LIBERAR ACESSO</h2>
-    <p style="color:#ccc;font-size:14px;line-height:1.6;margin-bottom:20px;">
-      Curta e comente nosso post no Instagram para usar o Goat Sensi! 📱
-    </p>
-    <a id="link-instagram" href="https://www.instagram.com/goat_sensibilidade" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;font-weight:bold;padding:12px 24px;border-radius:12px;text-decoration:none;font-size:15px;margin-bottom:15px;transition:.2s;">
-      📱 1º — ABRIR POST NO INSTAGRAM
-    </a>
-    <div style="color:#888;font-size:18px;margin:8px 0;">⬇️</div>
-    <button id="btn-confirmar" style="background:linear-gradient(135deg,#ffcc00,#b88600);color:#000;border:none;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:bold;cursor:pointer;transition:.2s;margin-bottom:10px;">
-      ✅ 2º — JÁ FIZ TUDO, LIBERAR AGORA
-    </button>
-    <p style="color:#666;font-size:11px;line-height:1.5;">💡 Mantenha esta aba aberta! Depois de curtir e comentar no Instagram, é só voltar aqui e clicar em "Liberar Agora" ✅<br>Você só faz isso uma vez!</p>
-  </div>
-</div>
+<section class="screen on" id="s0">
+  <div class="hero"><canvas class="cup3d" id="cup0"></canvas><div class="brand"><div class="goat">GOAT<br>SENSI</div><div class="pro">Gerador Pro</div></div></div>
+  <p class="sub">Sensibilidade ajustada para o seu celular.</p>
+  <button class="btn" data-go="1">Começar</button>
+</section>
 
-<script>
-const CHAVE_LIBERACAO = "liberadoGoatSensi_v2";
-if(localStorage.getItem(CHAVE_LIBERACAO) === "sim"){
-  document.getElementById("tela-bloqueio").style.display = "none";
-}
-document.getElementById("btn-confirmar").addEventListener("click", function(){
-  localStorage.setItem(CHAVE_LIBERACAO, "sim");
-  document.getElementById("tela-bloqueio").style.display = "none";
-});
-</script>
-
-<div class="container">
-
-<header>
-  <div class="update-badge">✨ ATUALIZAÇÃO v2.1</div><br>
-  <img class="logo" src="GoatSensi_V20_Logo.png" alt="GOAT SENSI" onerror="this.style.display='none'">
-  <h1>GOAT <span>SENSI</span></h1>
-  <div class="subtitle">GERADOR FULL CAPA — SENSOR SYSTEM v2.1</div>
-  <div class="online"><span class="dot"></span>Sistema Ativo • Versão 2.1</div>
-</header>
-
-<div class="partnership-box">
-  <h3>🤝 PARCERIA OFICIAL: GOAT SENSI × BEIJO MORES 💋</h3>
-  <p>Sensibilidade perfeita com a beleza que você merece! ✨ Descontos exclusivos pra nossa comunidade em breve!</p>
-</div>
-
-<div class="update-box">
-  <h3>✨ Novidades da Atualização:</h3>
-  <ul>
-    <li>🤝 Parceria oficial com Beijo Mores 💋</li>
-    <li>📱 Adicionados TODOS os modelos de iPhone!</li>
-    <li>✅ Novo Motor SENSOR: cálculo inteligente</li>
-    <li>✅ Foco Full Capa: Ponto Vermelho priorizado</li>
-    <li>✅ Adicionado: Moto G5, G5 Plus, G5S e G5S Plus</li>
-    <li>✅ Correção de DPI por fabricante</li>
-    <li>✅ 🔒 Verificação simplificada — sem tempo, sem fechar!</li>
-  </ul>
-</div>
-
-<div class="card">
-  <h2>🎯 Configuração</h2>
+<section class="screen" id="s1">
   <div class="grid">
-    <div class="field">
-      <label>Jogo</label>
-      <select id="freefire">
-        <option value="normal">Free Fire</option>
-        <option value="max">Free Fire MAX</option>
-      </select>
-    </div>
-    <div class="field">
-      <label>Fabricante</label>
-      <select id="marca">
-        <option value="">Selecione uma marca...</option>
-        <option value="Apple">Apple (iPhone)</option>
-        <option value="Samsung">Samsung</option>
-        <option value="Xiaomi">Xiaomi</option>
-        <option value="Motorola">Motorola</option>
-      </select>
-    </div>
-    <div class="field">
-      <label>Modelo</label>
-      <select id="modelo">
-        <option value="">Escolha primeiro a marca</option>
-      </select>
-    </div>
-    <div class="field">
-      <label>Estilo de Puxada</label>
-      <select id="nivel">
-        <option value="baixa">Controlada</option>
-        <option value="media" selected>Equilibrada</option>
-        <option value="alta">⚡ Rápida — Full Capa</option>
-      </select>
-    </div>
-    <div class="field">
-      <label>Quantidade de dedos</label>
-      <select id="dedos">
-        <option value="2">2 dedos</option>
-        <option value="3">3 dedos</option>
-        <option value="4">4 dedos</option>
-      </select>
-    </div>
-    <div class="field">
-      <label>Técnica</label>
-      <select id="tecnica">
-        <option value="padrao">Padrão</option>
-        <option value="agressivo" selected>🔥 Agressivo (Recomendado)</option>
-        <option value="perfeita">✨ Perfeita</option>
-      </select>
-    </div>
+    <div class="tile"><span>⚡</span>Acesso imediato</div>
+    <div class="tile"><span>😎</span>Jogue como um pro player</div>
+    <div class="tile"><span>🏆</span>Seja o MVP das partidas</div>
+    <div class="tile"><span>👾</span>Sem programas externos</div>
+    <div class="tile"><span>😮</span>Sensi full vermelha</div>
+    <div class="tile"><span>🎯</span>Mira sem pinar</div>
   </div>
-  <button class="generate" id="gerar">⚡ GERAR SENSI</button>
-  <div class="aviso" id="aviso"></div>
-</div>
+  <button class="btn" data-go="2">Gerar Sensi</button>
+  <button class="btn ghost" data-go="7">Falar com a IA</button>
+</section>
 
-<div class="card resultado" id="resultado">
-  <div class="result-head">
-    <div class="result-title">Sua Sensi Pronta</div>
-    <div class="badge highlight">⚡ FULL CAPA ATIVO</div>
-  </div>
-  <div class="sensi-grid">
-    <div class="sensi"><div class="sensi-name">GERAL / VELOCIDADE</div><div class="sensi-value" id="vGeral">0</div><div class="sensi-sub">Base de movimento</div></div>
-    <div class="sensi"><div class="sensi-name">PONTO VERMELHO / CAPA</div><div class="sensi-value" id="vRed">0</div><div class="sensi-sub">🎯 FOCO PRINCIPAL</div></div>
-    <div class="sensi"><div class="sensi-name">MIRA 2X</div><div class="sensi-value" id="v2x">0</div><div class="sensi-sub">Subida média</div></div>
-    <div class="sensi"><div class="sensi-name">MIRA 4X</div><div class="sensi-value" id="v4x">0</div><div class="sensi-sub">Precisão longa</div></div>
-    <div class="sensi"><div class="sensi-name">MIRA AWM</div><div class="sensi-value" id="vAwm">0</div><div class="sensi-sub">Sniper estável</div></div>
-    <div class="sensi"><div class="sensi-name">OLHADINHA</div><div class="sensi-value" id="vLook">0</div><div class="sensi-sub">Visão livre</div></div>
-    <div class="sensi"><div class="sensi-name">DPI</div><div class="sensi-value" id="vDpi">—</div><div class="sensi-sub">Não alterar no iPhone</div></div>
-    <div class="sensi"><div class="sensi-name">BOTÃO DE ATIRAR</div><div class="sensi-value" id="vFire">0</div><div class="sensi-sub">Tamanho ideal</div></div>
-  </div>
-  <div class="analysis" id="analise"></div>
-  <div class="actions">
-    <button class="btn" id="copiar">📋 COPIAR SENSI</button>
-    <button class="btn" id="variar">⚡ AJUSTE +2</button>
-  </div>
-  <div class="counter">SENSOR SYSTEM v2.1 • +50 milhões de combinações</div>
-</div>
+<section class="screen" id="s2">
+  <div class="dots"><b class="on"></b><b></b><b></b></div>
+  <h2>Qual é o seu nome?</h2>
+  <p class="sub">Coloque seu nome para gerar a sua Sensi.</p>
+  <input type="text" id="nome" placeholder="Seu nome" maxlength="24" autocomplete="off">
+  <button class="btn" id="b2" disabled>Continuar</button>
+</section>
 
-<div class="card contact">
-  <h2>📬 Contato</h2>
-  <p>Siga nosso Instagram: <strong>@goat_sensibilidade</strong> 📱</p>
-  <a class="whatsapp" href="https://www.instagram.com/goat_sensibilidade" target="_blank">📱 SEGUE NO INSTAGRAM</a>
-  <p style="margin-top:12px;">Parceria: <strong>Beijo Mores</strong> 💋</p>
-</div>
+<section class="screen" id="s3">
+  <div class="dots"><b class="on"></b><b class="on"></b><b></b></div>
+  <h2>Selecione o modelo</h2>
+  <p class="sub">Escolha a marca do seu celular.</p>
+  <div class="opts" id="marcas"></div>
+</section>
 
-<div class="credits">GOAT SENSI • SENSOR SYSTEM v2.1</div>
+<section class="screen" id="s4">
+  <div class="dots"><b class="on"></b><b class="on"></b><b class="on"></b></div>
+  <h2 id="t4">Escolha o aparelho</h2>
+  <p class="sub">Toque no seu modelo.</p>
+  <div class="opts list" id="modelos"></div>
+  <button class="btn ghost" id="voltar4">Voltar</button>
+</section>
+
+<section class="screen" id="s7">
+  <h2>Goat IA</h2>
+  <p class="sub">Tire suas dúvidas sobre a Sensi e o gerador.</p>
+  <div class="chat" id="chat"></div>
+  <div class="chatbar"><input type="text" id="cin" placeholder="Digite sua mensagem" maxlength="300" autocomplete="off"><button class="btn" id="csend">Enviar</button></div>
+  <button class="btn ghost" id="cvolta">Voltar</button>
+</section>
+
+<section class="screen" id="s5">
+  <div class="stage"><canvas class="cup3d" id="cup5"></canvas></div>
+  <h2>Gerando sua Sensi</h2>
+  <div class="bar" id="bar"><div></div></div>
+  <div id="status">Iniciando…</div>
+</section>
+
+<section class="screen" id="s6">
+  <h2 id="ola">Sua Sensi está pronta</h2>
+  <div class="res">
+    <div class="who" id="rdev"></div>
+    <div class="eng" id="reng"></div>
+    <div id="rows"></div>
+    <p class="note">Valores de partida para o seu tipo de aparelho. Ajuste 1 a 3 pontos no treino até a mira ficar confortável.</p>
+  </div>
+  <button class="btn" id="copiar">Copiar Sensi</button>
+  <button class="btn ghost" id="refazer">Gerar outra</button>
+</section>
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-const DADOS = {
-  Apple: [
-    "iPhone 2G", "iPhone 3G", "iPhone 3GS", "iPhone 4", "iPhone 4S",
-    "iPhone 5", "iPhone 5C", "iPhone 5S",
-    "iPhone 6 / 6 Plus", "iPhone 6S / 6S Plus",
-    "iPhone SE (1ª gen)",
-    "iPhone 7 / 7 Plus", "iPhone 8 / 8 Plus",
-    "iPhone X", "iPhone XR", "iPhone XS / XS Max",
-    "iPhone 11", "iPhone 11 Pro / Pro Max",
-    "iPhone SE (2ª gen)",
-    "iPhone 12 / 12 Mini", "iPhone 12 Pro / Pro Max",
-    "iPhone 13 / 13 Mini", "iPhone 13 Pro / Pro Max",
-    "iPhone SE (3ª gen)",
-    "iPhone 14 / 14 Plus", "iPhone 14 Pro / Pro Max",
-    "iPhone 15 / 15 Plus", "iPhone 15 Pro / Pro Max",
-    "iPhone 16 / 16 Plus", "iPhone 16 Pro / Pro Max"
-  ],
-  Samsung: [
-    "Galaxy A05", "Galaxy A05s", "Galaxy A12", "Galaxy A13", "Galaxy A14", "Galaxy A15",
-    "Galaxy A22", "Galaxy A23", "Galaxy A32", "Galaxy A33", "Galaxy A34",
-    "Galaxy A52", "Galaxy A53", "Galaxy A54", "Galaxy A55",
-    "Galaxy S20", "Galaxy S21", "Galaxy S22", "Galaxy S23", "Galaxy S24"
-  ],
-  Xiaomi: [
-    "Redmi Note 8", "Redmi Note 9", "Redmi Note 10", "Redmi Note 11", "Redmi Note 12", "Redmi Note 13",
-    "POCO X3", "POCO X4", "POCO X5", "POCO X6", "POCO F5", "POCO F6"
-  ],
-  Motorola: [
-    "Moto E5", "Moto E6", "Moto E7", "Moto G5", "Moto G5 Plus", "Moto G5S", "Moto G5S Plus",
-    "Moto E22", "Moto G7", "Moto G8", "Moto G9 Play", "Moto G22", "Moto G32",
-    "Moto G52", "Moto G54", "Moto G84", "Edge 20", "Edge 30", "Edge 40", "Edge 50 Fusion"
-  ]
+// aparelhos por marca: [nome, perfil]  perfil: top | alto | medio | basico
+var D={
+ "iPhone":["📱",[["iPhone 11","alto"],["iPhone 12","alto"],["iPhone 13","top"],["iPhone 14","top"],["iPhone 14 Pro Max","top"],["iPhone 15","top"],["iPhone 15 Pro Max","top"],["iPhone 16","top"],["iPhone 16 Pro Max","top"],["iPhone XR","medio"],["iPhone SE","medio"]]],
+ "Xiaomi":["📲",[["Redmi 12","basico"],["Redmi 13C","basico"],["Redmi Note 12","medio"],["Redmi Note 13","medio"],["Redmi Note 13 Pro","alto"],["Poco M6","basico"],["Poco X5 Pro","alto"],["Poco X6 Pro","top"],["Poco F5","top"],["Xiaomi 13T","top"]]],
+ "Motorola":["📞",[["Moto E22","basico"],["Moto G24","basico"],["Moto G34","medio"],["Moto G54","medio"],["Moto G84","alto"],["Moto G85","alto"],["Edge 40 Neo","alto"],["Edge 50 Fusion","alto"],["Edge 50 Pro","top"]]],
+ "Samsung":["📱",[["Galaxy A03","basico"],["Galaxy A04","basico"],["Galaxy A05","basico"],["Galaxy A06","basico"],["Galaxy A13","basico"],["Galaxy A14","basico"],["Galaxy A15","medio"],["Galaxy A16","medio"],["Galaxy A23","basico"],["Galaxy A24","medio"],["Galaxy A25","medio"],["Galaxy A26","medio"],["Galaxy A34","medio"],["Galaxy A35","alto"],["Galaxy A36","alto"],["Galaxy A54","alto"],["Galaxy A55","alto"],["Galaxy M14","basico"],["Galaxy M15","medio"],["Galaxy M34","medio"],["Galaxy M35","medio"],["Galaxy S21","alto"],["Galaxy S22","top"],["Galaxy S23","top"],["Galaxy S24","top"],["Galaxy S24 Ultra","top"],["Galaxy S25","top"],["Galaxy S25 Ultra","top"]]]
 };
-
-const marcaEl = document.getElementById("marca");
-const modeloEl = document.getElementById("modelo");
-const gerarEl = document.getElementById("gerar");
-const resultadoEl = document.getElementById("resultado");
-const avisoEl = document.getElementById("aviso");
-
-function carregarModelos(){
-  modeloEl.innerHTML = '<option value="">Selecione um modelo...</option>';
-  const m = marcaEl.value;
-  if(!m) return;
-  DADOS[m].forEach(mod => {
-    const opt = document.createElement("option");
-    opt.value = mod;
-    opt.textContent = mod;
-    modeloEl.appendChild(opt);
-  });
+// motores: base por perfil [geral, ponto vermelho, mira 2x, mira 4x, AWM, olhadinha] + DPI
+var M={
+ basico:{n:"Motor Leve",b:[96,94,90,86,80,62],dpi:[400,480]},
+ medio:{n:"Motor Balanceado",b:[94,92,88,84,78,58],dpi:[480,560]},
+ alto:{n:"Motor Rápido",b:[91,89,85,81,75,54],dpi:[560,640]},
+ top:{n:"Motor Precisão 120Hz",b:[88,87,83,79,72,50],dpi:[640,720]}
+};
+var K=["Geral","Ponto vermelho","Mira 2x","Mira 4x","AWM","Olhadinha"];
+var st={nome:"",marca:"",modelo:"",perfil:"",res:null};
+function $(i){return document.getElementById(i)}
+function show(n){var a=document.querySelectorAll(".screen");for(var i=0;i<a.length;i++)a[i].classList.remove("on");$("s"+n).classList.add("on");window.scrollTo(0,0)}
+function hash(s){var h=7;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return h}
+document.querySelectorAll("[data-go]").forEach(function(b){b.onclick=function(){show(b.dataset.go)}});
+$("nome").oninput=function(){$("b2").disabled=this.value.trim().length<2};
+$("nome").onkeydown=function(e){if(e.key==="Enter"&&!$("b2").disabled)$("b2").click()};
+$("b2").onclick=function(){st.nome=$("nome").value.trim();show(3)};
+// marcas
+Object.keys(D).forEach(function(m){var b=document.createElement("button");b.className="opt";b.innerHTML="<em>"+D[m][0]+"</em>"+m;b.onclick=function(){st.marca=m;abrirModelos()};$("marcas").appendChild(b)});
+function abrirModelos(){
+  $("t4").textContent=st.marca==="Samsung"?"Modelos Galaxy":"Modelos "+st.marca;
+  var box=$("modelos");box.innerHTML="";
+  D[st.marca][1].forEach(function(x){var b=document.createElement("button");b.className="opt";b.textContent=x[0];b.onclick=function(){st.modelo=x[0];st.perfil=x[1];gerar()};box.appendChild(b)});
+  box.scrollTop=0;show(4);
 }
-
-marcaEl.addEventListener("change", carregarModelos);
-
-function aleatorio(min,max){return Math.floor(Math.random()*(max-min+1))+min;}
-function limitar(v,min,max){return Math.max(min,Math.min(max,v));}
-
-function gerarSensi(){
-  esconderAviso();
-  const m = modeloEl.value;
-  const fab = marcaEl.value;
-  if(!m){mostrarAviso("⚠️ Escolha a marca e o modelo primeiro!");return;}
-
-  const nivel = document.getElementById("nivel").value;
-  const dedos = document.getElementById("dedos").value;
-  const tecnica = document.getElementById("tecnica").value;
-
-  let geralMin, geralMax, dpiMin, dpiMax;
-  if(nivel==="baixa"){geralMin=115;geralMax=155;dpiMin=380;dpiMax=480;}
-  else if(nivel==="media"){geralMin=140;geralMax=175;dpiMin=440;dpiMax=580;}
-  else{geralMin=160;geralMax=198;dpiMin=500;dpiMax=720;}
-
-  let bonus = 0;
-  if(tecnica==="agressivo")bonus=8;
-  if(tecnica==="perfeita")bonus=12;
-
-  const geral = limitar(aleatorio(geralMin,geralMax)+bonus,100,200);
-  const red = limitar(geral+aleatorio(15,35)+bonus,120,200);
-  const doisX = limitar(red-aleatorio(5,12),85,195);
-  const quatroX = limitar(doisX-aleatorio(6,14),75,190);
-  const awm = limitar(quatroX-aleatorio(8,18),65,185);
-  const olhadinha = limitar(geral+aleatorio(-3,5),95,200);
-  
-  let dpi = "—";
-  if(fab !== "Apple"){
-    dpi = aleatorio(dpiMin,dpiMax);
-    if(fab==="Xiaomi")dpi+=15;
-    dpi = limitar(dpi,360,720);
-  }
-
-  let fireMin=48,fireMax=58;
-  if(dedos==="2"){fireMin=52;fireMax=60;}
-  if(dedos==="3"){fireMin=46;fireMax=56;}
-  if(dedos==="4"){fireMin=40;fireMax=50;}
-  const fire = limitar(aleatorio(fireMin,fireMax),38,62);
-
-  document.getElementById("vGeral").textContent=geral;
-  document.getElementById("vRed").textContent=red;
-  document.getElementById("v2x").textContent=doisX;
-  document.getElementById("v4x").textContent=quatroX;
-  document.getElementById("vAwm").textContent=awm;
-  document.getElementById("vLook").textContent=olhadinha;
-  document.getElementById("vDpi").textContent=dpi;
-  document.getElementById("vFire").textContent=fire;
-
-  let dpiNota = fab === "Apple" ? "\n📱 No iPhone não é preciso alterar DPI!" : "";
-
-  document.getElementById("analise").innerHTML=
-    "<strong>SENSOR PRONTO!</strong><br><br>"+
-    "🎯 Ponto Vermelho em "+red+" para facilitar a puxada.<br>"+dpiNota+"<br>"+
-    "💡 Treine no Modo Treino antes de jogar! Se passar muito, diminua o Ponto Vermelho em 2~3 pontos. Boa sorte! ⚡🔥";
-
-  resultadoEl.style.display="block";
-  resultadoEl.scrollIntoView({behavior:"smooth",block:"start"});
+$("voltar4").onclick=function(){show(3)};
+// motor de cálculo
+function calc(){
+  var m=M[st.perfil],h=hash(st.modelo);
+  var v=m.b.map(function(x,i){var o=((h>>(i*3))&7)-3;return Math.max(30,Math.min(100,x+o))});
+  var dpi=m.dpi[0]+((h>>5)%2)*(m.dpi[1]-m.dpi[0]);
+  return{motor:m.n,v:v,dpi:dpi};
 }
-
-function ajusteFino(){
-  if(resultadoEl.style.display!=="block"){mostrarAviso("⚠️ Gere uma sensibilidade primeiro!");return;}
-  ["vGeral","vRed","v2x","v4x","vAwm","vLook"].forEach(id=>{
-    const el=document.getElementById(id);
-    el.textContent=limitar(parseInt(el.textContent)+2,60,200);
-  });
-  document.getElementById("analise").innerHTML="<strong>⚡ AJUSTE +2</strong> Valores aumentados em 2 pontos! Testa no treino e ajusta do seu jeito! 🔥";
+var msgs=["Lendo o modelo do aparelho…","Calculando a taxa de resposta da tela…","Ajustando o motor da mira…","Equilibrando ponto vermelho e miras…","Finalizando a sua Sensi…"];
+function gerar(){
+  show(5);var bar=$("bar");bar.classList.remove("run");void bar.offsetWidth;bar.classList.add("run");
+  var i=0;$("status").textContent=msgs[0];
+  var iv=setInterval(function(){i++;if(i<msgs.length)$("status").textContent=msgs[i]},1400);
+  setTimeout(function(){clearInterval(iv);resultado()},7000);
 }
-
-function copiarConfiguracao(){
-  if(resultadoEl.style.display!=="block"){mostrarAviso("⚠️ Gere uma sensibilidade primeiro!");return;}
-  const fab = marcaEl.value;
-  let dpiTexto = fab === "Apple" ? "Não alterar (fixo)" : document.getElementById("vDpi").textContent;
-  
-  const txt = 
-    "GOAT SENSI v2.1\n"+
-    "Aparelho: "+marcaEl.value+" "+modeloEl.value+"\n"+
-    "══════════════════\n"+
-    "GERAL:          "+document.getElementById("vGeral").textContent+"\n"+
-    "PTO VERMELHO:   "+document.getElementById("vRed").textContent+"\n"+
-    "MIRA 2X:        "+document.getElementById("v2x").textContent+"\n"+
-    "MIRA 4X:        "+document.getElementById("v4x").textContent+"\n"+
-    "AWM:            "+document.getElementById("vAwm").textContent+"\n"+
-    "OLHADINHA:      "+document.getElementById("vLook").textContent+"\n"+
-    "DPI:            "+dpiTexto+"\n"+
-    "BOTÃO ATIRAR:   "+document.getElementById("vFire").textContent+"\n"+
-    "══════════════════\n"+
-    "Treina no Modo Treino! Boa sorte! ⚡";
-  
-  navigator.clipboard.writeText(txt).then(()=>{
-    document.getElementById("copiar").textContent="✅ COPIADO!";
-    setTimeout(()=>document.getElementById("copiar").textContent="📋 COPIAR SENSI",2000);
-  });
+function resultado(){
+  var r=calc();st.res=r;
+  $("ola").textContent=st.nome+", sua Sensi está pronta";
+  $("rdev").textContent=st.modelo;
+  $("reng").textContent=r.motor+" • DPI sugerido "+r.dpi;
+  var h="";K.forEach(function(k,i){h+='<div class="row"><div class="l"><span>'+k+'</span><span>'+r.v[i]+'</span></div><div class="t"><i data-w="'+r.v[i]+'"></i></div></div>'});
+  $("rows").innerHTML=h;show(6);
+  setTimeout(function(){document.querySelectorAll(".t i").forEach(function(e){e.style.width=e.dataset.w+"%"})},60);
 }
-
-function mostrarAviso(t){avisoEl.textContent=t;avisoEl.style.display="block";}
-function esconderAviso(){avisoEl.style.display="none";}
-
-gerarEl.addEventListener("click",gerarSensi);
-document.getElementById("variar").addEventListener("click",ajusteFino);
-document.getElementById("copiar").addEventListener("click",copiarConfiguracao);
-
-</script>
-
-</body>
-  </html>
-  
+$("copiar").onclick=function(){
+  var r=st.res,t="Sensi "+st.modelo+" ("+r.motor+")\n";
+  K.forEach(function(k,i){t+=k+": "+r.v[i]+"\n"});t+="DPI: "+r.dpi;
+  var b=this;function ok(){b.textContent="Copiada";setTimeout(function(){b.textContent="Copiar Sensi"},1800)}
+  try{navigator.clipboard.writeText(t).then(ok,function(){})}catch(e){}
+};
+$("refazer").onclick=function(){show(3)};
+(function(){var e=["🎯","⚡","🏆","👾","😎","🔥"],f=document.createElement("div");f.id="fx";for(var i=0;i<12;i++){var s=document.createElement("span");s.textContent=e[i%6];s.style.cssText="left:"+(Math.random()*95)+"%;font-size:"+(18+Math.random()*26)+"px;animation-duration:"+(9+Math.random()*10)+"s;animation-delay:-"+(Math.random()*15)+"s";f.appendChild(s)}document.body.insertBefore(f,document.body.firstChild)})();
+// ===== IA =====
+(function(){
+var box=$("chat"),inp=$("cin"),busy=false;
+function add(c,t){var d=document.createElement("div");d.className="msg "+c;d.textContent=t;box.appendChild(d);box.scrollTop=box.scrollHeight;return d}
+function norm(s){return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}
+var NO="Desculpe, mas isso não está na minha política.";
+var R=[
+[/(como (funciona|usar|uso|gero|gerar|faz|faco)|passo|comecar|tutorial)/,"É simples: toque em Começar, depois em Gerar Sensi, digite seu nome, escolha a marca e o modelo do celular. Espere uns 7 segundos e sua Sensi aparece pronta para copiar."],
+[/dpi/,"O DPI é a sensibilidade do toque do aparelho. O gerador sugere um DPI para o seu tipo de celular. Só mexa nele se o seu aparelho tiver essa opção nas configurações."],
+[/(ponto vermelho|red dot|reddot)/,"O ponto vermelho é a sensibilidade das miras de ponto vermelho. Valor maior deixa a mira mais rápida; menor deixa mais controlada."],
+[/(2x|4x|awm|olhadinha|geral)/,"Geral é a câmera sem mirar. 2x e 4x são as miras de luneta. AWM é a mira da sniper. Olhadinha é a sensibilidade de espiar pelos cantos. Cada uma aparece separada no resultado."],
+[/(celular|modelo|aparelho|iphone|xiaomi|motorola|samsung|galaxy|a55|redmi|poco|moto)/,"O gerador tem iPhone, Xiaomi, Motorola e Samsung Galaxy. Escolha o seu modelo na etapa 3 e o motor se ajusta ao nível do aparelho."],
+[/(demora|segundos|carreg|travou|espera)/,"A geração leva cerca de 7 segundos enquanto o motor monta a Sensi do seu aparelho. É só aguardar a tela de resultado."],
+[/(copiar|copia|salvar|print|anotar)/,"Na tela do resultado, toque em Copiar Sensi e cole onde quiser. Depois é só colocar os valores no Free Fire."],
+[/(ajust|melhor|treino|errar|pinar|muito alta|muito baixa|mirar|mira)/,"Teste no treino e mexa 1 a 3 pontos por vez. Se a mira passa do alvo, diminua um pouco. Se fica lenta, aumente um pouco."],
+[/(sensi|sensibilidade|free fire|\bff\b|garena|motor)/,"Sensi é a sensibilidade do Free Fire. O Goat Sensi Gerador Pro monta valores de partida para o seu celular: geral, ponto vermelho, miras, AWM, olhadinha e DPI."],
+[/(preco|valor|comprar|pagar|gratis|acesso|whatsapp)/,"Sobre valores e acesso, fale com o respons
