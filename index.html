@@ -30,7 +30,25 @@ p.sub{color:var(--muted);margin:0 0 22px;font-size:15px}
 :focus-visible{outline:3px solid var(--accent2);outline-offset:3px}
 /* xícara */
 .stage{perspective:700px;height:200px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;position:relative}
-.cup3d{width:240px;height:200px}
+
+#bg{background:radial-gradient(1.5px 1.5px at 20% 30%,#cbb8ff,transparent),radial-gradient(1.5px 1.5px at 70% 20%,#fff,transparent),radial-gradient(2px 2px at 40% 70%,#9b7bff,transparent),radial-gradient(1.5px 1.5px at 85% 60%,#cbb8ff,transparent),radial-gradient(1.5px 1.5px at 10% 85%,#fff,transparent);animation:stars 30s linear infinite}
+@keyframes stars{to{background-position:0 -300px}}
+#bg i{position:absolute;border:2px solid rgba(155,123,255,.55);background:rgba(108,62,224,.12);animation:drift linear infinite;box-shadow:0 0 14px rgba(108,62,224,.4)}
+@keyframes drift{from{transform:translate3d(0,0,0) rotate3d(1,1,0,0deg)}50%{transform:translate3d(30px,-50px,0) rotate3d(1,1,0,180deg)}to{transform:translate3d(0,0,0) rotate3d(1,1,0,360deg)}}
+.cupwrap{position:relative;width:48%;aspect-ratio:1.2;flex:none;display:flex;align-items:center;justify-content:center;perspective:700px}
+.cupwrap.big{width:240px;aspect-ratio:auto;height:200px}
+.cupwrap .steam{top:-2px}
+.scene{position:relative;width:100px;height:100px;transform-style:preserve-3d;transform:rotateX(-20deg);animation:turn 5s linear infinite;margin-top:18px}
+.big .scene{scale:1.3}
+@keyframes turn{to{transform:rotateX(-20deg) rotateY(360deg)}}
+.scene>*{position:absolute;left:50%}
+.scene .st{top:15px;width:13px;margin-left:-6.5px;height:70px}
+.scene .cf{width:84px;height:84px;margin-left:-42px;top:-14px;border-radius:50%;background:radial-gradient(#5a3420,#2a140a);transform:rotateX(90deg)}
+.scene .rm{width:94px;height:94px;margin-left:-47px;top:-32px;border-radius:50%;border:5px solid #f1ecff;transform:rotateX(90deg)}
+.scene .bt{width:70px;height:70px;margin-left:-35px;top:50px;border-radius:50%;background:#d9d0f5;transform:rotateX(90deg)}
+.scene .sa{width:150px;height:150px;margin-left:-75px;top:14px;border-radius:50%;background:radial-gradient(#8a5cf5,#4a22b8);transform:rotateX(90deg);box-shadow:0 0 0 4px #3a1c9c}
+.scene .hd{width:34px;height:42px;margin-left:44px;top:28px;border:8px solid #f1ecff;border-left-color:transparent;border-radius:50%}
+
 .chat{height:44vh;overflow-y:auto;display:flex;flex-direction:column;gap:10px;margin-bottom:12px;padding:4px}
 .msg{max-width:85%;padding:11px 14px;border-radius:18px;font-size:15px;line-height:1.4;text-align:left;white-space:pre-wrap;word-break:break-word;box-shadow:0 4px 0 #1a0f3d}
 .msg.ia{align-self:flex-start;background:var(--card);border:2px solid var(--line);border-bottom-left-radius:4px}
@@ -39,7 +57,7 @@ p.sub{color:var(--muted);margin:0 0 22px;font-size:15px}
 .chatbar input[type=text]{margin:0;text-align:left;padding:14px;font-size:16px;flex:1;min-width:0}
 .chatbar .btn{width:auto;padding:14px 18px;font-size:16px}
 .hero{display:flex;align-items:center;gap:4px;margin-bottom:18px;text-align:left}
-.hero .cup3d{width:48%;height:auto;aspect-ratio:1.2;flex:none}
+
 .brand{flex:1;min-width:0}
 .goat{font-family:'Anton','Impact',sans-serif;font-size:54px;line-height:.92;font-style:italic;transform:skewX(-8deg);transform-origin:left;background:linear-gradient(180deg,#fff 25%,#b79cff 100%);-webkit-background-clip:text;background-clip:text;color:transparent;animation:glow 2.4s ease-in-out infinite,flick 4.5s infinite}
 @keyframes glow{0%,100%{filter:drop-shadow(0 0 8px rgba(155,123,255,.6))}50%{filter:drop-shadow(0 0 22px rgba(155,123,255,1))}}
@@ -98,11 +116,11 @@ input::placeholder{color:#6c6488}
 </style>
 </head>
 <body>
-<canvas id="bg"></canvas>
+<div id="bg"></div>
 <div class="wrap">
 
 <section class="screen on" id="s0">
-  <div class="hero"><canvas class="cup3d" id="cup0"></canvas><div class="brand"><div class="goat">GOAT<br>SENSI</div><div class="pro">Gerador Pro</div></div></div>
+  <div class="hero"><div class="cupwrap"></div><div class="brand"><div class="goat">GOAT<br>SENSI</div><div class="pro">Gerador Pro</div></div></div>
   <p class="sub">Sensibilidade ajustada para o seu celular.</p>
   <button class="btn" data-go="1">Começar</button>
 </section>
@@ -152,7 +170,7 @@ input::placeholder{color:#6c6488}
 </section>
 
 <section class="screen" id="s5">
-  <div class="stage"><canvas class="cup3d" id="cup5"></canvas></div>
+  <div class="stage"><div class="cupwrap big"></div></div>
   <h2>Gerando sua Sensi</h2>
   <div class="bar" id="bar"><div></div></div>
   <div id="status">Iniciando…</div>
@@ -172,7 +190,6 @@ input::placeholder{color:#6c6488}
 
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 // aparelhos por marca: [nome, perfil]  perfil: top | alto | medio | basico
 var D={
@@ -244,13 +261,4 @@ function add(c,t){var d=document.createElement("div");d.className="msg "+c;d.tex
 function norm(s){return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase()}
 var NO="Desculpe, mas isso não está na minha política.";
 var R=[
-[/(como (funciona|usar|uso|gero|gerar|faz|faco)|passo|comecar|tutorial)/,"É simples: toque em Começar, depois em Gerar Sensi, digite seu nome, escolha a marca e o modelo do celular. Espere uns 7 segundos e sua Sensi aparece pronta para copiar."],
-[/dpi/,"O DPI é a sensibilidade do toque do aparelho. O gerador sugere um DPI para o seu tipo de celular. Só mexa nele se o seu aparelho tiver essa opção nas configurações."],
-[/(ponto vermelho|red dot|reddot)/,"O ponto vermelho é a sensibilidade das miras de ponto vermelho. Valor maior deixa a mira mais rápida; menor deixa mais controlada."],
-[/(2x|4x|awm|olhadinha|geral)/,"Geral é a câmera sem mirar. 2x e 4x são as miras de luneta. AWM é a mira da sniper. Olhadinha é a sensibilidade de espiar pelos cantos. Cada uma aparece separada no resultado."],
-[/(celular|modelo|aparelho|iphone|xiaomi|motorola|samsung|galaxy|a55|redmi|poco|moto)/,"O gerador tem iPhone, Xiaomi, Motorola e Samsung Galaxy. Escolha o seu modelo na etapa 3 e o motor se ajusta ao nível do aparelho."],
-[/(demora|segundos|carreg|travou|espera)/,"A geração leva cerca de 7 segundos enquanto o motor monta a Sensi do seu aparelho. É só aguardar a tela de resultado."],
-[/(copiar|copia|salvar|print|anotar)/,"Na tela do resultado, toque em Copiar Sensi e cole onde quiser. Depois é só colocar os valores no Free Fire."],
-[/(ajust|melhor|treino|errar|pinar|muito alta|muito baixa|mirar|mira)/,"Teste no treino e mexa 1 a 3 pontos por vez. Se a mira passa do alvo, diminua um pouco. Se fica lenta, aumente um pouco."],
-[/(sensi|sensibilidade|free fire|\bff\b|garena|motor)/,"Sensi é a sensibilidade do Free Fire. O Goat Sensi Gerador Pro monta valores de partida para o seu celular: geral, ponto vermelho, miras, AWM, olhadinha e DPI."],
-[/(preco|valor|comprar|pagar|gratis|acesso|whatsapp)/,"Sobre valores e acesso, fale com o respons
+[/(como (funciona|usar|uso|gero|
